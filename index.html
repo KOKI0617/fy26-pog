@@ -1,0 +1,2207 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta name="description" content="4人のPOGの順位・指名馬の成績・次走・ニュース"><meta property="og:title" content="FY26 POG"><meta property="og:description" content="4人のPOGの順位・指名馬の成績・次走・ニュース"><meta property="og:type" content="website"><meta name="theme-color" content="#1f4d36"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231f4d36'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23d8b56a' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23f4f1e8'/%3E%3C/svg%3E"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>FY26 POG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&family=Shippori+Mincho+B1:wght@500;700;800&family=Sofia+Sans+Condensed:wght@300;400;500;600&display=swap">
+<style>
+/* 案C「勝負服と優駿」
+   レイアウト: スマホは「表紙（芝の題字・残り日数・白いラチ）→ ゴール板の着順 → 推移」の1段誌面で、目次は親指の届く下端に固定。
+               PC は見開き（左に着順、右に推移と早見表）、指名馬は出馬表のように段組みで並べる。
+   色: 冷たい灰白の紙 / 深い芝の緑 / 白いラチ / 真鍮は「1着・首位・残り日数」だけに使う。
+   書体: 見出しと大きな数字＝Shippori Mincho B1、本文＝IBM Plex Sans JP、データの数字＝Sofia Sans Condensed（細身・等幅数字）。
+   メンバーの印＝勝負服（帽子は JRA と同じく枠の色）。順位・馬カード・グラフの凡例・絞り込みで同じ絵を使う。 */
+:root{
+  --paper:#EDF1EE;      /* 冷たい灰白の紙 */
+  --sheet:#FFFFFF;      /* ラチの白（紙面の札） */
+  --ink:#13221A;        /* 深い緑の墨 */
+  --mute:#56675D;
+  --line:#D0DAD3;
+  --turf:#1C4632;       /* 深い芝 */
+  --turf-2:#204E39;     /* 芝の刈り目 */
+  --turf-ink:#F1F5F1;
+  --turf-mute:#B4C8BB;
+  --turf-text:#1C4632;  /* 紙の上で芝色の文字 */
+  --turf-fill:#1C4632;  /* 紙の上の芝色の面（ボタン・1勝・公式） */
+  --rail:#F5F7F3;       /* 白いラチ */
+  --brass:#B8954C;      /* 真鍮（面・罫） */
+  --brass-ink:#7A5D23;  /* 真鍮（紙の上の文字） */
+  --brass-hi:#D4B474;   /* 真鍮（芝の上） */
+  --on-brass:#15201A;
+
+  --m-kotsuji:#BC2E29; --m-yoshida:#1D53AC; --m-kono:#B95413; --m-keigo:#957500;
+  --silk-red:#C9302B; --silk-blue:#1F4E9E; --silk-yellow:#F3C71D; --silk-orange:#E66A1E;
+  --silk-white:#FFFFFF; --silk-black:#151919; --silk-green:#1F7A45; --silk-pink:#E77FA6; --silk-edge:#14211A;
+
+  /* レース展開（Canvas）の色。絵の中の色なので明暗で大きくは変えない */
+  --race-far:#123321; --race-infield:#1C4632; --race-infield-2:#1F4C37;
+  --race-track:#2F6B48; --race-track-2:#2B6443; --race-shade:rgba(8,26,16,.30); --race-rim:rgba(255,255,255,0);
+  --race-clod:#8A6440; --race-clod-2:#6FA877; --race-gate:#174A33; --race-plate-ink:#13221A; --race-skin:#E2B28C; --race-rein:#231915;
+  --coat-bay:#8A5430; --coat-bay-pt:#1D1511; --coat-dkbay:#5C3622; --coat-dkbay-pt:#17110E;
+  --coat-brown:#3B291F; --coat-brown-pt:#130F0D; --coat-black:#231D1A; --coat-black-pt:#0F0C0B;
+  --coat-chestnut:#AE6230; --coat-chestnut-pt:#94502A; --coat-chestnut-mane:#C27A45; --coat-liver:#73402A; --coat-liver-pt:#5E3322;
+  --coat-grey:#ADAFAA; --coat-grey-pt:#6F736E; --coat-white:#ECEAE4; --coat-white-pt:#CFCBC3; --coat-hoof:#2B2421;
+
+  --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+  --f-body:"IBM Plex Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  --f-num:"Sofia Sans Condensed","Arial Narrow","Roboto Condensed","IBM Plex Sans JP",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#08120D; --sheet:#0E1B15; --ink:#E3EAE5; --mute:#8FA296; --line:#213329;
+  --turf:#103020; --turf-2:#133624; --turf-ink:#EAF0EB; --turf-mute:#9CB4A5; --turf-text:#8BCAA3; --turf-fill:#1D5639;
+  --rail:#DCE5DE; --brass:#C8A75E; --brass-ink:#D6B66D; --brass-hi:#D8B977; --on-brass:#101A14;
+  --m-kotsuji:#F2716A; --m-yoshida:#7DA7F3; --m-kono:#F39A58; --m-keigo:#F0CF4C;
+  --silk-red:#D23731; --silk-blue:#2D5DB4; --silk-yellow:#EFC423; --silk-orange:#EC7126;
+  --silk-white:#F1F4F0; --silk-black:#0F1312; --silk-green:#24864D; --silk-pink:#EA88AD; --silk-edge:#040A07;
+  --race-far:#06150D; --race-infield:#0E2A1C; --race-infield-2:#10301F;
+  --race-track:#1D4731; --race-track-2:#1A412D; --race-shade:rgba(0,0,0,.36); --race-rim:rgba(198,228,208,.34);
+  --race-clod:#7A5838; --race-clod-2:#4F8C5E; --race-gate:#2F6D4E; --race-skin:#D9A983; --race-rein:#1A120F;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#08120D; --sheet:#0E1B15; --ink:#E3EAE5; --mute:#8FA296; --line:#213329;
+  --turf:#103020; --turf-2:#133624; --turf-ink:#EAF0EB; --turf-mute:#9CB4A5; --turf-text:#8BCAA3; --turf-fill:#1D5639;
+  --rail:#DCE5DE; --brass:#C8A75E; --brass-ink:#D6B66D; --brass-hi:#D8B977; --on-brass:#101A14;
+  --m-kotsuji:#F2716A; --m-yoshida:#7DA7F3; --m-kono:#F39A58; --m-keigo:#F0CF4C;
+  --silk-red:#D23731; --silk-blue:#2D5DB4; --silk-yellow:#EFC423; --silk-orange:#EC7126;
+  --silk-white:#F1F4F0; --silk-black:#0F1312; --silk-green:#24864D; --silk-pink:#EA88AD; --silk-edge:#040A07;
+  --race-far:#06150D; --race-infield:#0E2A1C; --race-infield-2:#10301F;
+  --race-track:#1D4731; --race-track-2:#1A412D; --race-shade:rgba(0,0,0,.36); --race-rim:rgba(198,228,208,.34);
+  --race-clod:#7A5838; --race-clod-2:#4F8C5E; --race-gate:#2F6D4E; --race-skin:#D9A983; --race-rein:#1A120F;
+  color-scheme:dark}
+
+/* ---------- 土台 ---------- */
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--f-body);font-size:15px;line-height:1.7;
+  padding-inline:max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  padding-block:12px calc(92px + env(safe-area-inset-bottom, 0px));
+  overflow-wrap:anywhere;
+}
+h1,h2,h3,h4,p,ol,ul,dl,dd,figure{margin:0}
+ol,ul{padding:0;list-style:none}
+button{font:inherit;color:inherit}
+a{color:var(--turf-text);text-decoration-color:var(--line);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--brass-ink);outline-offset:2px}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums lining-nums;letter-spacing:.01em}
+.page{max-width:1240px;margin-inline:auto;display:grid;gap:22px}
+
+/* ---------- 題字（表紙） ---------- */
+.mast{
+  position:relative;color:var(--turf-ink);border-radius:2px;
+  background:repeating-linear-gradient(104deg, var(--turf) 0 44px, var(--turf-2) 44px 88px);
+  padding:20px 18px 16px;display:grid;gap:14px;
+}
+.mast-in{display:grid;gap:16px}
+.kicker{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;font-size:12px;letter-spacing:.14em;color:var(--turf-mute)}
+.title{font-family:var(--f-display);font-weight:800;font-size:clamp(38px, 11vw, 64px);line-height:1.05;letter-spacing:.05em;margin-top:6px}
+.rules{display:flex;flex-wrap:wrap;gap:2px 0;font-size:12.5px;line-height:1.6;color:var(--turf-ink);margin-top:10px}
+.rules span{white-space:nowrap}
+.rules span:not(:last-child)::after{content:"／";color:var(--turf-mute);margin-inline:2px}
+.mast-count{display:grid;gap:2px;align-content:end}
+.c-label{font-family:var(--f-display);font-weight:500;font-size:13.5px;letter-spacing:.08em;color:var(--turf-mute);font-feature-settings:"palt" 1}
+.c-label .num{font-size:15px;color:var(--turf-ink)}
+.c-num{display:flex;align-items:baseline;gap:6px;line-height:1}
+.c-num b{font-family:var(--f-display);font-weight:800;font-size:clamp(84px, 27vw, 168px);line-height:.92;color:var(--brass-hi);letter-spacing:-.01em;font-variant-numeric:lining-nums}
+.c-pre,.c-unit{font-family:var(--f-display);font-weight:700;color:var(--turf-ink)}
+.c-pre{font-size:22px}
+.c-unit{font-size:clamp(30px, 8vw, 46px)}
+.rail{position:relative;height:20px;margin-top:36px}
+.rail::before{content:"";position:absolute;left:0;right:14px;top:4px;height:5px;border-radius:2px;background:var(--rail)}
+.rail::after{content:"";position:absolute;left:0;right:14px;top:4px;height:16px;
+  background:repeating-linear-gradient(90deg, var(--rail) 0 3px, transparent 3px 34px)}
+.rail .goal{position:absolute;right:0;top:-12px;width:18px;height:32px}
+.rail .goal::before{content:"";position:absolute;left:7px;top:14px;width:3px;height:18px;background:var(--rail)}
+.rail .goal::after{content:"";position:absolute;left:0;top:0;width:17px;height:17px;border-radius:50%;background:var(--rail);box-shadow:inset 0 0 0 3px var(--brass-hi)}
+.rail .today{position:absolute;top:-36px;transform:translateX(-50%);font-size:12px;line-height:1.4;color:var(--brass-hi);white-space:nowrap;font-style:normal}
+.rail .today[data-pos="s"]{transform:translateX(-6px)}
+.rail .today[data-pos="e"]{transform:translateX(calc(-100% + 6px))}
+.rail .mark{position:absolute;top:-13px;width:28px;height:18px;margin-left:-15px;color:var(--brass-hi);--mh-j:var(--turf-ink);z-index:1}
+.rail-cap{position:relative;display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--turf-mute);min-height:20px}
+.rail-cap b{font-weight:500;color:var(--turf-ink)}
+.upd{font-size:12px;color:var(--turf-mute);border-top:1px solid var(--turf-2);border-top-color:color-mix(in srgb, var(--turf-mute) 30%, transparent);padding-top:10px}
+.upd b{font-weight:500;color:var(--turf-ink)}
+/* スマホは表紙を詰めて、レース展開が最初の画面（下のタブより上）に入るようにする */
+@media (max-width:599px){
+  body{padding-block:8px calc(92px + env(safe-area-inset-bottom, 0px))}
+  .page{gap:14px}
+  .mast{padding:14px 16px 12px;gap:8px}
+  .mast-in{gap:8px}
+  .kicker{line-height:1.4}
+  .title{font-size:clamp(34px, 9.8vw, 64px);margin-top:2px}
+  .rules{font-size:12px;line-height:1.5;margin-top:4px}
+  .mast-count{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:4px 10px}
+  .c-label{font-size:12.5px;line-height:1.45;letter-spacing:.06em;padding-bottom:3px}
+  .c-label .num{font-size:14px}
+  .c-label .cl{display:block}
+  .c-label .cl-p{margin-left:-.45em}
+  .c-num{gap:4px}
+  .c-num b{font-size:clamp(52px, 16vw, 72px)}
+  .c-pre{font-size:18px}
+  .c-unit{font-size:24px}
+  .rail{margin-top:14px}
+  .rail .today{top:-17px}
+  .rail .today[data-side="r"]{transform:translateX(17px)}
+  .rail .today[data-side="l"]{transform:translateX(calc(-100% - 19px))}
+  .rail-cap{line-height:1.5;min-height:18px}
+  .upd{padding-top:7px;line-height:1.5}
+  .race{margin-bottom:30px}
+  .race .sh{margin-bottom:8px}
+}
+
+/* ---------- 目次（スマホは下端・PC は上に貼り付き） ---------- */
+.tabs{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;
+  background:var(--sheet);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom, 0px);
+}
+.tablist{position:relative;display:grid;grid-template-columns:repeat(4,1fr)}
+.tab{position:relative;min-height:66px;border:0;background:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--mute);padding:22px 2px 6px}
+.tab .tl{font-family:var(--f-display);font-weight:700;font-size:16px;line-height:1.2;letter-spacing:.06em}
+.tab .tc{font-size:12px;line-height:1.2}
+.tab[aria-selected="true"]{color:var(--turf-text)}
+.tab[aria-selected="true"] .tc{color:var(--ink)}
+/* 選んだタブの上を小さな馬が駆けて移る（真鍮の線と一緒に） */
+.runner{position:absolute;left:0;top:0;bottom:0;width:25%;pointer-events:none;z-index:1}
+.runner .bar{position:absolute;top:-1px;left:24%;right:24%;height:3px;background:var(--brass)}
+.runner .mhw{position:absolute;top:4px;left:50%;width:28px;height:18px;margin-left:-14px;color:var(--turf-text);--mh-j:var(--brass)}
+.runner.to-left .mhw{transform:scaleX(-1)}
+.mh{display:block;width:100%;height:100%;overflow:visible}
+.mh .mh-h{fill:currentColor}
+.mh .mh-j{fill:var(--mh-j, currentColor);stroke:var(--mh-j, currentColor)}
+.mh .mh-l{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.mh .mh-b{visibility:hidden}
+.tabs .tab-count{display:none}
+
+/* ---------- 見出し ---------- */
+.panel{min-width:0}
+.sh{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin-bottom:14px}
+.sh h2,.sh h3{font-family:var(--f-display);font-weight:700;font-size:23px;line-height:1.3;letter-spacing:.06em;font-feature-settings:"palt" 1;text-wrap:balance}
+.sh h3{font-size:18px}
+.sh .sub{font-size:12.5px;color:var(--mute)}
+.sh .end{margin-left:auto}
+/* ハロン棒: タブの並び（順位→指名馬→次走→ニュース）をゴールへ近づく順に 残り4F→1F */
+.fl{display:inline-flex;flex-direction:column;align-items:center;flex:none;align-self:flex-end;margin:0 -2px 5px 0}
+.fl b{display:block;padding:3px 5px 2px;background:var(--sheet);border:1px solid var(--ink);border-radius:1px;font-family:var(--f-num);font-weight:600;font-size:12px;line-height:1;letter-spacing:.03em;color:var(--ink);white-space:nowrap}
+.fl i{display:block;width:5px;height:13px;margin-top:-1px;border:1px solid var(--ink);border-top:0;background:repeating-linear-gradient(180deg,var(--ink) 0 3px,var(--sheet) 3px 6px)}
+.block{display:grid;gap:0;min-width:0}
+.block+.block,.gap-top{margin-top:40px}
+.st-grid>.block{margin-top:0}
+.fine{font-size:12px;color:var(--mute);line-height:1.6}
+.nw{white-space:nowrap}
+
+/* ---------- 順位（ゴール板の着順） ---------- */
+.st-grid{display:grid;gap:40px}
+.board{border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.brow{position:relative;display:grid;grid-template-columns:38px 46px minmax(0,1fr) auto;align-items:center;column-gap:12px;padding-block:20px 18px}
+.brow+.brow{border-top:1px solid var(--line)}
+.cks{position:absolute;top:0;left:50px;transform:translateY(-52%);background:var(--paper);padding-inline:8px;
+  font-family:var(--f-display);font-weight:700;font-size:12.5px;letter-spacing:.1em;color:var(--brass-ink);line-height:1.4}
+.brank{font-family:var(--f-display);font-weight:800;font-size:36px;line-height:1;text-align:center;font-variant-numeric:lining-nums}
+.brank small{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;margin-top:3px;color:var(--mute)}
+.r1 .brank{color:var(--brass-ink);font-size:44px}
+.silk{display:block;flex:none;overflow:visible}
+.silk.lg{width:46px;height:46px}
+.bwho{min-width:0}
+.bname{display:block;font-family:var(--f-display);font-weight:700;font-size:21px;line-height:1.3;letter-spacing:.03em}
+.balias{display:block;font-size:12px;color:var(--mute);line-height:1.5}
+.bstat{display:flex;flex-wrap:wrap;gap:0 10px;font-size:12.5px;color:var(--mute);margin-top:3px;line-height:1.5}
+.bstat b{font-family:var(--f-num);font-weight:500;font-size:15px;color:var(--ink);margin-inline:1px}
+.bpts{text-align:right;line-height:1}
+.bpts .v{font-family:var(--f-num);font-weight:400;font-size:34px;letter-spacing:0;font-variant-numeric:tabular-nums lining-nums}
+.r1 .bpts .v{font-size:40px}
+.bpts .u{font-size:12px;color:var(--mute);margin-left:2px}
+.bpts .gap{display:block;margin-top:7px;font-size:12.5px;color:var(--mute)}
+.bpts .gap .num{font-size:14px;color:var(--ink)}
+.r1 .bpts .gap{color:var(--brass-ink);font-family:var(--f-display);font-weight:700;letter-spacing:.1em}
+
+.copy{display:grid;gap:10px;margin-top:20px}
+.btn{min-height:50px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;
+  background:var(--turf-fill);color:var(--turf-ink);border:1px solid var(--turf-text);border-radius:2px;
+  font-family:var(--f-body);font-weight:700;font-size:15px;letter-spacing:.04em}
+.btn svg{width:18px;height:18px;flex:none}
+.btn:hover{background:var(--turf)}
+.copy-note{font-size:13px;color:var(--turf-text);min-height:1.2em}
+.copy-fb{width:100%;font:13px/1.6 var(--f-body);color:var(--ink);background:var(--sheet);border:1px solid var(--line);border-radius:2px;padding:10px}
+
+.soon{margin-top:34px}
+.soon ul{border-top:1px solid var(--ink)}
+.textbtn{background:none;border:0;padding:6px 0;min-height:44px;cursor:pointer;color:var(--turf-text);font-size:13.5px;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.srow{display:grid;grid-template-columns:52px 26px minmax(0,1fr) auto;gap:10px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);width:100%;text-align:left;background:none;border-inline:0;border-top:0;cursor:pointer;min-height:56px}
+.srow .d{font-size:15px;line-height:1.2}
+.srow .d small{display:block;font-family:var(--f-body);font-size:12px;color:var(--mute)}
+.srow .silk{width:26px;height:26px}
+.srow .t{min-width:0;line-height:1.45}
+.srow .t b{font-family:var(--f-display);font-weight:700;font-size:16px}
+.srow .t span{display:block;font-size:12.5px;color:var(--mute)}
+.srow .g{text-align:right;font-size:12px;color:var(--mute);line-height:1.2}
+.srow .g b{display:block;font-family:var(--f-num);font-weight:500;font-size:18px;color:var(--ink)}
+
+/* レース展開 */
+.race{margin-bottom:36px}
+.race .sh{margin-bottom:10px}
+.race-fig{position:relative;margin:0;height:232px;background:var(--race-infield);border-radius:2px;overflow:hidden}
+.race-fig canvas{display:block;width:100%;height:100%;cursor:pointer}
+.race-foot{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:8px}
+.race-foot .fine{padding-top:4px}
+.replay{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px 0 10px;cursor:pointer;
+  background:var(--sheet);border:1px solid var(--line);border-radius:2px;color:var(--turf-text);
+  font-family:var(--f-body);font-weight:700;font-size:13.5px;letter-spacing:.04em}
+.replay svg{width:16px;height:16px;flex:none}
+.replay:hover{border-color:var(--turf-text)}
+
+/* 推移グラフ */
+.chart{min-height:240px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .axis{stroke:var(--mute);stroke-width:1}
+.chart .tick{fill:var(--mute);font-family:var(--f-num);font-size:12px}
+.chart .lbl{fill:var(--ink);font-family:var(--f-body);font-size:12.5px;font-weight:700}
+.chart .lbl .v{font-family:var(--f-num);font-weight:500;font-size:13.5px}
+.chart .lead{stroke:var(--mute);stroke-width:1;fill:none}
+.chart .asof{fill:var(--brass-ink);font-family:var(--f-num);font-size:12px}
+
+/* 早見表 */
+.prize{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;border-top:1px solid var(--ink)}
+.prize div{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding-block:9px;border-bottom:1px solid var(--line);min-width:0}
+.prize span{font-size:13px;line-height:1.45;word-break:keep-all}
+.prize b{font-family:var(--f-num);font-weight:500;font-size:19px;white-space:nowrap}
+.prize b small{font-family:var(--f-body);font-size:11.5px;font-weight:400;color:var(--mute);margin-left:1px}
+.prize .final{grid-column:1/-1}
+.prize .final span{font-family:var(--f-display);font-weight:700;font-size:16px;letter-spacing:.06em}
+.prize .final b{font-size:28px;color:var(--brass-ink)}
+
+/* ---------- 指名馬 ---------- */
+.filters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:26px}
+.fchip{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:68px;padding:6px 2px 7px;cursor:pointer;
+  background:var(--sheet);border:1px solid var(--line);border-radius:2px;color:var(--ink);font-size:13px;font-weight:500;line-height:1.2}
+.fchip .silk{width:30px;height:30px}
+.fchip .all{font-family:var(--f-display);font-weight:800;font-size:20px;line-height:30px;height:30px;letter-spacing:.04em}
+.fchip small{font-family:var(--f-num);font-size:12px;color:var(--mute)}
+.fchip[aria-pressed="true"]{background:var(--turf-fill);border-color:var(--turf-text);box-shadow:inset 0 0 0 1px var(--turf-text);color:var(--turf-ink)}
+.fchip[aria-pressed="true"] small{color:var(--turf-mute)}
+
+.groups{display:grid;gap:44px}
+.mgh{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding-bottom:12px;border-bottom:2px solid var(--ink);margin-bottom:14px}
+.mgh .silk{width:58px;height:58px}
+.mgn{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1.2;letter-spacing:.04em}
+.mgd{font-family:var(--f-display);font-weight:500;font-size:12.5px;color:var(--mute);letter-spacing:.06em;line-height:1.5}
+.mgt{text-align:right;line-height:1.1}
+.mgt .r{display:block;font-family:var(--f-display);font-weight:700;font-size:13px;color:var(--mute);letter-spacing:.08em}
+.mgt b{font-family:var(--f-num);font-weight:400;font-size:30px}
+.mgt .u{font-size:12px;color:var(--mute);margin-left:2px}
+.cards{display:grid;gap:14px}
+
+.horse{background:var(--sheet);border:1px solid var(--line);border-radius:2px;padding:16px 16px 4px;min-width:0;scroll-margin-top:16px}
+.horse.is-jump{outline:2px solid var(--brass);outline-offset:3px}
+.hh{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:start}
+.hh .silk{width:30px;height:30px;margin-top:2px}
+.hh h3{font-family:var(--f-display);font-weight:700;font-size:20px;line-height:1.3;letter-spacing:.02em;font-feature-settings:"palt" 1;text-wrap:balance}
+.htags{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-top:5px;font-size:12.5px;color:var(--mute);line-height:1.4}
+.hp{text-align:right;line-height:1;white-space:nowrap;padding-top:2px}
+.hp b{font-family:var(--f-num);font-weight:400;font-size:28px}
+.hp .u{font-size:12px;color:var(--mute);margin-left:1px}
+.hp.zero b{color:var(--mute)}
+
+.st,.bs,.gr,.inf{display:inline-flex;align-items:center;justify-content:center;min-width:2.6em;padding:1px 6px;border-radius:2px;font-size:12px;font-weight:700;line-height:1.5;letter-spacing:.04em;white-space:nowrap;border:1px solid transparent}
+.st-graded{background:var(--brass);color:var(--on-brass)}
+.st-won{background:var(--turf-fill);color:var(--turf-ink)}
+.st-maiden{border-color:var(--ink);color:var(--ink)}
+.st-unraced{border:1px dashed var(--mute);color:var(--mute)}
+.inf{border:1px dashed var(--brass-ink);color:var(--brass-ink)}
+.bs-off{background:var(--turf-fill);color:var(--turf-ink);border-color:var(--turf-fill)}
+.bs-rep{border:1.5px solid var(--ink);color:var(--ink)}
+.bs-est{border:1.5px dashed var(--mute);color:var(--ink)}
+.bs-tbd{border:1px dotted var(--mute);color:var(--mute)}
+.gr{font-family:var(--f-display);min-width:0;padding-inline:5px}
+.gr-g1{background:var(--brass);color:var(--on-brass)}
+.gr-g23{border-color:var(--brass-ink);color:var(--brass-ink)}
+.gr-op{border-color:var(--line);color:var(--mute)}
+
+.ped{display:grid;gap:2px;margin-top:12px;font-size:14px;line-height:1.55}
+.ped div{display:grid;grid-template-columns:2.4em minmax(0,1fr);gap:6px}
+.ped dt{font-family:var(--f-display);font-weight:700;font-size:12.5px;color:var(--mute);padding-top:2px}
+.ped dd{font-weight:500}
+.ped .ds{display:inline-block;margin-left:6px;font-weight:400;font-size:13px;color:var(--mute)}
+.ped .fam dd{font-weight:400;font-size:13px;color:var(--ink)}
+.hmeta{margin-top:8px;font-size:12.5px;color:var(--mute);line-height:1.6}
+.hmeta .sep{margin-inline:6px;color:var(--line)}
+.ctr{display:inline-block;margin-left:4px;padding:0 4px;border:1px solid var(--line);border-radius:2px;font-size:12px;line-height:1.4;color:var(--ink)}
+
+.nx{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;margin-top:12px;padding:10px 12px;background:var(--paper);border-radius:2px}
+.nx .k{font-family:var(--f-display);font-weight:700;font-size:12.5px;color:var(--mute);letter-spacing:.1em;padding-top:2px;line-height:1.5}
+.nx .v{font-size:14px;line-height:1.55;min-width:0}
+.nx .v .bs{margin-right:6px;vertical-align:1px}
+.nx .v .gr{margin-right:4px;vertical-align:1px}
+.nx .when{font-weight:700}
+.nx .when .num{font-size:16px}
+.nx .jk{color:var(--mute);font-size:13px}
+
+/* 馬柱（新しい順に左から） */
+.ub{display:flex;overflow-x:auto;margin-top:12px;border:1px solid var(--line);border-radius:2px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.ubc{flex:0 0 33.3333%;min-width:94px;display:flex;flex-direction:column;gap:1px;padding:0 8px 9px;font-size:12px;line-height:1.4;scroll-snap-align:start;min-height:0}
+.ubc+.ubc{border-left:1px solid var(--line)}
+.ubc.empty{color:var(--line)}
+.ubk{margin-inline:-8px;margin-bottom:5px;padding:3px 8px;background:var(--paper);border-bottom:1px solid var(--line);font-family:var(--f-display);font-weight:700;font-size:12px;color:var(--mute);letter-spacing:.08em}
+.ubd{color:var(--mute)}
+.ubd .num{font-size:13.5px;color:var(--ink)}
+.ubf{display:flex;align-items:center;gap:2px;margin-block:3px}
+.ubf small{font-size:12px;color:var(--mute)}
+.ubf em{margin-left:auto;white-space:nowrap;font-style:normal;font-family:var(--f-num);font-size:13.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+.ubf em small{font-family:var(--f-body);font-size:11px}
+.ubf em.plus{color:var(--brass-ink);font-weight:600}
+.fin{display:inline-grid;place-items:center;width:24px;height:24px;flex:none;border-radius:50%;font-family:var(--f-display);font-weight:800;font-size:17px;line-height:1;font-variant-numeric:lining-nums}
+.fin.f1{background:var(--brass);color:var(--on-brass)}
+.fin.f2{box-shadow:inset 0 0 0 2px var(--turf-text);color:var(--turf-text)}
+.fin.f3{box-shadow:inset 0 0 0 1px var(--turf-text);color:var(--turf-text)}
+.ubr{font-weight:500;font-size:12.5px;color:var(--ink)}
+.ubs .num,.ubr .num{font-size:13px}
+.ubj{color:var(--ink)}
+.ub-none{display:block;margin-top:12px;padding:10px 12px;border:1px dashed var(--line);border-radius:2px;font-size:13px;color:var(--mute)}
+
+.memo{margin-top:12px;font-family:var(--f-display);font-weight:500;font-size:14.5px;line-height:1.75;color:var(--ink);font-feature-settings:"palt" 1}
+
+.more{margin-top:10px;border-top:1px solid var(--line)}
+.more summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:46px;cursor:pointer;font-size:13.5px;color:var(--turf-text)}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"";width:9px;height:9px;flex:none;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg)}
+.more[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.more .body{display:grid;gap:18px;padding-bottom:16px}
+/* 開くときの発馬機（左右の扉が開いて中身が出る） */
+.more .body.gating{position:relative;overflow:hidden}
+.gate{position:absolute;left:0;right:0;top:0;height:min(100%, 128px);display:flex;z-index:2;pointer-events:none}
+.gate i{flex:1;background:repeating-linear-gradient(90deg,var(--turf-fill) 0 13px,var(--turf) 13px 15px);border-top:3px solid var(--turf);border-bottom:2px solid var(--brass)}
+.gate .dl{transform-origin:0 50%;box-shadow:inset -2px 0 0 var(--brass)}
+.gate .dr{transform-origin:100% 50%;box-shadow:inset 2px 0 0 var(--brass)}
+.dsec h4{font-family:var(--f-display);font-weight:700;font-size:13.5px;letter-spacing:.08em;color:var(--mute);margin-bottom:6px}
+.dsec p{font-size:13.5px;line-height:1.7}
+.rlog{display:grid;gap:10px}
+.rlog li{padding-left:10px;border-left:2px solid var(--line)}
+.rlog .l1{font-size:13.5px;font-weight:700;line-height:1.5}
+.rlog .l2,.rlog .l3{font-size:13px;line-height:1.6;color:var(--mute)}
+.rlog .l2 .num{color:var(--ink);font-size:14px}
+.rlog .rf{display:inline-block;font-weight:400;color:var(--ink)}
+.rlog .rf1,.rlog .rf2,.rlog .rf3{display:inline-block;padding:0 6px;border-radius:2px;font-weight:700;line-height:1.5}
+.rlog .rf1{background:var(--brass);color:var(--on-brass)}
+.rlog .rf1 .num{color:var(--on-brass)}
+.rlog .rf2,.rlog .rf3{box-shadow:inset 0 0 0 1.5px var(--turf-text);color:var(--turf-text)}
+.rlog .rf3{box-shadow:inset 0 0 0 1px var(--turf-text)}
+.rlog .rf2 .num,.rlog .rf3 .num{color:var(--turf-text)}
+.rlog .l3{color:var(--ink)}
+.hnews{display:grid;gap:8px}
+.hnews li{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:8px;font-size:13.5px;line-height:1.55}
+.hnews .d{font-family:var(--f-num);font-size:14px;color:var(--mute)}
+.src{display:block;font-size:12px;color:var(--mute)}
+.kv{display:grid;gap:8px}
+.kv div{display:grid;grid-template-columns:4.2em minmax(0,1fr);gap:8px;font-size:13px;line-height:1.65}
+.kv dt{color:var(--mute);font-weight:500}
+
+/* ---------- 次走 ---------- */
+.nx-grid{display:grid;gap:44px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--mute);margin-bottom:18px}
+.legend>span{display:inline-flex;align-items:center;gap:6px}
+.aday{border-top:2px solid var(--ink)}
+.aday+.aday{margin-top:22px}
+.adh{display:flex;align-items:baseline;gap:8px;padding-block:10px 4px}
+.adh .num{font-family:var(--f-display);font-weight:800;font-size:28px;line-height:1;font-variant-numeric:lining-nums}
+.adh .w{font-family:var(--f-display);font-weight:700;font-size:15px}
+.adh .left{margin-left:auto;font-size:12.5px;color:var(--brass-ink);font-weight:500;white-space:nowrap}
+.adh .soonest{display:inline-flex;align-items:center;align-self:center}
+.gateno{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 5px;margin:0 3px;border-radius:2px;
+  background:var(--turf-fill);color:var(--turf-ink);font-family:var(--f-num);font-weight:600;font-size:18px;line-height:1;font-variant-numeric:tabular-nums lining-nums}
+.flag{position:relative;display:inline-block;width:13px;height:18px;margin-right:6px;flex:none}
+.flag::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1.5px;background:var(--ink)}
+.flag::after{content:"";position:absolute;left:1.5px;top:1px;width:11px;height:8px;background:var(--brass);clip-path:polygon(0 0,100% 50%,0 100%);transform-origin:0 50%}
+.ai{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:12px;align-items:start;padding-block:12px;border-bottom:1px solid var(--line)}
+.ai:last-child{border-bottom:0}
+.ai .silk{width:32px;height:32px}
+.ai-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
+.ai-h .hlink{font-family:var(--f-display);font-weight:700;font-size:17px}
+.ai-h .m{font-size:12.5px;color:var(--mute)}
+.ai-r{font-size:13.5px;line-height:1.6;margin-top:4px}
+.ai-r .bs,.ai-r .gr{margin-right:5px;vertical-align:1px}
+.ai-j{font-size:12.5px;color:var(--mute)}
+.gain{text-align:right;line-height:1.1;white-space:nowrap}
+.gain b{font-family:var(--f-num);font-weight:500;font-size:22px;color:var(--brass-ink)}
+.gain .u{font-size:12px;color:var(--brass-ink);margin-left:1px}
+.gain small{display:block;font-size:12px;color:var(--mute);margin-top:3px}
+.hlink{background:none;border:0;padding:0;cursor:pointer;text-align:left;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;text-decoration-thickness:1px}
+.hlink:hover{text-decoration-color:currentColor}
+/* 馬名ボタンは見た目を変えずに押せる範囲を上下に広げる */
+.ai-h .hlink,.fh .hlink{padding-block:8px;margin-block:-8px;position:relative}
+
+.und{display:grid;gap:0;border-top:2px solid var(--ink)}
+.uc{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;min-height:54px;padding-block:8px;background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer;text-align:left}
+.uc .silk{width:26px;height:26px}
+.uc .t{min-width:0;line-height:1.4}
+.uc .t b{font-family:var(--f-display);font-weight:700;font-size:15.5px;margin-right:6px}
+.uc .t .m{font-size:12px;color:var(--mute);margin-right:6px}
+.uc .t .x{display:block;font-size:12.5px;color:var(--mute)}
+.uc .t .x .bs{margin-right:5px;transform:scale(.92);transform-origin:left center}
+
+.big{border-top:2px solid var(--ink)}
+.br{display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:12px;align-items:start;padding-block:13px;border-bottom:1px solid var(--line)}
+.br-d{line-height:1.15}
+.br-d .num{font-family:var(--f-display);font-weight:700;font-size:18px;font-variant-numeric:lining-nums}
+.br-d small{display:block;font-size:12px;color:var(--mute);white-space:nowrap}
+.br-d .tn{color:var(--mute);letter-spacing:.1em}
+.br-n{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.br-n b{font-family:var(--f-display);font-weight:700;font-size:16.5px;line-height:1.35;letter-spacing:.02em}
+.br-c{font-size:12.5px;color:var(--mute);margin-top:3px;line-height:1.5}
+.br-hs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.hchip{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:3px 9px 3px 4px;border:1px solid var(--line);background:var(--sheet);border-radius:2px;font-size:13px;cursor:pointer;color:var(--ink)}
+.hchip .silk{width:22px;height:22px}
+.hchip .bs{font-size:12px;padding:0 4px;min-width:0}
+.br-p{text-align:right;white-space:nowrap;line-height:1.1}
+.br-p b{font-family:var(--f-num);font-weight:400;font-size:20px}
+.br-p .u{font-size:12px;color:var(--mute);margin-left:1px}
+.br.derby .br-n b{font-size:19px}
+.br.derby .br-p b{font-size:26px;color:var(--brass-ink);font-weight:500}
+.br.tent .br-d .num{color:var(--mute)}
+
+/* ---------- ニュース ---------- */
+.feed{display:grid;gap:26px}
+.fday{break-inside:avoid;border-top:2px solid var(--ink)}
+.fdh{display:flex;align-items:baseline;gap:6px;padding-block:9px 2px}
+.fdh .num{font-family:var(--f-display);font-weight:800;font-size:22px;line-height:1;font-variant-numeric:lining-nums}
+.fdh .w{font-family:var(--f-display);font-weight:700;font-size:14px;color:var(--mute)}
+.fi{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;padding-block:11px;border-bottom:1px solid var(--line)}
+.fi:last-child{border-bottom:0}
+.fi .silk{width:26px;height:26px;margin-top:2px}
+.fh{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;font-size:12.5px;color:var(--mute);line-height:1.5}
+.fh .hlink{font-family:var(--f-display);font-weight:700;font-size:14.5px}
+.ft{font-size:15px;line-height:1.6;margin-top:3px;font-weight:500}
+.ft a{color:var(--ink)}
+.fs{font-size:12px;color:var(--mute);margin-top:2px}
+
+.foot{border-top:1px solid var(--line);padding-top:16px;font-size:12px;color:var(--mute);line-height:1.8;display:grid;gap:2px}
+
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ---------- 幅のある画面 ---------- */
+@media (min-width:600px){
+  .mast{padding:26px 28px 18px}
+  .race-fig{height:262px}
+  .ai{grid-template-columns:36px minmax(0,1fr) auto}
+  .ai .silk{width:36px;height:36px}
+}
+@media (min-width:760px){
+  .cards{grid-template-columns:repeat(auto-fill,minmax(330px,1fr));align-items:start}
+  /* 新しい日が常に上に来るよう、段組みではなく行送りの格子にする */
+  .feed{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px;row-gap:30px;align-items:start}
+  .und{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}
+}
+@media (min-width:900px){
+  body{padding-inline:max(32px, env(safe-area-inset-left, 0px)) max(32px, env(safe-area-inset-right, 0px));padding-block:24px 56px}
+  .page{gap:0}
+  .mast{padding:34px 40px 22px}
+  .mast-in{grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px}
+  .mast-count{justify-items:end;text-align:right}
+  .tabs{position:sticky;top:env(safe-area-inset-top, 0px);left:auto;right:auto;bottom:auto;
+    display:flex;align-items:stretch;padding-bottom:0;margin-block:6px 34px;
+    background:var(--paper);border-top:0;border-bottom:1px solid var(--line)}
+  .tablist{display:flex;gap:2px}
+  .tab{flex-direction:row;gap:8px;min-height:64px;padding:0 20px 14px}
+  .tab .tl{font-size:17px}
+  .tab .tc{font-size:12.5px}
+  .runner .bar{top:auto;bottom:-1px;left:14px;right:14px}
+  .runner .mhw{top:auto;bottom:5px;width:26px;height:17px;margin-left:-13px}
+  .tabs .tab-count{display:flex;align-items:center;gap:6px;margin-left:auto;padding-right:4px;font-size:12.5px;color:var(--mute)}
+  .tabs .tab-count b{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--brass-ink);font-variant-numeric:lining-nums}
+  .horse{scroll-margin-top:80px}
+  .panel{scroll-margin-top:72px}
+  .filters{display:flex;flex-wrap:wrap;gap:8px}
+  .fchip{flex-direction:row;min-height:52px;padding:6px 18px 6px 10px;gap:8px;font-size:14.5px}
+  .fchip .all{font-size:18px;padding-left:6px}
+  .fchip small{margin-left:2px}
+  .nx-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
+  .race{margin-bottom:46px}
+  .race-fig{height:320px}
+}
+@media (min-width:1040px){
+  .st-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+  .brow{grid-template-columns:44px 52px minmax(0,1fr) auto;column-gap:16px;padding-block:24px 22px}
+  .silk.lg{width:52px;height:52px}
+  .cks{left:58px}
+  .feed{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .race-fig{height:360px}
+}
+@media (min-width:1280px){
+  .c-num b{font-size:176px}
+}
+.tab,.btn,.fchip,.hchip,.srow,.uc,.replay,.textbtn,.more summary,.race-fig{-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:no-preference){
+  .fchip,.btn,.tab,.hchip,.uc,.srow,.replay,.textbtn,.more summary{transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .12s ease}
+  .tab .tl,.tab .tc{transition:transform .12s ease}
+  /* 押したら沈んで戻る */
+  .btn:active,.fchip:active,.hchip:active,.replay:active{transform:translateY(1px) scale(.98)}
+  .srow:active,.uc:active,.textbtn:active,.more summary:active{transform:translateY(1px)}
+  .tab:active .tl,.tab:active .tc{transform:translateY(1px)}
+  /* 小さな馬の脚（2 コマ）と上下動 */
+  .is-run .mh .mh-a{animation:mhA .18s steps(1,end) infinite}
+  .is-run .mh .mh-b{animation:mhB .18s steps(1,end) infinite}
+  .is-run .mh{animation:mhBob .18s ease-in-out infinite}
+  .wave .flag::after{animation:flagWave 1.1s ease-in-out 3}
+}
+@keyframes mhA{0%{visibility:visible}50%{visibility:hidden}}
+@keyframes mhB{0%{visibility:hidden}50%{visibility:visible}}
+@keyframes mhBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+@keyframes flagWave{0%,100%{transform:none}25%{transform:skewY(12deg) scaleX(.8)}60%{transform:skewY(-8deg) scaleX(.92)}}
+.btn:active{background:var(--turf)}
+.fchip:active,.hchip:active,.replay:active{border-color:var(--turf-text)}
+@media (prefers-reduced-motion:reduce){ .replay{display:none} }
+</style>
+
+<svg class="defs" id="silkDefs" width="0" height="0" aria-hidden="true" focusable="false"></svg>
+
+<div class="page">
+  <header class="mast" id="top">
+    <div class="mast-in">
+      <div class="mast-id">
+        <p class="kicker"><span>ペーパーオーナーゲーム</span><span class="num">2026–2027</span><span>2歳世代</span></p>
+        <h1 class="title">FY26 POG</h1>
+        <p class="rules"><span>1人5頭</span><span>JRA本賞金10万円＝1pt</span><span>地方・海外は対象外</span><span>2027年ダービーまで</span></p>
+      </div>
+      <div class="mast-count">
+        <p class="c-label" id="derbyLabel">東京優駿（日本ダービー）まで</p>
+        <p class="c-num" id="derbyCount"><span class="c-pre">あと</span><b id="derbyDays">―</b><span class="c-unit">日</span></p>
+      </div>
+    </div>
+    <div class="rail"><i class="today" id="railToday"></i><i class="mark" id="railMark" aria-hidden="true"></i><i class="goal" aria-hidden="true"></i></div>
+    <p class="rail-cap"><span><b>6/1</b> 2歳戦の開幕</span><span><b id="railEnd">5/30</b> 東京優駿</span></p>
+    <p class="upd" id="asof"></p>
+  </header>
+
+  <nav class="tabs" aria-label="ページの切り替え">
+    <div class="tablist" role="tablist" aria-label="ページの切り替え">
+    <button type="button" class="tab" role="tab" id="tab-standings" aria-controls="standings" aria-selected="true"><span class="tl">順位</span><span class="tc" id="cntStand"></span></button>
+    <button type="button" class="tab" role="tab" id="tab-horses" aria-controls="horses" aria-selected="false" tabindex="-1"><span class="tl">指名馬</span><span class="tc" id="cntHorses"></span></button>
+    <button type="button" class="tab" role="tab" id="tab-next" aria-controls="next" aria-selected="false" tabindex="-1"><span class="tl">次走</span><span class="tc" id="cntNext"></span></button>
+    <button type="button" class="tab" role="tab" id="tab-news" aria-controls="news" aria-selected="false" tabindex="-1"><span class="tl">ニュース</span><span class="tc" id="cntNews"></span></button>
+    <span class="runner" id="tabRunner" aria-hidden="true"><i class="bar"></i><span class="mhw"></span></span>
+    </div>
+    <p class="tab-count" id="navCount"></p>
+  </nav>
+
+  <main>
+    <section id="standings" class="panel" role="tabpanel" aria-labelledby="tab-standings">
+      <div class="race" id="race">
+        <div class="sh"><span class="fl" aria-hidden="true"><b>残り4F</b><i></i></span><h2>レース展開</h2><span class="sub">合計 pt を着差にして</span></div>
+        <figure class="race-fig" id="raceFig"><canvas id="raceCanvas" role="img" aria-label="レース展開"></canvas></figure>
+        <div class="race-foot">
+          <p class="fine" id="raceCap">ゴール板にいるのが首位。間隔は pt 差に比例させ、画面に収まるよう縮めています（着差の表記は下の順位表で）。毛色は各自の稼ぎ頭です。</p>
+          <button type="button" class="replay" id="raceReplay"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-1.8-4.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M15.4 2.6v3.8h-3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>もう一度走らせる</button>
+        </div>
+      </div>
+      <div class="st-grid">
+        <div class="block">
+          <div class="sh"><h2>順位</h2><span class="sub" id="stSub">合計 pt と首位との差</span></div>
+          <ol class="board" id="board"></ol>
+          <p class="fine" style="margin-top:10px">罫線の上の着差は、前の人との差を 1馬身＝10pt に置き換えた遊びの表記です。</p>
+          <div class="copy">
+            <button type="button" class="btn" id="copyLine"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="6.5" y="6.5" width="10" height="11" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 13.5V3.5h9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>LINE に貼る文面をコピー</button>
+            <p class="copy-note" id="copyNote" role="status" aria-live="polite"></p>
+            <textarea id="copyFallback" class="copy-fb" rows="9" aria-label="LINE に貼る文面" readonly hidden></textarea>
+          </div>
+          <div class="soon" id="soonBlock">
+            <div class="sh"><h3>この先の出走</h3><button type="button" class="textbtn end" id="toNext">次走をすべて見る</button></div>
+            <ul id="soonList"></ul>
+          </div>
+        </div>
+        <div class="block">
+          <div class="sh"><h2>累計 pt の推移</h2><span class="sub" id="chartSub">レースの日に積み上げ</span></div>
+          <figure class="chart" id="chart"></figure>
+          <div class="block gap-top">
+            <div class="sh"><h2>1着で入る pt</h2><span class="sub">本賞金 10万円＝1pt の目安</span></div>
+            <div class="prize" id="prizeGrid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="horses" class="panel" role="tabpanel" aria-labelledby="tab-horses" hidden>
+      <div class="sh"><span class="fl" aria-hidden="true"><b>残り3F</b><i></i></span><h2>指名馬</h2><span class="sub" id="hSub"></span></div>
+      <div class="filters" id="memberFilter" role="group" aria-label="メンバーで絞り込む"></div>
+      <div class="groups" id="horseGroups"></div>
+    </section>
+
+    <section id="next" class="panel" role="tabpanel" aria-labelledby="tab-next" hidden>
+      <div class="nx-grid">
+        <div>
+          <div class="block">
+            <div class="sh"><span class="fl" aria-hidden="true"><b>残り2F</b><i></i></span><h2>次走</h2><span class="sub">日付が決まっている馬を日付順に</span></div>
+            <p class="legend"><span><span class="bs bs-off">公式</span>JRA・クラブの発表</span><span><span class="bs bs-rep">報道</span>新聞などの報道</span><span><span class="bs bs-est">想定</span>サイトの見込み</span><span><span class="bs bs-tbd">未定</span>決まっていない</span></p>
+            <div id="agenda"></div>
+          </div>
+          <div class="block">
+            <div class="sh"><h2>次走未定</h2><span class="sub" id="undSub"></span></div>
+            <ul class="und" id="undecided"></ul>
+          </div>
+        </div>
+        <div class="block">
+          <div class="sh"><h2>大きいレースの予定</h2><span class="sub">1着の pt と、向かう指名馬</span></div>
+          <ol class="big" id="bigRaces"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="news" class="panel" role="tabpanel" aria-labelledby="tab-news" hidden>
+      <div class="sh"><span class="fl" aria-hidden="true"><b>残り1F</b><i></i></span><h2>ニュース</h2><span class="sub" id="newsSub">全馬の記事を新しい順に</span></div>
+      <div class="feed" id="feed"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p id="footAsof"></p>
+    <p>pt は各レースの JRA 本賞金（万円）÷10 で計算しています。地方・海外のレースは対象外です。</p>
+    <p>出典は各馬の欄のリンク先です。次走の「公式・報道・想定」は情報の確かさの目安です。</p>
+  </footer>
+</div>
+
+<script type="application/json" id="pog-data">{"asOf":"2026-10-11","updatedLabel":"2026/10/11(日) 夕方","derbyDate":"2027-05-30","members":[{"id":"kotsuji","name":"小辻","waku":3},{"id":"yoshida","name":"吉田","waku":4},{"id":"kono","name":"河野","waku":7},{"id":"keigo","name":"Keigo","waku":5,"alias":"アカイトリノムスコ"}],"prizeGuide":[{"label":"2歳新馬","pt":"78"},{"label":"2歳未勝利","pt":"59"},{"label":"2歳1勝クラス（特別）","pt":"114"},{"label":"2歳オープン","pt":"170"},{"label":"リステッド","pt":"180"},{"label":"2歳G3","pt":"340–360"},{"label":"2歳G2","pt":"400"},{"label":"阪神JF","pt":"750"},{"label":"朝日杯FS・ホープフルS","pt":"800"},{"label":"桜花賞","pt":"1,400"},{"label":"オークス","pt":"1,500"},{"label":"皐月賞","pt":"2,000"},{"label":"日本ダービー","pt":"3,000"}],"schedule":[{"date":"2026-10-17","name":"アイビーS","grade":"L","course":"東京 芝1800m","pt":"180","key":"アイビー"},{"date":"2026-10-17","name":"もみじS","grade":"OP","course":"京都 芝1400m","pt":"170","key":"もみじ"},{"date":"2026-10-24","name":"アルテミスS","grade":"G3","course":"東京 芝1600m","note":"牝馬限定","pt":"320","key":"アルテミス"},{"date":"2026-10-25","name":"萩S","grade":"L","course":"京都 芝1800m","pt":"180","key":"萩S|萩ステークス"},{"date":"2026-10-31","name":"ファンタジーS","grade":"G3","course":"京都 芝1400m","note":"牝馬限定","pt":"320","key":"ファンタジー"},{"date":"2026-11-07","name":"京王杯2歳S","grade":"G2","course":"東京 芝1400m","pt":"400","key":"京王杯"},{"date":"2026-11-14","name":"デイリー杯2歳S","grade":"G2","course":"京都 芝1600m","pt":"400","key":"デイリー杯"},{"date":"2026-11-23","name":"東京スポーツ杯2歳S","grade":"G2","course":"東京 芝1800m","pt":"400","key":"東スポ|東京スポーツ杯"},{"date":"2026-11-28","name":"ラジオNIKKEI杯京都2歳S","grade":"G3","course":"京都 芝2000m","pt":"360","key":"京都2歳"},{"date":"2026-12-13","name":"阪神ジュベナイルフィリーズ","grade":"G1","course":"阪神 芝1600m","note":"牝馬限定","pt":"750","key":"阪神ジュベナイル|阪神JF"},{"date":"2026-12-20","name":"朝日杯フューチュリティS","grade":"G1","course":"阪神 芝1600m","pt":"800","key":"朝日杯"},{"date":"2026-12-26","name":"ホープフルS","grade":"G1","course":"中山 芝2000m","pt":"800","key":"ホープフル"},{"date":"2027-04-11","name":"桜花賞","grade":"G1","course":"阪神 芝1600m","note":"牝馬限定・額は2026年の値","pt":"1,400","tentative":true,"key":"桜花賞"},{"date":"2027-04-18","name":"皐月賞","grade":"G1","course":"中山 芝2000m","note":"額は2026年の値","pt":"2,000","tentative":true,"key":"皐月賞"},{"date":"2027-05-09","name":"NHKマイルC","grade":"G1","course":"東京 芝1600m","note":"額は2026年の値","pt":"1,300","tentative":true,"key":"NHKマイル"},{"date":"2027-05-23","name":"オークス","grade":"G1","course":"東京 芝2400m","note":"牝馬限定・額は2026年の値","pt":"1,500","tentative":true,"key":"オークス"},{"date":"2027-05-30","name":"日本ダービー","grade":"G1","course":"東京 芝2400m","note":"POG の最終日・額は2026年の値","pt":"3,000","tentative":true,"key":"ダービー|東京優駿"}],"horses":[{"id":"chestino","name":"チェスティーノ","member":"kotsuji","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-04-11","sire":"エフフォーリア","dam":"チェッキーノ","damSire":"キングカメハメハ","trainer":"鹿戸雄一","center":"美浦","owner":"サンデーレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額1億2,000万円（1口300万円×40口。netkeiba表示。税込/税抜は未確認）","family":"半姉に牝馬二冠チェルヴィニア、半兄に重賞勝ちノッキングポイント","memo":"新馬を1番人気で快勝。その後両トモの硬さで百日草特別を回避し、天栄で運動を制限中。復帰時期は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106452/","races":[{"date":"2026-08-30","course":"新潟","raceNo":"4R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":11,"finish":1,"popularity":1,"jockey":"C.ルメール","time":"1:49.0","prize":780,"note":"2着ペントザリスに1馬身差。上がり33.4（メンバー最速は2着馬の33.3）","url":"https://race.netkeiba.com/race/result.html?race_id=202604030404"}],"status":"1勝","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"予定していた百日草特別（11/8 東京芝2000・1勝クラス）は回避。クラブが10/10にホームページで発表した。次走は未定。10/10〜10/12の出馬表にも名前はない","url":"https://news.netkeiba.com/?pid=news_view&no=345148"},"news":[{"date":"2026-10-10","headline":"両トモの硬さで百日草特別を回避、天栄で経過観察","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345148"},{"date":"2026-09-26","headline":"次走は百日草特別で連勝を狙うと報道（10/10に回避発表）","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343782"},{"date":"2026-09-01","headline":"6月予定から延びた初陣で快勝、エフフォーリア産駒の期待馬","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341328"},{"date":"2026-08-31","headline":"新馬完勝、鹿戸師は先を見て大事に育てる方針","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341253"},{"date":"2026-08-30","headline":"1番人気で初陣V、ルメールはもう少し長い距離も可と評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341128"}],"whereabouts":"放牧中（福島・ノーザンファーム天栄で運動を制限しながら経過観察）。出典: スポーツ報知 2026-10-10。netkeiba馬ページ（スマホ版）も「放牧中」と表示（2026-10-11閲覧）"},{"id":"kingria","name":"キングリア","member":"kotsuji","certainty":"confirmed","sex":"牡","coat":"青鹿毛","birth":"2024-01-23","sire":"エピファネイア","dam":"リアアメリア","damSire":"ディープインパクト","trainer":"中内田充正","center":"栗東","owner":"シルクレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額1億円（1口20万円×500口。netkeiba表示。税込/税抜は未確認）","family":"母リアアメリア（アルテミスS・ローズS）の初子","memo":"阪神芝1800の2歳新馬で1986年以降最速の1:46.9で勝った。気性面に課題はあるが、川田騎手は能力を高く評価","netkeibaUrl":"https://db.netkeiba.com/horse/2024106684/","races":[{"date":"2026-09-21","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":10,"finish":1,"popularity":2,"jockey":"川田将雅","time":"1:46.9","prize":780,"note":"2着シホノノービレ（1番人気）に1馬身半差。上がり最速34.0。阪神芝1800の2歳新馬戦では1986年以降最速（報知）","url":"https://race.netkeiba.com/race/result.html?race_id=202609040705"}],"status":"1勝","next":{"basis":"想定","date":"2026-11-23","race":"東京スポーツ杯2歳S（G2）芝1800m","course":"東京","grade":"G2","jockey":"","note":"netkeibaの次走欄にある独自の想定（10/2掲載。ページ上でも公式発表と違うことがあると注記）。陣営・クラブの発表や報道での裏付けはなく、デイリー9/22は次走未定。10/10〜10/12の出馬表に名前はなく、10/17-18は10/11時点で登録・想定ともなし","url":"https://db.netkeiba.com/social/horse_info_next.html?id=2024106684"},"news":[{"date":"2026-09-22","headline":"新馬快勝、川田は気難しさを認めつつ能力を高く評価","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343401"},{"date":"2026-09-22","headline":"1番人気馬との競り合いに勝ち初陣V、師は母似の気の強さに言及","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343381"},{"date":"2026-09-21","headline":"阪神芝1800新馬の最速タイムを0.3秒更新、SNSでも話題","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343377"},{"date":"2026-09-17","headline":"1週前はCWで川田騎乗、終い1Fは当日の2歳最速","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=342990"},{"date":"2026-09-11","headline":"川田騎乗で9/21阪神5Rにデビュー予定","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=342419"}],"whereabouts":"放牧中（場所は未確認）。netkeiba近況 2026-09-25「休養のため放牧」。netkeiba馬ページ（スマホ版）も「放牧中」と表示（2026-10-11閲覧）"},{"id":"cutiebond","name":"キューティボンド","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"黒鹿毛","birth":"2024-01-22","sire":"サートゥルナーリア","dam":"コーステッド","damSire":"Tizway","trainer":"福永祐一","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム（安平町）","price":"1億8,700万円（税込、2024年セレクトセール当歳。税抜では1億7,000万円）","family":"半兄ダノンベルーガ（共同通信杯）、半姉ボンドガール。母は米G1（BCジュヴェナイルフィリーズターフ）で2着","memo":"高額の良血馬。京都芝1600の新馬を上がり最速で勝ち、時計1:33.1。体が減りやすく調整は控えめ","netkeibaUrl":"https://db.netkeiba.com/horse/2024106316/","races":[{"date":"2026-10-10","course":"京都","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1600,"going":"良","field":14,"finish":1,"popularity":1,"jockey":"川田将雅","time":"1:33.1","prize":780,"note":"2着ドンクラッシュに1馬身1/4差。上がり最速34.4。netkeibaの馬DBには未反映で、結果ページで確認","url":"https://race.netkeiba.com/race/result.html?race_id=202608040305"}],"status":"1勝","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"10/10の新馬勝ちの直後。10/10〜11の報知・デイリー・スポニチの記事に次走の記載はない。netkeibaの次走欄も空欄（10/11）","url":"https://news.netkeiba.com/?pid=news_view&no=345233"},"news":[{"date":"2026-10-11","headline":"新馬快勝、川田はこの先の順調な成長に期待","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345233"},{"date":"2026-10-11","headline":"直線外から最速の末脚で差し切り、勝ち時計1:33.1を評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345230"},{"date":"2026-10-10","headline":"レース後コメント、川田はとても良い馬と評価","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345182"},{"date":"2026-10-09","headline":"最終追いは馬なりで終い11.2秒、師は芝での走りに好感","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345039"},{"date":"2026-08-06","headline":"8/6函館でゲート試験パス、助手は物怖じしない気性を評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=338924"}],"whereabouts":"在厩（栗東・福永厩舎）。netkeiba馬ページ（スマホ版）の表示「入厩中」（2026-10-11閲覧）。10/10に京都で出走"},{"id":"illulissat","name":"イルリサット","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"芦毛","birth":"2024-01-23","sire":"キズナ","dam":"アエロリット","damSire":"クロフネ","trainer":"菊沢隆徳","center":"美浦","owner":"サンデーレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額7,000万円（1口175万円×40口。netkeiba表示。税込/税抜は未確認）","family":"母アエロリット（NHKマイルC）の3番子で、初めての牝馬","memo":"新馬2着（勝ち馬ヴァンクライ）。横山武史騎手はテンションの高さを課題に挙げた。放牧中で次走は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106115/","races":[{"date":"2026-08-30","course":"札幌","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":8,"finish":2,"popularity":2,"jockey":"横山武史","time":"1:53.3","prize":310,"note":"勝ち馬ヴァンクライ（武豊騎乗）から1馬身半差。3着とは7馬身差","url":"https://race.netkeiba.com/race/result.html?race_id=202601020405"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"8/30の新馬2着のあと、次走の報道はない（netkeibaニュース検索で8/30以降の記事なし）。netkeibaの次走欄も空欄。10/10〜10/12の出馬表にも名前はない（10/11）","url":"https://db.netkeiba.com/horse/2024106115/"},"news":[{"date":"2026-08-30","headline":"新馬2着、横山武史はテンション面を今後の課題に挙げる","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341159"},{"date":"2026-08-28","headline":"1週前は函館芝で5F62.9秒、母も管理した菊沢師が期待","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340907"},{"date":"2026-08-27","headline":"最終追いは横山武を背に併入、8/30札幌でデビューへ","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340889"},{"date":"2026-08-25","headline":"厩舎スタッフは母より長い距離向きの可能性を指摘","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340675"},{"date":"2026-04-30","headline":"4月末に美浦へ入厩、体は緩いが弾む走りに好印象","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=329668"}],"whereabouts":"放牧中（場所は未確認）。netkeiba馬ページ（スマホ版）の表示（2026-10-11閲覧）"},{"id":"yutalight","name":"ユタライト","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"鹿毛","birth":"2024-01-29","sire":"ロードカナロア","dam":"ユナカイト","damSire":"ヨハネスブルグ","trainer":"宮田敬介","center":"美浦","owner":"シルクレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額5,000万円（1口10万円×500口。netkeiba表示。税込/税抜は未確認）","family":"伯母アーモンドアイ、祖母フサイチパンドラ。半兄にエピックフライト","memo":"2戦とも大敗（6着・13着）。ルメール騎手は物見をして進まなかったと指摘。放牧中で次走は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106664/","races":[{"date":"2026-06-13","course":"東京","raceNo":"5R","raceName":"2歳新馬（牝）","grade":"新馬","surface":"芝","distance":1600,"going":"良","field":7,"finish":6,"popularity":2,"jockey":"C.ルメール","time":"1:40.3","prize":0,"note":"勝ち馬シャンデヴァーグから1.8秒差。5着とはアタマ差","url":"https://race.netkeiba.com/race/result.html?race_id=202605030305"},{"date":"2026-08-16","course":"新潟","raceNo":"1R","raceName":"2歳未勝利（牝）","grade":"未勝利","surface":"芝","distance":1600,"going":"良","field":13,"finish":13,"popularity":5,"jockey":"丸山元気","time":"1:37.3","prize":0,"note":"最下位。勝ち馬サトノスプレマシーから3.2秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202604020801"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"8/16の未勝利13着のあと、次走の報道はない（netkeibaニュース検索で6/13以降の記事なし）。netkeibaの次走欄も空欄。10/10〜10/12の出馬表にも名前はない（10/11）","url":"https://db.netkeiba.com/horse/2024106664/"},"news":[{"date":"2026-06-13","headline":"新馬6着、ルメールは物見を指摘し、チークを着ければ集中するとの見方","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=334152"},{"date":"2026-06-12","headline":"6/13東京の牝馬新馬に出走、鞍上はルメール","source":"netkeiba","url":"https://news.netkeiba.com/?pid=news_view&no=333820"},{"date":"2026-06-10","headline":"5月中旬から時計、師は併せ馬で気持ちを前向きにと説明","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=333775"},{"date":"2026-04-29","headline":"宮田師はマイル向きで完成度が高いと評価","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=329484"},{"date":"2026-04-02","headline":"4/1にゲート試験合格、6月の東京デビューを視野","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=326805"}],"whereabouts":"放牧中（場所は未確認）。netkeiba馬ページ（スマホ版）の表示（2026-10-11閲覧）"},{"id":"eldborg","name":"エルドボルグ","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-22","coat":"鹿毛","sire":"キタサンブラック","dam":"コンサートホール","damSire":"Dubawi","family":"母は愛G3パークS勝ち・愛1000ギニー3着、祖母Wasは英オークス馬","breeder":"ノーザンファーム（安平町）","owner":"サンデーレーシング（サンデーサラブレッドクラブ）","price":"募集総額1億円（1口250万円×40口。税込か税抜かは未確認）","trainer":"斉藤崇史","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106314/","status":"1勝","memo":"小倉の新馬（芝2000m）を1番人気で勝利。次走は東スポ杯2歳Sの予定で、同じ厩舎のクロワデュノールと同じ路線","whereabouts":"放牧中（ノーザンファームしがらき）。出典は2026-09-19の報知・スポニチ。netkeibaの近況欄も7/17の放牧が最後で、10/11時点で帰厩の情報は見つからない","races":[{"date":"2026-07-12","course":"小倉","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":2000,"going":"良","field":8,"finish":1,"popularity":1,"jockey":"団野大成","time":"2:02.7","prize":780,"note":"2着シックパラソルにアタマ差。上がり35.2秒","url":"https://race.netkeiba.com/race/result.html?race_id=202610020605"}],"next":{"basis":"報道","date":"2026-11-23","race":"東京スポーツ杯2歳S（G2）芝1800m","course":"東京","grade":"G2","jockey":"","note":"9/19に報知とスポニチが、サンデーサラブレッドクラブの発表として報じた。JRAの2026年第5回東京競馬番組でも5回東京6日目（11/23・祝）の11R。騎手はまだ発表されていない","url":"https://news.netkeiba.com/?pid=news_view&no=343147"},"news":[{"date":"2026-09-19","headline":"次走は東スポ杯2歳Sと発表、クロワデュノールと同じ路線","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=343147"},{"date":"2026-09-19","headline":"東スポ杯2歳Sへ。今はノーザンファームしがらきで調整中","source":"スポニチ","url":"https://news.netkeiba.com/?pid=news_view&no=343146"},{"date":"2026-07-13","headline":"小倉の新馬を差し切り勝ち。団野騎手は最後の伸びを評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=336816"},{"date":"2026-07-12","headline":"斉藤崇厩舎のキタサン産駒が新馬勝ち、大物候補と紹介","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336706"},{"date":"2026-07-08","headline":"最終追い切りは上々。斉藤崇師はクラシックを目標に","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336384"}]},{"id":"lagarriga","name":"ラガリーガ","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-03","coat":"青鹿毛","sire":"キズナ","dam":"ラサルダン","damSire":"Kingsalsa","family":"母ラサルダンは仏G2サンドリンガム賞など海外5勝の重賞馬","breeder":"ノーザンファーム（安平町）","owner":"キャロットファーム（キャロットクラブ）","price":"募集総額1億円（1口25万円×400口。税込か税抜かは未確認）。セリ取引なし","trainer":"手塚貴久","center":"美浦","netkeibaUrl":"https://db.netkeiba.com/horse/2024106670/","status":"1勝","memo":"新馬8着のあと、未勝利戦を2歳コースレコードで勝ち上がり。10/17のアイビーS（L）に岩田望来騎手で出る予定","whereabouts":"在厩（美浦）。2026-09-30のサンスポで、同日に美浦Wコースで追い切ったと報じられた（netkeibaの近況欄は8/14の放牧が最後）","races":[{"date":"2026-06-21","course":"東京","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"稍重","field":13,"finish":8,"popularity":1,"jockey":"C.ルメール","time":"1:51.3","prize":0,"note":"勝ち馬アヴィアトーレから0.8秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202605030605"},{"date":"2026-08-09","course":"新潟","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"going":"良","field":16,"finish":1,"popularity":1,"jockey":"坂井瑠星","time":"2:00.0","prize":590,"note":"2着シアルナーレに3/4馬身差。2歳コースレコード（報知・サンスポが報道）","url":"https://race.netkeiba.com/race/result.html?race_id=202604020601"}],"next":{"basis":"報道","date":"2026-10-17","race":"アイビーS（L）芝1800m","course":"東京","grade":"L","jockey":"岩田望来","note":"9/30のサンスポがキャロットクラブの発表として報道（岩田望来騎手は予定）。netkeibaの次走情報（10/2掲載）も10/17アイビーS。JRAの番組表では4回東京6日目の9Rで、6・7日目の特別登録は10/12締切なので、10/11時点ではまだ登録は出ていない","url":"https://news.yahoo.co.jp/articles/deff8d2532b2285a18da6d2ea7fe5101c881b06c"},"news":[{"date":"2026-09-30","headline":"次走はアイビーS、岩田望来騎手と新コンビの予定","source":"サンケイスポーツ","url":"https://news.yahoo.co.jp/articles/deff8d2532b2285a18da6d2ea7fe5101c881b06c"},{"date":"2026-08-09","headline":"新馬8着からのレコード勝ちにSNSで驚きの声","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=339235"},{"date":"2026-08-09","headline":"2戦目の新潟で初勝利、時計は2歳のコースレコード","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=339182"},{"date":"2026-06-19","headline":"ルメール騎乗で新馬戦へ。手塚久師は勝てる力があると評価","source":"スポニチ","url":"https://news.netkeiba.com/?pid=news_view&no=334702"},{"date":"2026-06-18","headline":"デビュー前の最終追い切りで格上の古馬を半馬身上回る","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334682"}]},{"id":"jangod","name":"ジャンゴッド","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-02-21","coat":"鹿毛","sire":"キタサンブラック","dam":"マーゴットディド","damSire":"Exceed And Excel","family":"半兄に皐月賞馬ジャスティンミラノ。母は英G1ナンソープSの勝ち馬","breeder":"ノーザンファーム（安平町）","owner":"藤田晋","price":"2024年ノーザンファームミックスセール（当歳、10/22開催）で2億9,000万円（税抜）＝3億1,900万円（税込）","trainer":"杉山晴紀","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106624/","status":"未勝利","memo":"2.9億円（税抜）の良血馬だが3戦して未勝利。連闘で臨んだ10/10京都は4番人気で2着と前進","whereabouts":"10/10に京都で出走した時点では在厩（栗東）。その後の在厩・放牧は未確認","races":[{"date":"2026-07-05","course":"小倉","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"重","field":12,"finish":8,"popularity":1,"jockey":"川田将雅","time":"1:53.0","prize":0,"note":"勝ち馬ポルトブルーから1.0秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202610020405"},{"date":"2026-10-04","course":"京都","raceNo":"2R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1600,"going":"良","field":9,"finish":5,"popularity":3,"jockey":"川田将雅","time":"1:34.3","prize":59,"note":"勝ち馬レイクイーンから1.4秒差。馬体重は+18kg","url":"https://race.netkeiba.com/race/result.html?race_id=202608040202"},{"date":"2026-10-10","course":"京都","raceNo":"3R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1800,"going":"良","field":8,"finish":2,"popularity":4,"jockey":"松若風馬","time":"1:46.7","prize":240,"note":"連闘。勝ち馬ドーンレーサーに1/2馬身差。netkeibaの馬DBにはまだ反映されていない","url":"https://race.netkeiba.com/race/result.html?race_id=202608040303"}],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"10/10の2着後の次走報道は、10/11時点で見つからない（netkeibaの次走情報も空欄）。10/12の京都・東京の2歳戦の出馬表にも名前はない","url":""},"news":[{"date":"2026-10-10","headline":"連闘で京都3Rへ。皐月賞馬の半弟が初勝利を狙う","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=345125"},{"date":"2026-10-04","headline":"3カ月ぶりの2戦目は京都2R、最終追い切りの動きは上々","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=344559"},{"date":"2026-07-05","headline":"デビュー戦は1番人気に推されたが8着に終わる","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336125"},{"date":"2026-07-03","headline":"新馬戦を前に、杉山晴師が前向きな気性を評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=335907"},{"date":"2026-07-02","headline":"7/5小倉でデビュー予定、助手は態勢が整ったと手応え","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=335878"}]},{"id":"dynamike","name":"ダイナマイク","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-11","coat":"鹿毛","sire":"キタサンブラック","dam":"シンプリーラヴィシング","damSire":"Laoban","family":"母シンプリーラヴィシングは米G1アルシバイアディーズSの勝ち馬","breeder":"ノーザンファーム（安平町）","owner":"藤田晋","price":"2024年セレクトセール（当歳）で2億4,000万円（税抜）＝2億6,400万円（税込）","trainer":"中内田充正","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106368/","status":"未勝利","memo":"セレクトセール2.4億円（税抜）の高額馬。川田騎乗の新馬・未勝利はどちらも上位人気で4着、初勝利待ち","whereabouts":"不明。netkeiba 8/18の入厩情報で8/15にノーザンファームしがらきから栗東へ入厩し、9/27に阪神で出走。その後の在厩・放牧は未確認","races":[{"date":"2026-06-14","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":8,"finish":4,"popularity":1,"jockey":"川田将雅","time":"1:49.5","prize":120,"note":"勝ち馬インカルナータから1.2秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609030405"},{"date":"2026-09-27","course":"阪神","raceNo":"4R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"going":"良","field":7,"finish":4,"popularity":2,"jockey":"川田将雅","time":"2:01.5","prize":89,"note":"勝ち馬ガリアルダから0.7秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609040904"}],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"9/27の未勝利4着のあとの次走は、報道もnetkeibaの次走情報も見つからない。10/10・10/11の2歳戦の結果と10/12の2歳戦の出馬表にも名前はない","url":""},"news":[{"date":"2026-08-18","headline":"8/15にノーザンファームしがらきから栗東へ入厩","source":"netkeiba","url":"https://news.netkeiba.com/?pid=news_view&no=340038"},{"date":"2026-06-14","headline":"1番人気のデビュー戦は4着、勝ったのはインカルナータ","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334268"},{"date":"2026-06-13","headline":"出世レースとされる宝塚記念の日の阪神新馬戦に登場予定","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334179"},{"date":"2026-06-12","headline":"新馬戦を前に、福永助手が背中の良さを評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=334005"},{"date":"2026-06-10","headline":"坂路で併入の最終追い切り、6/14阪神デビューへ調整順調","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=333827"}]},{"id":"rejeunoir","name":"レジューノワール","member":"yoshida","certainty":"confirmed","sex":"牝","birth":"2024-01-12","coat":"鹿毛","sire":"キタサンブラック","dam":"アーモンドアイ","damSire":"ロードカナロア","family":"母はG1・9勝のアーモンドアイで、その3番仔で初の牝馬（通称16冠ベイビー）","breeder":"ノーザンファーム（安平町）","owner":"シルクレーシング（シルク・ホースクラブ）","price":"募集総額1億円（1口20万円×500口。税込か税抜かは未確認）","trainer":"木村哲也","center":"美浦","netkeibaUrl":"https://db.netkeiba.com/horse/2024106164/","status":"未出走","memo":"7/24に美浦でゲート試験に合格したあと天栄へ放牧。10/11時点で未出走、デビュー時期は未発表","whereabouts":"放牧中（ノーザンファーム天栄）。シルク公式の所属馬ページの在厩場所（2026-10-11閲覧）","races":[],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"シルク公式では在厩場所がノーザンファーム天栄。7/24の報道では秋のデビューが目標とされたが、帰厩日・デビュー戦は未発表","url":"https://www.silkhorseclub.jp/horse_info/shozoku/detail/2024002/view"},"news":[{"date":"2026-07-24","headline":"美浦でゲート試験に合格、天栄へ放牧して秋デビューを目指す","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11874712"},{"date":"2026-07-15","headline":"美浦に入厩し坂路でキャンター、柔らかな脚さばきに好評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=337071"}]},{"id":"meagloria","name":"メアグローリア","member":"kono","certainty":"confirmed","sex":"牝","coat":"栗毛","birth":"2024-01-23","sire":"サリオス","dam":"アンティフォナ","damSire":"Songandaprayer","family":"半兄に2020年NHKマイルC勝ちのラウダシオン（同じ斉藤崇厩舎）","trainer":"斉藤崇史","center":"栗東","owner":"シルクレーシング","breeder":"社台コーポレーション白老ファーム","price":"シルクHC募集総額3,500万円（1口7万円×500口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106969/","races":[{"date":"2026-06-13","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1200,"field":11,"finish":2,"popularity":1,"jockey":"川田将雅","going":"良","time":"1:08.7","prize":310,"note":"勝ち馬ロンドンガーズに3馬身差（0.5秒）","url":"https://race.netkeiba.com/race/result.html?race_id=202609030305"},{"date":"2026-07-26","course":"中京","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1400,"field":9,"finish":3,"popularity":1,"jockey":"川田将雅","going":"良","time":"1:21.1","prize":150,"note":"勝ち馬サンタンジェロから1馬身3/4＋半馬身（0.4秒）。単勝1.5倍","url":"https://race.netkeiba.com/race/result.html?race_id=202607020201"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"https://www.silkhorseclub.jp/horse_info/shozoku/detail/2024056/view","note":"ノーザンファームしがらきで放牧中。7/26のあと、次走の発表も報道も見つからない（10/11時点）。10/3-4・10/10-12の出馬表にも名前なし"},"news":[{"date":"2026-07-26","headline":"中京の未勝利戦は1番人気で3着、川田騎手は力は出したと評価","source":"ラジオNIKKEI（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=338001"},{"date":"2026-07-14","headline":"しがらきから栗東へ戻り、7/26中京の未勝利戦へ","source":"netkeiba（栗東トレセンニュース）","url":"https://news.netkeiba.com/?pid=news_view&no=336970"},{"date":"2026-06-13","headline":"新馬戦は1番人気2着、川田騎手はまだ幼く伸びしろありと","source":"ラジオNIKKEI（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=334149"},{"date":"2026-06-10","headline":"クロワデュノールと併せ馬、師は体の使い方が今後の課題と","source":"日刊スポーツ","url":"https://www.nikkansports.com/keiba/news/202606100000157.html"},{"date":"2026-06-08","headline":"6/13阪神芝1200で川田騎手とデビュー予定、半兄はラウダシオン","source":"netkeiba（関西馬メイクデビュー情報）","url":"https://news.netkeiba.com/?pid=news_view&no=333676"}],"whereabouts":"放牧中（ノーザンファームしがらき）。シルク公式の所属馬ページで在厩場所「ノーザンファームしがらき」、netkeibaスマホ版で「放牧中」、JRA競走馬情報で「放牧」（2026-10-11閲覧）","memo":"2戦とも1番人気で2着・3着。未勝利勝ちまであと一歩。しがらきで放牧中、次走は未定"},{"id":"luckysparkle","name":"ラッキースパークル","member":"kono","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-02-19","sire":"エピファネイア","dam":"ラッキーライラック","damSire":"オルフェーヴル","family":"母はG1・4勝のラッキーライラック（母も松永幹厩舎で管理）","trainer":"松永幹夫","center":"栗東","owner":"サンデーレーシング","breeder":"ノーザンファーム","price":"サンデーR募集総額1億2,000万円（1口300万円×40口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106675/","races":[{"date":"2026-06-28","course":"福島","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":14,"finish":3,"popularity":2,"jockey":"戸崎圭太","going":"良","time":"1:49.1","prize":200,"note":"勝ち馬ウインワーグナーからアタマ＋1馬身半（0.3秒）。直線で進路が開かなかった","url":"https://race.netkeiba.com/race/result.html?race_id=202603020205"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"https://db.netkeiba.com/horse/2024106675/","note":"6/28の新馬3着のあと出走なし。次走の発表も報道も見つからない（10/11時点）。netkeibaスマホ版の表示は放牧中。10/3-4・10/10-12の出馬表にも名前なし"},"news":[{"date":"2026-06-28","headline":"デビュー戦は直線で進路が開かず3着、師は右にモタれる点を課題に","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=335521"},{"date":"2026-06-26","headline":"日曜福島の新馬戦へ、母も管理した松永幹師が似た面があると期待","source":"サンケイスポーツ","url":"https://www.sanspo.com/race/article/general/20260626-6K3RRPMITZLWNNJZZWZ2AOORFU/"},{"date":"2026-06-24","headline":"母の担当だった助手が受け持ち、バネのある走りと手応え","source":"スポーツ報知（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=335136"},{"date":"2026-06-04","headline":"6/28福島5Rで戸崎騎手とデビュー予定、ハミに敏感な面も","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=333240"},{"date":"2026-04-24","headline":"ゲート試験をパス、母を手がけた助手が好素材と評価","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=329006"}],"whereabouts":"放牧中（場所は未確認）。netkeibaスマホ版の馬ページの表示（2026-10-11閲覧）","memo":"新馬3着のあと出走なし。口の重さや右にモタれる面が課題と陣営。放牧中で次走未定"},{"id":"odioperdere","name":"オディオペルデレ","member":"kono","certainty":"confirmed","sex":"牡","coat":"鹿毛","birth":"2024-02-28","sire":"レイデオロ","dam":"ラヴズオンリーユー","damSire":"ディープインパクト","family":"母はBC制覇などG1・4勝のラヴズオンリーユー。半兄ラヴズプレミアム","trainer":"矢作芳人","center":"栗東","owner":"DMMドリームクラブ（DMMバヌーシー）","breeder":"ノーザンファーム","price":"DMMバヌーシー募集総額1億8,000万円（1口4.5万円×4,000口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106667/","races":[],"status":"未出走","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"","note":"7月の飛節の腫れからの回復待ち。帰厩・デビューの発表はまだない。10/17-18の新馬想定にも名前なし"},"news":[],"whereabouts":"牧場で療養中（場所は公式では未確認）","memo":"7月に飛節の腫れで休養。10/11時点でデビュー時期は未発表"},{"id":"sweepradius","name":"スイープラディウス","member":"kono","certainty":"confirmed","sex":"牡","coat":"栗毛","birth":"2024-02-15","sire":"レイデオロ","dam":"スイープセレリタス","damSire":"ハーツクライ","family":"祖母は宝塚記念などG1・3勝のスイープトウショウ","trainer":"辻哲英","center":"美浦","owner":"シルクレーシング","breeder":"ノーザンファーム","price":"シルクHC募集総額4,500万円（1口9万円×500口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106392/","races":[],"status":"未出走","next":{"basis":"想定","date":"2026-10-18","race":"2歳新馬 芝2000m（東京5R）","course":"東京","grade":"新馬","jockey":"川田将雅","url":"https://www.keibanomiryoku.com/%e6%96%b0%e9%a6%ac%e6%88%a6","note":"競馬の魅力の新馬想定（10/10更新）に川田騎手で載っている。出馬投票は10/15"},"news":[{"date":"2026-07-29","headline":"美浦・辻厩舎に入厩し坂路で始動、完成途上も脚さばきは上々","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=338237"}],"whereabouts":"在厩（美浦・辻哲英厩舎）。シルク公式の所属馬ページで在厩場所「美浦トレセン」、netkeibaスマホ版で「入厩中」（2026-10-11閲覧）","memo":"10/18東京芝2000で川田騎手とデビュー予定（想定）。祖母スイープトウショウの良血"},{"id":"youngrich","name":"ヤングリッチ","member":"kono","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-04-18","sire":"レイデオロ","dam":"フォエヴァーダーリング","damSire":"Congrats","family":"半兄にBCクラシックを勝ったフォーエバーヤング","trainer":"矢作芳人","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム","price":"2025年セレクトセール（1歳）3億3,000万円（税込）。報道では3億円（税抜）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106542/","races":[],"status":"未出走","next":{"basis":"報道","date":"2026-10-18","race":"2歳新馬 芝2000m（京都5R）","course":"京都","grade":"新馬","jockey":"坂井瑠星","url":"https://news.netkeiba.com/?pid=news_view&no=345083","note":"報知（10/1）が矢作師の話として京都芝2000・坂井騎手と報道し、デイリー（10/9）が京都5Rと明記。競馬の魅力の新馬想定も同じ。出馬投票は10/15"},"news":[{"date":"2026-10-09","headline":"18日京都5Rで初陣、1週前のCW併せで年長馬に先着を許さず","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=345083"},{"date":"2026-10-08","headline":"坂井騎手を背にCWで併せ馬、終い11秒4と反応が良化","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=344979"},{"date":"2026-10-01","headline":"矢作師が10/18京都芝2000・坂井騎手での初陣を表明、まず芝で","source":"スポーツ報知（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=344325"},{"date":"2026-07-24","headline":"7/24にゲート試験合格、坂井騎手は兄の同時期よりしっかりと評価","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=337838"}],"whereabouts":"在厩（栗東・矢作芳人厩舎）。10/8に栗東CWで1週前追い切り（デイリー 10/8・10/9）。netkeibaスマホ版で「入厩中」（2026-10-11閲覧）","memo":"3億円（税抜）の良血。10/18京都芝2000で坂井騎手とデビュー予定、1週前追いも好評価"},{"id":"danondax","name":"ダノンダックス","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-02-19","coat":"黒鹿毛","sire":"サートゥルナーリア","dam":"ヤンキーローズ","damSire":"All American","family":"三冠牝馬リバティアイランドの半弟（母ヤンキーローズ）","trainer":"田中博康","center":"美浦","owner":"ダノックス","breeder":"ノーザンファーム（安平町）","price":"3億4,100万円（税込、netkeiba表記。2025年セレクトセール1歳。報道の税抜は3億1,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106662/","memo":"リバティアイランドの半弟。2戦目の未勝利戦を上がり最速で完勝し、次は東スポ杯2歳Sで重賞に挑む予定","races":[{"date":"2026-07-26","course":"新潟","raceNo":"2R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1600,"field":9,"finish":2,"popularity":1,"jockey":"戸崎圭太","time":"1:37.4","going":"良","prize":310,"note":"単勝1.2倍。アタマ差2着、勝ち馬トウシンマジック（のち新潟2歳S2着）","url":"https://race.netkeiba.com/race/result.html?race_id=202604020202"},{"date":"2026-10-04","course":"東京","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1800,"field":12,"finish":1,"popularity":1,"jockey":"C.ルメール","time":"1:46.7","going":"良","prize":590,"note":"単勝1.1倍。2着イニシャルポイントに2馬身半差、上がり33.7はメンバー最速","url":"https://race.netkeiba.com/race/result.html?race_id=202605040201"}],"status":"1勝","next":{"basis":"報道","date":"2026-11-23","course":"東京","race":"東京スポーツ杯2歳S（G2）芝1800m","grade":"G2","jockey":"","note":"NF天栄での放牧を挟んで向かう予定（デイリー10/8、報知・サンスポ・東スポ10/7、スポニチ10/8）。騎手は未定（デイリー10/8）","url":"https://www.daily.co.jp/umaya/news/2026/10/08/0020904470.shtml"},"news":[{"date":"2026-10-08","headline":"NF天栄へ放牧し東スポ杯2歳Sへ、鞍上は未定","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/10/08/0020904470.shtml"},{"date":"2026-10-07","headline":"放牧を挟んで東スポ杯へ、田中博師は課題克服での上積みに期待","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=344852&pid=news_view"},{"date":"2026-10-07","headline":"東スポ杯2歳Sへ調整、田中博師が出走を決めた理由を語る","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/76350"},{"date":"2026-10-04","headline":"名付け親ルメールで初勝利、馬名は仏の地名ダックスから","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11879309"},{"date":"2026-10-04","headline":"2戦目で初V、ルメールは距離がさらに延びても対応できると評価","source":"日刊スポーツ（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/23f3fec760f4b192e34db43ad9d068cffafe2a8a"}],"whereabouts":"放牧中（NF天栄。デイリー10/8が放牧へと報道。JRA公式の競走馬情報も2026-10-11閲覧時に「放牧」表示）"},{"id":"onyourmarks","name":"オンユアマークス","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-03-30","coat":"黒鹿毛","sire":"キズナ","dam":"トレンドハンター","damSire":"マンハッタンカフェ","family":"母トレンドハンターは2011年フラワーC勝ち馬。半姉インヴォーグ","trainer":"松永幹夫","center":"栗東","owner":"ノースヒルズ","breeder":"千代田牧場（新ひだか町）","price":"6,600万円（税込、netkeiba表記。2024年セレクトセール当歳。報道の税抜は6,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024104698/","memo":"武豊騎乗の2戦目、京都芝2000mを2歳コースレコードで勝利。騎手・調教師とも伸びしろありと評価","races":[{"date":"2026-06-14","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":8,"finish":3,"popularity":2,"jockey":"武豊","time":"1:48.6","going":"良","prize":200,"note":"単勝4.2倍。勝ち馬インカルナータから0.3秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609030405"},{"date":"2026-10-11","course":"京都","raceNo":"2R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"field":10,"finish":1,"popularity":1,"jockey":"武豊","time":"1:59.1","going":"良","prize":590,"note":"2歳コースレコード（従来1:59.3）。2着ロードフローリスに2馬身差、上がり34.6はメンバー最速","url":"https://race.netkeiba.com/race/result.html?race_id=202608040402"}],"status":"1勝","next":{"basis":"未定","date":"","course":"","race":"","grade":"","jockey":"","note":"10/11の勝利後、次走は未定と報道（報知・サンスポ 10/11）","url":"https://news.netkeiba.com/?no=345255&pid=news_view"},"news":[{"date":"2026-10-11","headline":"武豊を背に2歳レコード、鞍上は前走からの成長を評価","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/76526"},{"date":"2026-10-11","headline":"京都芝2000mを差し切ってレコードV、次走は未定","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=345255&pid=news_view"},{"date":"2026-10-11","headline":"武豊騎乗で初勝利、2歳レコードを0.2秒更新","source":"日刊スポーツ（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/208947d4349cac881566ae8f794ab90335092998"},{"date":"2026-10-11","headline":"最速の上がりで差し切り、松永幹師は気性の幼さに触れる","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11879811"},{"date":"2026-06-14","headline":"新馬戦当日の紹介記事、松永幹師は初戦から走れると期待","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11872074"}],"whereabouts":"在厩（2026-10-11 京都2Rに出走。JRA公式の競走馬情報に放牧表示なし、10/11閲覧）"},{"id":"swagwalk","name":"スワッグウォーク","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-03-09","coat":"黒鹿毛","sire":"コントレイル","dam":"ブリリアントカット","damSire":"Speightstown","family":"半姉ジュワネングは関東オークス2着（母ブリリアントカット）","trainer":"武幸四郎","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム（安平町）","price":"2億7,500万円（税込、netkeiba表記。2024年セレクトセール当歳。報道の税抜は2億5,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106558/","memo":"税抜2.5億円のコントレイル産駒。新馬4着で武豊は仕上がり途上と説明。8/2以降は出走・投票なし","races":[{"date":"2026-08-02","course":"札幌","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":10,"finish":4,"popularity":2,"jockey":"武豊","time":"1:51.9","going":"良","prize":120,"note":"単勝3.5倍。勝ち馬ホウオウプレマから1.1秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202601010405"}],"status":"未勝利","next":{"basis":"未定","date":"","course":"","race":"","grade":"","jockey":"","note":"8/2の新馬戦後、次走の報道は見つからない。JRA公式では8/30〜10/12の出馬投票履歴なし、放牧表示（10/11閲覧）","url":"https://www.jra.go.jp/JRADB/accessU.html?CNAME=pw01dud002024106558%2F65"},"news":[{"date":"2026-08-02","headline":"2番人気でデビューも4着、武豊は使いつつ良化を期待","source":"馬トク報知（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/ca6d493122b027c8b679afd73ac6156cc4d4f074"},{"date":"2026-08-01","headline":"札幌の新馬戦で武豊と初陣へ、最終追い切りは僚馬に先着","source":"東スポ競馬（dメニューニュース掲載）","url":"https://topics.smt.docomo.ne.jp/article/tospokeiba/sports/tospokeiba-130027"},{"date":"2026-07-31","headline":"大型馬ながら動きは上々と武幸師、最終追い切りは浜中騎乗","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/07/31/0020651633.shtml"},{"date":"2026-07-22","headline":"8/2札幌芝1800mで武豊とデビュー予定、半姉は交流重賞2着","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11874543"},{"date":"2026-06-02","headline":"5/28に栗東でゲート試験に合格","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11871128"}],"whereabouts":"放牧中（JRA公式の競走馬情報に「放牧」表示、2026-10-11閲覧）。放牧先は未確認"},{"id":"ribbonroad","name":"リボンロード","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-04-18","coat":"青鹿毛","sire":"リオンディーズ","dam":"ジュベルアリ","damSire":"ディープインパクト","family":"半兄に重賞2勝アルナシーム、叔父にアルアイン・シャフリヤール","trainer":"上原佑紀","center":"美浦","owner":"藤田晋","breeder":"レイクヴィラファーム（洞爺湖町）","price":"7,920万円（税込、netkeiba表記。2025年セレクトセール1歳。報道の税抜は7,200万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024107154/","memo":"新馬戦は単勝1.3倍で5着。立て直し後、福島開催での復帰を目指すと報道（デイリー9/30）","races":[{"date":"2026-08-15","course":"新潟","raceNo":"3R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":12,"finish":5,"popularity":1,"jockey":"川田将雅","time":"1:48.8","going":"良","prize":78,"note":"単勝1.3倍。勝ち馬ピコベリーから0.8秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202604020703"}],"status":"未勝利","next":{"basis":"報道","date":"","course":"福島","race":"未定（福島開催での復帰を目指す）","grade":"","jockey":"","note":"デイリー9/30: 翌週に美浦へ帰厩し、福島開催での復帰を目指す。3回福島は11/7〜11/23（JRA発表）。具体的なレース・騎手は未発表。JRA公式では8/30〜10/12の出馬投票履歴なし","url":"https://www.daily.co.jp/umaya/news/2026/09/30/0020874956.shtml"},"news":[{"date":"2026-09-30","headline":"翌週に美浦へ帰厩予定、福島開催での復帰を目指す","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/09/30/0020874956.shtml"},{"date":"2026-08-15","headline":"単勝1.3倍で5着、陣営は立て直して成長を待つ方針","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=339723&pid=news_view"},{"date":"2026-08-14","headline":"叔父にGI馬2頭の良血、上原佑師は芝中距離が舞台とみる","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/74510"},{"date":"2026-08-14","headline":"新潟3Rでデビュー、上原佑師は軽快な脚さばきを長所に","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11875957"},{"date":"2026-08-14","headline":"最終追い切りは併入、上原佑師は仕上がりに太鼓判","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/08/14/0020702725.shtml"}],"whereabouts":"不明（JRA公式の競走馬情報は2026-10-11閲覧時に「放牧」表示。一方デイリー9/30は翌週＝10/5の週に美浦へ帰厩予定と報道。帰厩したかは未確認）"},{"id":"allcityking","name":"オールシティキング","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-04-29","coat":"鹿毛","sire":"Flightline","dam":"セルフレスリー","damSire":"More Than Ready","family":"母セルフレスリーは米G2ミスグリジョSなど重賞2勝","trainer":"手塚貴久","center":"美浦","owner":"藤田晋","breeder":"ノーザンファーム（安平町）","price":"2億900万円（税込、netkeiba表記。2025年セレクトセール1歳。報道・競馬ブックの税抜は1億9,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106425/","memo":"フライトライン産駒で税抜1.9億円。9/13予定と報じられたデビューは実現せず、未出走のまま放牧中","races":[],"status":"未出走","next":{"basis":"未定","date":"","course":"","race":"","grade":"","jockey":"","note":"8/26サンスポが9/13中山芝1800m（津村）でのデビュー予定を報じたが出走せず。JRA公式では8/30〜10/12の出馬投票履歴なし、放牧表示（10/11閲覧）。新たなデビュー予定の報道なし","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11876744"},"news":[{"date":"2026-10-01","headline":"9/24時点で未入厩の注目POG馬として名前が挙がる","source":"ウマニティ","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11877577"},{"date":"2026-08-26","headline":"9/13中山芝1800mを津村騎手でデビュー予定と報道","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11876744"},{"date":"2026-08-07","headline":"秋の中山開催でのデビューを目指し、近くトレセンへ","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=339016&pid=news_view"},{"date":"2026-05-15","headline":"5/15に美浦でゲート試験に合格","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11870285"}],"whereabouts":"放牧中（JRA公式の競走馬情報に「放牧」表示、2026-10-11閲覧。ウマニティ10/1では9/24時点で未入厩）。放牧先は未確認"}]}</script>
+<script>
+(function(){
+'use strict';
+
+/* iOS Safari / LINE は touchstart の受け手がないと :active（押したときの沈み）を出さない */
+try { document.addEventListener('touchstart', function(){}, { passive: true }); } catch(e) {}
+
+/* ---------- データ ---------- */
+var DATA;
+try { DATA = JSON.parse(document.getElementById('pog-data').textContent); } catch(e) { DATA = {}; }
+var MEMBERS = Array.isArray(DATA.members) ? DATA.members : [];
+var HORSES = Array.isArray(DATA.horses) ? DATA.horses : [];
+var MBY = {}; MEMBERS.forEach(function(m){ MBY[m.id] = m; });
+var HBY = {}; HORSES.forEach(function(h){ HBY[h.id] = h; });
+var ASOF = DATA.asOf || '';
+var SEASON_START = '2026-06-01';
+var DERBY = DATA.derbyDate || '2027-05-30';
+var DAY = 86400000;
+
+/* ---------- 小さな道具 ---------- */
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+function safeUrl(u){ return (typeof u === 'string' && /^https?:\/\//i.test(u.trim())) ? u.trim() : ''; }
+function link(url, html, cls){ var u = safeUrl(url); return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener"' + (cls ? ' class="' + cls + '"' : '') + '>' + html + '</a>' : html; }
+function fmt(n){ return (Math.round((Number(n) || 0) * 10) / 10).toFixed(1); }
+function ptOf(r){ return (Number(r && r.prize) || 0) / 10; }
+function ymd(d){ var m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(String(d || '')); return m ? { y:+m[1], m:+m[2], d:+m[3] } : null; }
+function utc(d){ var x = ymd(d); return x ? Date.UTC(x.y, x.m - 1, x.d) : NaN; }
+function md(d){ var x = ymd(d); return x ? x.m + '/' + x.d : ''; }
+function dow(d){ var t = utc(d); return isNaN(t) ? '' : '日月火水木金土'.charAt(new Date(t).getUTCDay()); }
+function mdw(d){ return ymd(d) ? md(d) + '(' + dow(d) + ')' : ''; }
+function todayUTC(){ var n = new Date(); return Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()); }
+function daysUntil(d){ var t = utc(d); return isNaN(t) ? NaN : Math.round((t - todayUTC()) / DAY); }
+function store(k, v){ try { if (v === undefined) return window.localStorage.getItem(k); window.localStorage.setItem(k, v); } catch(e) {} return null; }
+function mColor(id){ return 'var(--m-' + String(id).replace(/[^a-z0-9_-]/gi, '') + ', var(--ink))'; }
+function gradeName(g){ return ({ G1:'GⅠ', G2:'GⅡ', G3:'GⅢ', JG1:'J・GⅠ', JG2:'J・GⅡ', JG3:'J・GⅢ' })[g] || g || ''; }
+function prettyRace(s){ return String(s || '').replace(/G([123])(?![0-9])/g, function(_, n){ return 'G' + ['', 'Ⅰ', 'Ⅱ', 'Ⅲ'][+n]; }); }
+function gradeTag(g){
+  if (!g) return '';
+  var k = /^G1$/.test(g) ? 'gr-g1' : (/^G[23]$/.test(g) ? 'gr-g23' : (/^(L|OP)$/.test(g) ? 'gr-op' : ''));
+  return k ? '<span class="gr ' + k + '">' + esc(gradeName(g)) + '</span>' : '';
+}
+var BASIS = { '公式':'off', '報道':'rep', '想定':'est', '未定':'tbd' };
+function basisTag(b){ b = BASIS[b] ? b : '未定'; return '<span class="bs bs-' + BASIS[b] + '">' + esc(b) + '</span>'; }
+
+/* ---------- 勝負服（帽子は枠の色） ---------- */
+var WAKU_SILK = { 1:'--silk-white', 2:'--silk-black', 3:'--silk-red', 4:'--silk-blue', 5:'--silk-yellow', 6:'--silk-green', 7:'--silk-orange', 8:'--silk-pink' };
+var SILK = {
+  kotsuji: { base:'--silk-red',    pat:'sash',     pc:'--silk-white', desc:'赤、白たすき' },
+  yoshida: { base:'--silk-blue',   pat:'stripes',  pc:'--silk-white', desc:'青、白縦じま' },
+  kono:    { base:'--silk-orange', pat:'chevrons', pc:'--silk-black', desc:'橙、黒山形' },
+  keigo:   { base:'--silk-yellow', pat:'hoop',     pc:'--silk-black', desc:'黄、黒一本輪' }
+};
+function silkOf(id){
+  var m = MBY[id] || {};
+  var s = SILK[id] || { base: WAKU_SILK[m.waku] || '--silk-white', pat:'plain', pc:'--silk-white', desc:'' };
+  s.cap = WAKU_SILK[m.waku] || s.base;
+  return s;
+}
+var P_BODY = 'M20 14L28 14L35 16.5L34 26L33.5 46L14.5 46L14 26L13 16.5Z';
+var P_SL = 'M13 16.5L5 34L10 36.6L14 26Z';
+var P_SR = 'M35 16.5L43 34L38 36.6L34 26Z';
+var P_OUT = 'M20 14L28 14L35 16.5L43 34L38 36.6L34 26L33.5 46L14.5 46L14 26L10 36.6L5 34L13 16.5Z';
+var P_CAP = 'M16.5 10.6A7.5 7.5 0 0 1 31.5 10.6Z';
+function v(t){ return 'var(' + t + ')'; }
+function silkSymbol(id){
+  var s = silkOf(id), pc = v(s.pc), pat = '';
+  if (s.pat === 'sash') pat = '<path d="M11 12.5L37 46.5" style="fill:none;stroke:' + pc + ';stroke-width:6.4"/>';
+  else if (s.pat === 'stripes') pat = '<path d="M17.4 12V48M22.8 12V48M28.2 12V48" style="fill:none;stroke:' + pc + ';stroke-width:2.7"/>';
+  else if (s.pat === 'chevrons') pat = '<path d="M11 31.5L24 23.5L37 31.5M11 41L24 33L37 41" style="fill:none;stroke:' + pc + ';stroke-width:3.4;stroke-linejoin:miter"/>';
+  else if (s.pat === 'hoop') pat = '<rect x="10" y="27.5" width="28" height="6" style="fill:' + pc + '"/>';
+  var edge = 'fill:none;stroke:var(--silk-edge);stroke-linejoin:round;';
+  return '<symbol id="silk-' + esc(id) + '" viewBox="0 0 48 48">' +
+    '<path d="' + P_CAP + '" style="fill:' + v(s.cap) + '"/>' +
+    '<rect x="14.6" y="10" width="18.8" height="2.4" rx="1.2" style="fill:' + v(s.cap) + ';stroke:var(--silk-edge);stroke-width:.9"/>' +
+    '<path d="' + P_SL + '" style="fill:' + v(s.base) + '"/><path d="' + P_SR + '" style="fill:' + v(s.base) + '"/>' +
+    '<path d="' + P_BODY + '" style="fill:' + v(s.base) + '"/>' +
+    '<g clip-path="url(#silkClip)">' + pat + '</g>' +
+    '<path d="' + P_OUT + '" style="' + edge + 'stroke-width:1.3"/>' +
+    '<path d="M14 26L13 16.5M34 26L35 16.5" style="' + edge + 'stroke-width:.9"/>' +
+    '<path d="M20 14L24 18.6L28 14" style="' + edge + 'stroke-width:1.1"/>' +
+    '<path d="' + P_CAP + '" style="' + edge + 'stroke-width:1.1"/>' +
+  '</symbol>';
+}
+document.getElementById('silkDefs').innerHTML = '<defs><clipPath id="silkClip"><path d="' + P_BODY + '"/></clipPath>' + MEMBERS.map(function(m){ return silkSymbol(m.id); }).join('') + '</defs>';
+function silk(id, cls, label){
+  return '<svg class="silk' + (cls ? ' ' + cls : '') + '" viewBox="0 0 48 48" focusable="false" ' +
+    (label ? 'role="img" aria-label="' + esc(label) + '"' : 'aria-hidden="true"') + '><use href="#silk-' + esc(id) + '"></use></svg>';
+}
+function mName(id){ return MBY[id] ? MBY[id].name : ''; }
+
+/* ---------- 集計 ---------- */
+function horsePts(h){ return (h.races || []).reduce(function(s, r){ return s + ptOf(r); }, 0); }
+function horseWins(h){ return (h.races || []).filter(function(r){ return Number(r.finish) === 1; }).length; }
+function horseStatus(h){
+  var rs = h.races || [];
+  if (!rs.length) return { k:'unraced', label:'未出走' };
+  var graded = rs.some(function(r){ return Number(r.finish) === 1 && /G[123]|重賞/.test(r.grade || ''); });
+  var w = horseWins(h);
+  if (graded) return { k:'graded', label:'重賞勝ち' };
+  if (w > 0) return { k:'won', label: w + '勝' };
+  return { k:'maiden', label:'未勝利' };
+}
+function infMark(h){ return h && h.certainty === 'inferred' ? '<span class="inf" title="指名した馬がどれかは推定">推定</span>' : ''; }
+function statusTag(st){ return '<span class="st st-' + st.k + '">' + esc(st.label) + '</span>'; }
+function firstRaceT(h){ var t = (h.races || []).map(function(r){ return utc(r.date); }).filter(function(x){ return !isNaN(x); }); return t.length ? Math.min.apply(null, t) : 9e15; }
+
+var STATS = MEMBERS.map(function(m, i){
+  var hs = HORSES.filter(function(h){ return h.member === m.id; });
+  return {
+    m: m, order: i, hs: hs,
+    total: Math.round(hs.reduce(function(s, h){ return s + horsePts(h); }, 0) * 10) / 10,
+    winners: hs.filter(function(h){ return horseWins(h) > 0; }).length,
+    raced: hs.filter(function(h){ return (h.races || []).length > 0; }).length
+  };
+}).sort(function(a, b){ return b.total - a.total || a.order - b.order; });
+STATS.forEach(function(s){ s.rank = 1 + STATS.filter(function(o){ return o.total > s.total + 1e-9; }).length; });
+var SBY = {}; STATS.forEach(function(s){ SBY[s.m.id] = s; });
+function perMember(s){ return Math.max(5, s.hs.length); }
+
+/* 着差（1馬身＝10pt の遊び） */
+function chakusa(d){
+  if (d < 0.05) return '同着';
+  if (d <= 0.5) return 'ハナ';
+  if (d <= 1.0) return 'アタマ';
+  if (d <= 2.0) return 'クビ';
+  var b = d / 10;
+  if (b > 10) return '大差';
+  var steps = [[0.5,'1/2'],[0.75,'3/4'],[1,'1'],[1.25,'1 1/4'],[1.5,'1 1/2'],[1.75,'1 3/4'],[2,'2'],[2.5,'2 1/2'],[3,'3'],[3.5,'3 1/2'],[4,'4'],[5,'5'],[6,'6'],[7,'7'],[8,'8'],[9,'9'],[10,'10']];
+  var best = steps[0];
+  steps.forEach(function(s){ if (Math.abs(s[0] - b) < Math.abs(best[0] - b)) best = s; });
+  return best[1] + '馬身';
+}
+
+/* ---------- 動きの道具 ---------- */
+var RM = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+function reduced(){ return !!(RM && RM.matches); }
+function onMQ(mq, fn){ if (!mq) return; if (mq.addEventListener) mq.addEventListener('change', fn); else if (mq.addListener) mq.addListener(fn); }
+/* 小さな馬と騎手（タブの目印・残り日数のラチ）。脚は 2 コマ */
+function miniHorse(){
+  return '<svg class="mh" viewBox="0 0 32 20" aria-hidden="true" focusable="false">' +
+    '<g class="mh-l mh-a"><path d="M21.2 11.6L25.2 14.8 28.2 15.2M20 11.8L18.8 15.6 16.8 18.6M8.8 11.8L4.8 14.6 2 16M10 12L11.6 15.6 13.4 18.6"/></g>' +
+    '<g class="mh-l mh-b"><path d="M21 11.6L22.4 15.2 20.4 17M20.2 11.8L21.8 15.8 24.6 18.4M9.2 11.8L12.4 14.8 14.8 17.2M8.4 12L6.6 15.8 6 18.6"/></g>' +
+    '<g class="mh-h"><ellipse cx="14.6" cy="9.8" rx="8.4" ry="3.4" transform="rotate(-4 14.6 9.8)"/><path d="M19.4 8.3L24.4 3.9 26.9 5.4 22.4 11.2Z"/><path d="M24 3.4L26.4 2.7 30.8 6.5 29.8 7.8 25.6 6.6Z"/><path d="M24.6 3.4L25 1.3 26 3Z"/>' +
+    '<path d="M6.9 8.6Q3.2 7.8 1.2 10.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></g>' +
+    '<g class="mh-j"><path d="M11.6 6.2L18.2 4.5" fill="none" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="3.3" r="1.6"/></g>' +
+  '</svg>';
+}
+
+/*HORSE-START*/
+/* 馬と騎手のモデル。単位は「馬体長（肩端〜坐骨端）＝100」、y は上向き、原点は馬体の中心の真下の地面 */
+var RAD = Math.PI / 180, TAU2 = Math.PI * 2;
+function clamp(x, a, b){ return x < a ? a : (x > b ? b : x); }
+function lerp(a, b, t){ return a + (b - a) * t; }
+function sstep(a, b, x){ var t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
+/* 周期的なキー [位相, 値1, 値2, 値3] を、間隔の不揃いな Catmull-Rom でつなぐ */
+function keyAt(K, p, j){
+  var n = K.length, i = n - 1, q;
+  p -= Math.floor(p);
+  for (q = 1; q < n; q++) if (K[q][0] > p) { i = q - 1; break; }
+  function P(k){ return K[((k % n) + n) % n][0] + Math.floor(k / n); }
+  function V(k){ return K[((k % n) + n) % n][j]; }
+  var p0 = P(i), p1 = P(i + 1), dt = p1 - p0, t = (p - p0) / dt;
+  var v0 = V(i), v1 = V(i + 1);
+  var m0 = (v1 - V(i - 1)) / (p1 - P(i - 1)) * dt, m1 = (V(i + 2) - v0) / (P(i + 2) - p0) * dt;
+  var t2 = t * t, t3 = t2 * t;
+  return (2 * t3 - 3 * t2 + 1) * v0 + (t3 - 2 * t2 + t) * m0 + (-2 * t3 + 3 * t2) * v1 + (t3 - t2) * m1;
+}
+/* ギャロップの脚。角度は真下から（度、前向きが正）。[位相, 上の節（前腕／大腿〜下腿）, 管, 繋]。位相 0＝その脚の着地 */
+var G_FORE = [[0,28,28,36],[.10,10,8,55],[.18,-8,-10,70],[.28,-30,-38,12],[.36,-36,-72,-58],[.48,-16,-118,-148],[.62,24,-66,-118],[.76,52,6,-22],[.88,44,40,24]];
+/* 後脚は振り出しで飛節を深く畳み（蹄を後ろへ跳ね上げ）、着地の直前に前へ伸ばす。f≈.62〜.97 は 4 本とも宙に浮く */
+var G_HIND = [[0,22,30,40],[.10,8,8,56],[.20,-12,-12,66],[.30,-32,-40,6],[.38,-42,-62,-48],[.50,-8,-86,-108],[.64,5,-66,-74],[.78,25,-30,-74],[.88,44,6,-20],[.95,44,44,18]];
+var ST_FORE = [0, 0, 35], ST_HIND = [-14, 4, 36];
+var LEN_FORE = [38, 19, 8], LEN_HIND = [44, 23, 8];
+var PIV_FORE = [31, -6], PIV_HIND = [-32, 2.5];
+/* 着地の順（右手前）: 左後 → 右後 → 左前 → 右前。見ているのは馬の左側なので左の脚が手前 */
+var LEGS = [{ fore:false, off:0, near:true }, { fore:false, off:.10, near:false }, { fore:true, off:.30, near:true }, { fore:true, off:.40, near:false }];
+var LIFT = { fore:.17, hind:.2 };
+
+function ik(ax, ay, bx, by, l1, l2, sx, sy){
+  var dx = bx - ax, dy = by - ay, d = Math.sqrt(dx * dx + dy * dy) || 1e-6;
+  var dd = Math.min(d, (l1 + l2) * .999);
+  var a = (l1 * l1 - l2 * l2 + dd * dd) / (2 * dd), hh = Math.sqrt(Math.max(0, l1 * l1 - a * a));
+  var ux = dx / d, uy = dy / d, mx = ax + ux * a, my = ay + uy * a;
+  var px = -uy, py = ux;
+  if (px * sx + py * sy < 0) { px = -px; py = -py; }
+  return [mx + px * hh, my + py * hh];
+}
+
+/* 姿勢を計算する（描かずに、鼻先や帽子の位置も分かるように） */
+function horsePose(phase, blend, drive){
+  drive = drive || 0;
+  var f = phase - Math.floor(phase);
+  var pitch = blend * 2.6 * Math.cos(TAU2 * (f - .12));
+  var cp = Math.cos(pitch * RAD), sp = Math.sin(pitch * RAD);
+  var hb = lerp(72.9, 69.4 + 1.8 * Math.cos(TAU2 * (f - .76)), blend);
+  var legs = [], lowest = 1e9, i;
+  for (i = 0; i < 4; i++){
+    var Lg = LEGS[i], K = Lg.fore ? G_FORE : G_HIND, S = Lg.fore ? ST_FORE : ST_HIND, LEN = Lg.fore ? LEN_FORE : LEN_HIND, PV = Lg.fore ? PIV_FORE : PIV_HIND;
+    var lp = f - Lg.off; lp -= Math.floor(lp);
+    var a1 = lerp(S[0], keyAt(K, lp, 1), blend) * RAD, a2 = lerp(S[1], keyAt(K, lp, 2), blend) * RAD, a3 = lerp(S[2], keyAt(K, lp, 3), blend) * RAD;
+    var px = PV[0] * cp - PV[1] * sp, py = PV[0] * sp + PV[1] * cp;
+    var x1 = px + Math.sin(a1) * LEN[0], y1 = py - Math.cos(a1) * LEN[0];
+    var x2 = x1 + Math.sin(a2) * LEN[1], y2 = y1 - Math.cos(a2) * LEN[1];
+    var x3 = x2 + Math.sin(a3) * LEN[2], y3 = y2 - Math.cos(a3) * LEN[2];
+    /* 蹄: 繋の向きに伸ばし、底は少し寝かせる */
+    var ux = Math.sin(a3), uy = -Math.cos(a3), nx = -uy, ny = ux;
+    var hx = [x3 - nx * 2.6, x3 + nx * 2.6, x3 + nx * 2.9 + ux * 4.6, x3 - nx * 2.2 + ux * 2.4];
+    var hy = [y3 - ny * 2.6, y3 + ny * 2.6, y3 + ny * 2.9 + uy * 4.6, y3 - ny * 2.2 + uy * 2.4];
+    var low = Math.min(hy[2], hy[3]);
+    lowest = Math.min(lowest, low);
+    legs.push({ fore: Lg.fore, near: Lg.near, lp: lp, a: [a1, a2, a3], p: [px, py, x1, y1, x2, y2, x3, y3], hx: hx, hy: hy, low: low });
+  }
+  var h = Math.max(hb, -lowest);
+  for (i = 0; i < 4; i++){ var L = legs[i]; for (var k = 1; k < 8; k += 2) L.p[k] += h; for (k = 0; k < 4; k++) L.hy[k] += h; L.low += h; }
+  function B(x, y){ return [x * cp - y * sp, x * sp + y * cp + h]; }
+  /* 首と頭（角度は水平から、上向きが正） */
+  var al = lerp(48, 30 + (6 + 3.5 * drive) * Math.cos(TAU2 * (f - .05)), blend);
+  var be = lerp(-62, al - 78 + 4 * Math.sin(TAU2 * f), blend);
+  var ab = (al - pitch) * RAD, bb = (be - pitch) * RAD;
+  var dX = Math.cos(ab), dY = Math.sin(ab), nX = -dY, nY = dX, Ln = 38, Rc = [32, 12];
+  var E = [Rc[0] + dX * Ln, Rc[1] + dY * Ln];
+  var poll = [E[0] + nX * 8 + dX * 2, E[1] + nY * 8 + dY * 2];
+  var throat = [E[0] - nX * 7 - dX * 4, E[1] - nY * 7 - dY * 4];
+  var crestC = [Rc[0] + dX * Ln * .5 + nX * 17, Rc[1] + dY * Ln * .5 + nY * 17];
+  var underC = [Rc[0] + dX * Ln * .55 - nX * 9, Rc[1] + dY * Ln * .55 - nY * 9];
+  var hX = Math.cos(bb), hY = Math.sin(bb), hnX = -hY, hnY = hX;
+  function Hd(a, b){ return B(poll[0] + hX * a + hnX * b, poll[1] + hY * a + hnY * b); }
+  var push = blend * (2.4 + 3.2 * drive) * -Math.cos(TAU2 * (f - .05));
+  var handsB = [Rc[0] + dX * (13 + push) + nX * 13.5, Rc[1] + dY * (13 + push) + nY * 13.5];
+  /* 騎手: 上半身は馬の上下動を 6 割ほど打ち消して滑らかに。足は鐙で馬と一緒に動く */
+  var hMid = lerp(72.9, 67, blend), hj = hMid + .38 * (h - hMid) + drive * .8 * Math.sin(TAU2 * (f + .2));
+  var hip = [-5, hj + 35.5], sh = [25 + drive * 1.2 * Math.cos(TAU2 * (f - .05)), hj + 44];
+  var foot = B(8, 2), hands = B(handsB[0], handsB[1]);
+  var knee = ik(hip[0], hip[1], foot[0], foot[1], 24, 23, 1, .2);
+  var elbow = ik(sh[0], sh[1], hands[0], hands[1], 15, 15, -.2, -1);
+  return {
+    f: f, blend: blend, h: h, cp: cp, sp: sp, legs: legs, B: B,
+    neck: { root1: B(18, 27), crestC: B(crestC[0], crestC[1]), poll: B(poll[0], poll[1]), throat: B(throat[0], throat[1]), underC: B(underC[0], underC[1]), root2: B(44, -4), d: [dX * cp - dY * sp, dX * sp + dY * cp] },
+    Hd: Hd,
+    nose: Hd(38.2, -5.6),
+    tailRoot: B(-47, 15),
+    tailA: lerp(-76, -14 + 7 * Math.sin(TAU2 * (f + .3)), blend) * RAD,
+    jk: { hip: hip, sh: sh, head: [sh[0] + 7.5, sh[1] + 5.5], foot: foot, knee: knee, hands: hands, elbow: elbow, stirrup: B(1, 20) }
+  };
+}
+
+/* ---- 描く道具（座標は馬の単位、変換は呼び出し側で設定） ---- */
+function seg(c, ax, ay, bx, by, wa, wb){
+  var dx = bx - ax, dy = by - ay, d = Math.sqrt(dx * dx + dy * dy) || 1e-6, nx = -dy / d, ny = dx / d;
+  c.moveTo(ax + nx * wa, ay + ny * wa); c.lineTo(bx + nx * wb, by + ny * wb);
+  c.arc(bx, by, wb, Math.atan2(ny, nx), Math.atan2(ny, nx) + Math.PI, true);
+  c.lineTo(ax - nx * wa, ay - ny * wa);
+  c.arc(ax, ay, wa, Math.atan2(-ny, -nx), Math.atan2(-ny, -nx) + Math.PI, true);
+  c.closePath();
+}
+/* 太さが前後で違う節（前＝進行方向側） */
+function limb(c, ax, ay, ang, L, ts, wf, wb){
+  var ux = Math.sin(ang), uy = -Math.cos(ang), fx = -uy, fy = ux, k;
+  c.moveTo(ax + fx * wf[0], ay + fy * wf[0]);
+  for (k = 1; k < ts.length; k++) c.lineTo(ax + ux * L * ts[k] + fx * wf[k], ay + uy * L * ts[k] + fy * wf[k]);
+  for (k = ts.length - 1; k >= 0; k--) c.lineTo(ax + ux * L * ts[k] - fx * wb[k], ay + uy * L * ts[k] - fy * wb[k]);
+  c.closePath();
+}
+function circ(c, x, y, r){ c.moveTo(x + r, y); c.arc(x, y, r, 0, TAU2); }
+function fillWith(c, col){ c.fillStyle = col; c.fill(); }
+
+function drawLeg(c, L, colUp, colLow, colHoof){
+  var p = L.p, a = L.a;
+  c.fillStyle = colUp;
+  c.beginPath();
+  if (L.fore) limb(c, p[0], p[1], a[0], LEN_FORE[0], [0, .25, .7, 1], [8, 6.6, 4.4, 3.5], [8.5, 7.6, 4.2, 3.3]);
+  else limb(c, p[0], p[1], a[0], LEN_HIND[0], [0, .3, .66, 1], [12.5, 11, 6.2, 3.4], [12.5, 9.6, 5.2, 4.4]);
+  c.fill();
+  c.beginPath(); circ(c, p[2], p[3], L.fore ? 3.2 : 3.4); c.fill();
+  c.fillStyle = colLow;
+  c.beginPath(); seg(c, p[2], p[3], p[4], p[5], L.fore ? 3.1 : 3.3, 2.5); c.fill();
+  c.beginPath(); circ(c, p[4], p[5], 2.6); c.fill();
+  c.beginPath(); seg(c, p[4], p[5], p[6], p[7], 2.3, 2.0); c.fill();
+  c.fillStyle = colHoof;
+  c.beginPath();
+  c.moveTo(L.hx[0], L.hy[0]); c.lineTo(L.hx[1], L.hy[1]); c.lineTo(L.hx[2], L.hy[2]); c.lineTo(L.hx[3], L.hy[3]); c.closePath();
+  c.fill();
+}
+
+function bodyPath(c, B){
+  var P = function(x, y){ return B(x, y); };
+  var a = P(20, 26); c.moveTo(a[0], a[1]);
+  function bz(x1, y1, x2, y2, x3, y3){ var q1 = P(x1, y1), q2 = P(x2, y2), q3 = P(x3, y3); c.bezierCurveTo(q1[0], q1[1], q2[0], q2[1], q3[0], q3[1]); }
+  bz(6, 21, -16, 18.5, -31, 25);
+  bz(-40, 26, -49, 18, -50.5, 6);
+  bz(-52, -4, -49, -10, -44, -13);
+  bz(-38, -16.5, -31, -14, -26, -14.5);
+  bz(-18, -17, -12, -19, -4, -19.5);
+  bz(6, -20.5, 15, -22, 22, -21);
+  bz(32, -19, 40, -14, 42.5, -7);
+  bz(45, -2, 47, 2, 46.5, 6);
+  bz(44, 15, 37, 23, 29, 25.5);
+  c.closePath();
+}
+function neckPath(c, N){
+  c.moveTo(N.root1[0], N.root1[1]);
+  c.quadraticCurveTo(N.crestC[0], N.crestC[1], N.poll[0], N.poll[1]);
+  c.lineTo(N.throat[0], N.throat[1]);
+  c.quadraticCurveTo(N.underC[0], N.underC[1], N.root2[0], N.root2[1]);
+  var m = N.root1; c.lineTo((N.root2[0] + m[0]) / 2 - 6, (N.root2[1] + m[1]) / 2);
+  c.closePath();
+}
+function headPath(c, P){
+  var o = P.neck.poll, H = P.Hd, t = P.neck.throat;
+  c.moveTo(o[0], o[1]);
+  var q = H(6, 2.6), r = H(20, 1.2); c.quadraticCurveTo(q[0], q[1], r[0], r[1]);
+  q = H(31, .2); r = H(35.2, -2.4); c.quadraticCurveTo(q[0], q[1], r[0], r[1]);
+  q = H(39, -5); r = H(36.6, -8.8); c.quadraticCurveTo(q[0], q[1], r[0], r[1]);
+  r = H(33, -11); c.lineTo(r[0], r[1]);
+  q = H(25, -12); r = H(16, -14.6); c.quadraticCurveTo(q[0], q[1], r[0], r[1]);
+  q = H(5, -21); c.quadraticCurveTo(q[0], q[1], t[0], t[1]);
+  c.closePath();
+}
+function earPath(c, P, shift){
+  var H = P.Hd, b1 = H(-1.6 + shift, -.4), b2 = H(3.4 + shift, -.2), tip = H(-2.6 + shift, 10.2), m = H(1.4 + shift, 7);
+  c.moveTo(b1[0], b1[1]); c.quadraticCurveTo(tip[0] - 1, tip[1] - 1, tip[0], tip[1]); c.quadraticCurveTo(m[0], m[1], b2[0], b2[1]); c.closePath();
+}
+function qpt(a, cc, b, t){ var u = 1 - t; return [u * u * a[0] + 2 * u * t * cc[0] + t * t * b[0], u * u * a[1] + 2 * u * t * cc[1] + t * t * b[1]]; }
+function manePath(c, P){
+  var N = P.neck, f = P.f, k;
+  for (k = 0; k < 8; k++){
+    var t = .1 + k * .108, a = qpt(N.root1, N.crestC, N.poll, t), b = qpt(N.root1, N.crestC, N.poll, Math.min(1, t + .1));
+    var tx = b[0] - a[0], ty = b[1] - a[1], tl = Math.sqrt(tx * tx + ty * ty) || 1; tx /= tl; ty /= tl;
+    var fl = (8 + 8 * P.blend) * RAD + P.blend * .16 * Math.sin(TAU2 * (f * 2 + k * .17));
+    /* 後ろ上へなびく */
+    var dx = -tx * Math.cos(fl) - ty * Math.sin(fl) * .2, dy = -ty * Math.cos(fl) + Math.abs(tx) * Math.sin(fl);
+    var len = 6 + 3 * Math.sin(k * 1.7 + 1) + 2 * P.blend;
+    c.moveTo(a[0] - tx * 1.6, a[1] - ty * 1.6); c.lineTo(a[0] + tx * 2.2, a[1] + ty * 2.2); c.lineTo(a[0] + dx * len, a[1] + dy * len + 1.2); c.closePath();
+  }
+  var H = P.Hd, f1 = H(2, 1), f2 = H(8, 3.5), f3 = H(4, -1); c.moveTo(f1[0], f1[1]); c.lineTo(f2[0], f2[1]); c.lineTo(f3[0], f3[1]); c.closePath();
+}
+function tailPath(c, P){
+  var r = P.tailRoot, ta = P.tailA, dx = -Math.cos(ta), dy = Math.sin(ta), nx = -dy, ny = dx, f = P.f;
+  var w1 = 3 * Math.sin(TAU2 * (f + .2)) * P.blend, w2 = 5 * Math.sin(TAU2 * (f + .45)) * P.blend + (1 - P.blend) * 2;
+  var cc = [r[0] + dx * 16 + nx * w1, r[1] + dy * 16 + ny * w1], e = [r[0] + dx * 36 + nx * w2, r[1] + dy * 36 + ny * w2 - (1 - P.blend) * 4];
+  var L = [], R = [], k;
+  for (k = 0; k <= 8; k++){
+    var t = k / 8, p = qpt(r, cc, e, t), p2 = qpt(r, cc, e, Math.min(1, t + .05)), p1 = qpt(r, cc, e, Math.max(0, t - .05));
+    var tx = p2[0] - p1[0], ty = p2[1] - p1[1], tl = Math.sqrt(tx * tx + ty * ty) || 1, qx = -ty / tl, qy = tx / tl;
+    var w = (2.6 + 4.4 * Math.sin(Math.PI * Math.pow(t, .7))) * (1 - .55 * t * t);
+    L.push([p[0] + qx * w, p[1] + qy * w]); R.push([p[0] - qx * w * .8, p[1] - qy * w * .8]);
+  }
+  c.moveTo(L[0][0], L[0][1]); for (k = 1; k < L.length; k++) c.lineTo(L[k][0], L[k][1]);
+  for (k = R.length - 1; k >= 0; k--) c.lineTo(R[k][0], R[k][1]);
+  c.closePath();
+}
+
+/* 勝負服の柄（胴の局所座標: 原点＝腰、x＝胴の向き、y＝背中側が正） */
+function silkPattern(c, pat, Lt){
+  c.beginPath();
+  if (pat === 'sash') { c.moveTo(Lt * .98, 9); c.lineTo(Lt * 1.18, 9); c.lineTo(Lt * .3, -9); c.lineTo(Lt * .1, -9); c.closePath(); }
+  else if (pat === 'stripes') { c.rect(-4, 1.6, Lt + 8, 2.4); c.rect(-4, -3.6, Lt + 8, 2.4); }
+  else if (pat === 'chevrons') {
+    var cv = function(x0){ c.moveTo(x0, 8); c.lineTo(x0 + 8.5, 0); c.lineTo(x0, -8); c.lineTo(x0 + 3.4, -8); c.lineTo(x0 + 11.9, 0); c.lineTo(x0 + 3.4, 8); c.closePath(); };
+    cv(Lt * .22); cv(Lt * .55);
+  }
+  else if (pat === 'hoop') { c.rect(Lt * .44, -9, 5.6, 18); }
+}
+function torsoPath(c, Lt){
+  c.moveTo(0, 6); c.quadraticCurveTo(Lt * .5, 9.5, Lt, 6); c.quadraticCurveTo(Lt + 4.5, 0, Lt, -6.4);
+  c.quadraticCurveTo(Lt * .5, -8.2, 0, -6.2); c.quadraticCurveTo(-4.4, 0, 0, 6); c.closePath();
+}
+
+/* look: { coat, pts, mane, hoof, far, farPts, silk:{base, pc, pat, cap}, white, black, edge, skin, rein, cloth, clothInk, num } */
+function drawHorse(c, P, look, mono){
+  var M = mono || null, i, L;
+  function col(x){ return M || x; }
+  /* 奥の脚 */
+  for (i = 0; i < 4; i++){ L = P.legs[i]; if (!L.near) drawLeg(c, L, col(look.far), col(look.farPts), col(look.hoof)); }
+  /* 尾 */
+  c.beginPath(); tailPath(c, P); fillWith(c, col(look.mane));
+  /* 奥の耳 */
+  c.beginPath(); earPath(c, P, 1.8); fillWith(c, col(look.far));
+  /* 胴・首・頭 */
+  c.fillStyle = col(look.coat);
+  c.beginPath(); bodyPath(c, P.B); c.fill();
+  c.beginPath(); neckPath(c, P.neck); c.fill();
+  c.beginPath(); headPath(c, P); c.fill();
+  /* たてがみ・前髪 */
+  c.beginPath(); manePath(c, P); fillWith(c, col(look.mane));
+  /* 手前の耳 */
+  c.beginPath(); earPath(c, P, 0); fillWith(c, col(look.coat));
+  if (!M) {
+    var H = P.Hd, e = H(9.5, -4.6), n = H(33.8, -5.8);
+    c.fillStyle = look.pts; c.beginPath(); circ(c, e[0], e[1], 1.5); c.fill(); c.beginPath(); circ(c, n[0], n[1], .9); c.fill();
+    /* 面繋・鼻革 */
+    c.beginPath();
+    var a = H(2.5, -1.5), b = H(29.5, -10.6), n1 = H(27.2, .6), n2 = H(28.4, -11.4);
+    c.moveTo(a[0], a[1]); c.lineTo(b[0], b[1]); c.moveTo(n1[0], n1[1]); c.lineTo(n2[0], n2[1]);
+    c.lineWidth = 1.1; c.strokeStyle = look.rein; c.lineCap = 'round'; c.stroke();
+  }
+  /* 手前の脚 */
+  for (i = 0; i < 4; i++){ L = P.legs[i]; if (L.near) drawLeg(c, L, col(look.coat), col(look.pts), col(look.hoof)); }
+  /* ゼッケンと鞍 */
+  var B = P.B, q = [B(-13, 21), B(-13.5, 9), B(-12, 6.5), B(9, 6.5), B(10.5, 9), B(11, 22)];
+  c.beginPath(); c.moveTo(q[0][0], q[0][1]); for (i = 1; i < q.length; i++) c.lineTo(q[i][0], q[i][1]); c.closePath(); fillWith(c, col(look.cloth));
+  var s1 = B(-9, 20), s2 = B(9, 21.5), s3 = B(10, 24), s4 = B(-8, 23.5);
+  c.beginPath(); c.moveTo(s1[0], s1[1]); c.lineTo(s2[0], s2[1]); c.lineTo(s3[0], s3[1]); c.lineTo(s4[0], s4[1]); c.closePath(); fillWith(c, col(look.rein));
+  drawJockey(c, P, look, M);
+}
+
+function drawJockey(c, P, look, M){
+  var J = P.jk, S = look.silk;
+  function col(x){ return M || x; }
+  c.lineCap = 'round'; c.lineJoin = 'round';
+  /* 手綱と鐙革 */
+  if (!M) {
+    var bit = P.Hd(30, -10.4);
+    c.beginPath(); c.moveTo(bit[0], bit[1]);
+    c.quadraticCurveTo((bit[0] + J.hands[0]) / 2, (bit[1] + J.hands[1]) / 2 - 4, J.hands[0], J.hands[1]);
+    c.moveTo(J.stirrup[0], J.stirrup[1]); c.lineTo(J.foot[0], J.foot[1]);
+    c.lineWidth = 1; c.strokeStyle = look.rein; c.stroke();
+  }
+  /* 奥の腕 */
+  c.fillStyle = col(look.silkFar); c.beginPath(); seg(c, J.sh[0] - 1, J.sh[1] + .5, J.elbow[0] - 1, J.elbow[1] + 1, 2.5, 2.3); c.fill(); c.beginPath(); seg(c, J.elbow[0] - 1, J.elbow[1] + 1, J.hands[0] - 1.5, J.hands[1] + 1.2, 2.3, 2); c.fill();
+  /* 脚（白いズボンと黒い長靴） */
+  c.beginPath(); seg(c, J.hip[0], J.hip[1], J.knee[0], J.knee[1], 5.4, 4.0); fillWith(c, col(look.white));
+  var kx = J.knee[0], ky = J.knee[1], fx = J.foot[0], fy = J.foot[1];
+  var bx = lerp(kx, fx, .3), by = lerp(ky, fy, .3);
+  c.fillStyle = col(look.black); c.beginPath(); seg(c, bx, by, fx, fy, 3.5, 2.8); c.fill(); c.beginPath(); seg(c, fx - .5, fy, fx + 5, fy - .8, 2.2, 1.8); c.fill();
+  if (!M) { c.beginPath(); seg(c, J.hip[0], J.hip[1], J.knee[0], J.knee[1], 5.4, 4.0); c.lineWidth = .7; c.strokeStyle = look.edge; c.stroke(); }
+  /* 胴（勝負服） */
+  var ax = J.sh[0] - J.hip[0], ay = J.sh[1] - J.hip[1], Lt = Math.sqrt(ax * ax + ay * ay), ang = Math.atan2(ay, ax);
+  c.save(); c.translate(J.hip[0], J.hip[1]); c.rotate(ang);
+  c.beginPath(); torsoPath(c, Lt); fillWith(c, col(S.base));
+  if (!M) {
+    c.save(); c.beginPath(); torsoPath(c, Lt); c.clip();
+    silkPattern(c, S.pat, Lt); fillWith(c, S.pc);
+    c.restore();
+    c.beginPath(); torsoPath(c, Lt); c.lineWidth = .8; c.strokeStyle = look.edge; c.stroke();
+  }
+  c.restore();
+  /* 頭（帽子は枠の色） */
+  var hx = J.head[0], hy = J.head[1];
+  c.beginPath(); circ(c, hx, hy, 5.6); fillWith(c, col(look.skin));
+  c.beginPath(); c.moveTo(hx - 5.9, hy - .6); c.arc(hx, hy, 6, Math.PI + .1, -.15 + 0, true); c.lineTo(hx + 8.6, hy - .4); c.lineTo(hx + 5.6, hy - 1.6); c.closePath(); fillWith(c, col(S.cap));
+  if (!M) {
+    c.beginPath(); c.arc(hx, hy, 6, Math.PI + .1, -.15, true); c.lineWidth = .7; c.strokeStyle = look.edge; c.stroke();
+    c.beginPath(); c.rect(hx + 2.4, hy - 3.4, 3.6, 1.8); fillWith(c, look.rein);
+  }
+  /* 手前の腕 */
+  c.fillStyle = col(S.base); c.beginPath(); seg(c, J.sh[0], J.sh[1], J.elbow[0], J.elbow[1], 2.8, 2.5); c.fill(); c.beginPath(); seg(c, J.elbow[0], J.elbow[1], J.hands[0], J.hands[1], 2.5, 2.1); c.fill();
+  if (!M) { c.beginPath(); seg(c, J.sh[0], J.sh[1], J.elbow[0], J.elbow[1], 2.8, 2.5); seg(c, J.elbow[0], J.elbow[1], J.hands[0], J.hands[1], 2.5, 2.1); c.lineWidth = .6; c.strokeStyle = look.edge; c.stroke(); }
+  c.beginPath(); circ(c, J.hands[0], J.hands[1], 2.3); fillWith(c, col(look.white));
+}
+/*HORSE-END*/
+
+/* ---------- 題字 ---------- */
+/* 「今日」の騎手を走らせる関数。レース展開が読み込みと同時に走るときは、見せ場を一つにするため走らせない */
+var railRun = function(){};
+(function(){
+  var days = daysUntil(DERBY);
+  var dEl = document.getElementById('derbyDays');
+  var x = ymd(DERBY);
+  if (x) document.getElementById('derbyLabel').innerHTML = '<span class="cl">東京優駿</span><span class="cl cl-p">（日本ダービー）</span><span class="cl"><span class="num">' + x.y + '.' + x.m + '.' + x.d + '</span> まで</span>';
+  document.getElementById('railEnd').textContent = md(DERBY);
+  if (isNaN(days)) { dEl.textContent = '―'; }
+  else if (days > 0) { dEl.textContent = days; }
+  else {
+    document.getElementById('derbyCount').innerHTML = '<b style="font-size:clamp(48px,14vw,96px)">' + (days === 0 ? '本日' : '決着') + '</b>';
+  }
+  var start = utc(SEASON_START), end = utc(DERBY), now = todayUTC();
+  var pct = Math.max(0, Math.min(1, (now - start) / (end - start)));
+  if (isNaN(pct)) pct = 0;
+  var railW = 'calc((100% - 14px) * ' + pct.toFixed(4) + ')';
+  var mk = document.getElementById('railMark');
+  mk.style.left = railW;
+  mk.innerHTML = miniHorse();
+  /* 「今日」の騎手が 6/1 の位置から今日まで駆ける（文字ははじめから出ている） */
+  var ran = false;
+  railRun = function(){
+    if (ran) return; ran = true;
+    var rw = Math.max(0, (mk.parentNode.clientWidth - 14) * pct);
+    if (reduced() || !mk.animate || rw <= 8) return;
+    mk.classList.add('is-run');
+    var an = mk.animate([{ transform: 'translateX(' + (-rw).toFixed(1) + 'px)' }, { transform: 'translateX(0)' }], { duration: 1100, delay: 250, easing: 'cubic-bezier(.3,.55,.25,1)', fill: 'backwards' });
+    an.onfinish = an.oncancel = function(){ mk.classList.remove('is-run'); };
+  };
+  var t = document.getElementById('railToday');
+  t.style.left = railW;
+  /* PC は印の真上、スマホは印の横（右寄りの日付なら左）に置く */
+  t.setAttribute('data-pos', pct < 0.12 ? 's' : (pct > 0.88 ? 'e' : 'm'));
+  t.setAttribute('data-side', pct > 0.7 ? 'l' : 'r');
+  t.textContent = '今日 ' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
+  var upd = esc(DATA.updatedLabel || (mdw(ASOF) + ' 時点'));
+  document.getElementById('asof').innerHTML = 'データは <b>' + upd + '</b> の時点のものです';
+  document.getElementById('footAsof').textContent = 'データ更新: ' + (DATA.updatedLabel || mdw(ASOF));
+  var nc = document.getElementById('navCount');
+  if (!isNaN(days) && days > 0) nc.innerHTML = '東京優駿まで あと<b>' + days + '</b>日';
+})();
+
+/* ---------- 順位 ---------- */
+function renderStandings(){
+  var top = STATS.length ? STATS[0].total : 0;
+  document.getElementById('board').innerHTML = STATS.map(function(s, i){
+    var m = s.m, gap = top - s.total;
+    var cks = i > 0 ? '<span class="cks">' + esc(chakusa(STATS[i - 1].total - s.total)) + '</span>' : '';
+    return '<li class="brow r' + s.rank + '">' + cks +
+      '<span class="brank">' + s.rank + '<small>位</small></span>' +
+      silk(m.id, 'lg', m.name + 'の勝負服') +
+      '<div class="bwho"><b class="bname">' + esc(m.name) + '</b>' + (m.alias ? '<span class="balias">' + esc(m.alias) + '</span>' : '') +
+        '<span class="bstat"><span>勝ち上がり<b>' + s.winners + '</b>頭</span><span>出走<b>' + s.raced + '</b>/' + perMember(s) + '</span></span></div>' +
+      '<div class="bpts"><span class="v">' + fmt(s.total) + '</span><span class="u">pt</span>' +
+        '<span class="gap">' + (gap < 1e-9 ? '首位' : '首位まで <span class="num">−' + fmt(gap) + '</span>') + '</span></div>' +
+    '</li>';
+  }).join('');
+  document.getElementById('cntStand').textContent = STATS.length + '人';
+}
+
+/* ---------- 次走の計算 ---------- */
+var GAIN = [[/新馬/, 78], [/未勝利/, 59], [/1勝/, 114], [/^OP$|オープン/, 170], [/^L$|リステッド/, 180], [/G3|GⅢ/, 340], [/G2|GⅡ/, 400], [/G1|GⅠ/, 800]];
+function gainOf(n){
+  if (n && n.purse1 != null && n.purse1 !== '') return n.purse1;
+  var g = n && n.grade || '';
+  for (var i = 0; i < GAIN.length; i++) if (GAIN[i][0].test(g)) return GAIN[i][1];
+  return null;
+}
+function fmtGain(g){ return typeof g === 'number' ? g.toLocaleString('ja-JP') : String(g); }
+function upcomingItems(){
+  var a = utc(ASOF);
+  return HORSES.filter(function(h){ return h.next && !isNaN(utc(h.next.date)) && (isNaN(a) || utc(h.next.date) >= a); })
+    .map(function(h){ return { date: h.next.date, h: h, gain: gainOf(h.next) }; })
+    .sort(function(x, y){ return utc(x.date) - utc(y.date) || (SBY[x.h.member] ? SBY[x.h.member].rank : 9) - (SBY[y.h.member] ? SBY[y.h.member].rank : 9); });
+}
+/* 「東京 2歳新馬 芝2000m（東京5R）」→「東京5R 2歳新馬 芝2000m」。グレードの札を出すときは「（G2）」の重複も省く */
+function raceText(n, keepGrade){
+  n = n || {};
+  var race = String(n.race || ''), course = String(n.course || '');
+  if (!keepGrade && n.grade && gradeTag(n.grade)) {
+    race = race.replace(new RegExp('[（(]\\s*' + String(n.grade).replace(/[^A-Za-z0-9]/g, '') + '\\s*[)）]'), ' ').replace(/\s{2,}/g, ' ').trim();
+  }
+  var rn = /[（(]\s*([^（）()]*?\d{1,2}R)\s*[)）]/.exec(race);
+  if (rn && (!course || rn[1].indexOf(course) === 0)) { course = rn[1]; race = race.replace(rn[0], ' ').replace(/\s{2,}/g, ' ').trim(); }
+  else if (course && race.indexOf('（' + course) >= 0) course = '';
+  return [course, race].filter(Boolean).join(' ');
+}
+/* 「（東京5R）」「芝2000m」「2歳S」の途中で改行しない */
+function keepTogether(html){ return html.replace(/（[^（）<>]{1,10}）|[芝ダ障]\d{3,4}m?|\d歳S/g, function(s){ return '<span class="nw">' + s + '</span>'; }); }
+function raceLine(n){ return keepTogether(esc(prettyRace(raceText(n)))); }
+
+/* ---------- LINE 用の文面 ---------- */
+function lineText(){
+  var top = STATS.length ? STATS[0].total : 0;
+  var lines = ['【FY26 POG】' + (DATA.updatedLabel || mdw(ASOF)) + ' 時点'];
+  var d = daysUntil(DERBY);
+  if (!isNaN(d) && d > 0) lines.push('東京優駿まであと' + d + '日');
+  lines.push('');
+  STATS.forEach(function(s){
+    var gap = top - s.total;
+    lines.push(s.rank + '位 ' + s.m.name + ' ' + fmt(s.total) + 'pt（' + (gap < 1e-9 ? '' : '首位まで−' + fmt(gap) + '・') + '勝ち上がり' + s.winners + '頭）');
+  });
+  var up = upcomingItems().slice(0, 6);
+  if (up.length){
+    lines.push('', '▼次の予定');
+    up.forEach(function(it){
+      var n = it.h.next;
+      lines.push(mdw(it.date) + ' ' + it.h.name + '（' + mName(it.h.member) + '）' + raceText(n, true) + '［' + (n.basis || '未定') + '］' + (it.gain != null ? ' 1着なら+' + fmtGain(it.gain) + 'pt' : ''));
+    });
+  }
+  return lines.join('\n');
+}
+document.getElementById('copyLine').addEventListener('click', function(){
+  var text = lineText();
+  var note = document.getElementById('copyNote'), fb = document.getElementById('copyFallback');
+  function ok(){ fb.hidden = true; note.textContent = 'コピーしました。LINE のトークに貼り付けてください'; }
+  function ng(){
+    fb.hidden = false; fb.value = text; fb.focus(); fb.select();
+    try { fb.setSelectionRange(0, text.length); } catch(e) {}
+    note.textContent = '自動でコピーできませんでした。下の文面を選んでコピーしてください';
+  }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, ng);
+    else ng();
+  } catch(e) { ng(); }
+});
+
+/* ---------- この先の出走（順位の下） ---------- */
+function renderSoon(){
+  var up = upcomingItems().slice(0, 3);
+  var box = document.getElementById('soonBlock');
+  if (!up.length) { box.hidden = true; return; }
+  document.getElementById('soonList').innerHTML = up.map(function(it){
+    var n = it.h.next;
+    return '<li><button type="button" class="srow" data-h="' + esc(it.h.id) + '">' +
+      '<span class="d num">' + md(it.date) + '<small>' + dow(it.date) + '曜</small></span>' +
+      silk(it.h.member) +
+      '<span class="t"><b>' + esc(it.h.name) + '</b><span>' + esc(mName(it.h.member)) + '・' + raceLine(n) + '</span></span>' +
+      '<span class="g">' + (it.gain != null ? '<b>+' + esc(fmtGain(it.gain)) + '</b>1着なら' : esc(n.basis || '')) + '</span>' +
+    '</button></li>';
+  }).join('');
+}
+
+/* ---------- 推移グラフ ---------- */
+var chartW = 0, chartRaf = 0, chartTok = null;
+function renderChart(force, animate){
+  var box = document.getElementById('chart');
+  if (chartRaf) { cancelAnimationFrame(chartRaf); chartRaf = 0; }
+  chartTok = null;
+  var cw = Math.round(box.clientWidth);
+  if (!cw) return;
+  if (!force && cw === chartW) return;
+  chartW = cw;
+  var W = Math.max(300, cw), wide = W >= 560;
+  var H = wide ? 310 : 248;
+  var ml = 38, mr = wide ? 124 : 106, mt = 14, mb = 30;
+  var x0 = utc(SEASON_START), xe = utc(ASOF);
+  if (isNaN(xe) || xe <= x0) xe = x0 + DAY * 30;
+  var pw = W - ml - mr, ph = H - mt - mb;
+  var maxV = Math.max.apply(null, STATS.map(function(s){ return s.total; }).concat([0]));
+  var steps = [10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 2500, 5000, 10000];
+  var maxTicks = wide ? 5 : 4, step = steps[steps.length - 1];
+  for (var i = 0; i < steps.length; i++){ if (Math.ceil(maxV / steps[i]) <= maxTicks) { step = steps[i]; break; } }
+  var yMax = Math.max(step, Math.ceil(maxV / step) * step);
+  function X(t){ return ml + (Math.max(x0, Math.min(xe, t)) - x0) / (xe - x0) * pw; }
+  function Y(val){ return mt + (1 - val / yMax) * ph; }
+  var g = '';
+  for (var val = 0; val <= yMax + 1e-9; val += step){
+    var yy = Y(val).toFixed(1);
+    g += '<line class="' + (val === 0 ? 'axis' : 'grid') + '" x1="' + ml + '" x2="' + (W - mr) + '" y1="' + yy + '" y2="' + yy + '"/>';
+    g += '<text class="tick" x="' + (ml - 7) + '" y="' + (Y(val) + 4).toFixed(1) + '" text-anchor="end">' + val + '</text>';
+  }
+  var s0 = ymd(SEASON_START), lastX = -99;
+  for (var k = 0; k < 24; k++){
+    var t = Date.UTC(s0.y, s0.m - 1 + k, 1);
+    if (t > xe) break;
+    var xx = X(t);
+    g += '<line class="axis" x1="' + xx.toFixed(1) + '" x2="' + xx.toFixed(1) + '" y1="' + (H - mb) + '" y2="' + (H - mb + 5) + '"/>';
+    /* 右端の日付（例 10/11）と重なる月の文字は出さない */
+    if (xx - lastX >= 30 && xx + 3 + 24 < W - mr - 36){
+      g += '<text class="tick" x="' + (xx + 3).toFixed(1) + '" y="' + (H - mb + 18) + '">' + (new Date(t).getUTCMonth() + 1) + '月</text>';
+      lastX = xx;
+    }
+  }
+  g += '<text class="asof" x="' + (W - mr).toFixed(1) + '" y="' + (H - mb + 18) + '" text-anchor="end">' + md(ASOF) + '</text>';
+  var paths = '', ends = [];
+  STATS.slice().reverse().forEach(function(s){
+    var ev = [];
+    s.hs.forEach(function(h){ (h.races || []).forEach(function(r){ var p = ptOf(r), tt = utc(r.date); if (p > 0 && !isNaN(tt)) ev.push({ t: tt, p: p }); }); });
+    ev.sort(function(a, b){ return a.t - b.t; });
+    var cum = 0, d = 'M' + X(x0).toFixed(1) + ' ' + Y(0).toFixed(1);
+    ev.forEach(function(e){ cum += e.p; d += ' H' + X(e.t).toFixed(1) + ' V' + Y(cum).toFixed(1); });
+    d += ' H' + X(xe).toFixed(1);
+    var col = mColor(s.m.id);
+    paths += '<path class="ln" data-m="' + esc(s.m.id) + '" d="' + d + '" style="fill:none;stroke:' + col + ';stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round"/>';
+    ends.push({ id: s.m.id, y0: Y(cum), y: Y(cum), name: s.m.name, val: fmt(cum), col: col });
+  });
+  ends.sort(function(a, b){ return a.y - b.y; });
+  var gapPx = 19, lo = mt + 6, hi = H - mb - 4;
+  ends.forEach(function(e, j){ if (j > 0 && e.y < ends[j - 1].y + gapPx) e.y = ends[j - 1].y + gapPx; });
+  var over = ends.length ? ends[ends.length - 1].y - hi : 0;
+  if (over > 0) ends.forEach(function(e){ e.y -= over; });
+  for (var q = 0; q < ends.length; q++){ if (ends[q].y < lo) { var sh = lo - ends[q].y; for (var r = q; r < ends.length; r++) ends[r].y += sh; } }
+  var ex = X(xe);
+  ends.forEach(function(e){
+    paths += '<circle cx="' + ex.toFixed(1) + '" cy="' + e.y0.toFixed(1) + '" r="4.2" style="fill:' + e.col + ';stroke:var(--paper);stroke-width:2"/>';
+    if (Math.abs(e.y - e.y0) > 2) paths += '<path class="lead" d="M' + (ex + 6).toFixed(1) + ' ' + e.y0.toFixed(1) + ' L' + (ex + 12).toFixed(1) + ' ' + e.y.toFixed(1) + '"/>';
+    paths += '<use href="#silk-' + esc(e.id) + '" x="' + (ex + 13).toFixed(1) + '" y="' + (e.y - 9).toFixed(1) + '" width="18" height="18"/>';
+    paths += '<text class="lbl" x="' + (ex + 33).toFixed(1) + '" y="' + (e.y + 4.5).toFixed(1) + '">' + esc(e.name) + '<tspan class="v" dx="4">' + e.val + '</tspan></text>';
+  });
+  var aria = '累計ポイントの推移。' + STATS.map(function(s){ return s.m.name + ' ' + fmt(s.total) + 'pt'; }).join('、');
+  box.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="' + esc(aria) + '">' + g + paths + '</svg>';
+  document.getElementById('chartSub').textContent = md(SEASON_START) + '〜' + md(ASOF) + '・レースの日に積み上げ';
+  if (animate) drawInChart(box);
+}
+/* タブで順位を開いたときだけ、線を左から引き、先端に勝負服の印を走らせる */
+function inView(el){
+  var r = el.getBoundingClientRect(), vh = window.innerHeight || document.documentElement.clientHeight || 0;
+  var tb = document.querySelector('.tabs'), bottom = vh;
+  if (tb && getComputedStyle(tb).position === 'fixed') bottom = Math.min(vh, tb.getBoundingClientRect().top);
+  return r.height > 0 && r.top < bottom - 60 && r.bottom > 60;
+}
+function drawInChart(box){
+  if (reduced() || !inView(box)) return;
+  var svg = box.querySelector('svg'), lines = box.querySelectorAll('path.ln'), NS = 'http://www.w3.org/2000/svg';
+  if (!svg || !lines.length || !lines[0].getTotalLength) return;
+  var items = [];
+  try {
+    [].forEach.call(lines, function(pth){
+      var len = pth.getTotalLength();
+      pth.style.strokeDasharray = len + ' ' + len; pth.style.strokeDashoffset = len;
+      var tip = document.createElementNS(NS, 'use');
+      tip.setAttribute('href', '#silk-' + pth.getAttribute('data-m')); tip.setAttribute('width', 16); tip.setAttribute('height', 16);
+      svg.appendChild(tip);
+      items.push({ p: pth, len: len, tip: tip });
+    });
+  } catch(e) { items.forEach(function(it){ it.p.style.strokeDasharray = ''; it.p.style.strokeDashoffset = ''; }); return; }
+  var t0 = 0, D = 950, done = false, tok = {};
+  chartTok = tok;
+  function finish(){ if (done) return; done = true; if (chartTok === tok && chartRaf) { cancelAnimationFrame(chartRaf); chartRaf = 0; } items.forEach(function(it){ it.p.style.strokeDasharray = ''; it.p.style.strokeDashoffset = ''; if (it.tip.parentNode) it.tip.parentNode.removeChild(it.tip); }); }
+  setTimeout(finish, D + 700);
+  function step(now){
+    if (done || chartTok !== tok) return;
+    if (!t0) t0 = now;
+    var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+    items.forEach(function(it){
+      var l = it.len * e, pt = it.p.getPointAtLength(l);
+      it.p.style.strokeDashoffset = (it.len - l).toFixed(1);
+      it.tip.setAttribute('x', (pt.x - 8).toFixed(1)); it.tip.setAttribute('y', (pt.y - 8).toFixed(1));
+    });
+    if (k < 1) chartRaf = requestAnimationFrame(step); else finish();
+  }
+  chartRaf = requestAnimationFrame(step);
+}
+
+/* ---------- 早見表 ---------- */
+function renderPrize(){
+  var list = DATA.prizeGuide || [];
+  document.getElementById('prizeGrid').innerHTML = list.map(function(p, i){
+    var fin = /ダービー|東京優駿/.test(p.label || '') || (i === list.length - 1 && list.length % 2 === 1);
+    return '<div' + (fin ? ' class="final"' : '') + '><span>' + esc(prettyRace(p.label)).replace(/・/g, '・<wbr>') + '</span><b>' + esc(p.pt) + '<small>pt</small></b></div>';
+  }).join('');
+}
+
+/* ---------- 指名馬 ---------- */
+var filterMember = store('pogC.filter') || 'all';
+if (filterMember !== 'all' && !MBY[filterMember]) filterMember = 'all';
+function renderFilter(){
+  var html = '<button type="button" class="fchip" id="f-all" data-m="all" aria-pressed="' + (filterMember === 'all') + '"><span class="all">全員</span><small>' + HORSES.length + '頭</small></button>';
+  STATS.forEach(function(s){
+    var d = silkOf(s.m.id).desc;
+    html += '<button type="button" class="fchip" id="f-' + esc(s.m.id) + '" data-m="' + esc(s.m.id) + '" aria-pressed="' + (filterMember === s.m.id) + '"' + (d ? ' title="勝負服: ' + esc(d) + '"' : '') + '>' +
+      silk(s.m.id) + '<span>' + esc(s.m.name) + '</span></button>';
+  });
+  document.getElementById('memberFilter').innerHTML = html;
+  document.getElementById('hSub').textContent = STATS.length + '人 × ' + (STATS[0] ? perMember(STATS[0]) : 5) + '頭・pt の多い順';
+  document.getElementById('cntHorses').textContent = HORSES.length + '頭';
+}
+document.getElementById('memberFilter').addEventListener('click', function(e){
+  var b = e.target.closest('.fchip'); if (!b) return;
+  filterMember = b.getAttribute('data-m'); store('pogC.filter', filterMember);
+  renderFilter(); renderHorses();
+  var f = document.getElementById(b.id); if (f) f.focus();
+});
+
+var UB_LABEL = ['前走', '2走前', '3走前', '4走前', '5走前', '6走前', '7走前', '8走前'];
+function raceLabel(r){
+  var name = String(r.raceName || r.grade || '').replace(/^2歳(?=新馬|未勝利|1勝)/, '');
+  if (/^(G[123]|L|OP)$/.test(r.grade || '') && name.indexOf(r.grade) < 0) name += '（' + gradeName(r.grade) + '）';
+  return prettyRace(name);
+}
+function ubHTML(rs){
+  if (!rs.length) return '<p class="ub-none">まだ走っていません</p>';
+  var cells = rs.map(function(r, i){
+    var f = Number(r.finish) || 0, p = ptOf(r);
+    return '<div class="ubc" role="listitem">' +
+      '<span class="ubk">' + (UB_LABEL[i] || (i + 1) + '走前') + '</span>' +
+      '<span class="ubd"><span class="num">' + md(r.date) + '</span> ' + esc(r.course || '') + '</span>' +
+      '<span class="ubf"><b class="fin' + (f >= 1 && f <= 3 ? ' f' + f : '') + '">' + (f || '−') + '</b><small>着</small><em class="' + (p > 0 ? 'plus' : '') + '">' + fmt(p) + '<small>pt</small></em></span>' +
+      '<span class="ubr">' + esc(raceLabel(r)) + (r.field ? ' <span class="num">' + esc(r.field) + '</span>頭' : '') + '</span>' +
+      '<span class="ubs">' + esc(r.surface || '') + '<span class="num">' + esc(r.distance || '') + '</span>' + (r.popularity ? ' <span class="num">' + esc(r.popularity) + '</span>人気' : '') + '</span>' +
+      '<span class="ubj">' + esc(r.jockey || '') + '</span>' +
+    '</div>';
+  });
+  for (var i = rs.length; i < 3; i++) cells.push('<div class="ubc empty" aria-hidden="true"><span class="ubk">' + UB_LABEL[i] + '</span><span>―</span></div>');
+  return '<div class="ub" role="list" aria-label="成績（左が新しい）">' + cells.join('') + '</div>';
+}
+function nextHTML(n){
+  n = n || {};
+  var b = BASIS[n.basis] ? n.basis : '未定';
+  var body;
+  if (!n.date && !n.race) body = basisTag(b) + '<span>次走は未定</span>';
+  else {
+    body = basisTag(b);
+    if (n.date) body += '<span class="when"><span class="num">' + md(n.date) + '</span>(' + dow(n.date) + ')</span> ';
+    body += gradeTag(n.grade) + raceLine(n);
+    if (n.jockey) body += ' <span class="jk">／ ' + esc(n.jockey) + '</span>';
+  }
+  return '<div class="nx"><span class="k">次走</span><p class="v">' + body + '</p></div>';
+}
+function detailsHTML(h, rs){
+  var parts = [], n = h.next || {};
+  var nu = safeUrl(n.url);
+  if (n.note || nu) parts.push('<div class="dsec"><h4>次走について</h4><p>' + esc(n.note || '') + (nu ? ' ' + link(nu, '出典') : '') + '</p></div>');
+  if (rs.length){
+    parts.push('<div class="dsec"><h4>全成績</h4><ol class="rlog">' + rs.map(function(r){
+      var f = Number(r.finish) || 0;
+      var l2 = [
+        esc(r.surface || '') + '<span class="num">' + esc(r.distance || '') + '</span>m' + (r.going ? '・' + esc(r.going) : ''),
+        r.field ? '<span class="num">' + esc(r.field) + '</span>頭' : '',
+        r.popularity ? '<span class="num">' + esc(r.popularity) + '</span>番人気' : '',
+        f ? '<b class="rf' + (f <= 3 ? ' rf' + f : '') + '"><span class="num">' + f + '</span>着</b>' : '着順なし',
+        esc(r.jockey || ''),
+        r.time ? '<span class="num">' + esc(r.time) + '</span>' : '',
+        '<span class="num">' + fmt(ptOf(r)) + '</span>pt'
+      ].filter(Boolean).join('・');
+      return '<li><p class="l1"><span class="num">' + mdw(r.date) + '</span> ' + esc((r.course || '') + (r.raceNo || '')) + ' ' + esc(prettyRace(r.raceName || '')) + '</p>' +
+        '<p class="l2">' + l2 + '</p>' + (r.note ? '<p class="l3">' + esc(r.note) + '</p>' : '') +
+        (safeUrl(r.url) ? '<p class="l2">' + link(r.url, 'レース結果') + '</p>' : '') + '</li>';
+    }).join('') + '</ol></div>');
+  }
+  var news = (h.news || []).slice().sort(function(a, b){ return (utc(b.date) || 0) - (utc(a.date) || 0); });
+  if (news.length){
+    parts.push('<div class="dsec"><h4>ニュース</h4><ul class="hnews">' + news.map(function(x){
+      return '<li><span class="d">' + md(x.date) + '</span><span>' + link(x.url, esc(x.headline || '')) + '<span class="src">' + esc(x.source || '') + '</span></span></li>';
+    }).join('') + '</ul></div>');
+  }
+  var kv = [];
+  if (h.whereabouts) kv.push(['近況', esc(h.whereabouts)]);
+  if (h.price) kv.push(['価格', esc(h.price)]);
+  if (h.breeder) kv.push(['生産', esc(h.breeder)]);
+  if (h.birth) kv.push(['生年月日', '<span class="num">' + esc(String(h.birth).replace(/-/g, '.')) + '</span>']);
+  if (kv.length) parts.push('<div class="dsec"><h4>近況と横顔</h4><dl class="kv">' + kv.map(function(p){ return '<div><dt>' + p[0] + '</dt><dd>' + p[1] + '</dd></div>'; }).join('') + '</dl></div>');
+  if (!parts.length) return '';
+  var label = [rs.length ? '全成績' : '', news.length ? 'ニュース ' + news.length + '件' : '', h.whereabouts ? '近況' : '', '次走の注記'].filter(Boolean);
+  if (!(n.note || nu)) label.pop();
+  return '<details class="more"><summary>' + esc(label.slice(0, 3).join('・')) + '</summary><div class="body">' + parts.join('') + '</div></details>';
+}
+function horseCard(h){
+  var st = horseStatus(h), pts = horsePts(h), m = MBY[h.member] || {};
+  var rs = (h.races || []).slice().sort(function(a, b){ return (utc(b.date) || 0) - (utc(a.date) || 0); });
+  var tags = statusTag(st) + infMark(h) +
+    '<span>' + esc([h.sex, h.coat].filter(Boolean).join('・')) + '</span>';
+  var ped = '<dl class="ped"><div><dt>父</dt><dd>' + esc(h.sire || '―') + '</dd></div>' +
+    '<div><dt>母</dt><dd>' + esc(h.dam || '―') + (h.damSire ? '<span class="ds">母父 ' + esc(h.damSire) + '</span>' : '') + '</dd></div>' +
+    (h.family ? '<div class="fam"><dt>近親</dt><dd>' + esc(h.family) + '</dd></div>' : '') + '</dl>';
+  var meta = [];
+  if (h.trainer) meta.push(esc(h.trainer) + '厩舎' + (h.center ? '<span class="ctr">' + esc(h.center) + '</span>' : ''));
+  if (h.owner) meta.push(esc(h.owner));
+  var nk = safeUrl(h.netkeibaUrl); if (nk) meta.push(link(nk, 'netkeiba'));
+  return '<article class="horse" id="h-' + esc(h.id) + '">' +
+    '<header class="hh">' + silk(h.member, '', m.name ? m.name + 'の指名馬' : '') +
+      '<div><h3>' + esc(h.name) + '</h3><p class="htags">' + tags + '</p></div>' +
+      '<p class="hp' + (pts > 0 ? '' : ' zero') + '"><b>' + fmt(pts) + '</b><span class="u">pt</span></p></header>' +
+    ped +
+    '<p class="hmeta">' + meta.join('<span class="sep">｜</span>') + '</p>' +
+    nextHTML(h.next) +
+    ubHTML(rs) +
+    (h.memo ? '<p class="memo">' + esc(h.memo) + '</p>' : '') +
+    detailsHTML(h, rs) +
+  '</article>';
+}
+function sortHorses(hs){
+  return hs.slice().sort(function(a, b){ return horsePts(b) - horsePts(a) || firstRaceT(a) - firstRaceT(b) || String(a.name).localeCompare(String(b.name), 'ja'); });
+}
+function renderHorses(){
+  var groups = STATS.filter(function(s){ return filterMember === 'all' || s.m.id === filterMember; });
+  document.getElementById('horseGroups').innerHTML = groups.map(function(s){
+    var m = s.m, d = silkOf(m.id).desc;
+    return '<section class="mg" aria-label="' + esc(m.name) + 'の指名馬">' +
+      '<header class="mgh">' + silk(m.id, '', m.name + 'の勝負服') +
+        '<div><h2 class="mgn">' + esc(m.name) + '</h2>' + (m.alias ? '<p class="mgd">' + esc(m.alias) + '</p>' : '') + (d ? '<p class="mgd">勝負服 ' + esc(d) + '</p>' : '') + '</div>' +
+        '<p class="mgt"><span class="r">' + s.rank + '位</span><b>' + fmt(s.total) + '</b><span class="u">pt</span></p></header>' +
+      '<div class="cards">' + sortHorses(s.hs).map(horseCard).join('') + '</div></section>';
+  }).join('');
+}
+
+/* ---------- 次走ページ ---------- */
+function renderNext(){
+  var items = upcomingItems();
+  document.getElementById('cntNext').textContent = items.length + '頭';
+  var byDay = {}, days = [];
+  items.forEach(function(it){ if (!byDay[it.date]) { byDay[it.date] = []; days.push(it.date); } byDay[it.date].push(it); });
+  document.getElementById('agenda').innerHTML = days.length ? days.map(function(d, di){
+    var left = daysUntil(d), lab = '';
+    if (left > 0) lab = di === 0 ? '<span class="left soonest"><i class="flag" aria-hidden="true"></i>発走まで あと<b class="gateno">' + left + '</b>日</span>' : '<span class="left">発走まで あと' + left + '日</span>';
+    else if (left === 0) lab = '<span class="left soonest"><i class="flag" aria-hidden="true"></i>きょう発走</span>';
+    return '<section class="aday"><h3 class="adh"><span class="num">' + md(d) + '</span><span class="w">' + dow(d) + '曜</span>' + lab + '</h3><ul>' +
+      byDay[d].map(function(it){
+        var n = it.h.next;
+        return '<li class="ai">' + silk(it.h.member) +
+          '<div><p class="ai-h"><button type="button" class="hlink" data-h="' + esc(it.h.id) + '">' + esc(it.h.name) + '</button><span class="m">' + esc(mName(it.h.member)) + '</span>' + infMark(it.h) + '</p>' +
+          '<p class="ai-r">' + basisTag(n.basis) + gradeTag(n.grade) + raceLine(n) + '</p>' +
+          (n.jockey ? '<p class="ai-j">騎手 ' + esc(n.jockey) + '</p>' : '') + '</div>' +
+          '<p class="gain">' + (it.gain != null ? '<b>+' + esc(fmtGain(it.gain)) + '</b><span class="u">pt</span><small>1着なら</small>' : '') + '</p></li>';
+      }).join('') + '</ul></section>';
+  }).join('') : '<p class="fine">日付の決まった次走はまだありません。</p>';
+
+  var a = utc(ASOF);
+  var und = HORSES.filter(function(h){ return !(h.next && !isNaN(utc(h.next.date)) && (isNaN(a) || utc(h.next.date) >= a)); });
+  und = und.slice().sort(function(x, y){ return (SBY[x.member] ? SBY[x.member].rank : 9) - (SBY[y.member] ? SBY[y.member].rank : 9) || horsePts(y) - horsePts(x); });
+  document.getElementById('undSub').textContent = und.length + '頭・押すとその馬の欄へ';
+  document.getElementById('undecided').innerHTML = und.map(function(h){
+    var n = h.next || {}, st = horseStatus(h);
+    var wb = h.whereabouts ? String(h.whereabouts).split(/[（(。]/)[0] : '';
+    if (wb.length > 18) wb = wb.slice(0, 17) + '…';
+    var x = (n.basis && n.basis !== '未定' && (n.race || n.course)) ? basisTag(n.basis) + keepTogether(esc(prettyRace(raceText(n, true)))) : esc(wb);
+    return '<li><button type="button" class="uc" data-h="' + esc(h.id) + '">' + silk(h.member) +
+      '<span class="t"><b>' + esc(h.name) + '</b><span class="m">' + esc(mName(h.member)) + '</span>' + infMark(h) + '<span class="x">' + x + '</span></span>' +
+      statusTag(st) + '</button></li>';
+  }).join('');
+
+  var big = (DATA.schedule || []).filter(function(r){ return isNaN(a) || utc(r.date) >= a; });
+  document.getElementById('bigRaces').innerHTML = big.map(function(r){
+    var re = null; try { re = r.key ? new RegExp(r.key) : null; } catch(e) { re = null; }
+    var hs = re ? HORSES.filter(function(h){ return h.next && h.next.race && re.test(h.next.race); }) : [];
+    var derby = /ダービー|東京優駿/.test(r.name || '');
+    return '<li class="br' + (derby ? ' derby' : '') + (r.tentative ? ' tent' : '') + '">' +
+      '<p class="br-d"><span class="num">' + md(r.date) + '</span><small>' + dow(r.date) + '曜</small>' + (r.tentative ? '<small class="tn">予定</small>' : '') + '</p>' +
+      '<div><p class="br-n">' + gradeTag(r.grade) + '<b>' + esc(r.name) + '</b></p>' +
+        '<p class="br-c">' + esc([r.course, r.note].filter(Boolean).join('・')) + '</p>' +
+        (hs.length ? '<p class="br-hs">' + hs.map(function(h){ return '<button type="button" class="hchip" data-h="' + esc(h.id) + '">' + silk(h.member) + esc(h.name) + basisTag(h.next.basis) + '</button>'; }).join('') + '</p>' : '') +
+      '</div>' +
+      '<p class="br-p"><b>+' + esc(r.pt) + '</b><span class="u">pt</span></p></li>';
+  }).join('');
+}
+
+/* ---------- ニュース ---------- */
+function renderNews(){
+  var items = [];
+  HORSES.forEach(function(h){ (h.news || []).forEach(function(n){ items.push({ n: n, h: h }); }); });
+  items.sort(function(x, y){ return (utc(y.n.date) || 0) - (utc(x.n.date) || 0) || (SBY[x.h.member] ? SBY[x.h.member].rank : 9) - (SBY[y.h.member] ? SBY[y.h.member].rank : 9); });
+  document.getElementById('cntNews').textContent = items.length + '件';
+  document.getElementById('newsSub').textContent = '全馬の記事 ' + items.length + '件を新しい順に';
+  var byDay = {}, days = [];
+  items.forEach(function(it){ var k = ymd(it.n.date) ? it.n.date : ''; if (!byDay[k]) { byDay[k] = []; days.push(k); } byDay[k].push(it); });
+  document.getElementById('feed').innerHTML = days.length ? days.map(function(d){
+    return '<section class="fday"><h3 class="fdh">' + (d ? '<span class="num">' + md(d) + '</span><span class="w">' + dow(d) + '曜</span>' : '<span class="w">日付なし</span>') + '</h3><ul>' +
+      byDay[d].map(function(it){
+        return '<li class="fi">' + silk(it.h.member) + '<div>' +
+          '<p class="fh"><button type="button" class="hlink" data-h="' + esc(it.h.id) + '">' + esc(it.h.name) + '</button><span>' + esc(mName(it.h.member)) + '</span></p>' +
+          '<p class="ft">' + link(it.n.url, esc(it.n.headline || '')) + '</p>' +
+          '<p class="fs">' + esc(it.n.source || '') + '</p></div></li>';
+      }).join('') + '</ul></section>';
+  }).join('') : '<p class="fine">ニュースはまだありません。</p>';
+}
+
+/* ---------- 切り替え ---------- */
+var TABS = ['standings', 'horses', 'next', 'news'];
+var current = '';
+var runnerEl = document.getElementById('tabRunner'), runnerAnim = null, runnerX = null, runnerW = null;
+if (runnerEl) runnerEl.querySelector('.mhw').innerHTML = miniHorse();
+/* 選んだタブへ小さな馬が駆けて移る */
+function placeRunner(animate){
+  var btn = document.getElementById('tab-' + current);
+  if (!runnerEl || !btn || !btn.offsetWidth) return;
+  var x = btn.offsetLeft, w = btn.offsetWidth, from = runnerX, fw = runnerW;
+  if (runnerAnim) {
+    var rl = runnerEl.getBoundingClientRect(), pl = runnerEl.parentNode.getBoundingClientRect();
+    from = rl.left - pl.left; fw = rl.width;
+    runnerAnim.cancel(); runnerAnim = null;
+  }
+  runnerEl.style.width = w + 'px'; runnerEl.style.transform = 'translateX(' + x + 'px)';
+  runnerX = x; runnerW = w;
+  if (!animate || from == null || reduced() || !runnerEl.animate || Math.abs(x - from) < 2) return;
+  runnerEl.classList.add('is-run');
+  runnerEl.classList.toggle('to-left', x < from);
+  var a = runnerEl.animate([{ transform: 'translateX(' + from + 'px)', width: fw + 'px' }, { transform: 'translateX(' + x + 'px)', width: w + 'px' }],
+    { duration: Math.min(620, 260 + Math.abs(x - from) * .55), easing: 'cubic-bezier(.45,.05,.3,1)' });
+  runnerAnim = a;
+  a.onfinish = function(){ if (runnerAnim === a) { runnerAnim = null; runnerEl.classList.remove('is-run', 'to-left'); } };
+  a.oncancel = function(){ runnerEl.classList.remove('is-run', 'to-left'); };
+}
+function waveFlag(){
+  var ag = document.getElementById('agenda');
+  if (!ag || reduced()) return;
+  ag.classList.remove('wave'); void ag.offsetWidth; ag.classList.add('wave');
+}
+function showTab(id, opts){
+  opts = opts || {};
+  if (TABS.indexOf(id) < 0) id = 'standings';
+  var changed = current !== id, prev = current;
+  current = id;
+  TABS.forEach(function(t){
+    var on = t === id, btn = document.getElementById('tab-' + t);
+    document.getElementById(t).hidden = !on;
+    btn.setAttribute('aria-selected', on ? 'true' : 'false');
+    btn.tabIndex = on ? 0 : -1;
+  });
+  store('pogC.tab', id);
+  /* 順位は表紙ごと見せたいので、URL に #standings を残さない（再読み込みで表紙が飛ばされないように） */
+  if (opts.hash !== false) { try { history.replaceState(null, '', id === 'standings' ? location.pathname + location.search : '#' + id); } catch(e) {} }
+  var user = !!(opts.user && changed && prev);
+  if (user && !reduced()) {
+    var pan = document.getElementById(id), dir = TABS.indexOf(id) > TABS.indexOf(prev) ? 1 : -1;
+    if (pan.animate) pan.animate([{ transform: 'translateX(' + (dir * 14) + 'px)' }, { transform: 'translateX(0)' }], { duration: 280, easing: 'cubic-bezier(.2,.7,.2,1)' });
+  }
+  if (changed && opts.scroll !== false){
+    var main = document.querySelector('main');
+    var top = id === 'standings' ? 0 : Math.max(0, main.getBoundingClientRect().top + window.pageYOffset - 16 - (window.innerWidth >= 900 ? 60 : 0));
+    if (window.pageYOffset > top || id === 'standings') { try { window.scrollTo({ top: top, behavior: 'instant' }); } catch(e) { window.scrollTo(0, top); } }
+  }
+  if (id === 'standings') { renderChart(true, user); if (Race && Race.check) Race.check(); }
+  if (id === 'next' && changed) waveFlag();
+  placeRunner(user);
+}
+TABS.forEach(function(t, i){
+  var b = document.getElementById('tab-' + t);
+  b.addEventListener('click', function(){ showTab(t, { user: true }); });
+  b.addEventListener('keydown', function(e){
+    var k = e.key, n = null;
+    if (k === 'ArrowRight') n = TABS[(i + 1) % TABS.length];
+    else if (k === 'ArrowLeft') n = TABS[(i + TABS.length - 1) % TABS.length];
+    else if (k === 'Home') n = TABS[0];
+    else if (k === 'End') n = TABS[TABS.length - 1];
+    if (!n) return;
+    e.preventDefault(); showTab(n, { scroll:false, user:true }); document.getElementById('tab-' + n).focus();
+  });
+});
+document.getElementById('toNext').addEventListener('click', function(){ showTab('next', { user: true }); });
+
+var jumpTimer = null;
+function jumpHorse(id){
+  var h = HBY[id]; if (!h) return;
+  if (filterMember !== 'all' && filterMember !== h.member) { filterMember = 'all'; store('pogC.filter', 'all'); renderFilter(); renderHorses(); }
+  showTab('horses', { scroll:false, user:true });
+  var el = document.getElementById('h-' + id); if (!el) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { el.scrollIntoView({ block:'start', behavior: reduce ? 'auto' : 'smooth' }); } catch(e) { el.scrollIntoView(); }
+  document.querySelectorAll('.horse.is-jump').forEach(function(x){ x.classList.remove('is-jump'); });
+  el.classList.add('is-jump');
+  clearTimeout(jumpTimer); jumpTimer = setTimeout(function(){ el.classList.remove('is-jump'); }, 2400);
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-h]');
+  if (b && !b.closest('.horse')) { e.preventDefault(); jumpHorse(b.getAttribute('data-h')); }
+});
+/* 馬カードの「全成績・ニュース」を開くと、発馬機の扉が左右に開いて中身が出る */
+function openGate(det){
+  var body = det.querySelector('.body');
+  if (!body || !body.animate) return;
+  var g = document.createElement('div');
+  g.className = 'gate'; g.setAttribute('aria-hidden', 'true');
+  g.innerHTML = '<i class="dl"></i><i class="dr"></i>';
+  body.classList.add('gating'); body.appendChild(g);
+  var o = { duration: 380, easing: 'cubic-bezier(.55,.05,.3,1)', fill: 'both' };
+  var a = g.firstChild.animate([{ transform: 'perspective(700px) rotateY(0deg)' }, { transform: 'perspective(700px) rotateY(-86deg)' }], o);
+  g.lastChild.animate([{ transform: 'perspective(700px) rotateY(0deg)' }, { transform: 'perspective(700px) rotateY(86deg)' }], o);
+  a.onfinish = a.oncancel = function(){ if (g.parentNode) g.parentNode.removeChild(g); body.classList.remove('gating'); };
+  /* 着順の札を掲示板の数字板のように 1 枚めくる */
+  [].forEach.call(body.querySelectorAll('.rlog .rf'), function(el, i){
+    el.animate([{ transform: 'perspective(240px) rotateX(-90deg)' }, { transform: 'perspective(240px) rotateX(0deg)' }],
+      { duration: 360, delay: 200 + Math.min(i, 8) * 50, easing: 'cubic-bezier(.3,1.35,.5,1)', fill: 'backwards' });
+  });
+}
+document.addEventListener('click', function(e){
+  var sm = e.target.closest('.more > summary');
+  if (!sm) return;
+  var det = sm.parentNode;
+  if (det.open || reduced()) return;
+  e.preventDefault(); det.open = true; openGate(det);
+});
+window.addEventListener('hashchange', function(){
+  var hsh = (location.hash || '').replace('#', '');
+  if (TABS.indexOf(hsh) >= 0 && hsh !== current) showTab(hsh, { hash:false });
+});
+var rsT = null;
+window.addEventListener('resize', function(){ clearTimeout(rsT); rsT = setTimeout(function(){ if (current === 'standings') renderChart(false); placeRunner(false); }, 120); });
+
+/* ---------- 起動 ---------- */
+renderStandings(); renderSoon(); renderPrize(); renderFilter(); renderHorses(); renderNext(); renderNews();
+var start = (location.hash || '').replace('#', '');
+showTab(TABS.indexOf(start) >= 0 ? start : (store('pogC.tab') || 'standings'), { hash:false, scroll:false });
+renderChart(true);
+if (current === 'next') waveFlag();
+
+/*RACE-START*/
+/* ---------- レース展開（Canvas 1 枚。芝・ラチ・ハロン棒・ゴール板・馬と騎手を手続きで描く） ---------- */
+var Race = (function(){
+  var fig = document.getElementById('raceFig'), cv = document.getElementById('raceCanvas'), rb = document.getElementById('raceReplay');
+  function giveUp(){ if (fig) fig.hidden = true; if (rb) rb.hidden = true; railRun(); return { replay: function(){}, check: function(){} }; }
+  try {
+  var ctx = cv && cv.getContext ? cv.getContext('2d') : null;
+  if (!fig || !ctx || !STATS.length) return giveUp();
+
+  /* 時間割（秒）。slowAt から先はスローモーション（一定の遅さ）で走り抜け、決勝線で写真のように止まる */
+  var TL = { gate:.34, ramp:.6, camLag:.24, split0:1.05, split1:1.85, decel:.55, slowAt:2.85, slowDur:.95 };
+  var TE = TL.slowAt + TL.slowDur / 3, NT = 420;
+  var SLOW = { k:.42, ease:.2 };
+  var TAU1 = TL.slowAt + SLOW.ease * (1 + SLOW.k) / 2;
+  var T_ALL = TL.slowAt + SLOW.ease + (TE - TAU1) / SLOW.k;
+  /* 蹄が地面についている間に後ろへ動く速さ（馬の単位／完歩）。完歩の速さを対地速度から決めて、脚が滑って見えないようにする */
+  var SWEEP = 205;
+  var END_PH = [.30, .26, .34, .22, .28, .32, .24, .36];
+  var BRK = [.09, -.1, .03, .15, -.05, .11, -.08, .06];
+  var COATS = { '鹿毛':'bay', '黒鹿毛':'dkbay', '青鹿毛':'brown', '青毛':'black', '栗毛':'chestnut', '栃栗毛':'liver', '芦毛':'grey', '白毛':'white' };
+  var DARK_COAT = { dkbay:1, brown:1, black:1 };
+  var COL = {}, FNT = {}, LAY = null, W = 0, H = 0, dpr = 1;
+  var state = 'pending', t = 0, post = 0, flash = 0, raf = 0, last = 0, visible = false, pausedAt = 0;
+  var parts = [];
+  var tabsEl = document.querySelector('.tabs');
+
+  var top = STATS[0].total;
+  var R = STATS.map(function(s, i){
+    var best = sortHorses(s.hs)[0] || {};
+    return { id: s.m.id, name: s.m.name, total: s.total, rank: s.rank, order: i, waku: +s.m.waku || 9, coat: best.coat || '鹿毛', lp: [] };
+  });
+  /* 内（奥）から枠の順に並べる */
+  R.slice().sort(function(a, b){ return a.waku - b.waku || a.order - b.order; }).forEach(function(r, i){ r.lane = i; });
+  var BYLANE = R.slice().sort(function(a, b){ return a.lane - b.lane; });
+  cv.setAttribute('aria-label', 'レース展開の絵。' + STATS.map(function(s){ return s.rank + '着 ' + s.m.name + ' ' + fmt(s.total) + 'pt'; }).join('、'));
+
+  function tok(n){ try { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); } catch(e) { return ''; } }
+  function rgbOf(h){
+    var m = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(h || '');
+    if (m) { var x = m[1].length === 3 ? m[1].replace(/./g, '$&$&') : m[1]; return [parseInt(x.slice(0, 2), 16), parseInt(x.slice(2, 4), 16), parseInt(x.slice(4, 6), 16), 1]; }
+    m = /^rgba?\(([^)]+)\)$/i.exec(h || '');
+    if (m) { var q = m[1].split(/[\s,\/]+/).filter(Boolean).map(parseFloat); return [q[0], q[1], q[2], q.length > 3 ? q[3] : 1]; }
+    return null;
+  }
+  function shade(h, k){ var c = rgbOf(h); return c ? 'rgb(' + [c[0], c[1], c[2]].map(function(x){ return Math.round(x * (1 - k)); }).join(',') + ')' : h; }
+  function alpha(h, a){ var c = rgbOf(h); return c ? 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (c[3] * a) + ')' : h; }
+
+  function readCols(){
+    ['--race-far','--race-infield','--race-infield-2','--race-track','--race-track-2','--race-shade','--race-rim','--race-clod','--race-clod-2','--race-gate',
+     '--race-plate-ink','--race-skin','--race-rein','--rail','--brass','--brass-hi','--on-brass','--sheet','--ink','--paper','--line','--silk-white','--silk-black','--silk-edge','--coat-hoof']
+      .forEach(function(k){ COL[k] = tok(k); });
+    var rim = rgbOf(COL['--race-rim']); COL.rimOn = !!(rim && rim[3] > .01);
+    FNT.body = tok('--f-body') || 'sans-serif'; FNT.num = tok('--f-num') || 'sans-serif'; FNT.disp = tok('--f-display') || 'serif';
+    R.forEach(function(r){
+      var ck = COATS[r.coat] || 'bay', base = tok('--coat-' + ck) || '#8A5430', pt = tok('--coat-' + ck + '-pt') || '#1D1511', mane = tok('--coat-' + ck + '-mane') || pt;
+      var sk = silkOf(r.id), sb = tok(sk.base) || '#888';
+      r.capCol = tok(sk.cap) || sb;
+      /* 暗いテーマの縁の光は、背景に沈む黒っぽい毛色だけに付ける */
+      r.dark = !!DARK_COAT[ck];
+      r.look = { coat: base, pts: pt, mane: mane, hoof: COL['--coat-hoof'], far: shade(base, .32), farPts: shade(pt, .3),
+        silk: { base: sb, pc: tok(sk.pc) || '#fff', pat: sk.pat, cap: r.capCol }, silkFar: shade(sb, .3),
+        white: COL['--silk-white'], black: COL['--silk-black'], edge: COL['--silk-edge'], skin: COL['--race-skin'], rein: COL['--race-rein'], cloth: COL['--silk-white'] };
+    });
+  }
+
+  /* ---- 配置と、走りの表（速さ・位置・脚の位相）を前もって積分しておく ---- */
+  function layout(){
+    var w = Math.round(fig.clientWidth), h = Math.round(fig.clientHeight);
+    if (!w || !h) return false;
+    var nd = Math.min(3, window.devicePixelRatio || 1);
+    if (w === W && h === H && nd === dpr && LAY) return true;
+    W = w; H = h; dpr = nd;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    var s = H / 464, n = R.length, gapU = n > 1 ? Math.min(44, 132 / (n - 1)) : 0;
+    var L = { s: s, railTop: 132 * s, railBase: 170 * s, goalX: W - Math.max(26, 40 * s), gateX: W * .4, horseLen: 172 * s };
+    var minT = Math.min.apply(null, R.map(function(r){ return r.total; }));
+    /* 間隔は幅の 6〜7 割ほどに収める（走る速さを自然に保つため）。広い画面ほど馬群を左へ広げる */
+    var avail = Math.min(L.goalX - 10 - L.horseLen, Math.max(240, W * (W >= 900 ? .68 : .58))), maxGap = top - minT;
+    L.k = maxGap > 0 ? Math.min(avail / maxGap, L.horseLen / 10) : 0;
+    R.forEach(function(r){
+      r.sc = s * (1 - (n - 1 - r.lane) * .03);
+      r.base = (262 + r.lane * gapU) * s;
+      r.F = L.goalX - (top - r.total) * L.k;
+      r.phE = END_PH[r.order % END_PH.length];
+      r.noseE = horsePose(r.phE, 1, 1).nose[0];
+    });
+    /* 同点でなければ、鼻差でも 4px は離して見せる（1pt 差の 2 頭が同着に見えないように） */
+    R.forEach(function(r, i){ var p = R[i - 1]; if (p && r.total < p.total - 1e-9 && r.F > p.F - 4) r.F = p.F - 4; });
+    build(L);
+    /* ハロン棒の間隔: スタートの発馬機が 800（残り 4F）の棒のすぐ手前に来るように */
+    L.D = Math.max(60, (L.goalX + L.S - L.gateX - Math.max(22, 40 * s)) / 4);
+    LAY = L;
+    return true;
+  }
+  function build(L){
+    var dT = TE / NT, k, i, s = L.s;
+    var g = [], gc = [], hh = [];
+    for (k = 0; k <= NT; k++){
+      var tau = k * dT;
+      /* 馬が先に飛び出し、カメラは少し遅れて追う */
+      g[k] = sstep(TL.gate, TL.gate + TL.ramp, tau);
+      gc[k] = sstep(TL.gate + TL.camLag, TL.gate + TL.camLag + .8, tau) * clamp((TE - tau) / TL.decel, 0, 1);
+      hh[k] = sstep(TL.split0, TL.split1, tau);
+    }
+    function integ(a){ var x = 0; for (var q = 1; q <= NT; q++) x += (a[q] + a[q - 1]) * .5 * dT; return x; }
+    var Ig = integ(g), Igc = integ(gc), Ih = integ(hh);
+    var meanF = R.reduce(function(a, r){ return a + r.F; }, 0) / R.length;
+    /* 接戦の 2 頭は決勝線の手前で鼻を入れ替える */
+    R.forEach(function(r){ r.duel = 0; });
+    R.forEach(function(a){ R.forEach(function(b){ if (a.order < b.order && !a.duel && !b.duel && Math.abs(a.F - b.F) < L.horseLen * .25) { a.duel = 1; b.duel = -1; } }); });
+    var Vc = 6.2 * 100 * s, S = 0, V0 = 0, tries = 0, ok;
+    do {
+      S = Vc * Igc; V0 = (meanF - L.gateX + S) / Ig; ok = true;
+      R.forEach(function(r, j){
+        var A = .055 + .02 * ((j * 7) % 3) / 2, Pp = 1.05 + .17 * ((j * 5) % 4), ph = j * 1.9 + .4;
+        r.wob = [];
+        for (var q = 0; q <= NT; q++){
+          var tau = q * dT;
+          var win = sstep(TL.gate + .45, TL.gate + .95, tau) * (1 - sstep(TL.slowAt - .6, TL.slowAt - .1, tau));
+          var w = V0 * A * Math.sin(TAU2 * (tau - TL.gate) / Pp + ph) * win;
+          w += V0 * BRK[j % BRK.length] * sstep(TL.gate + .05, TL.gate + .35, tau) * (1 - sstep(TL.gate + .7, TL.gate + 1.3, tau));
+          if (r.duel) w += r.duel * V0 * .08 * Math.sin(TAU2 * (tau - 1.95) / .62) * sstep(1.85, 2.15, tau) * (1 - sstep(2.7, 3.0, tau));
+          r.wob[q] = w;
+        }
+        r.Dv = (r.F - L.gateX + S - V0 * Ig - integ(r.wob)) / Ih;
+        for (q = 0; q <= NT; q++){ if (g[q] > .95 && V0 * g[q] + r.Dv * hh[q] + r.wob[q] < V0 * .45) { ok = false; break; } }
+      });
+      if (!ok) Vc *= 1.1;
+    } while (!ok && ++tries < 6);
+    var C = [0];
+    for (k = 1; k <= NT; k++) C[k] = C[k - 1] + Vc * (gc[k] + gc[k - 1]) * .5 * dT;
+    R.forEach(function(r){
+      var X = [0], PH = [0], vPrev = 0, fPrev = 0, kv = 1 / (Math.max(1e-6, r.sc) * SWEEP);
+      for (var q = 0; q <= NT; q++){
+        var v = Math.max(0, V0 * g[q] + r.Dv * hh[q] + r.wob[q]);
+        /* 完歩の速さ＝対地速度 ÷ 1 完歩で蹄が後ろへ送る距離 */
+        var fr = v * kv;
+        if (q > 0) { X[q] = X[q - 1] + (v + vPrev) * .5 * dT; PH[q] = PH[q - 1] + (fr + fPrev) * .5 * dT; }
+        vPrev = v; fPrev = fr;
+      }
+      /* 誤差を消して最終位置をぴったりに */
+      var err = (r.F - L.gateX + C[NT]) - X[NT];
+      for (q = 0; q <= NT; q++) X[q] += err * (q / NT);
+      r.X = X; r.PH = PH; r.phOff = r.phE - PH[NT];
+    });
+    L.C = C; L.S = C[NT]; L.V0 = V0; L.Vc = Vc; L.dT = dT;
+  }
+  function samp(a, tau){ var x = tau / LAY.dT, i = Math.floor(x); if (i >= NT) return a[NT]; if (i < 0) return a[0]; return a[i] + (a[i + 1] - a[i]) * (x - i); }
+  /* 実時間 → 場面の時間。slowAt から 0.2 秒で 4 割の速さに落とし、そのまま決勝線（TE）まで走り抜けて止まる */
+  function tauOf(x){
+    if (x <= TL.slowAt) return x;
+    var d = x - TL.slowAt;
+    if (d <= SLOW.ease) return TL.slowAt + d - (1 - SLOW.k) * d * d / (2 * SLOW.ease);
+    return Math.min(TE, TAU1 + SLOW.k * (d - SLOW.ease));
+  }
+
+  /* ---- 背景 ---- */
+  function bands(y0, y1, bw, off, skew, col){
+    ctx.fillStyle = col; ctx.beginPath();
+    var start = Math.floor((off - skew * (y1 - y0) - bw * 2) / (bw * 2)) * bw * 2;
+    for (var x = start; x - off < W + bw * 2; x += bw * 2){
+      var a = x - off;
+      ctx.moveTo(a, y0); ctx.lineTo(a + bw, y0); ctx.lineTo(a + bw + skew * (y1 - y0), y1); ctx.lineTo(a + skew * (y1 - y0), y1); ctx.closePath();
+    }
+    ctx.fill();
+  }
+  function drawGround(B){
+    var L = LAY, s = L.s;
+    ctx.fillStyle = COL['--race-infield']; ctx.fillRect(0, 0, W, L.railBase + 1);
+    bands(0, L.railBase, 74 * s * 1.5, B * .55, .3, COL['--race-infield-2']);
+    /* 向こう正面の植え込み（ゆっくり流れる） */
+    var off = B * .18, step = 38 * s, x0 = Math.floor(off / step) * step;
+    ctx.fillStyle = COL['--race-far']; ctx.beginPath(); ctx.moveTo(-10, 0); ctx.lineTo(-10, 20 * s);
+    for (var x = x0 - step; x - off < W + step; x += step){
+      var hb = (18 + 7 * Math.sin(x * .013) + 4 * Math.sin(x * .031 + 1)) * s;
+      ctx.quadraticCurveTo(x - off + step * .5, hb + 9 * s, x - off + step, hb);
+    }
+    ctx.lineTo(W + 10, 0); ctx.closePath(); ctx.fill();
+    /* 芝（刈り目） */
+    ctx.fillStyle = COL['--race-track']; ctx.fillRect(0, L.railBase, W, H - L.railBase);
+    bands(L.railBase, H, 66 * s * 1.5, B, .3, COL['--race-track-2']);
+    /* 内ラチ */
+    var ps = 40 * s, pw = Math.max(1.4, 3.4 * s), k0 = Math.floor(B / ps);
+    ctx.fillStyle = COL['--rail'];
+    for (var k = k0 - 1; k * ps - B < W + ps; k++){ ctx.fillRect(k * ps - B - pw / 2, L.railTop + 2 * s, pw, L.railBase - L.railTop - 2 * s); }
+    ctx.fillRect(0, L.railTop, W, Math.max(2.2, 5.2 * s));
+    ctx.fillStyle = alpha(COL['--race-shade'], .7); ctx.fillRect(0, L.railBase - 1, W, Math.max(1, 3 * s));
+  }
+  function drawPoles(B){
+    var L = LAY, s = L.s, k, pw = Math.max(2, 3.4 * s);
+    for (k = 4; k >= 1; k--){
+      var x = L.goalX - k * L.D - B;
+      if (x < -40 || x > W + 40) continue;
+      var plW = Math.max(30, 50 * s), plH = Math.max(17, 26 * s), yTop = L.railTop - 30 * s - plH;
+      ctx.fillStyle = COL['--rail']; ctx.fillRect(x - pw / 2, yTop + plH - 1, pw, L.railBase - yTop - plH + 1);
+      ctx.fillRect(x - plW / 2, yTop, plW, plH);
+      ctx.fillStyle = COL['--race-plate-ink']; ctx.font = '600 ' + Math.round(Math.max(12, plH * .62)) + 'px ' + FNT.num; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(String(k * 200), x, yTop + plH / 2 + .5);
+    }
+    /* ゴール板と決勝線 */
+    var gx = L.goalX - B;
+    if (gx > -30 && gx < W + 30){
+      var rd = Math.max(9, 17 * s), cy = L.railTop - 22 * s - rd;
+      ctx.fillStyle = alpha(COL['--rail'], .85); ctx.fillRect(gx - 1, L.railBase, 2, H - L.railBase);
+      ctx.fillStyle = COL['--rail']; ctx.fillRect(gx - pw / 2, cy, pw, L.railBase - cy);
+      ctx.beginPath(); ctx.arc(gx, cy, rd, 0, TAU2); ctx.fill();
+      ctx.beginPath(); ctx.arc(gx, cy, rd - Math.max(1.6, 3 * s) / 2 - .5, 0, TAU2); ctx.lineWidth = Math.max(1.6, 3.2 * s); ctx.strokeStyle = COL['--brass-hi']; ctx.stroke();
+      L.goalBox = { x: gx - rd - 2, y: cy - rd - 2, w: rd * 2 + 4, h: rd * 2 + 4 };
+      if (flash > 0) { ctx.fillStyle = alpha(COL['--rail'], .55 * flash); ctx.fillRect(gx - 2.5, 0, 5, H); }
+    }
+  }
+  /* 発馬機: 枠組み（後ろと前の柱・上の梁）は全枠で 1 つ、手前に描く。各枠の前扉は枠の色に枠番。発走の瞬間に 0.15 秒で手前へ振れて開く */
+  function lum(h){ var c = rgbOf(h); return c ? (c[0] * .299 + c[1] * .587 + c[2] * .114) / 255 : 0; }
+  function drawDoor(r, gx, tau){
+    var s = LAY.s, b = r.base, open = clamp((tau - TL.gate) / .15, 0, 1);
+    if (open >= 1) return;
+    var pw = Math.max(2, 4.5 * s), e = open * (2 - open), dw = Math.max(13, 26 * s), dh = Math.max(19, 40 * s);
+    var w = Math.max(1, dw * Math.cos(e * 1.5)), x = gx + pw + dw * .35 * e, y = b - 30 * s - dh + 4 * s * e;
+    ctx.globalAlpha = 1 - e * .4;
+    ctx.fillStyle = r.capCol; ctx.fillRect(x, y, w, dh);
+    ctx.strokeStyle = COL['--race-gate']; ctx.lineWidth = 1; ctx.strokeRect(x + .5, y + .5, Math.max(0, w - 1), dh - 1);
+    ctx.fillStyle = COL['--rail']; ctx.fillRect(x, y, w, Math.max(1, 1.6 * s));
+    if (w > dw * .6) {
+      ctx.fillStyle = lum(r.capCol) > .6 ? COL['--race-plate-ink'] : COL['--silk-white'];
+      ctx.font = '700 ' + Math.round(Math.max(12, 22 * s)) + 'px ' + FNT.num; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(String(r.waku), x + w / 2, y + dh / 2 + 1);
+    }
+    ctx.globalAlpha = 1;
+  }
+  function drawGateFrame(gx){
+    var s = LAY.s, len = 122 * s, pw = Math.max(2, 4.5 * s), first = BYLANE[0], lastR = BYLANE[BYLANE.length - 1];
+    var yT = first.base - 138 * s, yB = lastR.base - 4 * s, beam = Math.max(2, 5 * s);
+    ctx.fillStyle = COL['--race-gate'];
+    ctx.fillRect(gx - len, yT, len + pw + 6 * s, beam);
+    ctx.fillRect(gx - len, yT, pw, yB - yT);
+    ctx.fillRect(gx, yT, pw, yB - yT);
+    ctx.fillStyle = COL['--brass']; ctx.fillRect(gx - len, yT, len + pw + 6 * s, Math.max(1, 1.4 * s));
+  }
+
+  /* ---- 土くれ ---- */
+  function emit(r, Lg, ox, oy, B){
+    var s = LAY.s, n = Math.random() < .5 ? 3 : 2;
+    for (var i = 0; i < n; i++){
+      if (parts.length > 48) parts.shift();
+      parts.push({ x: ox + Lg.hx[2] * r.sc + B, y: oy - Lg.hy[2] * r.sc, gy: oy, vx: -(40 + Math.random() * 100) * s, vy: -(70 + Math.random() * 90) * s,
+        g: 560 * s, life: .34 + Math.random() * .3, age: 0, sz: (1.7 + Math.random() * 1.8) * Math.max(1, s * 1.7), c: Math.random() < .6 ? 0 : 1, fade: 1 });
+    }
+  }
+  function stepParts(dtau, dt){
+    for (var i = parts.length - 1; i >= 0; i--){
+      var p = parts[i];
+      p.x += p.vx * dtau; p.vy += p.g * dtau; p.y += p.vy * dtau; p.age += dtau;
+      if (p.y > p.gy) { p.y = p.gy; p.vy *= -.25; p.vx *= .4; }
+      if (t >= T_ALL) p.fade -= dt * 3.2;
+      if (p.age > p.life || p.fade <= 0) parts.splice(i, 1);
+    }
+  }
+  function drawParts(B){
+    for (var i = 0; i < parts.length; i++){
+      var p = parts[i], a = clamp(1 - p.age / p.life, 0, 1) * clamp(p.fade, 0, 1);
+      ctx.globalAlpha = Math.min(1, a * 1.6);
+      ctx.fillStyle = p.c ? COL['--race-clod-2'] : COL['--race-clod'];
+      ctx.fillRect(p.x - B - p.sz / 2, p.y - p.sz / 2, p.sz, p.sz * .8);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  /* ---- 札（名前と pt） ---- */
+  function rr(x, y, w, h, r){ ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  function tagMetrics(r){
+    var big = W >= 600;
+    var fN = '700 ' + (big ? 13.5 : 12.5) + 'px ' + FNT.body, fV = '500 ' + (big ? 15 : 14) + 'px ' + FNT.num, fU = '400 12px ' + FNT.body;
+    ctx.font = fN; var wn = ctx.measureText(r.name).width;
+    ctx.font = fV; var wv = ctx.measureText(fmt(r.total)).width;
+    ctx.font = fU; var wu = ctx.measureText('pt').width;
+    var h = big ? 24 : 22;
+    return { fN: fN, fV: fV, fU: fU, wn: wn, wv: wv, wu: wu, h: h, box: h, w: h + 6 + wn + 5 + wv + 1.5 + wu + 7 };
+  }
+  function placeTags(info){
+    var out = [], rows = [6, 6 + (W >= 600 ? 28 : 26)], obst = [];
+    if (LAY.goalBox) obst.push(LAY.goalBox);
+    function hit(a, b, m){ return a.x < b.x + b.w + m && a.x + a.w + m > b.x && a.y < b.y + b.h + m && a.y + a.h + m > b.y; }
+    function segHits(x1, y1, x2, y2, self){
+      for (var k = 0; k < info.length; k++){
+        var o = info[k]; if (o === self) continue;
+        for (var q = 0; q <= 10; q++){ var x = lerp(x1, x2, q / 10), y = lerp(y1, y2, q / 10); if (x > o.bx + 4 && x < o.bx + o.bw - 4 && y > o.by + 3 && y < o.by + o.bh) return true; }
+      }
+      return false;
+    }
+    info.slice().sort(function(a, b){ return a.r.order - b.r.order; }).forEach(function(o){
+      var m = tagMetrics(o.r), best = null, sh = [0, -.3, .3, -.6, .6, -.9, .9];
+      for (var row = 0; row < 2; row++) for (var j = 0; j < sh.length; j++){
+        var x = clamp(o.capX - m.w / 2 + sh[j] * m.w, 4, W - 4 - m.w), y = rows[row];
+        var box = { x: x, y: y, w: m.w, h: m.h }, lx = clamp(o.capX, x + 6, x + m.w - 6);
+        if (o.capX < x + 4 || o.capX > x + m.w - 4) continue;
+        if (out.some(function(p){ return hit(box, p.box, 4); }) || obst.some(function(b){ return hit(box, b, 2); })) continue;
+        if (out.some(function(p){ return p.lx > x - 2 && p.lx < x + m.w + 2 && p.box.y < y && p.ey > y; })) continue;
+        if (out.some(function(p){ return p.box.y > y && p.box.y < o.capY && lx > p.box.x - 2 && lx < p.box.x + p.box.w + 2; })) continue;
+        if (segHits(lx, y + m.h, o.capX, o.capY - 2, o)) continue;
+        var sc = Math.abs(sh[j]) * 10 + row * 6;
+        if (!best || sc < best.sc) best = { sc: sc, box: box, lx: lx, ly: y + m.h, ex: o.capX, ey: o.capY - 2 };
+      }
+      if (!best) {
+        var by = o.baseY + 7;
+        if (by + m.h <= H - 3) {
+          var bx = clamp(o.cx - m.w / 2, 4, W - 4 - m.w), bb = { x: bx, y: by, w: m.w, h: m.h };
+          var clash = out.some(function(p){ return hit(bb, p.box, 4); }) || info.some(function(p){ return p !== o && hit(bb, { x: p.bx, y: p.by, w: p.bw, h: p.bh }, 0); });
+          if (!clash) best = { box: bb, lx: clamp(o.cx, bx + 6, bx + m.w - 6), ly: by, ex: o.cx, ey: o.baseY - 2 };
+        }
+      }
+      if (!best) { var fx = clamp(o.capX - m.w / 2, 4, W - 4 - m.w); best = { box: { x: fx, y: rows[0], w: m.w, h: m.h }, lx: clamp(o.capX, fx + 6, fx + m.w - 6), ly: rows[0] + m.h, ex: o.capX, ey: o.capY - 2 }; }
+      best.m = m; best.r = o.r; out.push(best);
+    });
+    return out;
+  }
+  function drawTags(info, prog){
+    var tags = placeTags(info);
+    tags.forEach(function(tg, i){
+      var p = clamp((prog - i * .09) / .3, 0, 1); if (p <= 0) return;
+      var e = 1 - Math.pow(1 - p, 3), m = tg.m, b = tg.box, dy = (1 - e) * 6;
+      ctx.globalAlpha = e;
+      ctx.strokeStyle = alpha(COL['--rail'], .85); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(tg.lx, tg.ly + (tg.ly < tg.ey ? dy : -dy)); ctx.lineTo(tg.ex, tg.ey); ctx.stroke();
+      ctx.fillStyle = COL['--rail']; ctx.beginPath(); ctx.arc(tg.ex, tg.ey, 1.8, 0, TAU2); ctx.fill();
+      var y = b.y + dy;
+      ctx.beginPath(); rr(b.x, y, b.w, b.h, 2); ctx.fillStyle = COL['--sheet']; ctx.fill(); ctx.strokeStyle = alpha(COL['--rail'], .6); ctx.stroke();
+      var first = tg.r.rank === 1;
+      ctx.beginPath(); rr(b.x, y, m.box, b.h, 2); ctx.fillStyle = first ? COL['--brass'] : COL['--ink']; ctx.fill();
+      ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+      ctx.fillStyle = first ? COL['--on-brass'] : COL['--sheet']; ctx.font = '800 ' + (m.h - 8) + 'px ' + FNT.disp;
+      ctx.fillText(String(tg.r.rank), b.x + m.box / 2, y + b.h / 2 + .5);
+      ctx.textAlign = 'left'; ctx.fillStyle = COL['--ink'];
+      var x = b.x + m.box + 6;
+      ctx.font = m.fN; ctx.fillText(tg.r.name, x, y + b.h / 2 + .5); x += m.wn + 5;
+      ctx.font = m.fV; ctx.fillText(fmt(tg.r.total), x, y + b.h / 2 + 1); x += m.wv + 1.5;
+      ctx.font = m.fU; ctx.fillText('pt', x, y + b.h / 2 + 1.5);
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  /* ---- 1 コマ描く ---- */
+  function draw(){
+    if (!LAY && !layout()) return;
+    var L = LAY, tau, tagP = 0, running = state === 'run';
+    if (state === 'done' || (state === 'pending' && reduced())) { tau = TE; tagP = 9; }
+    else if (state === 'pending') tau = 0;
+    else { tau = tauOf(t); tagP = t >= T_ALL ? post : 0; }
+    var C = samp(L.C, tau), B = C - L.S;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawGround(B);
+    L.goalBox = null;
+    drawPoles(B);
+    var bl = sstep(TL.gate - .02, TL.gate + .55, tau), drive = sstep(1.9, 2.5, tau);
+    /* 前の柱は、立っている馬の胸のすぐ前（頭は扉の上に出る） */
+    var gateX = L.gateX - 34 * L.s - C, showGate = gateX + 40 * L.s > -10 && gateX - 130 * L.s < W;
+    var info = [];
+    BYLANE.forEach(function(r){
+      var sx = L.gateX + samp(r.X, tau) - C;
+      var ph = samp(r.PH, tau) + r.phOff;
+      var P = horsePose(ph, bl, drive);
+      var ox = sx - r.noseE * r.sc, oy = r.base, sc = r.sc;
+      if (running && t < T_ALL) {
+        for (var i = 0; i < 4; i++){
+          var Lg = P.legs[i], lift = Lg.fore ? LIFT.fore : LIFT.hind, prev = r.lp[i];
+          if (prev != null && prev < lift && Lg.lp >= lift && Lg.lp - prev < .4 && bl > .7) emit(r, Lg, ox, oy, B);
+          r.lp[i] = Lg.lp;
+        }
+      }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.fillStyle = COL['--race-shade']; ctx.beginPath();
+      ctx.ellipse(ox + 4 * sc, oy + 1, 60 * sc * (1 - clamp((P.h - 68) / 50, 0, .2)), 5.5 * sc, 0, 0, TAU2); ctx.fill();
+      if (COL.rimOn && r.dark) { ctx.setTransform(dpr * sc, 0, 0, -dpr * sc, dpr * ox, dpr * (oy - .9)); drawHorse(ctx, P, r.look, COL['--race-rim']); }
+      ctx.setTransform(dpr * sc, 0, 0, -dpr * sc, dpr * ox, dpr * oy);
+      drawHorse(ctx, P, r.look, null);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (showGate) drawDoor(r, gateX, tau);
+      var cap = P.jk.head;
+      info.push({ r: r, capX: ox + cap[0] * sc, capY: oy - (cap[1] + 6.4) * sc, cx: ox + 0 * sc, baseY: oy,
+        bx: ox - 84 * sc, by: oy - (cap[1] + 7) * sc, bw: (84 + P.nose[0]) * sc, bh: (cap[1] + 7) * sc });
+    });
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (showGate) drawGateFrame(gateX);
+    drawParts(B);
+    if (tagP > 0) drawTags(info, tagP);
+  }
+
+  /* ---- 再生の管理（画面外・タブ非表示では止める。1 秒より長く止まったら、戻ったときは決着の絵にする） ---- */
+  function nowMs(){ return window.performance && performance.now ? performance.now() : Date.now(); }
+  function want(){ return state === 'run' && visible && !document.hidden && W > 0; }
+  function finish(){ state = 'done'; parts = []; flash = 0; pausedAt = 0; draw(); }
+  function kick(){
+    if (state !== 'run') return;
+    if (!want()) { if (!pausedAt) pausedAt = nowMs(); return; }
+    if (pausedAt && nowMs() - pausedAt > 1000) { finish(); return; }
+    pausedAt = 0;
+    if (!raf) { last = 0; raf = requestAnimationFrame(tick); }
+  }
+  function tick(ts){
+    raf = 0;
+    if (!want()) { if (!pausedAt) pausedAt = nowMs(); return; }
+    var dt = last ? Math.min(.05, (ts - last) / 1000) : 0; last = ts;
+    var t0 = t;
+    if (t < T_ALL) { t = Math.min(T_ALL, t + dt); if (t >= T_ALL) flash = 1; }
+    else { post += dt; flash = Math.max(0, flash - dt * 2.6); }
+    stepParts(tauOf(t) - tauOf(t0), dt);
+    draw();
+    if (t >= T_ALL && post > 1 && !parts.length && flash <= 0) { state = 'done'; draw(); return; }
+    raf = requestAnimationFrame(tick);
+  }
+  function start(){
+    stopWaiting();
+    if (reduced()) { state = 'done'; draw(); return; }
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    state = 'run'; t = 0; post = 0; flash = 0; pausedAt = 0; parts = []; R.forEach(function(r){ r.lp = []; });
+    draw(); kick();
+  }
+
+  /* ---- いつ走らせるか ----
+     馬の帯（絵の縦 24〜92%）が、下に固定したタブ（PC は上に貼り付いたタブ）を除いた表示領域に 7 割以上入った時点で 1 回だけ走る。
+     読み込み時に入っていなければ、発馬機の前で待つ（画面の外なので待っている絵は誰にも見えない）。
+     順位以外のタブで開いたときも待ち、順位を開いた時点で判断する。数値はその場で getBoundingClientRect で測る */
+  var VIS_MIN = .7, dq = 0, waiting = false;
+  function bandVis(){
+    if (document.hidden) return 0;
+    var r = fig.getBoundingClientRect();
+    if (!r.width || !r.height) return 0;
+    var vh = window.innerHeight || document.documentElement.clientHeight || 0, lo = 0, hi = vh;
+    if (tabsEl) {
+      var tr = tabsEl.getBoundingClientRect();
+      if (tr.height) {
+        if (getComputedStyle(tabsEl).position === 'fixed' && tr.top > vh * .5) hi = Math.min(hi, tr.top);
+        else if (tr.bottom > 0 && tr.top < 2) lo = Math.max(lo, tr.bottom);
+      }
+    }
+    var y0 = r.top + r.height * .24, y1 = r.top + r.height * .92;
+    return Math.max(0, Math.min(y1, hi) - Math.max(y0, lo)) / (y1 - y0);
+  }
+  function decide(){
+    if (state !== 'pending') { stopWaiting(); return; }
+    if (reduced()) { state = 'done'; stopWaiting(); draw(); return; }
+    if (bandVis() >= VIS_MIN) start();
+  }
+  function decideSoon(){
+    if (state !== 'pending' || dq) return;
+    dq = requestAnimationFrame(function(){ dq = 0; decide(); });
+  }
+  function stopWaiting(){
+    if (!waiting) return; waiting = false;
+    window.removeEventListener('scroll', decideSoon); window.removeEventListener('resize', decideSoon);
+  }
+  readCols();
+  layout();
+  draw();
+  visible = (function(){ var r = fig.getBoundingClientRect(); return r.width > 0 && r.bottom > 0 && r.top < (window.innerHeight || 0); })();
+  decide();
+  if (state === 'pending') {
+    waiting = true;
+    window.addEventListener('scroll', decideSoon, { passive: true });
+    window.addEventListener('resize', decideSoon);
+  }
+  /* 見せ場が読み込みと同時に走るなら、表紙の小さな騎手は止めておく（動くものを一つにする） */
+  if (state !== 'run') railRun();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(es){
+      visible = es[es.length - 1].isIntersecting;
+      decideSoon(); kick();
+    }, { threshold: [0] }).observe(fig);
+  } else { visible = true; }
+  document.addEventListener('visibilitychange', function(){ decideSoon(); kick(); });
+  if ('ResizeObserver' in window) new ResizeObserver(function(){ if (layout()) draw(); }).observe(fig);
+  else window.addEventListener('resize', function(){ if (layout()) draw(); });
+  function retheme(){ readCols(); draw(); }
+  if (window.matchMedia) onMQ(window.matchMedia('(prefers-color-scheme: dark)'), retheme);
+  if ('MutationObserver' in window) new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
+  onMQ(RM, function(){ if (!reduced()) return; if (state === 'run') finish(); else if (state === 'pending') { state = 'done'; stopWaiting(); draw(); } });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ readCols(); draw(); decideSoon(); });
+  rb.addEventListener('click', function(){ start(); });
+  /* 絵を押しても、もう一度走る（走っている最中は無視） */
+  cv.addEventListener('click', function(){ if (state !== 'run') start(); });
+  return { replay: start, check: decideSoon };
+  } catch(err) { return giveUp(); }
+})();
+/*RACE-END*/
+
+if (start === 'standings') {
+  /* #standings で開いたときにブラウザが表紙の下まで送ってしまうのを戻す */
+  try { history.replaceState(null, '', location.pathname + location.search); } catch(e) {}
+  var toTop = function(){ if (window.pageYOffset > 0 && window.pageYOffset <= document.getElementById('standings').getBoundingClientRect().top + window.pageYOffset + 4) window.scrollTo(0, 0); };
+  toTop(); window.addEventListener('load', function(){ setTimeout(toTop, 0); });
+}
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if (current === 'standings') renderChart(true); placeRunner(false); });
+})();
+</script>
+</body></html>

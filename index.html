@@ -34,7 +34,15 @@
   /* レース展開（Canvas）の色。絵の中の色なので明暗で大きくは変えない */
   --race-far:#123321; --race-infield:#1C4632; --race-infield-2:#1F4C37;
   --race-track:#2F6B48; --race-track-2:#2B6443; --race-shade:rgba(8,26,16,.30); --race-rim:rgba(255,255,255,0);
-  --race-clod:#8A6440; --race-clod-2:#6FA877; --race-gate:#174A33; --race-plate-ink:#13221A; --race-skin:#E2B28C; --race-rein:#231915;
+  --race-clod:#8A6440; --race-clod-2:#6FA877; --race-dust:#B99D76; --race-plate-ink:#13221A; --race-skin:#E2B28C; --race-rein:#231915;
+  /* 発馬機（白〜灰の鉄骨・緑のパッド）とスターター台の旗 */
+  --gate-steel:#EEF2EF; --gate-steel-2:#A9B7AF; --gate-pad:#2F7D52; --gate-pad-2:#215E3C; --gate-tire:#141816;
+  --flag-red:#D33A31; --flag-white:#F7F8F4;
+  /* ターフビジョン＝着順掲示板（発光する画面なので明暗で大きくは変えない）。数字は LED の琥珀、名前は白、確定ランプは赤地に白 */
+  --vis-screen:#050A07; --vis-frame:#1C2521; --vis-frame-hi:#5B6A62; --vis-steel:#46534C; --vis-grid:rgba(214,236,222,.16);
+  --vis-ink:#F3F7F3; --vis-mute:#A3B8AA; --vis-led:#FFB43A; --vis-telop:#0E1B15; --vis-date:#D4B474; --vis-date-ink:#14201A;
+  --vis-lamp:#C8281F; --vis-lamp-ink:#FFFFFF;
+  --vis-m-kotsuji:#FF6E60; --vis-m-yoshida:#72A6FF; --vis-m-kono:#FF9C50; --vis-m-keigo:#FFD84A;
   --coat-bay:#8A5430; --coat-bay-pt:#1D1511; --coat-dkbay:#5C3622; --coat-dkbay-pt:#17110E;
   --coat-brown:#3B291F; --coat-brown-pt:#130F0D; --coat-black:#231D1A; --coat-black-pt:#0F0C0B;
   --coat-chestnut:#AE6230; --coat-chestnut-pt:#94502A; --coat-chestnut-mane:#C27A45; --coat-liver:#73402A; --coat-liver-pt:#5E3322;
@@ -53,7 +61,13 @@
   --silk-white:#F1F4F0; --silk-black:#0F1312; --silk-green:#24864D; --silk-pink:#EA88AD; --silk-edge:#040A07;
   --race-far:#06150D; --race-infield:#0E2A1C; --race-infield-2:#10301F;
   --race-track:#1D4731; --race-track-2:#1A412D; --race-shade:rgba(0,0,0,.36); --race-rim:rgba(198,228,208,.34);
-  --race-clod:#7A5838; --race-clod-2:#4F8C5E; --race-gate:#2F6D4E; --race-skin:#D9A983; --race-rein:#1A120F;
+  --race-clod:#7A5838; --race-clod-2:#4F8C5E; --race-dust:#8F7757; --race-skin:#D9A983; --race-rein:#1A120F;
+  --gate-steel:#CBD5CF; --gate-steel-2:#879690; --gate-pad:#296C47; --gate-pad-2:#1C5034; --gate-tire:#0B0E0C;
+  --flag-red:#D8423A; --flag-white:#E4E9E4;
+  --vis-screen:#020504; --vis-frame:#131B17; --vis-frame-hi:#3F4C45; --vis-steel:#323E38; --vis-grid:rgba(214,236,222,.14);
+  --vis-ink:#EEF3EF; --vis-mute:#9AAFA1; --vis-led:#FFB13A; --vis-telop:#0A1510; --vis-date:#C8A75E; --vis-date-ink:#101A14;
+  --vis-lamp:#C8281F; --vis-lamp-ink:#FFFFFF;
+  --vis-m-kotsuji:#F4746B; --vis-m-yoshida:#7DA9F5; --vis-m-kono:#F49C5A; --vis-m-keigo:#F2D150;
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#08120D; --sheet:#0E1B15; --ink:#E3EAE5; --mute:#8FA296; --line:#213329;
@@ -64,7 +78,13 @@
   --silk-white:#F1F4F0; --silk-black:#0F1312; --silk-green:#24864D; --silk-pink:#EA88AD; --silk-edge:#040A07;
   --race-far:#06150D; --race-infield:#0E2A1C; --race-infield-2:#10301F;
   --race-track:#1D4731; --race-track-2:#1A412D; --race-shade:rgba(0,0,0,.36); --race-rim:rgba(198,228,208,.34);
-  --race-clod:#7A5838; --race-clod-2:#4F8C5E; --race-gate:#2F6D4E; --race-skin:#D9A983; --race-rein:#1A120F;
+  --race-clod:#7A5838; --race-clod-2:#4F8C5E; --race-dust:#8F7757; --race-skin:#D9A983; --race-rein:#1A120F;
+  --gate-steel:#CBD5CF; --gate-steel-2:#879690; --gate-pad:#296C47; --gate-pad-2:#1C5034; --gate-tire:#0B0E0C;
+  --flag-red:#D8423A; --flag-white:#E4E9E4;
+  --vis-screen:#020504; --vis-frame:#131B17; --vis-frame-hi:#3F4C45; --vis-steel:#323E38; --vis-grid:rgba(214,236,222,.14);
+  --vis-ink:#EEF3EF; --vis-mute:#9AAFA1; --vis-led:#FFB13A; --vis-telop:#0A1510; --vis-date:#C8A75E; --vis-date-ink:#101A14;
+  --vis-lamp:#C8281F; --vis-lamp-ink:#FFFFFF;
+  --vis-m-kotsuji:#F4746B; --vis-m-yoshida:#7DA9F5; --vis-m-kono:#F49C5A; --vis-m-keigo:#F2D150;
   color-scheme:dark}
 
 /* ---------- 土台 ---------- */
@@ -160,7 +180,7 @@ a:hover{text-decoration-color:currentColor}
 .tab{position:relative;min-height:66px;border:0;background:none;cursor:pointer;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--mute);padding:22px 2px 6px}
 .tab .tl{font-family:var(--f-display);font-weight:700;font-size:16px;line-height:1.2;letter-spacing:.06em}
-.tab .tc{font-size:12px;line-height:1.2}
+.tab .tc{display:none}/* 下のタブの数字は表示しない（クライアントの要望 10/12） */
 .tab[aria-selected="true"]{color:var(--turf-text)}
 .tab[aria-selected="true"] .tc{color:var(--ink)}
 /* 選んだタブの上を小さな馬が駆けて移る（真鍮の線と一緒に） */
@@ -239,18 +259,44 @@ a:hover{text-decoration-color:currentColor}
 .srow .g{text-align:right;font-size:12px;color:var(--mute);line-height:1.2}
 .srow .g b{display:block;font-family:var(--f-num);font-weight:500;font-size:18px;color:var(--ink)}
 
-/* レース展開 */
+/* レース展開（上にターフビジョン＝着順掲示板、下に馬。馬の帯の高さは v4 のまま、掲示板の分だけ高い。スマホは 460px） */
 .race{margin-bottom:36px}
 .race .sh{margin-bottom:10px}
-.race-fig{position:relative;margin:0;height:232px;background:var(--race-infield);border-radius:2px;overflow:hidden}
-.race-fig canvas{display:block;width:100%;height:100%;cursor:pointer}
-.race-foot{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:8px}
-.race-foot .fine{padding-top:4px}
-.replay{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px 0 10px;cursor:pointer;
-  background:var(--sheet);border:1px solid var(--line);border-radius:2px;color:var(--turf-text);
-  font-family:var(--f-body);font-weight:700;font-size:13.5px;letter-spacing:.04em}
-.replay svg{width:16px;height:16px;flex:none}
-.replay:hover{border-color:var(--turf-text)}
+.race-fig{position:relative;margin:0;height:460px;background:var(--race-infield);border-radius:2px;overflow:hidden}
+.race-fig canvas{display:block;width:100%;height:100%;cursor:pointer;touch-action:manipulation}
+.race-cap{margin-top:2px}
+/* 再生・最初からのボタンと日付の帯（なぞる・押すとその日の展開へ） */
+.race-ctl{display:flex;align-items:flex-start;gap:4px;margin-top:6px}
+.rc-play,.rc-re{flex:none;width:44px;height:44px;margin-top:16px;display:grid;place-items:center;padding:0;cursor:pointer;border-radius:50%;touch-action:manipulation}
+.rc-play{background:var(--turf-fill);color:var(--turf-ink);border:1px solid var(--turf-text)}
+.rc-re{background:var(--sheet);color:var(--turf-text);border:1px solid var(--line)}
+.rc-play svg{width:16px;height:16px;display:block}
+.rc-re svg{width:19px;height:19px;display:block}
+.rc-play .i-pause,.rc-play.is-on .i-play{display:none}
+.rc-play.is-on .i-pause{display:block}
+.tline{position:relative;flex:1;min-width:0;height:70px;margin-left:2px;cursor:pointer;touch-action:pan-y;-webkit-user-select:none;user-select:none;border-radius:2px}
+.tl-in{position:absolute;left:14px;right:14px;top:0;bottom:0}
+.tl-row{position:absolute;left:0;right:0;height:6px;color:var(--mc)}
+.tl-row::before{content:"";position:absolute;left:0;right:0;top:2.5px;height:1px;background:currentColor;opacity:.2}
+.tl-dot{position:absolute;top:.5px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:currentColor}
+.tl-dot.w{top:-.5px;width:7px;height:7px;margin-left:-3.5px;box-shadow:0 0 0 1px var(--brass)}
+.tl-track{position:absolute;left:0;right:0;top:37px;height:2px;background:var(--line);overflow:hidden}
+.tl-fill{position:absolute;inset:0;background:var(--turf-text);transform-origin:0 50%;transform:scaleX(0)}
+.tl-tick{position:absolute;top:34px;width:1px;height:8px;background:var(--mute);opacity:.6}
+.tl-mon{position:absolute;top:53px;padding-left:3px;font-size:12px;line-height:1.4;color:var(--mute);white-space:nowrap}
+.tl-cur{position:absolute;left:0;top:0;bottom:0;width:0;pointer-events:none}
+.tl-cur::before{content:"";position:absolute;left:-.75px;top:-2px;height:40px;width:1.5px;background:var(--brass-ink)}
+/* つまみ: 見えるのは 28px、まわりに 44px の見えない輪 */
+.tl-knob{position:absolute;left:-14px;top:24px;width:28px;height:28px;border-radius:50%;
+  background:radial-gradient(circle, var(--brass) 0 3.5px, var(--sheet) 4px);border:2px solid var(--turf-text);box-shadow:0 1px 2px var(--race-shade)}
+.tl-knob::after{content:"";position:absolute;inset:-10px;border-radius:50%}
+/* なぞっている間は、つまみの上に日付の吹き出し */
+.tl-tip{position:absolute;left:0;bottom:calc(100% + 4px);display:none;padding:2px 7px;border-radius:2px;background:var(--ink);color:var(--paper);
+  font-family:var(--f-num);font-weight:600;font-size:13px;line-height:1.4;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tline.is-drag .tl-tip{display:block}
+.tline.is-drag .tl-knob{transform:scale(1.15);box-shadow:0 2px 8px var(--race-shade)}
+.tline:focus-visible{outline:2px solid var(--brass-ink);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* 推移グラフ */
 .chart{min-height:240px}
@@ -262,6 +308,8 @@ a:hover{text-decoration-color:currentColor}
 .chart .lbl .v{font-family:var(--f-num);font-weight:500;font-size:13.5px}
 .chart .lead{stroke:var(--mute);stroke-width:1;fill:none}
 .chart .asof{fill:var(--brass-ink);font-family:var(--f-num);font-size:12px}
+.chart .cur line{stroke:var(--brass-ink);stroke-width:1;stroke-dasharray:3 3}
+.chart .cur text{fill:var(--brass-ink);font-family:var(--f-num);font-size:12px}
 
 /* 早見表 */
 .prize{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;border-top:1px solid var(--ink)}
@@ -369,12 +417,6 @@ a:hover{text-decoration-color:currentColor}
 .more summary::after{content:"";width:9px;height:9px;flex:none;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg)}
 .more[open] summary::after{transform:translateY(2px) rotate(-135deg)}
 .more .body{display:grid;gap:18px;padding-bottom:16px}
-/* 開くときの発馬機（左右の扉が開いて中身が出る） */
-.more .body.gating{position:relative;overflow:hidden}
-.gate{position:absolute;left:0;right:0;top:0;height:min(100%, 128px);display:flex;z-index:2;pointer-events:none}
-.gate i{flex:1;background:repeating-linear-gradient(90deg,var(--turf-fill) 0 13px,var(--turf) 13px 15px);border-top:3px solid var(--turf);border-bottom:2px solid var(--brass)}
-.gate .dl{transform-origin:0 50%;box-shadow:inset -2px 0 0 var(--brass)}
-.gate .dr{transform-origin:100% 50%;box-shadow:inset 2px 0 0 var(--brass)}
 .dsec h4{font-family:var(--f-display);font-weight:700;font-size:13.5px;letter-spacing:.08em;color:var(--mute);margin-bottom:6px}
 .dsec p{font-size:13.5px;line-height:1.7}
 .rlog{display:grid;gap:10px}
@@ -382,7 +424,7 @@ a:hover{text-decoration-color:currentColor}
 .rlog .l1{font-size:13.5px;font-weight:700;line-height:1.5}
 .rlog .l2,.rlog .l3{font-size:13px;line-height:1.6;color:var(--mute)}
 .rlog .l2 .num{color:var(--ink);font-size:14px}
-.rlog .rf{display:inline-block;font-weight:400;color:var(--ink)}
+.rlog .rf{font-weight:400;color:var(--ink)}
 .rlog .rf1,.rlog .rf2,.rlog .rf3{display:inline-block;padding:0 6px;border-radius:2px;font-weight:700;line-height:1.5}
 .rlog .rf1{background:var(--brass);color:var(--on-brass)}
 .rlog .rf1 .num{color:var(--on-brass)}
@@ -483,7 +525,7 @@ a:hover{text-decoration-color:currentColor}
 /* ---------- 幅のある画面 ---------- */
 @media (min-width:600px){
   .mast{padding:26px 28px 18px}
-  .race-fig{height:262px}
+  .race-fig{height:491px}
   .ai{grid-template-columns:36px minmax(0,1fr) auto}
   .ai .silk{width:36px;height:36px}
 }
@@ -505,7 +547,6 @@ a:hover{text-decoration-color:currentColor}
   .tablist{display:flex;gap:2px}
   .tab{flex-direction:row;gap:8px;min-height:64px;padding:0 20px 14px}
   .tab .tl{font-size:17px}
-  .tab .tc{font-size:12.5px}
   .runner .bar{top:auto;bottom:-1px;left:14px;right:14px}
   .runner .mhw{top:auto;bottom:5px;width:26px;height:17px;margin-left:-13px}
   .tabs .tab-count{display:flex;align-items:center;gap:6px;margin-left:auto;padding-right:4px;font-size:12.5px;color:var(--mute)}
@@ -518,7 +559,8 @@ a:hover{text-decoration-color:currentColor}
   .fchip small{margin-left:2px}
   .nx-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
   .race{margin-bottom:46px}
-  .race-fig{height:320px}
+  .race-fig{height:562px}
+  .race-ctl{gap:8px}
 }
 @media (min-width:1040px){
   .st-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
@@ -526,17 +568,21 @@ a:hover{text-decoration-color:currentColor}
   .silk.lg{width:52px;height:52px}
   .cks{left:58px}
   .feed{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .race-fig{height:360px}
+  .race-fig{height:586px}
 }
 @media (min-width:1280px){
   .c-num b{font-size:176px}
 }
-.tab,.btn,.fchip,.hchip,.srow,.uc,.replay,.textbtn,.more summary,.race-fig{-webkit-tap-highlight-color:transparent}
+.tab,.btn,.fchip,.hchip,.srow,.uc,.rc-re,.rc-play,.tline,.textbtn,.more summary,.race-fig{-webkit-tap-highlight-color:transparent}
 @media (prefers-reduced-motion:no-preference){
-  .fchip,.btn,.tab,.hchip,.uc,.srow,.replay,.textbtn,.more summary{transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .12s ease}
+  .fchip,.btn,.tab,.hchip,.uc,.srow,.rc-re,.rc-play,.textbtn,.more summary{transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .12s ease}
   .tab .tl,.tab .tc{transition:transform .12s ease}
   /* 押したら沈んで戻る */
-  .btn:active,.fchip:active,.hchip:active,.replay:active{transform:translateY(1px) scale(.98)}
+  .btn:active,.fchip:active,.hchip:active{transform:translateY(1px) scale(.98)}
+  .rc-play:active,.rc-re:active{transform:scale(.92)}
+  .tl-knob{transition:transform .12s ease,box-shadow .12s ease}
+  /* 決着の絵を触ったとき、再生ボタンを一瞬光らせる */
+  .rc-play.is-hint{animation:rcHint .8s ease-out}
   .srow:active,.uc:active,.textbtn:active,.more summary:active{transform:translateY(1px)}
   .tab:active .tl,.tab:active .tc{transform:translateY(1px)}
   /* 小さな馬の脚（2 コマ）と上下動 */
@@ -548,10 +594,14 @@ a:hover{text-decoration-color:currentColor}
 @keyframes mhA{0%{visibility:visible}50%{visibility:hidden}}
 @keyframes mhB{0%{visibility:hidden}50%{visibility:visible}}
 @keyframes mhBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+@keyframes rcHint{0%{box-shadow:0 0 0 0 var(--brass)}100%{box-shadow:0 0 0 12px transparent}}
 @keyframes flagWave{0%,100%{transform:none}25%{transform:skewY(12deg) scaleX(.8)}60%{transform:skewY(-8deg) scaleX(.92)}}
 .btn:active{background:var(--turf)}
-.fchip:active,.hchip:active,.replay:active{border-color:var(--turf-text)}
-@media (prefers-reduced-motion:reduce){ .replay{display:none} }
+.fchip:active,.hchip:active,.rc-re:active{border-color:var(--turf-text)}
+.rc-play:hover{background:var(--turf)}
+.rc-re:hover{border-color:var(--turf-text)}
+/* 動きを減らす設定では自動でも手動でも走らせない（帯でその日の展開は見られる） */
+@media (prefers-reduced-motion:reduce){ .rc-re,.rc-play{display:none} }
 </style>
 
 <svg class="defs" id="silkDefs" width="0" height="0" aria-hidden="true" focusable="false"></svg>
@@ -588,12 +638,15 @@ a:hover{text-decoration-color:currentColor}
   <main>
     <section id="standings" class="panel" role="tabpanel" aria-labelledby="tab-standings">
       <div class="race" id="race">
-        <div class="sh"><span class="fl" aria-hidden="true"><b>残り4F</b><i></i></span><h2>レース展開</h2><span class="sub">合計 pt を着差にして</span></div>
-        <figure class="race-fig" id="raceFig"><canvas id="raceCanvas" role="img" aria-label="レース展開"></canvas></figure>
-        <div class="race-foot">
-          <p class="fine" id="raceCap">ゴール板にいるのが首位。間隔は pt 差に比例させ、画面に収まるよう縮めています（着差の表記は下の順位表で）。毛色は各自の稼ぎ頭です。</p>
-          <button type="button" class="replay" id="raceReplay"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-1.8-4.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M15.4 2.6v3.8h-3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>もう一度走らせる</button>
+        <div class="sh"><span class="fl" aria-hidden="true"><b>残り4F</b><i></i></span><h2>レース展開</h2><span class="sub" id="raceSub">シーズンを早回しで</span></div>
+        <figure class="race-fig" id="raceFig"><canvas id="raceCanvas" role="img" aria-label="レース展開" aria-describedby="raceDesc"></canvas></figure>
+        <div class="race-ctl" id="raceCtl">
+          <button type="button" class="rc-play" id="racePlay" aria-label="再生" title="再生"><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.6v10.8L13.2 8z" fill="currentColor"/></svg><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.8 2.8h3v10.4h-3zM9.2 2.8h3v10.4h-3z" fill="currentColor"/></svg></button>
+          <button type="button" class="rc-re" id="raceRestart" aria-label="最初から" title="最初から"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.6 10.4a5.7 5.7 0 1 1-1.7-4.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M15.2 2.6v3.9h-3.9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="tline" id="raceTl" role="slider" tabindex="0" aria-label="シーズンの日付（なぞるとその日の展開へ）" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"><div class="tl-in" id="raceTlIn"></div></div>
         </div>
+        <p class="fine race-cap" id="raceCap">帯をなぞると、その日の展開に動かせます</p>
+        <p class="sr-only" id="raceDesc"></p>
       </div>
       <div class="st-grid">
         <div class="block">
@@ -660,7 +713,7 @@ a:hover{text-decoration-color:currentColor}
   </footer>
 </div>
 
-<script type="application/json" id="pog-data">{"asOf":"2026-10-11","updatedLabel":"2026/10/11(日) 夕方","derbyDate":"2027-05-30","members":[{"id":"kotsuji","name":"小辻","waku":3},{"id":"yoshida","name":"吉田","waku":4},{"id":"kono","name":"河野","waku":7},{"id":"keigo","name":"Keigo","waku":5,"alias":"アカイトリノムスコ"}],"prizeGuide":[{"label":"2歳新馬","pt":"78"},{"label":"2歳未勝利","pt":"59"},{"label":"2歳1勝クラス（特別）","pt":"114"},{"label":"2歳オープン","pt":"170"},{"label":"リステッド","pt":"180"},{"label":"2歳G3","pt":"340–360"},{"label":"2歳G2","pt":"400"},{"label":"阪神JF","pt":"750"},{"label":"朝日杯FS・ホープフルS","pt":"800"},{"label":"桜花賞","pt":"1,400"},{"label":"オークス","pt":"1,500"},{"label":"皐月賞","pt":"2,000"},{"label":"日本ダービー","pt":"3,000"}],"schedule":[{"date":"2026-10-17","name":"アイビーS","grade":"L","course":"東京 芝1800m","pt":"180","key":"アイビー"},{"date":"2026-10-17","name":"もみじS","grade":"OP","course":"京都 芝1400m","pt":"170","key":"もみじ"},{"date":"2026-10-24","name":"アルテミスS","grade":"G3","course":"東京 芝1600m","note":"牝馬限定","pt":"320","key":"アルテミス"},{"date":"2026-10-25","name":"萩S","grade":"L","course":"京都 芝1800m","pt":"180","key":"萩S|萩ステークス"},{"date":"2026-10-31","name":"ファンタジーS","grade":"G3","course":"京都 芝1400m","note":"牝馬限定","pt":"320","key":"ファンタジー"},{"date":"2026-11-07","name":"京王杯2歳S","grade":"G2","course":"東京 芝1400m","pt":"400","key":"京王杯"},{"date":"2026-11-14","name":"デイリー杯2歳S","grade":"G2","course":"京都 芝1600m","pt":"400","key":"デイリー杯"},{"date":"2026-11-23","name":"東京スポーツ杯2歳S","grade":"G2","course":"東京 芝1800m","pt":"400","key":"東スポ|東京スポーツ杯"},{"date":"2026-11-28","name":"ラジオNIKKEI杯京都2歳S","grade":"G3","course":"京都 芝2000m","pt":"360","key":"京都2歳"},{"date":"2026-12-13","name":"阪神ジュベナイルフィリーズ","grade":"G1","course":"阪神 芝1600m","note":"牝馬限定","pt":"750","key":"阪神ジュベナイル|阪神JF"},{"date":"2026-12-20","name":"朝日杯フューチュリティS","grade":"G1","course":"阪神 芝1600m","pt":"800","key":"朝日杯"},{"date":"2026-12-26","name":"ホープフルS","grade":"G1","course":"中山 芝2000m","pt":"800","key":"ホープフル"},{"date":"2027-04-11","name":"桜花賞","grade":"G1","course":"阪神 芝1600m","note":"牝馬限定・額は2026年の値","pt":"1,400","tentative":true,"key":"桜花賞"},{"date":"2027-04-18","name":"皐月賞","grade":"G1","course":"中山 芝2000m","note":"額は2026年の値","pt":"2,000","tentative":true,"key":"皐月賞"},{"date":"2027-05-09","name":"NHKマイルC","grade":"G1","course":"東京 芝1600m","note":"額は2026年の値","pt":"1,300","tentative":true,"key":"NHKマイル"},{"date":"2027-05-23","name":"オークス","grade":"G1","course":"東京 芝2400m","note":"牝馬限定・額は2026年の値","pt":"1,500","tentative":true,"key":"オークス"},{"date":"2027-05-30","name":"日本ダービー","grade":"G1","course":"東京 芝2400m","note":"POG の最終日・額は2026年の値","pt":"3,000","tentative":true,"key":"ダービー|東京優駿"}],"horses":[{"id":"chestino","name":"チェスティーノ","member":"kotsuji","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-04-11","sire":"エフフォーリア","dam":"チェッキーノ","damSire":"キングカメハメハ","trainer":"鹿戸雄一","center":"美浦","owner":"サンデーレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額1億2,000万円（1口300万円×40口。netkeiba表示。税込/税抜は未確認）","family":"半姉に牝馬二冠チェルヴィニア、半兄に重賞勝ちノッキングポイント","memo":"新馬を1番人気で快勝。その後両トモの硬さで百日草特別を回避し、天栄で運動を制限中。復帰時期は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106452/","races":[{"date":"2026-08-30","course":"新潟","raceNo":"4R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":11,"finish":1,"popularity":1,"jockey":"C.ルメール","time":"1:49.0","prize":780,"note":"2着ペントザリスに1馬身差。上がり33.4（メンバー最速は2着馬の33.3）","url":"https://race.netkeiba.com/race/result.html?race_id=202604030404"}],"status":"1勝","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"予定していた百日草特別（11/8 東京芝2000・1勝クラス）は回避。クラブが10/10にホームページで発表した。次走は未定。10/10〜10/12の出馬表にも名前はない","url":"https://news.netkeiba.com/?pid=news_view&no=345148"},"news":[{"date":"2026-10-10","headline":"両トモの硬さで百日草特別を回避、天栄で経過観察","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345148"},{"date":"2026-09-26","headline":"次走は百日草特別で連勝を狙うと報道（10/10に回避発表）","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343782"},{"date":"2026-09-01","headline":"6月予定から延びた初陣で快勝、エフフォーリア産駒の期待馬","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341328"},{"date":"2026-08-31","headline":"新馬完勝、鹿戸師は先を見て大事に育てる方針","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341253"},{"date":"2026-08-30","headline":"1番人気で初陣V、ルメールはもう少し長い距離も可と評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341128"}],"whereabouts":"放牧中（福島・ノーザンファーム天栄で運動を制限しながら経過観察）。出典: スポーツ報知 2026-10-10。netkeiba馬ページ（スマホ版）も「放牧中」と表示（2026-10-11閲覧）"},{"id":"kingria","name":"キングリア","member":"kotsuji","certainty":"confirmed","sex":"牡","coat":"青鹿毛","birth":"2024-01-23","sire":"エピファネイア","dam":"リアアメリア","damSire":"ディープインパクト","trainer":"中内田充正","center":"栗東","owner":"シルクレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額1億円（1口20万円×500口。netkeiba表示。税込/税抜は未確認）","family":"母リアアメリア（アルテミスS・ローズS）の初子","memo":"阪神芝1800の2歳新馬で1986年以降最速の1:46.9で勝った。気性面に課題はあるが、川田騎手は能力を高く評価","netkeibaUrl":"https://db.netkeiba.com/horse/2024106684/","races":[{"date":"2026-09-21","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":10,"finish":1,"popularity":2,"jockey":"川田将雅","time":"1:46.9","prize":780,"note":"2着シホノノービレ（1番人気）に1馬身半差。上がり最速34.0。阪神芝1800の2歳新馬戦では1986年以降最速（報知）","url":"https://race.netkeiba.com/race/result.html?race_id=202609040705"}],"status":"1勝","next":{"basis":"想定","date":"2026-11-23","race":"東京スポーツ杯2歳S（G2）芝1800m","course":"東京","grade":"G2","jockey":"","note":"netkeibaの次走欄にある独自の想定（10/2掲載。ページ上でも公式発表と違うことがあると注記）。陣営・クラブの発表や報道での裏付けはなく、デイリー9/22は次走未定。10/10〜10/12の出馬表に名前はなく、10/17-18は10/11時点で登録・想定ともなし","url":"https://db.netkeiba.com/social/horse_info_next.html?id=2024106684"},"news":[{"date":"2026-09-22","headline":"新馬快勝、川田は気難しさを認めつつ能力を高く評価","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343401"},{"date":"2026-09-22","headline":"1番人気馬との競り合いに勝ち初陣V、師は母似の気の強さに言及","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343381"},{"date":"2026-09-21","headline":"阪神芝1800新馬の最速タイムを0.3秒更新、SNSでも話題","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343377"},{"date":"2026-09-17","headline":"1週前はCWで川田騎乗、終い1Fは当日の2歳最速","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=342990"},{"date":"2026-09-11","headline":"川田騎乗で9/21阪神5Rにデビュー予定","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=342419"}],"whereabouts":"放牧中（場所は未確認）。netkeiba近況 2026-09-25「休養のため放牧」。netkeiba馬ページ（スマホ版）も「放牧中」と表示（2026-10-11閲覧）"},{"id":"cutiebond","name":"キューティボンド","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"黒鹿毛","birth":"2024-01-22","sire":"サートゥルナーリア","dam":"コーステッド","damSire":"Tizway","trainer":"福永祐一","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム（安平町）","price":"1億8,700万円（税込、2024年セレクトセール当歳。税抜では1億7,000万円）","family":"半兄ダノンベルーガ（共同通信杯）、半姉ボンドガール。母は米G1（BCジュヴェナイルフィリーズターフ）で2着","memo":"高額の良血馬。京都芝1600の新馬を上がり最速で勝ち、時計1:33.1。体が減りやすく調整は控えめ","netkeibaUrl":"https://db.netkeiba.com/horse/2024106316/","races":[{"date":"2026-10-10","course":"京都","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1600,"going":"良","field":14,"finish":1,"popularity":1,"jockey":"川田将雅","time":"1:33.1","prize":780,"note":"2着ドンクラッシュに1馬身1/4差。上がり最速34.4。netkeibaの馬DBには未反映で、結果ページで確認","url":"https://race.netkeiba.com/race/result.html?race_id=202608040305"}],"status":"1勝","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"10/10の新馬勝ちの直後。10/10〜11の報知・デイリー・スポニチの記事に次走の記載はない。netkeibaの次走欄も空欄（10/11）","url":"https://news.netkeiba.com/?pid=news_view&no=345233"},"news":[{"date":"2026-10-11","headline":"新馬快勝、川田はこの先の順調な成長に期待","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345233"},{"date":"2026-10-11","headline":"直線外から最速の末脚で差し切り、勝ち時計1:33.1を評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345230"},{"date":"2026-10-10","headline":"レース後コメント、川田はとても良い馬と評価","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345182"},{"date":"2026-10-09","headline":"最終追いは馬なりで終い11.2秒、師は芝での走りに好感","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345039"},{"date":"2026-08-06","headline":"8/6函館でゲート試験パス、助手は物怖じしない気性を評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=338924"}],"whereabouts":"在厩（栗東・福永厩舎）。netkeiba馬ページ（スマホ版）の表示「入厩中」（2026-10-11閲覧）。10/10に京都で出走"},{"id":"illulissat","name":"イルリサット","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"芦毛","birth":"2024-01-23","sire":"キズナ","dam":"アエロリット","damSire":"クロフネ","trainer":"菊沢隆徳","center":"美浦","owner":"サンデーレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額7,000万円（1口175万円×40口。netkeiba表示。税込/税抜は未確認）","family":"母アエロリット（NHKマイルC）の3番子で、初めての牝馬","memo":"新馬2着（勝ち馬ヴァンクライ）。横山武史騎手はテンションの高さを課題に挙げた。放牧中で次走は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106115/","races":[{"date":"2026-08-30","course":"札幌","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":8,"finish":2,"popularity":2,"jockey":"横山武史","time":"1:53.3","prize":310,"note":"勝ち馬ヴァンクライ（武豊騎乗）から1馬身半差。3着とは7馬身差","url":"https://race.netkeiba.com/race/result.html?race_id=202601020405"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"8/30の新馬2着のあと、次走の報道はない（netkeibaニュース検索で8/30以降の記事なし）。netkeibaの次走欄も空欄。10/10〜10/12の出馬表にも名前はない（10/11）","url":"https://db.netkeiba.com/horse/2024106115/"},"news":[{"date":"2026-08-30","headline":"新馬2着、横山武史はテンション面を今後の課題に挙げる","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341159"},{"date":"2026-08-28","headline":"1週前は函館芝で5F62.9秒、母も管理した菊沢師が期待","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340907"},{"date":"2026-08-27","headline":"最終追いは横山武を背に併入、8/30札幌でデビューへ","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340889"},{"date":"2026-08-25","headline":"厩舎スタッフは母より長い距離向きの可能性を指摘","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340675"},{"date":"2026-04-30","headline":"4月末に美浦へ入厩、体は緩いが弾む走りに好印象","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=329668"}],"whereabouts":"放牧中（場所は未確認）。netkeiba馬ページ（スマホ版）の表示（2026-10-11閲覧）"},{"id":"yutalight","name":"ユタライト","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"鹿毛","birth":"2024-01-29","sire":"ロードカナロア","dam":"ユナカイト","damSire":"ヨハネスブルグ","trainer":"宮田敬介","center":"美浦","owner":"シルクレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額5,000万円（1口10万円×500口。netkeiba表示。税込/税抜は未確認）","family":"伯母アーモンドアイ、祖母フサイチパンドラ。半兄にエピックフライト","memo":"2戦とも大敗（6着・13着）。ルメール騎手は物見をして進まなかったと指摘。放牧中で次走は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106664/","races":[{"date":"2026-06-13","course":"東京","raceNo":"5R","raceName":"2歳新馬（牝）","grade":"新馬","surface":"芝","distance":1600,"going":"良","field":7,"finish":6,"popularity":2,"jockey":"C.ルメール","time":"1:40.3","prize":0,"note":"勝ち馬シャンデヴァーグから1.8秒差。5着とはアタマ差","url":"https://race.netkeiba.com/race/result.html?race_id=202605030305"},{"date":"2026-08-16","course":"新潟","raceNo":"1R","raceName":"2歳未勝利（牝）","grade":"未勝利","surface":"芝","distance":1600,"going":"良","field":13,"finish":13,"popularity":5,"jockey":"丸山元気","time":"1:37.3","prize":0,"note":"最下位。勝ち馬サトノスプレマシーから3.2秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202604020801"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"8/16の未勝利13着のあと、次走の報道はない（netkeibaニュース検索で6/13以降の記事なし）。netkeibaの次走欄も空欄。10/10〜10/12の出馬表にも名前はない（10/11）","url":"https://db.netkeiba.com/horse/2024106664/"},"news":[{"date":"2026-06-13","headline":"新馬6着、ルメールは物見を指摘し、チークを着ければ集中するとの見方","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=334152"},{"date":"2026-06-12","headline":"6/13東京の牝馬新馬に出走、鞍上はルメール","source":"netkeiba","url":"https://news.netkeiba.com/?pid=news_view&no=333820"},{"date":"2026-06-10","headline":"5月中旬から時計、師は併せ馬で気持ちを前向きにと説明","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=333775"},{"date":"2026-04-29","headline":"宮田師はマイル向きで完成度が高いと評価","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=329484"},{"date":"2026-04-02","headline":"4/1にゲート試験合格、6月の東京デビューを視野","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=326805"}],"whereabouts":"放牧中（場所は未確認）。netkeiba馬ページ（スマホ版）の表示（2026-10-11閲覧）"},{"id":"eldborg","name":"エルドボルグ","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-22","coat":"鹿毛","sire":"キタサンブラック","dam":"コンサートホール","damSire":"Dubawi","family":"母は愛G3パークS勝ち・愛1000ギニー3着、祖母Wasは英オークス馬","breeder":"ノーザンファーム（安平町）","owner":"サンデーレーシング（サンデーサラブレッドクラブ）","price":"募集総額1億円（1口250万円×40口。税込か税抜かは未確認）","trainer":"斉藤崇史","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106314/","status":"1勝","memo":"小倉の新馬（芝2000m）を1番人気で勝利。次走は東スポ杯2歳Sの予定で、同じ厩舎のクロワデュノールと同じ路線","whereabouts":"放牧中（ノーザンファームしがらき）。出典は2026-09-19の報知・スポニチ。netkeibaの近況欄も7/17の放牧が最後で、10/11時点で帰厩の情報は見つからない","races":[{"date":"2026-07-12","course":"小倉","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":2000,"going":"良","field":8,"finish":1,"popularity":1,"jockey":"団野大成","time":"2:02.7","prize":780,"note":"2着シックパラソルにアタマ差。上がり35.2秒","url":"https://race.netkeiba.com/race/result.html?race_id=202610020605"}],"next":{"basis":"報道","date":"2026-11-23","race":"東京スポーツ杯2歳S（G2）芝1800m","course":"東京","grade":"G2","jockey":"","note":"9/19に報知とスポニチが、サンデーサラブレッドクラブの発表として報じた。JRAの2026年第5回東京競馬番組でも5回東京6日目（11/23・祝）の11R。騎手はまだ発表されていない","url":"https://news.netkeiba.com/?pid=news_view&no=343147"},"news":[{"date":"2026-09-19","headline":"次走は東スポ杯2歳Sと発表、クロワデュノールと同じ路線","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=343147"},{"date":"2026-09-19","headline":"東スポ杯2歳Sへ。今はノーザンファームしがらきで調整中","source":"スポニチ","url":"https://news.netkeiba.com/?pid=news_view&no=343146"},{"date":"2026-07-13","headline":"小倉の新馬を差し切り勝ち。団野騎手は最後の伸びを評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=336816"},{"date":"2026-07-12","headline":"斉藤崇厩舎のキタサン産駒が新馬勝ち、大物候補と紹介","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336706"},{"date":"2026-07-08","headline":"最終追い切りは上々。斉藤崇師はクラシックを目標に","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336384"}]},{"id":"lagarriga","name":"ラガリーガ","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-03","coat":"青鹿毛","sire":"キズナ","dam":"ラサルダン","damSire":"Kingsalsa","family":"母ラサルダンは仏G2サンドリンガム賞など海外5勝の重賞馬","breeder":"ノーザンファーム（安平町）","owner":"キャロットファーム（キャロットクラブ）","price":"募集総額1億円（1口25万円×400口。税込か税抜かは未確認）。セリ取引なし","trainer":"手塚貴久","center":"美浦","netkeibaUrl":"https://db.netkeiba.com/horse/2024106670/","status":"1勝","memo":"新馬8着のあと、未勝利戦を2歳コースレコードで勝ち上がり。10/17のアイビーS（L）に岩田望来騎手で出る予定","whereabouts":"在厩（美浦）。2026-09-30のサンスポで、同日に美浦Wコースで追い切ったと報じられた（netkeibaの近況欄は8/14の放牧が最後）","races":[{"date":"2026-06-21","course":"東京","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"稍重","field":13,"finish":8,"popularity":1,"jockey":"C.ルメール","time":"1:51.3","prize":0,"note":"勝ち馬アヴィアトーレから0.8秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202605030605"},{"date":"2026-08-09","course":"新潟","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"going":"良","field":16,"finish":1,"popularity":1,"jockey":"坂井瑠星","time":"2:00.0","prize":590,"note":"2着シアルナーレに3/4馬身差。2歳コースレコード（報知・サンスポが報道）","url":"https://race.netkeiba.com/race/result.html?race_id=202604020601"}],"next":{"basis":"報道","date":"2026-10-17","race":"アイビーS（L）芝1800m","course":"東京","grade":"L","jockey":"岩田望来","note":"9/30のサンスポがキャロットクラブの発表として報道（岩田望来騎手は予定）。netkeibaの次走情報（10/2掲載）も10/17アイビーS。JRAの番組表では4回東京6日目の9Rで、6・7日目の特別登録は10/12締切なので、10/11時点ではまだ登録は出ていない","url":"https://news.yahoo.co.jp/articles/deff8d2532b2285a18da6d2ea7fe5101c881b06c"},"news":[{"date":"2026-09-30","headline":"次走はアイビーS、岩田望来騎手と新コンビの予定","source":"サンケイスポーツ","url":"https://news.yahoo.co.jp/articles/deff8d2532b2285a18da6d2ea7fe5101c881b06c"},{"date":"2026-08-09","headline":"新馬8着からのレコード勝ちにSNSで驚きの声","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=339235"},{"date":"2026-08-09","headline":"2戦目の新潟で初勝利、時計は2歳のコースレコード","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=339182"},{"date":"2026-06-19","headline":"ルメール騎乗で新馬戦へ。手塚久師は勝てる力があると評価","source":"スポニチ","url":"https://news.netkeiba.com/?pid=news_view&no=334702"},{"date":"2026-06-18","headline":"デビュー前の最終追い切りで格上の古馬を半馬身上回る","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334682"}]},{"id":"jangod","name":"ジャンゴッド","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-02-21","coat":"鹿毛","sire":"キタサンブラック","dam":"マーゴットディド","damSire":"Exceed And Excel","family":"半兄に皐月賞馬ジャスティンミラノ。母は英G1ナンソープSの勝ち馬","breeder":"ノーザンファーム（安平町）","owner":"藤田晋","price":"2024年ノーザンファームミックスセール（当歳、10/22開催）で2億9,000万円（税抜）＝3億1,900万円（税込）","trainer":"杉山晴紀","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106624/","status":"未勝利","memo":"2.9億円（税抜）の良血馬だが3戦して未勝利。連闘で臨んだ10/10京都は4番人気で2着と前進","whereabouts":"10/10に京都で出走した時点では在厩（栗東）。その後の在厩・放牧は未確認","races":[{"date":"2026-07-05","course":"小倉","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"重","field":12,"finish":8,"popularity":1,"jockey":"川田将雅","time":"1:53.0","prize":0,"note":"勝ち馬ポルトブルーから1.0秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202610020405"},{"date":"2026-10-04","course":"京都","raceNo":"2R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1600,"going":"良","field":9,"finish":5,"popularity":3,"jockey":"川田将雅","time":"1:34.3","prize":59,"note":"勝ち馬レイクイーンから1.4秒差。馬体重は+18kg","url":"https://race.netkeiba.com/race/result.html?race_id=202608040202"},{"date":"2026-10-10","course":"京都","raceNo":"3R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1800,"going":"良","field":8,"finish":2,"popularity":4,"jockey":"松若風馬","time":"1:46.7","prize":240,"note":"連闘。勝ち馬ドーンレーサーに1/2馬身差。netkeibaの馬DBにはまだ反映されていない","url":"https://race.netkeiba.com/race/result.html?race_id=202608040303"}],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"10/10の2着後の次走報道は、10/11時点で見つからない（netkeibaの次走情報も空欄）。10/12の京都・東京の2歳戦の出馬表にも名前はない","url":""},"news":[{"date":"2026-10-10","headline":"連闘で京都3Rへ。皐月賞馬の半弟が初勝利を狙う","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=345125"},{"date":"2026-10-04","headline":"3カ月ぶりの2戦目は京都2R、最終追い切りの動きは上々","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=344559"},{"date":"2026-07-05","headline":"デビュー戦は1番人気に推されたが8着に終わる","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336125"},{"date":"2026-07-03","headline":"新馬戦を前に、杉山晴師が前向きな気性を評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=335907"},{"date":"2026-07-02","headline":"7/5小倉でデビュー予定、助手は態勢が整ったと手応え","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=335878"}]},{"id":"dynamike","name":"ダイナマイク","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-11","coat":"鹿毛","sire":"キタサンブラック","dam":"シンプリーラヴィシング","damSire":"Laoban","family":"母シンプリーラヴィシングは米G1アルシバイアディーズSの勝ち馬","breeder":"ノーザンファーム（安平町）","owner":"藤田晋","price":"2024年セレクトセール（当歳）で2億4,000万円（税抜）＝2億6,400万円（税込）","trainer":"中内田充正","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106368/","status":"未勝利","memo":"セレクトセール2.4億円（税抜）の高額馬。川田騎乗の新馬・未勝利はどちらも上位人気で4着、初勝利待ち","whereabouts":"不明。netkeiba 8/18の入厩情報で8/15にノーザンファームしがらきから栗東へ入厩し、9/27に阪神で出走。その後の在厩・放牧は未確認","races":[{"date":"2026-06-14","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":8,"finish":4,"popularity":1,"jockey":"川田将雅","time":"1:49.5","prize":120,"note":"勝ち馬インカルナータから1.2秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609030405"},{"date":"2026-09-27","course":"阪神","raceNo":"4R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"going":"良","field":7,"finish":4,"popularity":2,"jockey":"川田将雅","time":"2:01.5","prize":89,"note":"勝ち馬ガリアルダから0.7秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609040904"}],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"9/27の未勝利4着のあとの次走は、報道もnetkeibaの次走情報も見つからない。10/10・10/11の2歳戦の結果と10/12の2歳戦の出馬表にも名前はない","url":""},"news":[{"date":"2026-08-18","headline":"8/15にノーザンファームしがらきから栗東へ入厩","source":"netkeiba","url":"https://news.netkeiba.com/?pid=news_view&no=340038"},{"date":"2026-06-14","headline":"1番人気のデビュー戦は4着、勝ったのはインカルナータ","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334268"},{"date":"2026-06-13","headline":"出世レースとされる宝塚記念の日の阪神新馬戦に登場予定","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334179"},{"date":"2026-06-12","headline":"新馬戦を前に、福永助手が背中の良さを評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=334005"},{"date":"2026-06-10","headline":"坂路で併入の最終追い切り、6/14阪神デビューへ調整順調","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=333827"}]},{"id":"rejeunoir","name":"レジューノワール","member":"yoshida","certainty":"confirmed","sex":"牝","birth":"2024-01-12","coat":"鹿毛","sire":"キタサンブラック","dam":"アーモンドアイ","damSire":"ロードカナロア","family":"母はG1・9勝のアーモンドアイで、その3番仔で初の牝馬（通称16冠ベイビー）","breeder":"ノーザンファーム（安平町）","owner":"シルクレーシング（シルク・ホースクラブ）","price":"募集総額1億円（1口20万円×500口。税込か税抜かは未確認）","trainer":"木村哲也","center":"美浦","netkeibaUrl":"https://db.netkeiba.com/horse/2024106164/","status":"未出走","memo":"7/24に美浦でゲート試験に合格したあと天栄へ放牧。10/11時点で未出走、デビュー時期は未発表","whereabouts":"放牧中（ノーザンファーム天栄）。シルク公式の所属馬ページの在厩場所（2026-10-11閲覧）","races":[],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"シルク公式では在厩場所がノーザンファーム天栄。7/24の報道では秋のデビューが目標とされたが、帰厩日・デビュー戦は未発表","url":"https://www.silkhorseclub.jp/horse_info/shozoku/detail/2024002/view"},"news":[{"date":"2026-07-24","headline":"美浦でゲート試験に合格、天栄へ放牧して秋デビューを目指す","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11874712"},{"date":"2026-07-15","headline":"美浦に入厩し坂路でキャンター、柔らかな脚さばきに好評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=337071"}]},{"id":"meagloria","name":"メアグローリア","member":"kono","certainty":"confirmed","sex":"牝","coat":"栗毛","birth":"2024-01-23","sire":"サリオス","dam":"アンティフォナ","damSire":"Songandaprayer","family":"半兄に2020年NHKマイルC勝ちのラウダシオン（同じ斉藤崇厩舎）","trainer":"斉藤崇史","center":"栗東","owner":"シルクレーシング","breeder":"社台コーポレーション白老ファーム","price":"シルクHC募集総額3,500万円（1口7万円×500口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106969/","races":[{"date":"2026-06-13","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1200,"field":11,"finish":2,"popularity":1,"jockey":"川田将雅","going":"良","time":"1:08.7","prize":310,"note":"勝ち馬ロンドンガーズに3馬身差（0.5秒）","url":"https://race.netkeiba.com/race/result.html?race_id=202609030305"},{"date":"2026-07-26","course":"中京","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1400,"field":9,"finish":3,"popularity":1,"jockey":"川田将雅","going":"良","time":"1:21.1","prize":150,"note":"勝ち馬サンタンジェロから1馬身3/4＋半馬身（0.4秒）。単勝1.5倍","url":"https://race.netkeiba.com/race/result.html?race_id=202607020201"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"https://www.silkhorseclub.jp/horse_info/shozoku/detail/2024056/view","note":"ノーザンファームしがらきで放牧中。7/26のあと、次走の発表も報道も見つからない（10/11時点）。10/3-4・10/10-12の出馬表にも名前なし"},"news":[{"date":"2026-07-26","headline":"中京の未勝利戦は1番人気で3着、川田騎手は力は出したと評価","source":"ラジオNIKKEI（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=338001"},{"date":"2026-07-14","headline":"しがらきから栗東へ戻り、7/26中京の未勝利戦へ","source":"netkeiba（栗東トレセンニュース）","url":"https://news.netkeiba.com/?pid=news_view&no=336970"},{"date":"2026-06-13","headline":"新馬戦は1番人気2着、川田騎手はまだ幼く伸びしろありと","source":"ラジオNIKKEI（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=334149"},{"date":"2026-06-10","headline":"クロワデュノールと併せ馬、師は体の使い方が今後の課題と","source":"日刊スポーツ","url":"https://www.nikkansports.com/keiba/news/202606100000157.html"},{"date":"2026-06-08","headline":"6/13阪神芝1200で川田騎手とデビュー予定、半兄はラウダシオン","source":"netkeiba（関西馬メイクデビュー情報）","url":"https://news.netkeiba.com/?pid=news_view&no=333676"}],"whereabouts":"放牧中（ノーザンファームしがらき）。シルク公式の所属馬ページで在厩場所「ノーザンファームしがらき」、netkeibaスマホ版で「放牧中」、JRA競走馬情報で「放牧」（2026-10-11閲覧）","memo":"2戦とも1番人気で2着・3着。未勝利勝ちまであと一歩。しがらきで放牧中、次走は未定"},{"id":"luckysparkle","name":"ラッキースパークル","member":"kono","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-02-19","sire":"エピファネイア","dam":"ラッキーライラック","damSire":"オルフェーヴル","family":"母はG1・4勝のラッキーライラック（母も松永幹厩舎で管理）","trainer":"松永幹夫","center":"栗東","owner":"サンデーレーシング","breeder":"ノーザンファーム","price":"サンデーR募集総額1億2,000万円（1口300万円×40口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106675/","races":[{"date":"2026-06-28","course":"福島","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":14,"finish":3,"popularity":2,"jockey":"戸崎圭太","going":"良","time":"1:49.1","prize":200,"note":"勝ち馬ウインワーグナーからアタマ＋1馬身半（0.3秒）。直線で進路が開かなかった","url":"https://race.netkeiba.com/race/result.html?race_id=202603020205"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"https://db.netkeiba.com/horse/2024106675/","note":"6/28の新馬3着のあと出走なし。次走の発表も報道も見つからない（10/11時点）。netkeibaスマホ版の表示は放牧中。10/3-4・10/10-12の出馬表にも名前なし"},"news":[{"date":"2026-06-28","headline":"デビュー戦は直線で進路が開かず3着、師は右にモタれる点を課題に","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=335521"},{"date":"2026-06-26","headline":"日曜福島の新馬戦へ、母も管理した松永幹師が似た面があると期待","source":"サンケイスポーツ","url":"https://www.sanspo.com/race/article/general/20260626-6K3RRPMITZLWNNJZZWZ2AOORFU/"},{"date":"2026-06-24","headline":"母の担当だった助手が受け持ち、バネのある走りと手応え","source":"スポーツ報知（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=335136"},{"date":"2026-06-04","headline":"6/28福島5Rで戸崎騎手とデビュー予定、ハミに敏感な面も","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=333240"},{"date":"2026-04-24","headline":"ゲート試験をパス、母を手がけた助手が好素材と評価","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=329006"}],"whereabouts":"放牧中（場所は未確認）。netkeibaスマホ版の馬ページの表示（2026-10-11閲覧）","memo":"新馬3着のあと出走なし。口の重さや右にモタれる面が課題と陣営。放牧中で次走未定"},{"id":"odioperdere","name":"オディオペルデレ","member":"kono","certainty":"confirmed","sex":"牡","coat":"鹿毛","birth":"2024-02-28","sire":"レイデオロ","dam":"ラヴズオンリーユー","damSire":"ディープインパクト","family":"母はBC制覇などG1・4勝のラヴズオンリーユー。半兄ラヴズプレミアム","trainer":"矢作芳人","center":"栗東","owner":"DMMドリームクラブ（DMMバヌーシー）","breeder":"ノーザンファーム","price":"DMMバヌーシー募集総額1億8,000万円（1口4.5万円×4,000口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106667/","races":[],"status":"未出走","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"","note":"7月の飛節の腫れからの回復待ち。帰厩・デビューの発表はまだない。10/17-18の新馬想定にも名前なし"},"news":[],"whereabouts":"牧場で療養中（場所は公式では未確認）","memo":"7月に飛節の腫れで休養。10/11時点でデビュー時期は未発表"},{"id":"sweepradius","name":"スイープラディウス","member":"kono","certainty":"confirmed","sex":"牡","coat":"栗毛","birth":"2024-02-15","sire":"レイデオロ","dam":"スイープセレリタス","damSire":"ハーツクライ","family":"祖母は宝塚記念などG1・3勝のスイープトウショウ","trainer":"辻哲英","center":"美浦","owner":"シルクレーシング","breeder":"ノーザンファーム","price":"シルクHC募集総額4,500万円（1口9万円×500口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106392/","races":[],"status":"未出走","next":{"basis":"想定","date":"2026-10-18","race":"2歳新馬 芝2000m（東京5R）","course":"東京","grade":"新馬","jockey":"川田将雅","url":"https://www.keibanomiryoku.com/%e6%96%b0%e9%a6%ac%e6%88%a6","note":"競馬の魅力の新馬想定（10/10更新）に川田騎手で載っている。出馬投票は10/15"},"news":[{"date":"2026-07-29","headline":"美浦・辻厩舎に入厩し坂路で始動、完成途上も脚さばきは上々","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=338237"}],"whereabouts":"在厩（美浦・辻哲英厩舎）。シルク公式の所属馬ページで在厩場所「美浦トレセン」、netkeibaスマホ版で「入厩中」（2026-10-11閲覧）","memo":"10/18東京芝2000で川田騎手とデビュー予定（想定）。祖母スイープトウショウの良血"},{"id":"youngrich","name":"ヤングリッチ","member":"kono","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-04-18","sire":"レイデオロ","dam":"フォエヴァーダーリング","damSire":"Congrats","family":"半兄にBCクラシックを勝ったフォーエバーヤング","trainer":"矢作芳人","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム","price":"2025年セレクトセール（1歳）3億3,000万円（税込）。報道では3億円（税抜）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106542/","races":[],"status":"未出走","next":{"basis":"報道","date":"2026-10-18","race":"2歳新馬 芝2000m（京都5R）","course":"京都","grade":"新馬","jockey":"坂井瑠星","url":"https://news.netkeiba.com/?pid=news_view&no=345083","note":"報知（10/1）が矢作師の話として京都芝2000・坂井騎手と報道し、デイリー（10/9）が京都5Rと明記。競馬の魅力の新馬想定も同じ。出馬投票は10/15"},"news":[{"date":"2026-10-09","headline":"18日京都5Rで初陣、1週前のCW併せで年長馬に先着を許さず","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=345083"},{"date":"2026-10-08","headline":"坂井騎手を背にCWで併せ馬、終い11秒4と反応が良化","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=344979"},{"date":"2026-10-01","headline":"矢作師が10/18京都芝2000・坂井騎手での初陣を表明、まず芝で","source":"スポーツ報知（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=344325"},{"date":"2026-07-24","headline":"7/24にゲート試験合格、坂井騎手は兄の同時期よりしっかりと評価","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=337838"}],"whereabouts":"在厩（栗東・矢作芳人厩舎）。10/8に栗東CWで1週前追い切り（デイリー 10/8・10/9）。netkeibaスマホ版で「入厩中」（2026-10-11閲覧）","memo":"3億円（税抜）の良血。10/18京都芝2000で坂井騎手とデビュー予定、1週前追いも好評価"},{"id":"danondax","name":"ダノンダックス","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-02-19","coat":"黒鹿毛","sire":"サートゥルナーリア","dam":"ヤンキーローズ","damSire":"All American","family":"三冠牝馬リバティアイランドの半弟（母ヤンキーローズ）","trainer":"田中博康","center":"美浦","owner":"ダノックス","breeder":"ノーザンファーム（安平町）","price":"3億4,100万円（税込、netkeiba表記。2025年セレクトセール1歳。報道の税抜は3億1,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106662/","memo":"リバティアイランドの半弟。2戦目の未勝利戦を上がり最速で完勝し、次は東スポ杯2歳Sで重賞に挑む予定","races":[{"date":"2026-07-26","course":"新潟","raceNo":"2R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1600,"field":9,"finish":2,"popularity":1,"jockey":"戸崎圭太","time":"1:37.4","going":"良","prize":310,"note":"単勝1.2倍。アタマ差2着、勝ち馬トウシンマジック（のち新潟2歳S2着）","url":"https://race.netkeiba.com/race/result.html?race_id=202604020202"},{"date":"2026-10-04","course":"東京","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1800,"field":12,"finish":1,"popularity":1,"jockey":"C.ルメール","time":"1:46.7","going":"良","prize":590,"note":"単勝1.1倍。2着イニシャルポイントに2馬身半差、上がり33.7はメンバー最速","url":"https://race.netkeiba.com/race/result.html?race_id=202605040201"}],"status":"1勝","next":{"basis":"報道","date":"2026-11-23","course":"東京","race":"東京スポーツ杯2歳S（G2）芝1800m","grade":"G2","jockey":"","note":"NF天栄での放牧を挟んで向かう予定（デイリー10/8、報知・サンスポ・東スポ10/7、スポニチ10/8）。騎手は未定（デイリー10/8）","url":"https://www.daily.co.jp/umaya/news/2026/10/08/0020904470.shtml"},"news":[{"date":"2026-10-08","headline":"NF天栄へ放牧し東スポ杯2歳Sへ、鞍上は未定","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/10/08/0020904470.shtml"},{"date":"2026-10-07","headline":"放牧を挟んで東スポ杯へ、田中博師は課題克服での上積みに期待","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=344852&pid=news_view"},{"date":"2026-10-07","headline":"東スポ杯2歳Sへ調整、田中博師が出走を決めた理由を語る","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/76350"},{"date":"2026-10-04","headline":"名付け親ルメールで初勝利、馬名は仏の地名ダックスから","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11879309"},{"date":"2026-10-04","headline":"2戦目で初V、ルメールは距離がさらに延びても対応できると評価","source":"日刊スポーツ（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/23f3fec760f4b192e34db43ad9d068cffafe2a8a"}],"whereabouts":"放牧中（NF天栄。デイリー10/8が放牧へと報道。JRA公式の競走馬情報も2026-10-11閲覧時に「放牧」表示）"},{"id":"onyourmarks","name":"オンユアマークス","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-03-30","coat":"黒鹿毛","sire":"キズナ","dam":"トレンドハンター","damSire":"マンハッタンカフェ","family":"母トレンドハンターは2011年フラワーC勝ち馬。半姉インヴォーグ","trainer":"松永幹夫","center":"栗東","owner":"ノースヒルズ","breeder":"千代田牧場（新ひだか町）","price":"6,600万円（税込、netkeiba表記。2024年セレクトセール当歳。報道の税抜は6,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024104698/","memo":"武豊騎乗の2戦目、京都芝2000mを2歳コースレコードで勝利。騎手・調教師とも伸びしろありと評価","races":[{"date":"2026-06-14","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":8,"finish":3,"popularity":2,"jockey":"武豊","time":"1:48.6","going":"良","prize":200,"note":"単勝4.2倍。勝ち馬インカルナータから0.3秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609030405"},{"date":"2026-10-11","course":"京都","raceNo":"2R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"field":10,"finish":1,"popularity":1,"jockey":"武豊","time":"1:59.1","going":"良","prize":590,"note":"2歳コースレコード（従来1:59.3）。2着ロードフローリスに2馬身差、上がり34.6はメンバー最速","url":"https://race.netkeiba.com/race/result.html?race_id=202608040402"}],"status":"1勝","next":{"basis":"未定","date":"","course":"","race":"","grade":"","jockey":"","note":"10/11の勝利後、次走は未定と報道（報知・サンスポ 10/11）","url":"https://news.netkeiba.com/?no=345255&pid=news_view"},"news":[{"date":"2026-10-11","headline":"武豊を背に2歳レコード、鞍上は前走からの成長を評価","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/76526"},{"date":"2026-10-11","headline":"京都芝2000mを差し切ってレコードV、次走は未定","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=345255&pid=news_view"},{"date":"2026-10-11","headline":"武豊騎乗で初勝利、2歳レコードを0.2秒更新","source":"日刊スポーツ（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/208947d4349cac881566ae8f794ab90335092998"},{"date":"2026-10-11","headline":"最速の上がりで差し切り、松永幹師は気性の幼さに触れる","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11879811"},{"date":"2026-06-14","headline":"新馬戦当日の紹介記事、松永幹師は初戦から走れると期待","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11872074"}],"whereabouts":"在厩（2026-10-11 京都2Rに出走。JRA公式の競走馬情報に放牧表示なし、10/11閲覧）"},{"id":"swagwalk","name":"スワッグウォーク","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-03-09","coat":"黒鹿毛","sire":"コントレイル","dam":"ブリリアントカット","damSire":"Speightstown","family":"半姉ジュワネングは関東オークス2着（母ブリリアントカット）","trainer":"武幸四郎","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム（安平町）","price":"2億7,500万円（税込、netkeiba表記。2024年セレクトセール当歳。報道の税抜は2億5,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106558/","memo":"税抜2.5億円のコントレイル産駒。新馬4着で武豊は仕上がり途上と説明。8/2以降は出走・投票なし","races":[{"date":"2026-08-02","course":"札幌","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":10,"finish":4,"popularity":2,"jockey":"武豊","time":"1:51.9","going":"良","prize":120,"note":"単勝3.5倍。勝ち馬ホウオウプレマから1.1秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202601010405"}],"status":"未勝利","next":{"basis":"未定","date":"","course":"","race":"","grade":"","jockey":"","note":"8/2の新馬戦後、次走の報道は見つからない。JRA公式では8/30〜10/12の出馬投票履歴なし、放牧表示（10/11閲覧）","url":"https://www.jra.go.jp/JRADB/accessU.html?CNAME=pw01dud002024106558%2F65"},"news":[{"date":"2026-08-02","headline":"2番人気でデビューも4着、武豊は使いつつ良化を期待","source":"馬トク報知（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/ca6d493122b027c8b679afd73ac6156cc4d4f074"},{"date":"2026-08-01","headline":"札幌の新馬戦で武豊と初陣へ、最終追い切りは僚馬に先着","source":"東スポ競馬（dメニューニュース掲載）","url":"https://topics.smt.docomo.ne.jp/article/tospokeiba/sports/tospokeiba-130027"},{"date":"2026-07-31","headline":"大型馬ながら動きは上々と武幸師、最終追い切りは浜中騎乗","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/07/31/0020651633.shtml"},{"date":"2026-07-22","headline":"8/2札幌芝1800mで武豊とデビュー予定、半姉は交流重賞2着","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11874543"},{"date":"2026-06-02","headline":"5/28に栗東でゲート試験に合格","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11871128"}],"whereabouts":"放牧中（JRA公式の競走馬情報に「放牧」表示、2026-10-11閲覧）。放牧先は未確認"},{"id":"ribbonroad","name":"リボンロード","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-04-18","coat":"青鹿毛","sire":"リオンディーズ","dam":"ジュベルアリ","damSire":"ディープインパクト","family":"半兄に重賞2勝アルナシーム、叔父にアルアイン・シャフリヤール","trainer":"上原佑紀","center":"美浦","owner":"藤田晋","breeder":"レイクヴィラファーム（洞爺湖町）","price":"7,920万円（税込、netkeiba表記。2025年セレクトセール1歳。報道の税抜は7,200万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024107154/","memo":"新馬戦は単勝1.3倍で5着。立て直し後、福島開催での復帰を目指すと報道（デイリー9/30）","races":[{"date":"2026-08-15","course":"新潟","raceNo":"3R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":12,"finish":5,"popularity":1,"jockey":"川田将雅","time":"1:48.8","going":"良","prize":78,"note":"単勝1.3倍。勝ち馬ピコベリーから0.8秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202604020703"}],"status":"未勝利","next":{"basis":"報道","date":"","course":"福島","race":"未定（福島開催での復帰を目指す）","grade":"","jockey":"","note":"デイリー9/30: 翌週に美浦へ帰厩し、福島開催での復帰を目指す。3回福島は11/7〜11/23（JRA発表）。具体的なレース・騎手は未発表。JRA公式では8/30〜10/12の出馬投票履歴なし","url":"https://www.daily.co.jp/umaya/news/2026/09/30/0020874956.shtml"},"news":[{"date":"2026-09-30","headline":"翌週に美浦へ帰厩予定、福島開催での復帰を目指す","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/09/30/0020874956.shtml"},{"date":"2026-08-15","headline":"単勝1.3倍で5着、陣営は立て直して成長を待つ方針","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=339723&pid=news_view"},{"date":"2026-08-14","headline":"叔父にGI馬2頭の良血、上原佑師は芝中距離が舞台とみる","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/74510"},{"date":"2026-08-14","headline":"新潟3Rでデビュー、上原佑師は軽快な脚さばきを長所に","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11875957"},{"date":"2026-08-14","headline":"最終追い切りは併入、上原佑師は仕上がりに太鼓判","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/08/14/0020702725.shtml"}],"whereabouts":"不明（JRA公式の競走馬情報は2026-10-11閲覧時に「放牧」表示。一方デイリー9/30は翌週＝10/5の週に美浦へ帰厩予定と報道。帰厩したかは未確認）"},{"id":"allcityking","name":"オールシティキング","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-04-29","coat":"鹿毛","sire":"Flightline","dam":"セルフレスリー","damSire":"More Than Ready","family":"母セルフレスリーは米G2ミスグリジョSなど重賞2勝","trainer":"手塚貴久","center":"美浦","owner":"藤田晋","breeder":"ノーザンファーム（安平町）","price":"2億900万円（税込、netkeiba表記。2025年セレクトセール1歳。報道・競馬ブックの税抜は1億9,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106425/","memo":"フライトライン産駒で税抜1.9億円。9/13予定と報じられたデビューは実現せず、未出走のまま放牧中","races":[],"status":"未出走","next":{"basis":"未定","date":"","course":"","race":"","grade":"","jockey":"","note":"8/26サンスポが9/13中山芝1800m（津村）でのデビュー予定を報じたが出走せず。JRA公式では8/30〜10/12の出馬投票履歴なし、放牧表示（10/11閲覧）。新たなデビュー予定の報道なし","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11876744"},"news":[{"date":"2026-10-01","headline":"9/24時点で未入厩の注目POG馬として名前が挙がる","source":"ウマニティ","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11877577"},{"date":"2026-08-26","headline":"9/13中山芝1800mを津村騎手でデビュー予定と報道","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11876744"},{"date":"2026-08-07","headline":"秋の中山開催でのデビューを目指し、近くトレセンへ","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=339016&pid=news_view"},{"date":"2026-05-15","headline":"5/15に美浦でゲート試験に合格","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11870285"}],"whereabouts":"放牧中（JRA公式の競走馬情報に「放牧」表示、2026-10-11閲覧。ウマニティ10/1では9/24時点で未入厩）。放牧先は未確認"}]}</script>
+<script type="application/json" id="pog-data">{"asOf":"2026-10-11","updatedLabel":"2026/10/11(日) 夕方","derbyDate":"2027-05-30","members":[{"id":"kotsuji","name":"小辻","waku":3},{"id":"yoshida","name":"吉田","waku":4},{"id":"kono","name":"河野","waku":7},{"id":"keigo","name":"Keigo","waku":5,"alias":"アカイトリノムスコ"}],"prizeGuide":[{"label":"2歳新馬","pt":"78"},{"label":"2歳未勝利","pt":"59"},{"label":"2歳1勝クラス（特別）","pt":"114"},{"label":"2歳オープン","pt":"170"},{"label":"リステッド","pt":"180"},{"label":"2歳G3","pt":"340–360"},{"label":"2歳G2","pt":"400"},{"label":"阪神JF","pt":"750"},{"label":"朝日杯FS・ホープフルS","pt":"800"},{"label":"桜花賞","pt":"1,400"},{"label":"オークス","pt":"1,500"},{"label":"皐月賞","pt":"2,000"},{"label":"日本ダービー","pt":"3,000"}],"schedule":[{"date":"2026-10-17","name":"アイビーS","grade":"L","course":"東京 芝1800m","pt":"180","key":"アイビー"},{"date":"2026-10-17","name":"もみじS","grade":"OP","course":"京都 芝1400m","pt":"170","key":"もみじ"},{"date":"2026-10-24","name":"アルテミスS","grade":"G3","course":"東京 芝1600m","note":"牝馬限定","pt":"320","key":"アルテミス"},{"date":"2026-10-25","name":"萩S","grade":"L","course":"京都 芝1800m","pt":"180","key":"萩S|萩ステークス"},{"date":"2026-10-31","name":"ファンタジーS","grade":"G3","course":"京都 芝1400m","note":"牝馬限定","pt":"320","key":"ファンタジー"},{"date":"2026-11-07","name":"京王杯2歳S","grade":"G2","course":"東京 芝1400m","pt":"400","key":"京王杯"},{"date":"2026-11-14","name":"デイリー杯2歳S","grade":"G2","course":"京都 芝1600m","pt":"400","key":"デイリー杯"},{"date":"2026-11-23","name":"東京スポーツ杯2歳S","grade":"G2","course":"東京 芝1800m","pt":"400","key":"東スポ|東京スポーツ杯"},{"date":"2026-11-28","name":"ラジオNIKKEI杯京都2歳S","grade":"G3","course":"京都 芝2000m","pt":"360","key":"京都2歳"},{"date":"2026-12-13","name":"阪神ジュベナイルフィリーズ","grade":"G1","course":"阪神 芝1600m","note":"牝馬限定","pt":"750","key":"阪神ジュベナイル|阪神JF"},{"date":"2026-12-20","name":"朝日杯フューチュリティS","grade":"G1","course":"阪神 芝1600m","pt":"800","key":"朝日杯"},{"date":"2026-12-26","name":"ホープフルS","grade":"G1","course":"中山 芝2000m","pt":"800","key":"ホープフル"},{"date":"2027-04-11","name":"桜花賞","grade":"G1","course":"阪神 芝1600m","note":"牝馬限定・額は2026年の値","pt":"1,400","tentative":true,"key":"桜花賞"},{"date":"2027-04-18","name":"皐月賞","grade":"G1","course":"中山 芝2000m","note":"額は2026年の値","pt":"2,000","tentative":true,"key":"皐月賞"},{"date":"2027-05-09","name":"NHKマイルC","grade":"G1","course":"東京 芝1600m","note":"額は2026年の値","pt":"1,300","tentative":true,"key":"NHKマイル"},{"date":"2027-05-23","name":"オークス","grade":"G1","course":"東京 芝2400m","note":"牝馬限定・額は2026年の値","pt":"1,500","tentative":true,"key":"オークス"},{"date":"2027-05-30","name":"日本ダービー","grade":"G1","course":"東京 芝2400m","note":"POG の最終日・額は2026年の値","pt":"3,000","tentative":true,"key":"ダービー|東京優駿"}],"horses":[{"id":"chestino","name":"チェスティーノ","member":"kotsuji","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-04-11","sire":"エフフォーリア","dam":"チェッキーノ","damSire":"キングカメハメハ","trainer":"鹿戸雄一","center":"美浦","owner":"サンデーレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額1億2,000万円（1口300万円×40口。netkeiba表示。税込/税抜は未確認）","family":"半姉に牝馬二冠チェルヴィニア、半兄に重賞勝ちノッキングポイント","memo":"新馬を1番人気で快勝。その後両トモの硬さで百日草特別を回避し、天栄で運動を制限中。復帰時期は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106452/","races":[{"date":"2026-08-30","course":"新潟","raceNo":"4R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":11,"finish":1,"popularity":1,"jockey":"C.ルメール","time":"1:49.0","prize":780,"note":"2着ペントザリスに1馬身差。上がり33.4（メンバー最速は2着馬の33.3）","url":"https://race.netkeiba.com/race/result.html?race_id=202604030404"}],"status":"1勝","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"予定していた百日草特別（11/8 東京芝2000・1勝クラス）は回避。クラブが10/10にホームページで発表した。次走は未定。10/10〜10/12の出馬表にも名前はない","url":"https://news.netkeiba.com/?pid=news_view&no=345148"},"news":[{"date":"2026-10-10","headline":"両トモの硬さで百日草特別を回避、天栄で経過観察","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345148"},{"date":"2026-09-26","headline":"次走は百日草特別で連勝を狙うと報道（10/10に回避発表）","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343782"},{"date":"2026-09-01","headline":"6月予定から延びた初陣で快勝、エフフォーリア産駒の期待馬","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341328"},{"date":"2026-08-31","headline":"新馬完勝、鹿戸師は先を見て大事に育てる方針","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341253"},{"date":"2026-08-30","headline":"1番人気で初陣V、ルメールはもう少し長い距離も可と評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341128"}],"whereabouts":"放牧中（福島・ノーザンファーム天栄で運動を制限しながら経過観察）。出典: スポーツ報知 2026-10-10。netkeiba馬ページ（スマホ版）も「放牧中」と表示（2026-10-11閲覧）"},{"id":"kingria","name":"キングリア","member":"kotsuji","certainty":"confirmed","sex":"牡","coat":"青鹿毛","birth":"2024-01-23","sire":"エピファネイア","dam":"リアアメリア","damSire":"ディープインパクト","trainer":"中内田充正","center":"栗東","owner":"シルクレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額1億円（1口20万円×500口。netkeiba表示。税込/税抜は未確認）","family":"母リアアメリア（アルテミスS・ローズS）の初子","memo":"阪神芝1800の2歳新馬で1986年以降最速の1:46.9で勝った。気性面に課題はあるが、川田騎手は能力を高く評価","netkeibaUrl":"https://db.netkeiba.com/horse/2024106684/","races":[{"date":"2026-09-21","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":10,"finish":1,"popularity":2,"jockey":"川田将雅","time":"1:46.9","prize":780,"note":"2着シホノノービレ（1番人気）に1馬身半差。上がり最速34.0。阪神芝1800の2歳新馬戦では1986年以降最速（報知）","url":"https://race.netkeiba.com/race/result.html?race_id=202609040705"}],"status":"1勝","next":{"basis":"想定","date":"2026-11-23","race":"東京スポーツ杯2歳S（G2）芝1800m","course":"東京","grade":"G2","jockey":"","note":"netkeibaの次走欄にある独自の想定（10/2掲載。ページ上でも公式発表と違うことがあると注記）。陣営・クラブの発表や報道での裏付けはなく、デイリー9/22は次走未定。10/10〜10/12の出馬表に名前はなく、10/17-18は10/11時点で登録・想定ともなし","url":"https://db.netkeiba.com/social/horse_info_next.html?id=2024106684"},"news":[{"date":"2026-09-22","headline":"新馬快勝、川田は気難しさを認めつつ能力を高く評価","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343401"},{"date":"2026-09-22","headline":"1番人気馬との競り合いに勝ち初陣V、師は母似の気の強さに言及","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343381"},{"date":"2026-09-21","headline":"阪神芝1800新馬の最速タイムを0.3秒更新、SNSでも話題","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=343377"},{"date":"2026-09-17","headline":"1週前はCWで川田騎乗、終い1Fは当日の2歳最速","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=342990"},{"date":"2026-09-11","headline":"川田騎乗で9/21阪神5Rにデビュー予定","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=342419"}],"whereabouts":"放牧中（場所は未確認）。netkeiba近況 2026-09-25「休養のため放牧」。netkeiba馬ページ（スマホ版）も「放牧中」と表示（2026-10-11閲覧）"},{"id":"cutiebond","name":"キューティボンド","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"黒鹿毛","birth":"2024-01-22","sire":"サートゥルナーリア","dam":"コーステッド","damSire":"Tizway","trainer":"福永祐一","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム（安平町）","price":"1億8,700万円（税込、2024年セレクトセール当歳。税抜では1億7,000万円）","family":"半兄ダノンベルーガ（共同通信杯）、半姉ボンドガール。母は米G1（BCジュヴェナイルフィリーズターフ）で2着","memo":"高額の良血馬。京都芝1600の新馬を上がり最速で勝ち、時計1:33.1。体が減りやすく調整は控えめ","netkeibaUrl":"https://db.netkeiba.com/horse/2024106316/","races":[{"date":"2026-10-10","course":"京都","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1600,"going":"良","field":14,"finish":1,"popularity":1,"jockey":"川田将雅","time":"1:33.1","prize":780,"note":"2着ドンクラッシュに1馬身1/4差。上がり最速34.4。netkeibaの馬DBには未反映で、結果ページで確認","url":"https://race.netkeiba.com/race/result.html?race_id=202608040305"}],"status":"1勝","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"10/10の新馬勝ちの直後。10/10〜11の報知・デイリー・スポニチの記事に次走の記載はない。netkeibaの次走欄も空欄（10/11）","url":"https://news.netkeiba.com/?pid=news_view&no=345233"},"news":[{"date":"2026-10-11","headline":"新馬快勝、川田はこの先の順調な成長に期待","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345233"},{"date":"2026-10-11","headline":"直線外から最速の末脚で差し切り、勝ち時計1:33.1を評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345230"},{"date":"2026-10-10","headline":"レース後コメント、川田はとても良い馬と評価","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345182"},{"date":"2026-10-09","headline":"最終追いは馬なりで終い11.2秒、師は芝での走りに好感","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=345039"},{"date":"2026-08-06","headline":"8/6函館でゲート試験パス、助手は物怖じしない気性を評価","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=338924"}],"whereabouts":"在厩（栗東・福永厩舎）。netkeiba馬ページ（スマホ版）の表示「入厩中」（2026-10-11閲覧）。10/10に京都で出走"},{"id":"illulissat","name":"イルリサット","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"芦毛","birth":"2024-01-23","sire":"キズナ","dam":"アエロリット","damSire":"クロフネ","trainer":"菊沢隆徳","center":"美浦","owner":"サンデーレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額7,000万円（1口175万円×40口。netkeiba表示。税込/税抜は未確認）","family":"母アエロリット（NHKマイルC）の3番子で、初めての牝馬","memo":"新馬2着（勝ち馬ヴァンクライ）。横山武史騎手はテンションの高さを課題に挙げた。放牧中で次走は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106115/","races":[{"date":"2026-08-30","course":"札幌","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":8,"finish":2,"popularity":2,"jockey":"横山武史","time":"1:53.3","prize":310,"note":"勝ち馬ヴァンクライ（武豊騎乗）から1馬身半差。3着とは7馬身差","url":"https://race.netkeiba.com/race/result.html?race_id=202601020405"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"8/30の新馬2着のあと、次走の報道はない（netkeibaニュース検索で8/30以降の記事なし）。netkeibaの次走欄も空欄。10/10〜10/12の出馬表にも名前はない（10/11）","url":"https://db.netkeiba.com/horse/2024106115/"},"news":[{"date":"2026-08-30","headline":"新馬2着、横山武史はテンション面を今後の課題に挙げる","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=341159"},{"date":"2026-08-28","headline":"1週前は函館芝で5F62.9秒、母も管理した菊沢師が期待","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340907"},{"date":"2026-08-27","headline":"最終追いは横山武を背に併入、8/30札幌でデビューへ","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340889"},{"date":"2026-08-25","headline":"厩舎スタッフは母より長い距離向きの可能性を指摘","source":"スポニチ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=340675"},{"date":"2026-04-30","headline":"4月末に美浦へ入厩、体は緩いが弾む走りに好印象","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=329668"}],"whereabouts":"放牧中（場所は未確認）。netkeiba馬ページ（スマホ版）の表示（2026-10-11閲覧）"},{"id":"yutalight","name":"ユタライト","member":"kotsuji","certainty":"confirmed","sex":"牝","coat":"鹿毛","birth":"2024-01-29","sire":"ロードカナロア","dam":"ユナカイト","damSire":"ヨハネスブルグ","trainer":"宮田敬介","center":"美浦","owner":"シルクレーシング","breeder":"ノーザンファーム（安平町）","price":"募集総額5,000万円（1口10万円×500口。netkeiba表示。税込/税抜は未確認）","family":"伯母アーモンドアイ、祖母フサイチパンドラ。半兄にエピックフライト","memo":"2戦とも大敗（6着・13着）。ルメール騎手は物見をして進まなかったと指摘。放牧中で次走は未定","netkeibaUrl":"https://db.netkeiba.com/horse/2024106664/","races":[{"date":"2026-06-13","course":"東京","raceNo":"5R","raceName":"2歳新馬（牝）","grade":"新馬","surface":"芝","distance":1600,"going":"良","field":7,"finish":6,"popularity":2,"jockey":"C.ルメール","time":"1:40.3","prize":0,"note":"勝ち馬シャンデヴァーグから1.8秒差。5着とはアタマ差","url":"https://race.netkeiba.com/race/result.html?race_id=202605030305"},{"date":"2026-08-16","course":"新潟","raceNo":"1R","raceName":"2歳未勝利（牝）","grade":"未勝利","surface":"芝","distance":1600,"going":"良","field":13,"finish":13,"popularity":5,"jockey":"丸山元気","time":"1:37.3","prize":0,"note":"最下位。勝ち馬サトノスプレマシーから3.2秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202604020801"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"8/16の未勝利13着のあと、次走の報道はない（netkeibaニュース検索で6/13以降の記事なし）。netkeibaの次走欄も空欄。10/10〜10/12の出馬表にも名前はない（10/11）","url":"https://db.netkeiba.com/horse/2024106664/"},"news":[{"date":"2026-06-13","headline":"新馬6着、ルメールは物見を指摘し、チークを着ければ集中するとの見方","source":"ラジオNIKKEI（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=334152"},{"date":"2026-06-12","headline":"6/13東京の牝馬新馬に出走、鞍上はルメール","source":"netkeiba","url":"https://news.netkeiba.com/?pid=news_view&no=333820"},{"date":"2026-06-10","headline":"5月中旬から時計、師は併せ馬で気持ちを前向きにと説明","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=333775"},{"date":"2026-04-29","headline":"宮田師はマイル向きで完成度が高いと評価","source":"デイリースポーツ（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=329484"},{"date":"2026-04-02","headline":"4/1にゲート試験合格、6月の東京デビューを視野","source":"スポーツ報知（netkeiba）","url":"https://news.netkeiba.com/?pid=news_view&no=326805"}],"whereabouts":"放牧中（場所は未確認）。netkeiba馬ページ（スマホ版）の表示（2026-10-11閲覧）"},{"id":"eldborg","name":"エルドボルグ","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-22","coat":"鹿毛","sire":"キタサンブラック","dam":"コンサートホール","damSire":"Dubawi","family":"母は愛G3パークS勝ち・愛1000ギニー3着、祖母Wasは英オークス馬","breeder":"ノーザンファーム（安平町）","owner":"サンデーレーシング（サンデーサラブレッドクラブ）","price":"募集総額1億円（1口250万円×40口。税込か税抜かは未確認）","trainer":"斉藤崇史","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106314/","status":"1勝","memo":"小倉の新馬（芝2000m）を1番人気で勝利。次走は東スポ杯2歳Sの予定で、同じ厩舎のクロワデュノールと同じ路線","whereabouts":"放牧中（ノーザンファームしがらき）。出典は2026-09-19の報知・スポニチ。netkeibaの近況欄も7/17の放牧が最後で、10/11時点で帰厩の情報は見つからない","races":[{"date":"2026-07-12","course":"小倉","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":2000,"going":"良","field":8,"finish":1,"popularity":1,"jockey":"団野大成","time":"2:02.7","prize":780,"note":"2着シックパラソルにアタマ差。上がり35.2秒","url":"https://race.netkeiba.com/race/result.html?race_id=202610020605"}],"next":{"basis":"報道","date":"2026-11-23","race":"東京スポーツ杯2歳S（G2）芝1800m","course":"東京","grade":"G2","jockey":"","note":"9/19に報知とスポニチが、サンデーサラブレッドクラブの発表として報じた。JRAの2026年第5回東京競馬番組でも5回東京6日目（11/23・祝）の11R。騎手はまだ発表されていない","url":"https://news.netkeiba.com/?pid=news_view&no=343147"},"news":[{"date":"2026-09-19","headline":"次走は東スポ杯2歳Sと発表、クロワデュノールと同じ路線","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=343147"},{"date":"2026-09-19","headline":"東スポ杯2歳Sへ。今はノーザンファームしがらきで調整中","source":"スポニチ","url":"https://news.netkeiba.com/?pid=news_view&no=343146"},{"date":"2026-07-13","headline":"小倉の新馬を差し切り勝ち。団野騎手は最後の伸びを評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=336816"},{"date":"2026-07-12","headline":"斉藤崇厩舎のキタサン産駒が新馬勝ち、大物候補と紹介","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336706"},{"date":"2026-07-08","headline":"最終追い切りは上々。斉藤崇師はクラシックを目標に","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336384"}]},{"id":"lagarriga","name":"ラガリーガ","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-03","coat":"青鹿毛","sire":"キズナ","dam":"ラサルダン","damSire":"Kingsalsa","family":"母ラサルダンは仏G2サンドリンガム賞など海外5勝の重賞馬","breeder":"ノーザンファーム（安平町）","owner":"キャロットファーム（キャロットクラブ）","price":"募集総額1億円（1口25万円×400口。税込か税抜かは未確認）。セリ取引なし","trainer":"手塚貴久","center":"美浦","netkeibaUrl":"https://db.netkeiba.com/horse/2024106670/","status":"1勝","memo":"新馬8着のあと、未勝利戦を2歳コースレコードで勝ち上がり。10/17のアイビーS（L）に岩田望来騎手で出る予定","whereabouts":"在厩（美浦）。2026-09-30のサンスポで、同日に美浦Wコースで追い切ったと報じられた（netkeibaの近況欄は8/14の放牧が最後）","races":[{"date":"2026-06-21","course":"東京","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"稍重","field":13,"finish":8,"popularity":1,"jockey":"C.ルメール","time":"1:51.3","prize":0,"note":"勝ち馬アヴィアトーレから0.8秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202605030605"},{"date":"2026-08-09","course":"新潟","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"going":"良","field":16,"finish":1,"popularity":1,"jockey":"坂井瑠星","time":"2:00.0","prize":590,"note":"2着シアルナーレに3/4馬身差。2歳コースレコード（報知・サンスポが報道）","url":"https://race.netkeiba.com/race/result.html?race_id=202604020601"}],"next":{"basis":"報道","date":"2026-10-17","race":"アイビーS（L）芝1800m","course":"東京","grade":"L","jockey":"岩田望来","note":"9/30のサンスポがキャロットクラブの発表として報道（岩田望来騎手は予定）。netkeibaの次走情報（10/2掲載）も10/17アイビーS。JRAの番組表では4回東京6日目の9Rで、6・7日目の特別登録は10/12締切なので、10/11時点ではまだ登録は出ていない","url":"https://news.yahoo.co.jp/articles/deff8d2532b2285a18da6d2ea7fe5101c881b06c"},"news":[{"date":"2026-09-30","headline":"次走はアイビーS、岩田望来騎手と新コンビの予定","source":"サンケイスポーツ","url":"https://news.yahoo.co.jp/articles/deff8d2532b2285a18da6d2ea7fe5101c881b06c"},{"date":"2026-08-09","headline":"新馬8着からのレコード勝ちにSNSで驚きの声","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=339235"},{"date":"2026-08-09","headline":"2戦目の新潟で初勝利、時計は2歳のコースレコード","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=339182"},{"date":"2026-06-19","headline":"ルメール騎乗で新馬戦へ。手塚久師は勝てる力があると評価","source":"スポニチ","url":"https://news.netkeiba.com/?pid=news_view&no=334702"},{"date":"2026-06-18","headline":"デビュー前の最終追い切りで格上の古馬を半馬身上回る","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334682"}]},{"id":"jangod","name":"ジャンゴッド","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-02-21","coat":"鹿毛","sire":"キタサンブラック","dam":"マーゴットディド","damSire":"Exceed And Excel","family":"半兄に皐月賞馬ジャスティンミラノ。母は英G1ナンソープSの勝ち馬","breeder":"ノーザンファーム（安平町）","owner":"藤田晋","price":"2024年ノーザンファームミックスセール（当歳、10/22開催）で2億9,000万円（税抜）＝3億1,900万円（税込）","trainer":"杉山晴紀","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106624/","status":"未勝利","memo":"2.9億円（税抜）の良血馬だが3戦して未勝利。連闘で臨んだ10/10京都は4番人気で2着と前進","whereabouts":"10/10に京都で出走した時点では在厩（栗東）。その後の在厩・放牧は未確認","races":[{"date":"2026-07-05","course":"小倉","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"重","field":12,"finish":8,"popularity":1,"jockey":"川田将雅","time":"1:53.0","prize":0,"note":"勝ち馬ポルトブルーから1.0秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202610020405"},{"date":"2026-10-04","course":"京都","raceNo":"2R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1600,"going":"良","field":9,"finish":5,"popularity":3,"jockey":"川田将雅","time":"1:34.3","prize":59,"note":"勝ち馬レイクイーンから1.4秒差。馬体重は+18kg","url":"https://race.netkeiba.com/race/result.html?race_id=202608040202"},{"date":"2026-10-10","course":"京都","raceNo":"3R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1800,"going":"良","field":8,"finish":2,"popularity":4,"jockey":"松若風馬","time":"1:46.7","prize":240,"note":"連闘。勝ち馬ドーンレーサーに1/2馬身差。netkeibaの馬DBにはまだ反映されていない","url":"https://race.netkeiba.com/race/result.html?race_id=202608040303"}],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"10/10の2着後の次走報道は、10/11時点で見つからない（netkeibaの次走情報も空欄）。10/12の京都・東京の2歳戦の出馬表にも名前はない","url":""},"news":[{"date":"2026-10-10","headline":"連闘で京都3Rへ。皐月賞馬の半弟が初勝利を狙う","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=345125"},{"date":"2026-10-04","headline":"3カ月ぶりの2戦目は京都2R、最終追い切りの動きは上々","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=344559"},{"date":"2026-07-05","headline":"デビュー戦は1番人気に推されたが8着に終わる","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=336125"},{"date":"2026-07-03","headline":"新馬戦を前に、杉山晴師が前向きな気性を評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=335907"},{"date":"2026-07-02","headline":"7/5小倉でデビュー予定、助手は態勢が整ったと手応え","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=335878"}]},{"id":"dynamike","name":"ダイナマイク","member":"yoshida","certainty":"confirmed","sex":"牡","birth":"2024-03-11","coat":"鹿毛","sire":"キタサンブラック","dam":"シンプリーラヴィシング","damSire":"Laoban","family":"母シンプリーラヴィシングは米G1アルシバイアディーズSの勝ち馬","breeder":"ノーザンファーム（安平町）","owner":"藤田晋","price":"2024年セレクトセール（当歳）で2億4,000万円（税抜）＝2億6,400万円（税込）","trainer":"中内田充正","center":"栗東","netkeibaUrl":"https://db.netkeiba.com/horse/2024106368/","status":"未勝利","memo":"セレクトセール2.4億円（税抜）の高額馬。川田騎乗の新馬・未勝利はどちらも上位人気で4着、初勝利待ち","whereabouts":"不明。netkeiba 8/18の入厩情報で8/15にノーザンファームしがらきから栗東へ入厩し、9/27に阪神で出走。その後の在厩・放牧は未確認","races":[{"date":"2026-06-14","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"going":"良","field":8,"finish":4,"popularity":1,"jockey":"川田将雅","time":"1:49.5","prize":120,"note":"勝ち馬インカルナータから1.2秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609030405"},{"date":"2026-09-27","course":"阪神","raceNo":"4R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"going":"良","field":7,"finish":4,"popularity":2,"jockey":"川田将雅","time":"2:01.5","prize":89,"note":"勝ち馬ガリアルダから0.7秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609040904"}],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"9/27の未勝利4着のあとの次走は、報道もnetkeibaの次走情報も見つからない。10/10・10/11の2歳戦の結果と10/12の2歳戦の出馬表にも名前はない","url":""},"news":[{"date":"2026-08-18","headline":"8/15にノーザンファームしがらきから栗東へ入厩","source":"netkeiba","url":"https://news.netkeiba.com/?pid=news_view&no=340038"},{"date":"2026-06-14","headline":"1番人気のデビュー戦は4着、勝ったのはインカルナータ","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334268"},{"date":"2026-06-13","headline":"出世レースとされる宝塚記念の日の阪神新馬戦に登場予定","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=334179"},{"date":"2026-06-12","headline":"新馬戦を前に、福永助手が背中の良さを評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=334005"},{"date":"2026-06-10","headline":"坂路で併入の最終追い切り、6/14阪神デビューへ調整順調","source":"スポーツ報知","url":"https://news.netkeiba.com/?pid=news_view&no=333827"}]},{"id":"rejeunoir","name":"レジューノワール","member":"yoshida","certainty":"confirmed","sex":"牝","birth":"2024-01-12","coat":"鹿毛","sire":"キタサンブラック","dam":"アーモンドアイ","damSire":"ロードカナロア","family":"母はG1・9勝のアーモンドアイで、その3番仔で初の牝馬（通称16冠ベイビー）","breeder":"ノーザンファーム（安平町）","owner":"シルクレーシング（シルク・ホースクラブ）","price":"募集総額1億円（1口20万円×500口。税込か税抜かは未確認）","trainer":"木村哲也","center":"美浦","netkeibaUrl":"https://db.netkeiba.com/horse/2024106164/","status":"未出走","memo":"7/24に美浦でゲート試験に合格したあと天栄へ放牧。10/11時点で未出走、デビュー時期は未発表","whereabouts":"放牧中（ノーザンファーム天栄）。シルク公式の所属馬ページの在厩場所（2026-10-11閲覧）","races":[],"next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","note":"シルク公式では在厩場所がノーザンファーム天栄。7/24の報道では秋のデビューが目標とされたが、帰厩日・デビュー戦は未発表","url":"https://www.silkhorseclub.jp/horse_info/shozoku/detail/2024002/view"},"news":[{"date":"2026-07-24","headline":"美浦でゲート試験に合格、天栄へ放牧して秋デビューを目指す","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11874712"},{"date":"2026-07-15","headline":"美浦に入厩し坂路でキャンター、柔らかな脚さばきに好評価","source":"デイリースポーツ","url":"https://news.netkeiba.com/?pid=news_view&no=337071"}]},{"id":"meagloria","name":"メアグローリア","member":"kono","certainty":"confirmed","sex":"牝","coat":"栗毛","birth":"2024-01-23","sire":"サリオス","dam":"アンティフォナ","damSire":"Songandaprayer","family":"半兄に2020年NHKマイルC勝ちのラウダシオン（同じ斉藤崇厩舎）","trainer":"斉藤崇史","center":"栗東","owner":"シルクレーシング","breeder":"社台コーポレーション白老ファーム","price":"シルクHC募集総額3,500万円（1口7万円×500口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106969/","races":[{"date":"2026-06-13","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1200,"field":11,"finish":2,"popularity":1,"jockey":"川田将雅","going":"良","time":"1:08.7","prize":310,"note":"勝ち馬ロンドンガーズに3馬身差（0.5秒）","url":"https://race.netkeiba.com/race/result.html?race_id=202609030305"},{"date":"2026-07-26","course":"中京","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1400,"field":9,"finish":3,"popularity":1,"jockey":"川田将雅","going":"良","time":"1:21.1","prize":150,"note":"勝ち馬サンタンジェロから1馬身3/4＋半馬身（0.4秒）。単勝1.5倍","url":"https://race.netkeiba.com/race/result.html?race_id=202607020201"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"https://www.silkhorseclub.jp/horse_info/shozoku/detail/2024056/view","note":"ノーザンファームしがらきで放牧中。7/26のあと、次走の発表も報道も見つからない（10/11時点）。10/3-4・10/10-12の出馬表にも名前なし"},"news":[{"date":"2026-07-26","headline":"中京の未勝利戦は1番人気で3着、川田騎手は力は出したと評価","source":"ラジオNIKKEI（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=338001"},{"date":"2026-07-14","headline":"しがらきから栗東へ戻り、7/26中京の未勝利戦へ","source":"netkeiba（栗東トレセンニュース）","url":"https://news.netkeiba.com/?pid=news_view&no=336970"},{"date":"2026-06-13","headline":"新馬戦は1番人気2着、川田騎手はまだ幼く伸びしろありと","source":"ラジオNIKKEI（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=334149"},{"date":"2026-06-10","headline":"クロワデュノールと併せ馬、師は体の使い方が今後の課題と","source":"日刊スポーツ","url":"https://www.nikkansports.com/keiba/news/202606100000157.html"},{"date":"2026-06-08","headline":"6/13阪神芝1200で川田騎手とデビュー予定、半兄はラウダシオン","source":"netkeiba（関西馬メイクデビュー情報）","url":"https://news.netkeiba.com/?pid=news_view&no=333676"}],"whereabouts":"放牧中（ノーザンファームしがらき）。シルク公式の所属馬ページで在厩場所「ノーザンファームしがらき」、netkeibaスマホ版で「放牧中」、JRA競走馬情報で「放牧」（2026-10-11閲覧）","memo":"2戦とも1番人気で2着・3着。未勝利勝ちまであと一歩。しがらきで放牧中、次走は未定"},{"id":"luckysparkle","name":"ラッキースパークル","member":"kono","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-02-19","sire":"エピファネイア","dam":"ラッキーライラック","damSire":"オルフェーヴル","family":"母はG1・4勝のラッキーライラック（母も松永幹厩舎で管理）","trainer":"松永幹夫","center":"栗東","owner":"サンデーレーシング","breeder":"ノーザンファーム","price":"サンデーR募集総額1億2,000万円（1口300万円×40口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106675/","races":[{"date":"2026-06-28","course":"福島","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":14,"finish":3,"popularity":2,"jockey":"戸崎圭太","going":"良","time":"1:49.1","prize":200,"note":"勝ち馬ウインワーグナーからアタマ＋1馬身半（0.3秒）。直線で進路が開かなかった","url":"https://race.netkeiba.com/race/result.html?race_id=202603020205"}],"status":"未勝利","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"https://db.netkeiba.com/horse/2024106675/","note":"6/28の新馬3着のあと出走なし。次走の発表も報道も見つからない（10/11時点）。netkeibaスマホ版の表示は放牧中。10/3-4・10/10-12の出馬表にも名前なし"},"news":[{"date":"2026-06-28","headline":"デビュー戦は直線で進路が開かず3着、師は右にモタれる点を課題に","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=335521"},{"date":"2026-06-26","headline":"日曜福島の新馬戦へ、母も管理した松永幹師が似た面があると期待","source":"サンケイスポーツ","url":"https://www.sanspo.com/race/article/general/20260626-6K3RRPMITZLWNNJZZWZ2AOORFU/"},{"date":"2026-06-24","headline":"母の担当だった助手が受け持ち、バネのある走りと手応え","source":"スポーツ報知（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=335136"},{"date":"2026-06-04","headline":"6/28福島5Rで戸崎騎手とデビュー予定、ハミに敏感な面も","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=333240"},{"date":"2026-04-24","headline":"ゲート試験をパス、母を手がけた助手が好素材と評価","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=329006"}],"whereabouts":"放牧中（場所は未確認）。netkeibaスマホ版の馬ページの表示（2026-10-11閲覧）","memo":"新馬3着のあと出走なし。口の重さや右にモタれる面が課題と陣営。放牧中で次走未定"},{"id":"odioperdere","name":"オディオペルデレ","member":"kono","certainty":"confirmed","sex":"牡","coat":"鹿毛","birth":"2024-02-28","sire":"レイデオロ","dam":"ラヴズオンリーユー","damSire":"ディープインパクト","family":"母はBC制覇などG1・4勝のラヴズオンリーユー。半兄ラヴズプレミアム","trainer":"矢作芳人","center":"栗東","owner":"DMMドリームクラブ（DMMバヌーシー）","breeder":"ノーザンファーム","price":"DMMバヌーシー募集総額1億8,000万円（1口4.5万円×4,000口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106667/","races":[],"status":"未出走","next":{"basis":"未定","date":"","race":"","course":"","grade":"","jockey":"","url":"","note":"7月の飛節の腫れからの回復待ち。帰厩・デビューの発表はまだない。10/17-18の新馬想定にも名前なし"},"news":[],"whereabouts":"牧場で療養中（場所は公式では未確認）","memo":"7月に飛節の腫れで休養。10/11時点でデビュー時期は未発表"},{"id":"sweepradius","name":"スイープラディウス","member":"kono","certainty":"confirmed","sex":"牡","coat":"栗毛","birth":"2024-02-15","sire":"レイデオロ","dam":"スイープセレリタス","damSire":"ハーツクライ","family":"祖母は宝塚記念などG1・3勝のスイープトウショウ","trainer":"辻哲英","center":"美浦","owner":"シルクレーシング","breeder":"ノーザンファーム","price":"シルクHC募集総額4,500万円（1口9万円×500口、税込か税抜かは未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106392/","races":[],"status":"未出走","next":{"basis":"想定","date":"2026-10-18","race":"2歳新馬 芝2000m（東京5R）","course":"東京","grade":"新馬","jockey":"川田将雅","url":"https://www.keibanomiryoku.com/%e6%96%b0%e9%a6%ac%e6%88%a6","note":"競馬の魅力の新馬想定（10/10更新）に川田騎手で載っている。出馬投票は10/15"},"news":[{"date":"2026-07-29","headline":"美浦・辻厩舎に入厩し坂路で始動、完成途上も脚さばきは上々","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=338237"}],"whereabouts":"在厩（美浦・辻哲英厩舎）。シルク公式の所属馬ページで在厩場所「美浦トレセン」、netkeibaスマホ版で「入厩中」（2026-10-11閲覧）","memo":"10/18東京芝2000で川田騎手とデビュー予定（想定）。祖母スイープトウショウの良血"},{"id":"youngrich","name":"ヤングリッチ","member":"kono","certainty":"confirmed","sex":"牡","coat":"黒鹿毛","birth":"2024-04-18","sire":"レイデオロ","dam":"フォエヴァーダーリング","damSire":"Congrats","family":"半兄にBCクラシックを勝ったフォーエバーヤング","trainer":"矢作芳人","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム","price":"2025年セレクトセール（1歳）3億3,000万円（税込）。報道では3億円（税抜）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106542/","races":[],"status":"未出走","next":{"basis":"報道","date":"2026-10-18","race":"2歳新馬 芝2000m（京都5R）","course":"京都","grade":"新馬","jockey":"坂井瑠星","url":"https://news.netkeiba.com/?pid=news_view&no=345083","note":"報知（10/1）が矢作師の話として京都芝2000・坂井騎手と報道し、デイリー（10/9）が京都5Rと明記。競馬の魅力の新馬想定も同じ。出馬投票は10/15"},"news":[{"date":"2026-10-09","headline":"18日京都5Rで初陣、1週前のCW併せで年長馬に先着を許さず","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=345083"},{"date":"2026-10-08","headline":"坂井騎手を背にCWで併せ馬、終い11秒4と反応が良化","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=344979"},{"date":"2026-10-01","headline":"矢作師が10/18京都芝2000・坂井騎手での初陣を表明、まず芝で","source":"スポーツ報知（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=344325"},{"date":"2026-07-24","headline":"7/24にゲート試験合格、坂井騎手は兄の同時期よりしっかりと評価","source":"デイリースポーツ（netkeiba配信）","url":"https://news.netkeiba.com/?pid=news_view&no=337838"}],"whereabouts":"在厩（栗東・矢作芳人厩舎）。10/8に栗東CWで1週前追い切り（デイリー 10/8・10/9）。netkeibaスマホ版で「入厩中」（2026-10-11閲覧）","memo":"3億円（税抜）の良血。10/18京都芝2000で坂井騎手とデビュー予定、1週前追いも好評価"},{"id":"danondax","name":"ダノンダックス","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-02-19","coat":"黒鹿毛","sire":"サートゥルナーリア","dam":"ヤンキーローズ","damSire":"All American","family":"三冠牝馬リバティアイランドの半弟（母ヤンキーローズ）","trainer":"田中博康","center":"美浦","owner":"ダノックス","breeder":"ノーザンファーム（安平町）","price":"3億4,100万円（税込、netkeiba表記。2025年セレクトセール1歳。報道の税抜は3億1,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106662/","memo":"リバティアイランドの半弟。2戦目の未勝利戦を上がり最速で完勝し、次は東スポ杯2歳Sで重賞に挑む予定","races":[{"date":"2026-07-26","course":"新潟","raceNo":"2R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1600,"field":9,"finish":2,"popularity":1,"jockey":"戸崎圭太","time":"1:37.4","going":"良","prize":310,"note":"単勝1.2倍。アタマ差2着、勝ち馬トウシンマジック（のち新潟2歳S2着）","url":"https://race.netkeiba.com/race/result.html?race_id=202604020202"},{"date":"2026-10-04","course":"東京","raceNo":"1R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":1800,"field":12,"finish":1,"popularity":1,"jockey":"C.ルメール","time":"1:46.7","going":"良","prize":590,"note":"単勝1.1倍。2着イニシャルポイントに2馬身半差、上がり33.7はメンバー最速","url":"https://race.netkeiba.com/race/result.html?race_id=202605040201"}],"status":"1勝","next":{"basis":"報道","date":"2026-11-23","course":"東京","race":"東京スポーツ杯2歳S（G2）芝1800m","grade":"G2","jockey":"","note":"NF天栄での放牧を挟んで向かう予定（デイリー10/8、報知・サンスポ・東スポ10/7、スポニチ10/8）。騎手は未定（デイリー10/8）","url":"https://www.daily.co.jp/umaya/news/2026/10/08/0020904470.shtml"},"news":[{"date":"2026-10-08","headline":"NF天栄へ放牧し東スポ杯2歳Sへ、鞍上は未定","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/10/08/0020904470.shtml"},{"date":"2026-10-07","headline":"放牧を挟んで東スポ杯へ、田中博師は課題克服での上積みに期待","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=344852&pid=news_view"},{"date":"2026-10-07","headline":"東スポ杯2歳Sへ調整、田中博師が出走を決めた理由を語る","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/76350"},{"date":"2026-10-04","headline":"名付け親ルメールで初勝利、馬名は仏の地名ダックスから","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11879309"},{"date":"2026-10-04","headline":"2戦目で初V、ルメールは距離がさらに延びても対応できると評価","source":"日刊スポーツ（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/23f3fec760f4b192e34db43ad9d068cffafe2a8a"}],"whereabouts":"放牧中（NF天栄。デイリー10/8が放牧へと報道。JRA公式の競走馬情報も2026-10-11閲覧時に「放牧」表示）"},{"id":"onyourmarks","name":"オンユアマークス","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-03-30","coat":"黒鹿毛","sire":"キズナ","dam":"トレンドハンター","damSire":"マンハッタンカフェ","family":"母トレンドハンターは2011年フラワーC勝ち馬。半姉インヴォーグ","trainer":"松永幹夫","center":"栗東","owner":"ノースヒルズ","breeder":"千代田牧場（新ひだか町）","price":"6,600万円（税込、netkeiba表記。2024年セレクトセール当歳。報道の税抜は6,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024104698/","memo":"武豊騎乗の2戦目、京都芝2000mを2歳コースレコードで勝利。騎手・調教師とも伸びしろありと評価","races":[{"date":"2026-06-14","course":"阪神","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":8,"finish":3,"popularity":2,"jockey":"武豊","time":"1:48.6","going":"良","prize":200,"note":"単勝4.2倍。勝ち馬インカルナータから0.3秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202609030405"},{"date":"2026-10-11","course":"京都","raceNo":"2R","raceName":"2歳未勝利","grade":"未勝利","surface":"芝","distance":2000,"field":10,"finish":1,"popularity":1,"jockey":"武豊","time":"1:59.1","going":"良","prize":590,"note":"2歳コースレコード（従来1:59.3）。2着ロードフローリスに2馬身差、上がり34.6はメンバー最速","url":"https://race.netkeiba.com/race/result.html?race_id=202608040402"}],"status":"1勝","next":{"basis":"未定","date":"","course":"","race":"","grade":"","jockey":"","note":"10/11の勝利後、次走は未定と報道（報知・サンスポ 10/11）","url":"https://news.netkeiba.com/?no=345255&pid=news_view"},"news":[{"date":"2026-10-11","headline":"武豊を背に2歳レコード、鞍上は前走からの成長を評価","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/76526"},{"date":"2026-10-11","headline":"京都芝2000mを差し切ってレコードV、次走は未定","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=345255&pid=news_view"},{"date":"2026-10-11","headline":"武豊騎乗で初勝利、2歳レコードを0.2秒更新","source":"日刊スポーツ（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/208947d4349cac881566ae8f794ab90335092998"},{"date":"2026-10-11","headline":"最速の上がりで差し切り、松永幹師は気性の幼さに触れる","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11879811"},{"date":"2026-06-14","headline":"新馬戦当日の紹介記事、松永幹師は初戦から走れると期待","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11872074"}],"whereabouts":"在厩（2026-10-11 京都2Rに出走。JRA公式の競走馬情報に放牧表示なし、10/11閲覧）"},{"id":"swagwalk","name":"スワッグウォーク","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-03-09","coat":"黒鹿毛","sire":"コントレイル","dam":"ブリリアントカット","damSire":"Speightstown","family":"半姉ジュワネングは関東オークス2着（母ブリリアントカット）","trainer":"武幸四郎","center":"栗東","owner":"藤田晋","breeder":"ノーザンファーム（安平町）","price":"2億7,500万円（税込、netkeiba表記。2024年セレクトセール当歳。報道の税抜は2億5,000万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106558/","memo":"税抜2.5億円のコントレイル産駒。新馬4着で武豊は仕上がり途上と説明。8/2以降は出走・投票なし","races":[{"date":"2026-08-02","course":"札幌","raceNo":"5R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":10,"finish":4,"popularity":2,"jockey":"武豊","time":"1:51.9","going":"良","prize":120,"note":"単勝3.5倍。勝ち馬ホウオウプレマから1.1秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202601010405"}],"status":"未勝利","next":{"basis":"未定","date":"","course":"","race":"","grade":"","jockey":"","note":"8/2の新馬戦後、次走の報道は見つからない。JRA公式では8/30〜10/12の出馬投票履歴なし、放牧表示（10/11閲覧）","url":"https://www.jra.go.jp/JRADB/accessU.html?CNAME=pw01dud002024106558%2F65"},"news":[{"date":"2026-08-02","headline":"2番人気でデビューも4着、武豊は使いつつ良化を期待","source":"馬トク報知（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/ca6d493122b027c8b679afd73ac6156cc4d4f074"},{"date":"2026-08-01","headline":"札幌の新馬戦で武豊と初陣へ、最終追い切りは僚馬に先着","source":"東スポ競馬（dメニューニュース掲載）","url":"https://topics.smt.docomo.ne.jp/article/tospokeiba/sports/tospokeiba-130027"},{"date":"2026-07-31","headline":"大型馬ながら動きは上々と武幸師、最終追い切りは浜中騎乗","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/07/31/0020651633.shtml"},{"date":"2026-07-22","headline":"8/2札幌芝1800mで武豊とデビュー予定、半姉は交流重賞2着","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11874543"},{"date":"2026-06-02","headline":"5/28に栗東でゲート試験に合格","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11871128"}],"whereabouts":"放牧中（JRA公式の競走馬情報に「放牧」表示、2026-10-11閲覧）。放牧先は未確認"},{"id":"ribbonroad","name":"リボンロード","member":"keigo","certainty":"confirmed","sex":"牡","birth":"2024-04-18","coat":"青鹿毛","sire":"リオンディーズ","dam":"ジュベルアリ","damSire":"ディープインパクト","family":"半兄に重賞2勝アルナシーム、叔父にアルアイン・シャフリヤール","trainer":"上原佑紀","center":"美浦","owner":"藤田晋","breeder":"レイクヴィラファーム（洞爺湖町）","price":"7,920万円（税込、netkeiba表記。2025年セレクトセール1歳。報道の税抜は7,200万円）","netkeibaUrl":"https://db.netkeiba.com/horse/2024107154/","memo":"新馬戦は単勝1.3倍で5着。立て直し後、福島開催での復帰を目指すと報道（デイリー9/30）","races":[{"date":"2026-08-15","course":"新潟","raceNo":"3R","raceName":"2歳新馬","grade":"新馬","surface":"芝","distance":1800,"field":12,"finish":5,"popularity":1,"jockey":"川田将雅","time":"1:48.8","going":"良","prize":78,"note":"単勝1.3倍。勝ち馬ピコベリーから0.8秒差","url":"https://race.netkeiba.com/race/result.html?race_id=202604020703"}],"status":"未勝利","next":{"basis":"報道","date":"","course":"福島","race":"未定（福島開催での復帰を目指す）","grade":"","jockey":"","note":"デイリー9/30: 翌週に美浦へ帰厩し、福島開催での復帰を目指す。3回福島は11/7〜11/23（JRA発表）。具体的なレース・騎手は未発表。JRA公式では8/30〜10/12の出馬投票履歴なし","url":"https://www.daily.co.jp/umaya/news/2026/09/30/0020874956.shtml"},"news":[{"date":"2026-09-30","headline":"翌週に美浦へ帰厩予定、福島開催での復帰を目指す","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/09/30/0020874956.shtml"},{"date":"2026-08-15","headline":"単勝1.3倍で5着、陣営は立て直して成長を待つ方針","source":"スポーツ報知（netkeiba掲載）","url":"https://news.netkeiba.com/?no=339723&pid=news_view"},{"date":"2026-08-14","headline":"叔父にGI馬2頭の良血、上原佑師は芝中距離が舞台とみる","source":"東スポ競馬","url":"https://tospo-keiba.jp/breaking_news/74510"},{"date":"2026-08-14","headline":"新潟3Rでデビュー、上原佑師は軽快な脚さばきを長所に","source":"サンケイスポーツ（ウマニティ掲載）","url":"https://umanity.jp/racedata/race_newsdet.php?nid=11875957"},{"date":"2026-08-14","headline":"最終追い切りは併入、上原佑師は仕上がりに太鼓判","source":"デイリースポーツ","url":"https://www.daily.co.jp/umaya/news/2026/08/14/0020702725.shtml"}],"whereabouts":"不明（JRA公式の競走馬情報は2026-10-11閲覧時に「放牧」表示。一方デイリー9/30は翌週＝10/5の週に美浦へ帰厩予定と報道。帰厩したかは未確認）"},{"id":"noierung","name":"ノイエルング","member":"keigo","certainty":"confirmed","sex":"牝","coat":"芦毛","birth":"2024-04-11","sire":"サートゥルナーリア","dam":"クロノジェネシス","damSire":"バゴ","family":"母クロノジェネシスはG1・4勝（秋華賞、宝塚記念2回、有馬記念）。半兄ベレシート（父エピファネイア）は共同通信杯・京都新聞杯2着。母の半姉にノームコア","trainer":"斉藤崇史","center":"栗東","owner":"サンデーレーシング（サンデーサラブレッドクラブ）","breeder":"ノーザンファーム（安平町）","price":"募集総額8,000万円（サンデーサラブレッドクラブ、1口200万円×40口。一口馬主DB表示。税込/税抜は未確認）","netkeibaUrl":"https://db.netkeiba.com/horse/2024106292/","races":[],"status":"未出走","whereabouts":"未確認。7/4にノーザンファームしがらきから栗東へ入厩（netkeiba 7/7）、7/15に栗東でゲート試験に合格（ウマニティ 7/15）。その後の在厩・放牧は公開情報で確認できず","next":{"basis":"報道","date":"2026-10-25","course":"京都","race":"2歳新馬 芝1800m（京都5R）","grade":"新馬","jockey":"C.ルメール","note":"日刊スポーツ（10/11）が、サンデーサラブレッドクラブHPの発表として、10/25京都芝1800・ルメール騎手でのデビュー予定を報道。「5R」はデイリー（10/9）にしか書かれておらず、同記事は10/18京都5R芝2000も候補に挙げていた。出馬投票は10/22（木）","url":"https://news.yahoo.co.jp/articles/f48f5b4af82c9572a1901f237291fa57c4b57220"},"news":[{"date":"2026-10-11","headline":"10/25京都芝1800でルメール騎乗のデビュー予定とクラブ発表","source":"日刊スポーツ（Yahoo!ニュース）","url":"https://news.yahoo.co.jp/articles/f48f5b4af82c9572a1901f237291fa57c4b57220"},{"date":"2026-10-09","headline":"ルメール騎乗で10/18か10/25の京都5Rでデビュー予定","source":"デイリースポーツ（POG2歳馬特選情報）","url":"https://www.daily.co.jp/umaya/news/2026/10/09/0020908383.shtml"},{"date":"2026-07-15","headline":"7/15に栗東でゲート試験に合格","source":"ウマニティ","url":"https://pog.umanity.jp/news_column/news.php?code=11874166"},{"date":"2026-07-07","headline":"7/4にNFしがらきから栗東へ入厩、まずゲート試験へ","source":"netkeiba（栗東トレセンニュース）","url":"https://news.netkeiba.com/?pid=news_view&no=336299"},{"date":"2026-05-08","headline":"5月時点でハロン16〜17秒、体が小さく成長待ちとの見立て","source":"日刊競馬（POG放談）","url":"https://nikkankeiba.co.jp/pogh/%E6%8C%87%E5%90%8D%E9%A6%AC%E3%83%A9%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0%E4%B8%8A%E4%BD%8D%E9%A6%AC%E3%81%AE%E8%BF%91%E6%B3%81/"}],"memo":"G1・4勝クロノジェネシスの2番子。半兄ベレシートは重賞2着2回。10/25京都芝1800をルメールでデビュー予定"}]}</script>
 <script>
 (function(){
 'use strict';
@@ -849,9 +902,14 @@ function ik(ax, ay, bx, by, l1, l2, sx, sy){
   return [mx + px * hh, my + py * hh];
 }
 
-/* 姿勢を計算する（描かずに、鼻先や帽子の位置も分かるように） */
-function horsePose(phase, blend, drive){
-  drive = drive || 0;
+/* 姿勢を計算する（描かずに、鼻先や帽子の位置も分かるように）。
+   drive は騎手の「追い」の強さ 0〜1（0＝持ったまま静か、1＝腕を大きく押し引きし、上体を低く）。
+   whip はステッキ { u: 振りの進み 0〜1（1 以上は振っていない）, a: 強さ 0〜1, hold: 持っている見え方 0〜1 } か null。
+   idle はゲートの中の落ち着きのない動き { n: 首を上げる角度, h: 頭の角度, paw: 前脚で地面をかく進み 0〜1 }（立ち姿のときだけ効く） */
+function horsePose(phase, blend, drive, idle, whip){
+  var dv = clamp(drive || 0, 0, 1) * blend;
+  var still = 1 - blend, idN = idle ? idle.n * still : 0, idH = idle ? idle.h * still : 0;
+  var pawL = idle && idle.paw > 0 && idle.paw < 1 ? Math.sin(Math.PI * idle.paw) * still : 0;
   var f = phase - Math.floor(phase);
   var pitch = blend * 2.6 * Math.cos(TAU2 * (f - .12));
   var cp = Math.cos(pitch * RAD), sp = Math.sin(pitch * RAD);
@@ -860,7 +918,10 @@ function horsePose(phase, blend, drive){
   for (i = 0; i < 4; i++){
     var Lg = LEGS[i], K = Lg.fore ? G_FORE : G_HIND, S = Lg.fore ? ST_FORE : ST_HIND, LEN = Lg.fore ? LEN_FORE : LEN_HIND, PV = Lg.fore ? PIV_FORE : PIV_HIND;
     var lp = f - Lg.off; lp -= Math.floor(lp);
-    var a1 = lerp(S[0], keyAt(K, lp, 1), blend) * RAD, a2 = lerp(S[1], keyAt(K, lp, 2), blend) * RAD, a3 = lerp(S[2], keyAt(K, lp, 3), blend) * RAD;
+    var a1 = lerp(S[0], keyAt(K, lp, 1), blend), a2 = lerp(S[1], keyAt(K, lp, 2), blend), a3 = lerp(S[2], keyAt(K, lp, 3), blend);
+    /* 手前の前脚で地面をかく: 前腕を前へ振り上げ、膝から下を畳んで、後ろへかき戻す */
+    if (pawL && Lg.fore && Lg.near) { var back = idle.paw > .6 ? Math.sin(Math.PI * (idle.paw - .6) / .4) : 0; a1 += 40 * pawL - 10 * back; a2 -= 78 * pawL; a3 -= 52 * pawL; }
+    a1 *= RAD; a2 *= RAD; a3 *= RAD;
     var px = PV[0] * cp - PV[1] * sp, py = PV[0] * sp + PV[1] * cp;
     var x1 = px + Math.sin(a1) * LEN[0], y1 = py - Math.cos(a1) * LEN[0];
     var x2 = x1 + Math.sin(a2) * LEN[1], y2 = y1 - Math.cos(a2) * LEN[1];
@@ -877,8 +938,8 @@ function horsePose(phase, blend, drive){
   for (i = 0; i < 4; i++){ var L = legs[i]; for (var k = 1; k < 8; k += 2) L.p[k] += h; for (k = 0; k < 4; k++) L.hy[k] += h; L.low += h; }
   function B(x, y){ return [x * cp - y * sp, x * sp + y * cp + h]; }
   /* 首と頭（角度は水平から、上向きが正） */
-  var al = lerp(48, 30 + (6 + 3.5 * drive) * Math.cos(TAU2 * (f - .05)), blend);
-  var be = lerp(-62, al - 78 + 4 * Math.sin(TAU2 * f), blend);
+  var al = lerp(48, 30 + (6 + 3.5 * dv) * Math.cos(TAU2 * (f - .05)), blend) + idN;
+  var be = lerp(-62, al - 78 + 4 * Math.sin(TAU2 * f), blend) + idN * .75 + idH;
   var ab = (al - pitch) * RAD, bb = (be - pitch) * RAD;
   var dX = Math.cos(ab), dY = Math.sin(ab), nX = -dY, nY = dX, Ln = 38, Rc = [32, 12];
   var E = [Rc[0] + dX * Ln, Rc[1] + dY * Ln];
@@ -888,14 +949,36 @@ function horsePose(phase, blend, drive){
   var underC = [Rc[0] + dX * Ln * .55 - nX * 9, Rc[1] + dY * Ln * .55 - nY * 9];
   var hX = Math.cos(bb), hY = Math.sin(bb), hnX = -hY, hnY = hX;
   function Hd(a, b){ return B(poll[0] + hX * a + hnX * b, poll[1] + hY * a + hnY * b); }
-  var push = blend * (2.4 + 3.2 * drive) * -Math.cos(TAU2 * (f - .05));
-  var handsB = [Rc[0] + dX * (13 + push) + nX * 13.5, Rc[1] + dY * (13 + push) + nY * 13.5];
-  /* 騎手: 上半身は馬の上下動を 6 割ほど打ち消して滑らかに。足は鐙で馬と一緒に動く */
-  var hMid = lerp(72.9, 67, blend), hj = hMid + .38 * (h - hMid) + drive * .8 * Math.sin(TAU2 * (f + .2));
-  var hip = [-5, hj + 35.5], sh = [25 + drive * 1.2 * Math.cos(TAU2 * (f - .05)), hj + 44];
-  var foot = B(8, 2), hands = B(handsB[0], handsB[1]);
+  /* 追う: 首が下がる位相（pp＝+1）で手綱を首に沿って前へ押し、首が上がるときに引く（しごく）。
+     追っていないときは持ったまま、手はわずかに揺れるだけ */
+  var pp = -Math.cos(TAU2 * (f - .05));
+  var push = blend * (1.3 + 8.7 * dv) * pp, reach = 13 + 3 * dv, lift = 13.5 - 2.5 * dv;
+  var handsB = [Rc[0] + dX * (reach + push) + nX * lift, Rc[1] + dY * (reach + push) + nY * lift];
+  /* 騎手: 上半身は馬の上下動を 6 割ほど打ち消して滑らかに。足は鐙で馬と一緒に動く。
+     追うほど上体を前へ倒して低くし、押すたびに肩が前へ出て沈む */
+  var hMid = lerp(72.9, 67, blend), hj = hMid + .38 * (h - hMid) + dv * 1.1 * Math.sin(TAU2 * (f + .2));
+  var hip = [-5 - 1.5 * dv, hj + 35.5 + 1.2 * dv];
+  var sh = [25 + 3 * dv + 3 * dv * pp, hj + 44 - 5.6 * dv - 2 * dv * pp];
+  var foot = B(8, 2), handsF = B(handsB[0], handsB[1]), hands = handsF;
   var knee = ik(hip[0], hip[1], foot[0], foot[1], 24, 23, 1, .2);
-  var elbow = ik(sh[0], sh[1], hands[0], hands[1], 15, 15, -.2, -1);
+  var elbowF = ik(sh[0], sh[1], handsF[0], handsF[1], 15, 15, -.2, -1);
+  /* ステッキ（手前の手）: 手綱から離して上へ振り上げ、後ろへ振り下ろしてトモに入れ、手綱へ戻す */
+  var wl = null, wa = 0;
+  if (whip && blend > .5) {
+    var TH0 = 200 * RAD, THR = 104 * RAD, THS = 222 * RAD, WL = 24;
+    var Hr = [sh[0] - 3, sh[1] + 16], Hs = [hip[0] + 8.5, hip[1] - 1.5], hp = handsF, th = TH0, e;
+    var u = whip.u, a = clamp(whip.a || 0, 0, 1);
+    if (a > 0 && u >= 0 && u < 1) {
+      if (u < .42) { e = sstep(0, .42, u); hp = [lerp(handsF[0], Hr[0], e), lerp(handsF[1], Hr[1], e)]; th = lerp(TH0, THR, e); }
+      else if (u < .56) { e = sstep(.42, .56, u); hp = [lerp(Hr[0], Hs[0], e), lerp(Hr[1], Hs[1], e)]; th = lerp(THR, THS, e); }
+      else { e = sstep(.56, 1, u); hp = [lerp(Hs[0], handsF[0], e), lerp(Hs[1], handsF[1], e)]; th = lerp(THS, TH0, e); }
+      hands = [lerp(handsF[0], hp[0], a), lerp(handsF[1], hp[1], a)];
+      th = lerp(TH0, th, a);
+      wa = Math.max(a, whip.hold || 0);
+    } else wa = whip.hold || 0;
+    if (wa > .02) { var wlen = lerp(19, WL, a); wl = [hands[0], hands[1], hands[0] + Math.cos(th) * wlen, hands[1] + Math.sin(th) * wlen]; }
+  }
+  var elbow = hands === handsF ? elbowF : ik(sh[0], sh[1], hands[0], hands[1], 15, 15, -.2, -1);
   return {
     f: f, blend: blend, h: h, cp: cp, sp: sp, legs: legs, B: B,
     neck: { root1: B(18, 27), crestC: B(crestC[0], crestC[1]), poll: B(poll[0], poll[1]), throat: B(throat[0], throat[1]), underC: B(underC[0], underC[1]), root2: B(44, -4), d: [dX * cp - dY * sp, dX * sp + dY * cp] },
@@ -903,7 +986,7 @@ function horsePose(phase, blend, drive){
     nose: Hd(38.2, -5.6),
     tailRoot: B(-47, 15),
     tailA: lerp(-76, -14 + 7 * Math.sin(TAU2 * (f + .3)), blend) * RAD,
-    jk: { hip: hip, sh: sh, head: [sh[0] + 7.5, sh[1] + 5.5], foot: foot, knee: knee, hands: hands, elbow: elbow, stirrup: B(1, 20) }
+    jk: { hip: hip, sh: sh, head: [sh[0] + 7.5 + 1.6 * dv, sh[1] + 5.5 - 2.2 * dv], foot: foot, knee: knee, hands: hands, elbow: elbow, handsF: handsF, elbowF: elbowF, stirrup: B(1, 20), whip: wl, whipA: wa }
   };
 }
 
@@ -1072,15 +1155,16 @@ function drawJockey(c, P, look, M){
   function col(x){ return M || x; }
   c.lineCap = 'round'; c.lineJoin = 'round';
   /* 手綱と鐙革 */
+  var HF = J.handsF || J.hands, EF = J.elbowF || J.elbow;
   if (!M) {
     var bit = P.Hd(30, -10.4);
     c.beginPath(); c.moveTo(bit[0], bit[1]);
-    c.quadraticCurveTo((bit[0] + J.hands[0]) / 2, (bit[1] + J.hands[1]) / 2 - 4, J.hands[0], J.hands[1]);
+    c.quadraticCurveTo((bit[0] + HF[0]) / 2, (bit[1] + HF[1]) / 2 - 4, HF[0], HF[1]);
     c.moveTo(J.stirrup[0], J.stirrup[1]); c.lineTo(J.foot[0], J.foot[1]);
     c.lineWidth = 1; c.strokeStyle = look.rein; c.stroke();
   }
-  /* 奥の腕 */
-  c.fillStyle = col(look.silkFar); c.beginPath(); seg(c, J.sh[0] - 1, J.sh[1] + .5, J.elbow[0] - 1, J.elbow[1] + 1, 2.5, 2.3); c.fill(); c.beginPath(); seg(c, J.elbow[0] - 1, J.elbow[1] + 1, J.hands[0] - 1.5, J.hands[1] + 1.2, 2.3, 2); c.fill();
+  /* 奥の腕（手綱を持ったまま押し引きする） */
+  c.fillStyle = col(look.silkFar); c.beginPath(); seg(c, J.sh[0] - 1, J.sh[1] + .5, EF[0] - 1, EF[1] + 1, 2.5, 2.3); c.fill(); c.beginPath(); seg(c, EF[0] - 1, EF[1] + 1, HF[0] - 1.5, HF[1] + 1.2, 2.3, 2); c.fill();
   /* 脚（白いズボンと黒い長靴） */
   c.beginPath(); seg(c, J.hip[0], J.hip[1], J.knee[0], J.knee[1], 5.4, 4.0); fillWith(c, col(look.white));
   var kx = J.knee[0], ky = J.knee[1], fx = J.foot[0], fy = J.foot[1];
@@ -1110,6 +1194,15 @@ function drawJockey(c, P, look, M){
   c.fillStyle = col(S.base); c.beginPath(); seg(c, J.sh[0], J.sh[1], J.elbow[0], J.elbow[1], 2.8, 2.5); c.fill(); c.beginPath(); seg(c, J.elbow[0], J.elbow[1], J.hands[0], J.hands[1], 2.5, 2.1); c.fill();
   if (!M) { c.beginPath(); seg(c, J.sh[0], J.sh[1], J.elbow[0], J.elbow[1], 2.8, 2.5); seg(c, J.elbow[0], J.elbow[1], J.hands[0], J.hands[1], 2.5, 2.1); c.lineWidth = .6; c.strokeStyle = look.edge; c.stroke(); }
   c.beginPath(); circ(c, J.hands[0], J.hands[1], 2.3); fillWith(c, col(look.white));
+  /* ステッキ（黒い細い棒。地に沈まないよう淡い縁を付ける） */
+  if (J.whip && !M) {
+    var w = J.whip, ga = c.globalAlpha, wa = clamp(J.whipA, 0, 1);
+    c.lineCap = 'round';
+    c.beginPath(); c.moveTo(w[0], w[1]); c.lineTo(w[2], w[3]);
+    c.globalAlpha = ga * wa * .45; c.lineWidth = 3.6; c.strokeStyle = look.whipHalo || look.white; c.stroke();
+    c.globalAlpha = ga * wa; c.lineWidth = 2; c.strokeStyle = look.black; c.stroke();
+    c.globalAlpha = ga;
+  }
 }
 /*HORSE-END*/
 
@@ -1260,6 +1353,19 @@ function renderSoon(){
 
 /* ---------- 推移グラフ ---------- */
 var chartW = 0, chartRaf = 0, chartTok = null;
+/* レース展開と日付を共有する縦線（再生中・シーク中だけ出す）。s はシーズン初日からの日数 */
+var chartGeo = null, chartCurS = null;
+function setChartCursor(sd){
+  chartCurS = sd;
+  var g = document.getElementById('chartCur');
+  if (!g || !chartGeo) return;
+  if (sd == null) { g.setAttribute('display', 'none'); return; }
+  var x = chartGeo.X(chartGeo.x0 + sd * DAY), d = new Date(chartGeo.x0 + Math.floor(sd + 1e-6) * DAY);
+  g.removeAttribute('display');
+  g.firstChild.setAttribute('x1', x.toFixed(1)); g.firstChild.setAttribute('x2', x.toFixed(1));
+  g.lastChild.setAttribute('x', Math.max(chartGeo.l + 12, Math.min(chartGeo.r - 12, x)).toFixed(1));
+  g.lastChild.textContent = (d.getUTCMonth() + 1) + '/' + d.getUTCDate();
+}
 function renderChart(force, animate){
   var box = document.getElementById('chart');
   if (chartRaf) { cancelAnimationFrame(chartRaf); chartRaf = 0; }
@@ -1326,7 +1432,10 @@ function renderChart(force, animate){
     paths += '<text class="lbl" x="' + (ex + 33).toFixed(1) + '" y="' + (e.y + 4.5).toFixed(1) + '">' + esc(e.name) + '<tspan class="v" dx="4">' + e.val + '</tspan></text>';
   });
   var aria = '累計ポイントの推移。' + STATS.map(function(s){ return s.m.name + ' ' + fmt(s.total) + 'pt'; }).join('、');
-  box.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="' + esc(aria) + '">' + g + paths + '</svg>';
+  var cur = '<g id="chartCur" class="cur" display="none" aria-hidden="true"><line x1="0" x2="0" y1="' + mt + '" y2="' + (H - mb) + '"/><text y="' + (mt - 3) + '" text-anchor="middle"></text></g>';
+  box.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="' + esc(aria) + '">' + g + cur + paths + '</svg>';
+  chartGeo = { X: X, x0: x0, l: ml, r: W - mr };
+  setChartCursor(chartCurS);
   document.getElementById('chartSub').textContent = md(SEASON_START) + '〜' + md(ASOF) + '・レースの日に積み上げ';
   if (animate) drawInChart(box);
 }
@@ -1672,31 +1781,6 @@ document.addEventListener('click', function(e){
   var b = e.target.closest('[data-h]');
   if (b && !b.closest('.horse')) { e.preventDefault(); jumpHorse(b.getAttribute('data-h')); }
 });
-/* 馬カードの「全成績・ニュース」を開くと、発馬機の扉が左右に開いて中身が出る */
-function openGate(det){
-  var body = det.querySelector('.body');
-  if (!body || !body.animate) return;
-  var g = document.createElement('div');
-  g.className = 'gate'; g.setAttribute('aria-hidden', 'true');
-  g.innerHTML = '<i class="dl"></i><i class="dr"></i>';
-  body.classList.add('gating'); body.appendChild(g);
-  var o = { duration: 380, easing: 'cubic-bezier(.55,.05,.3,1)', fill: 'both' };
-  var a = g.firstChild.animate([{ transform: 'perspective(700px) rotateY(0deg)' }, { transform: 'perspective(700px) rotateY(-86deg)' }], o);
-  g.lastChild.animate([{ transform: 'perspective(700px) rotateY(0deg)' }, { transform: 'perspective(700px) rotateY(86deg)' }], o);
-  a.onfinish = a.oncancel = function(){ if (g.parentNode) g.parentNode.removeChild(g); body.classList.remove('gating'); };
-  /* 着順の札を掲示板の数字板のように 1 枚めくる */
-  [].forEach.call(body.querySelectorAll('.rlog .rf'), function(el, i){
-    el.animate([{ transform: 'perspective(240px) rotateX(-90deg)' }, { transform: 'perspective(240px) rotateX(0deg)' }],
-      { duration: 360, delay: 200 + Math.min(i, 8) * 50, easing: 'cubic-bezier(.3,1.35,.5,1)', fill: 'backwards' });
-  });
-}
-document.addEventListener('click', function(e){
-  var sm = e.target.closest('.more > summary');
-  if (!sm) return;
-  var det = sm.parentNode;
-  if (det.open || reduced()) return;
-  e.preventDefault(); det.open = true; openGate(det);
-});
 window.addEventListener('hashchange', function(){
   var hsh = (location.hash || '').replace('#', '');
   if (TABS.indexOf(hsh) >= 0 && hsh !== current) showTab(hsh, { hash:false });
@@ -1712,40 +1796,178 @@ renderChart(true);
 if (current === 'next') waveFlag();
 
 /*RACE-START*/
-/* ---------- レース展開（Canvas 1 枚。芝・ラチ・ハロン棒・ゴール板・馬と騎手を手続きで描く） ---------- */
+/* ---------- レース展開＝シーズンの再現（Canvas 1 枚） ----------
+   レースの時間はシーズンの日付（6/1 → asOf）。暦はほぼ一定の速さで進み（直近の数週だけごく緩やかに遅く）、先頭が決勝線に届いた瞬間に写真判定のように止まる。
+   各馬は同じリズムで走り続け、累計 pt を時間方向に滑らかにした分だけ前へ出る。点が入った馬は数秒かけて伸び、そのあいだ騎手が追う。
+   奥のターフビジョンは着順掲示板: 同じ日付の順位・枠・名前・pt の 4 行（順位が替わると行がすべって入れ替わる）、隅に日付、下端にいちばん新しい出来事。
+   絵の下の帯で日付をなぞって動かせる。日付・位置・掲示板はすべて「場面の時間 τ」の関数なので、再生でもシークでも同じ絵になる */
 var Race = (function(){
-  var fig = document.getElementById('raceFig'), cv = document.getElementById('raceCanvas'), rb = document.getElementById('raceReplay');
-  function giveUp(){ if (fig) fig.hidden = true; if (rb) rb.hidden = true; railRun(); return { replay: function(){}, check: function(){} }; }
+  var fig = document.getElementById('raceFig'), cv = document.getElementById('raceCanvas');
+  var ctlEl = document.getElementById('raceCtl'), playBtn = document.getElementById('racePlay'), rsBtn = document.getElementById('raceRestart');
+  var tl = document.getElementById('raceTl'), tlIn = document.getElementById('raceTlIn');
+  function giveUp(){ if (fig) fig.hidden = true; if (ctlEl) ctlEl.hidden = true; var cp = document.getElementById('raceCap'); if (cp) cp.hidden = true; setChartCursor(null); railRun(); return { check: function(){} }; }
   try {
   var ctx = cv && cv.getContext ? cv.getContext('2d') : null;
-  if (!fig || !ctx || !STATS.length) return giveUp();
+  if (!fig || !ctx || !STATS.length || !tl || !tlIn || !playBtn || !rsBtn) return giveUp();
 
-  /* 時間割（秒）。slowAt から先はスローモーション（一定の遅さ）で走り抜け、決勝線で写真のように止まる */
-  var TL = { gate:.34, ramp:.6, camLag:.24, split0:1.05, split1:1.85, decel:.55, slowAt:2.85, slowDur:.95 };
-  var TE = TL.slowAt + TL.slowDur / 3, NT = 420;
-  var SLOW = { k:.42, ease:.2 };
-  var TAU1 = TL.slowAt + SLOW.ease * (1 + SLOW.k) / 2;
-  var T_ALL = TL.slowAt + SLOW.ease + (TE - TAU1) / SLOW.k;
-  /* 蹄が地面についている間に後ろへ動く速さ（馬の単位／完歩）。完歩の速さを対地速度から決めて、脚が滑って見えないようにする */
-  var SWEEP = 205;
+  /* ---- シーズンの暦（日の番号 0＝6/1 … N＝asOf） ---- */
+  var D0 = utc(SEASON_START), DN = utc(ASOF);
+  if (isNaN(D0)) return giveUp();
+  if (isNaN(DN) || DN < D0) DN = D0;
+  var N = Math.max(1, Math.round((DN - D0) / DAY));
+  function isoOf(i){ var d = new Date(D0 + Math.round(i) * DAY); return d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate(); }
+  function dayText(i){ var iso = isoOf(i), x = ymd(iso); return x.m + '月' + x.d + '日（' + dow(iso) + '）'; }
+  document.getElementById('raceSub').textContent = md(SEASON_START) + '〜' + md(ASOF) + 'を早回しで';
+
+  var TG = 1.05;            /* 発走の瞬間（場面の秒）。それまではゲートの中 */
+  var SU0 = .04;           /* 点が入る瞬間: その日の頭から 4% のところ（掲示板の pt はそこから数え上がる） */
+  var SWEEP = 205;          /* 蹄が地面についている間に後ろへ送る距離（馬の単位）。脚が滑らないよう完歩の速さを対地速度から決める */
   var END_PH = [.30, .26, .34, .22, .28, .32, .24, .36];
-  var BRK = [.09, -.1, .03, .15, -.05, .11, -.08, .06];
   var COATS = { '鹿毛':'bay', '黒鹿毛':'dkbay', '青鹿毛':'brown', '青毛':'black', '栗毛':'chestnut', '栃栗毛':'liver', '芦毛':'grey', '白毛':'white' };
   var DARK_COAT = { dkbay:1, brown:1, black:1 };
-  var COL = {}, FNT = {}, LAY = null, W = 0, H = 0, dpr = 1;
-  var state = 'pending', t = 0, post = 0, flash = 0, raf = 0, last = 0, visible = false, pausedAt = 0;
+  var COL = {}, VCOL = {}, FNT = {}, LAY = null, W = 0, H = 0, dpr = 1;
+  var state = 'pending', t = 0, tauNow = 0, post = 0, flash = 0, raf = 0, last = 0, visible = false, pausedAt = 0;
   var parts = [];
   var tabsEl = document.querySelector('.tabs');
+  function ease5(x){ x = clamp(x, 0, 1); return x * x * x * (x * (x * 6 - 15) + 10); }
 
   var top = STATS[0].total;
-  var R = STATS.map(function(s, i){
-    var best = sortHorses(s.hs)[0] || {};
-    return { id: s.m.id, name: s.m.name, total: s.total, rank: s.rank, order: i, waku: +s.m.waku || 9, coat: best.coat || '鹿毛', lp: [] };
+  var R = STATS.map(function(st, i){
+    var best = sortHorses(st.hs)[0] || {};
+    return { id: st.m.id, name: st.m.name, total: st.total, rank: st.rank, order: i, waku: +st.m.waku || 9, coat: best.coat || '鹿毛', lp: [], ev: [] };
   });
+  var RBY = {}; R.forEach(function(r){ RBY[r.id] = r; });
   /* 内（奥）から枠の順に並べる */
   R.slice().sort(function(a, b){ return a.waku - b.waku || a.order - b.order; }).forEach(function(r, i){ r.lane = i; });
   var BYLANE = R.slice().sort(function(a, b){ return a.lane - b.lane; });
-  cv.setAttribute('aria-label', 'レース展開の絵。' + STATS.map(function(s){ return s.rank + '着 ' + s.m.name + ' ' + fmt(s.total) + 'pt'; }).join('、'));
+  cv.setAttribute('aria-label', 'シーズンを再現したレース展開と、奥の着順掲示板（ターフビジョン）の絵。' + md(ASOF) + ' 時点で ' + STATS.map(function(s){ return s.rank + '着 ' + s.m.name + ' ' + fmt(s.total) + 'pt'; }).join('、'));
+  var descEl = document.getElementById('raceDesc');
+  if (descEl) descEl.textContent = md(SEASON_START) + ' から ' + md(ASOF) + '（データの日）まで、レースで入った pt の分だけ馬が前へ出ます（間隔は pt 差に比例）。伸びている馬は騎手が追います。奥のビジョンは着順掲示板で、その日の順位と pt、いちばん新しい出来事を映します。下の帯の点は pt が入った日です。毛色は各自の稼ぎ頭です。';
+
+  /* ---- ポイントが入った出来事（races の日付と prize から。手で書かない） ---- */
+  var EV = [];
+  STATS.forEach(function(st){
+    st.hs.forEach(function(h){ (h.races || []).forEach(function(rc){
+      var p = ptOf(rc); if (!(p > 0)) return;
+      var tt = utc(rc.date), i = isNaN(tt) ? N : clamp(Math.round((tt - D0) / DAY), 0, N);
+      EV.push({ i: i, id: st.m.id, horse: String(h.name || ''), fin: Number(rc.finish) || 0, p: p, rn: String(rc.raceName || '') + ' ' + String(rc.grade || '') });
+    }); });
+  });
+  EV.sort(function(a, b){ return a.i - b.i || RBY[a.id].order - RBY[b.id].order || b.p - a.p; });
+  EV.forEach(function(e){ RBY[e.id].ev.push(e); });
+  /* その日の終わりの本当の累計と順位 */
+  function cumDay(r, d){ var v = 0; r.ev.forEach(function(e){ if (e.i <= d) v += e.p; }); return v; }
+  function rankOn(r, d){ var me = cumDay(r, d); return 1 + R.filter(function(o){ return cumDay(o, d) > me + 1e-9; }).length; }
+  function leaderOn(d){
+    if (d < 0) return null;
+    var best = null, bv = 1e-9, tie = false;
+    R.forEach(function(r){ var v = cumDay(r, d); if (v > bv + 1e-9) { best = r; bv = v; tie = false; } else if (best && Math.abs(v - bv) < 1e-9) tie = true; });
+    return tie ? null : best;
+  }
+
+  /* 日ごと・人ごとにまとめる（同じ日に同じ人の馬が 2 頭入ったら 1 本に）。同じ日の中は、大事なもの（1着・先頭に立った）を最後に置く */
+  var GRP = [], EVD = [];
+  EV.forEach(function(e){ if (EVD.indexOf(e.i) < 0) EVD.push(e.i); });
+  EVD.forEach(function(d){
+    var g = [], lb = leaderOn(d - 1), la = leaderOn(d);
+    R.forEach(function(r){
+      var es = r.ev.filter(function(e){ return e.i === d; });
+      if (!es.length) return;
+      es.sort(function(a, b){ return (a.fin || 99) - (b.fin || 99) || b.p - a.p; });
+      var before = d > 0 ? rankOn(r, d - 1) : R.length, after = rankOn(r, d);
+      var x = { i: d, r: r, id: r.id, p: es.reduce(function(s, e){ return s + e.p; }, 0), es: es, fin: es[0].fin, lead: la === r && lb !== r, up: after < before && after > 1 ? after : 0 };
+      x.hi = x.fin === 1 || x.lead;
+      x.imp = (x.fin === 1 ? 1e4 : 0) + (x.lead ? 5e3 : 0) + (x.up ? 1e3 : 0) + x.p;
+      g.push(x);
+    });
+    g.sort(function(a, b){ return a.imp - b.imp; });
+    GRP = GRP.concat(g);
+  });
+  function resText(g){ var b = g.es[0]; if (b.fin === 1) return /新馬/.test(b.rn) ? '新馬勝ち' : (/未勝利/.test(b.rn) ? '初勝利' : '1着'); return b.fin ? b.fin + '着' : ''; }
+
+  /* 出脚: 最初に点が入った日が遅い人ほど出遅れる（ゲートの反応も遅い）。最初の点で伸びるときに取り戻す */
+  var firsts = R.filter(function(r){ return r.ev.length; }).map(function(r){ return r.ev[0].i; });
+  var minFirst = firsts.length ? Math.min.apply(null, firsts) : 0;
+  R.forEach(function(r, j){
+    r.firstDay = r.ev.length ? r.ev[0].i : null;
+    r.lagN = r.firstDay == null ? 1 : clamp((r.firstDay - minFirst) / 40, 0, 1);
+    /* 出遅れは「遅れて出る時間」で持つ（同じ加速で遅れて出るので、後ろへ下がって見えない） */
+    r.dly = r.firstDay === minFirst ? 0 : .022 + .11 * r.lagN;
+    r.react = .03 + r.dly + .04 * r.lagN;
+    r.wobP = 1.25 + .21 * ((j * 5) % 4); r.wobPh = j * 1.9 + .4;
+  });
+
+  /* ---- 日付 → 時間。ほぼ一定の速さで、直近の数週だけごく緩やかに遅くする。データが増えても全体は 9 秒ほどで頭打ち ---- */
+  var wd = [], wsum = 0, i;
+  for (i = 0; i <= N; i++){ wd[i] = 1 + .9 * sstep(N - 42, N - 8, i); wsum += wd[i]; }
+  var RUN = clamp((N + 1) * .066, 3.6, 8.6), DS = [TG];
+  for (i = 0; i <= N; i++) DS[i + 1] = DS[i] + RUN * wd[i] / wsum;
+  var TE = DS[N + 1];
+  function durOf(k){ return DS[k + 1] - DS[k]; }
+  function tauOfS(s){ s = clamp(s, 0, N + 1); var k = Math.min(N, Math.floor(s)); return DS[k] + (s - k) * durOf(k); }
+  function sOfTau(tau){
+    if (tau <= TG) return 0;
+    if (tau >= TE) return N + 1;
+    var lo = 0, hi = N;
+    while (lo < hi){ var m = (lo + hi + 1) >> 1; if (DS[m] <= tau) lo = m; else hi = m - 1; }
+    return lo + (tau - DS[lo]) / durOf(lo);
+  }
+  /* 実時間 → 場面の時間（スローモーションはしない。決勝線で止まる） */
+  function tauOf(x){ return clamp(x, 0, TE); }
+  GRP.forEach(function(g){ g.at = tauOfS(g.i + SU0); });
+  EV.forEach(function(e){ e.at = tauOfS(e.i + SU0); });
+
+  /* ---- 着順掲示板の動き ----
+     再生中: 点が入ると、その人の pt が 0.3 秒で数え上がる（その数字で並べ替える。同点は枠の順）。
+     行の位置は 2 段の指数平滑（臨界減衰。動き出しも止まり際もなめらか）で 0.3 秒ほどかけて新しい段へ。表は 0.01 秒刻みで前もって作る */
+  var CU = .3, BDT = .01, NB = Math.ceil((TE + 1.6) / BDT);
+  function runVal(r, bt){ var v = 0, ev = r.ev; for (var k = 0; k < ev.length; k++){ var e = ev[k]; if (bt <= e.at) break; var u = clamp((bt - e.at) / CU, 0, 1); v += e.p * (1 - (1 - u) * (1 - u) * (1 - u)); } return v; }
+  function sortBy(vals){ return R.map(function(r, j){ return j; }).sort(function(a, b){ return vals[b] - vals[a] || R[a].waku - R[b].waku || R[a].order - R[b].order; }); }
+  var SLOT = R.map(function(){ return new Float32Array(NB + 1); });
+  (function(){
+    var a = 1 - Math.exp(-BDT / .055), y1 = [], y2 = [];
+    for (var q = 0; q <= NB; q++){
+      var vals = R.map(function(r){ return runVal(r, q * BDT); });
+      sortBy(vals).forEach(function(j, k){
+        if (!q) { y1[j] = k; y2[j] = k; } else { y1[j] += (k - y1[j]) * a; y2[j] += (y1[j] - y2[j]) * a; }
+        SLOT[j][q] = y2[j];
+      });
+    }
+  })();
+  function slotAt(j, bt){ var x = clamp(bt, 0, NB * BDT) / BDT, k = Math.floor(x); if (k >= NB) return SLOT[j][NB]; return SLOT[j][k] + (SLOT[j][k + 1] - SLOT[j][k]) * (x - k); }
+
+  /* ---- 掲示板の下端の出来事 ----
+     止めているとき・シークしたとき: 全部を日付順に（同じ日は大事なものが最後に残る）。
+     再生中: 1着・先頭交代は 1 秒、ほかは 0.6 秒は出す。遅れすぎる小さい結果は飛ばす（止めれば見られる）。決着の後も最新の出来事を残す */
+  var M_PRE = { kind: 'pre', at: -1 }, M_GO = { kind: 'go', at: TG };
+  var ALL = [M_PRE, M_GO].concat(GRP.map(function(g){ return { kind: 'ev', g: g, at: g.at }; }));
+  if (GRP.length) {
+    var gL = GRP[GRP.length - 1], eL = gL.es[0];
+    cv.setAttribute('aria-label', cv.getAttribute('aria-label') + '。いちばん新しい出来事は ' + md(isoOf(gL.i)) + ' ' + eL.horse + (eL.fin ? ' ' + eL.fin + '着' : '') + (gL.es.length > 1 ? ' ほか' : '') + ' ' + gL.r.name + ' +' + (Math.round(gL.p * 10) / 10) + 'pt');
+  }
+  var PLAY = (function(){
+    var out = [M_PRE, M_GO], lastAt = TG, lastGap = .75, HOLD = 1, HOLD_LO = .9;
+    GRP.forEach(function(g, gi){
+      /* 同じ日に 1着や先頭交代があれば、ほかの小さい結果は再生中は出さない。なければ、その日のいちばん大きい 1 本だけ */
+      if (!g.hi && GRP.some(function(o){ return o.i === g.i && o !== g && (o.hi || o.imp > g.imp); })) return;
+      var at = Math.max(g.at, lastAt + lastGap);
+      if (!g.hi) {
+        /* 小さい結果は、遅れずに出せて、次の 1着・先頭交代を遅らせずに 0.9 秒は読めるときだけ（止めれば全部見られる） */
+        if (at - g.at > (g.p < 10 ? .2 : .45)) return;
+        for (var z = gi + 1; z < GRP.length; z++) if (GRP[z].hi && GRP[z].i > g.i) { if (GRP[z].at < at + HOLD_LO) return; break; }
+      }
+      out.push({ kind: 'ev', g: g, at: at }); lastAt = at; lastGap = g.hi ? HOLD : HOLD_LO;
+    });
+    /* 決勝線のあと 1.05 秒までに最後の 1 本を出しきる（決着の絵に切り替わる 1.35 秒より前に、すべり込みが終わるように）。
+       はみ出す分は後ろから詰める（点が入る前には出さない）。ゴール前に 1着が続いても、どれも 0.9 秒は読めるように */
+    var lim = TE + 1.05;
+    for (var k = out.length - 1; k >= 2; k--){ if (out[k].at > lim) out[k].at = Math.max(out[k].g.at, lim); lim = out[k].at - HOLD_LO; }
+    return out;
+  })();
+
+  /* 点が入った瞬間、その騎手の帽子の上に「+78」を出す（勝負服の色） */
+  var POPS = GRP.map(function(g){ return { r: g.r, p: g.p, at: g.at }; });
+  function popOf(r, tau){ var b = null; for (var k = 0; k < POPS.length; k++){ var o = POPS[k]; if (o.r === r && tau >= o.at && tau - o.at < 1.05) b = o; } return b; }
 
   function tok(n){ try { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); } catch(e) { return ''; } }
   function rgbOf(h){
@@ -1757,10 +1979,13 @@ var Race = (function(){
   }
   function shade(h, k){ var c = rgbOf(h); return c ? 'rgb(' + [c[0], c[1], c[2]].map(function(x){ return Math.round(x * (1 - k)); }).join(',') + ')' : h; }
   function alpha(h, a){ var c = rgbOf(h); return c ? 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (c[3] * a) + ')' : h; }
+  function lum(h){ var c = rgbOf(h); return c ? (c[0] * .299 + c[1] * .587 + c[2] * .114) / 255 : 0; }
 
   function readCols(){
-    ['--race-far','--race-infield','--race-infield-2','--race-track','--race-track-2','--race-shade','--race-rim','--race-clod','--race-clod-2','--race-gate',
-     '--race-plate-ink','--race-skin','--race-rein','--rail','--brass','--brass-hi','--on-brass','--sheet','--ink','--paper','--line','--silk-white','--silk-black','--silk-edge','--coat-hoof']
+    ['--race-far','--race-infield','--race-infield-2','--race-track','--race-track-2','--race-shade','--race-rim','--race-clod','--race-clod-2','--race-dust',
+     '--race-plate-ink','--race-skin','--race-rein','--rail','--brass','--brass-hi','--on-brass','--sheet','--ink','--paper','--line','--silk-white','--silk-black','--silk-edge','--coat-hoof',
+     '--gate-steel','--gate-steel-2','--gate-pad','--gate-pad-2','--gate-tire','--flag-red','--flag-white',
+     '--vis-screen','--vis-frame','--vis-frame-hi','--vis-steel','--vis-grid','--vis-ink','--vis-mute','--vis-led','--vis-telop','--vis-date','--vis-date-ink','--vis-lamp','--vis-lamp-ink']
       .forEach(function(k){ COL[k] = tok(k); });
     var rim = rgbOf(COL['--race-rim']); COL.rimOn = !!(rim && rim[3] > .01);
     FNT.body = tok('--f-body') || 'sans-serif'; FNT.num = tok('--f-num') || 'sans-serif'; FNT.disp = tok('--f-display') || 'serif';
@@ -1768,15 +1993,21 @@ var Race = (function(){
       var ck = COATS[r.coat] || 'bay', base = tok('--coat-' + ck) || '#8A5430', pt = tok('--coat-' + ck + '-pt') || '#1D1511', mane = tok('--coat-' + ck + '-mane') || pt;
       var sk = silkOf(r.id), sb = tok(sk.base) || '#888';
       r.capCol = tok(sk.cap) || sb;
+      VCOL[r.id] = tok('--vis-m-' + r.id) || tok('--m-' + r.id) || COL['--vis-ink'];
       /* 暗いテーマの縁の光は、背景に沈む黒っぽい毛色だけに付ける */
       r.dark = !!DARK_COAT[ck];
       r.look = { coat: base, pts: pt, mane: mane, hoof: COL['--coat-hoof'], far: shade(base, .32), farPts: shade(pt, .3),
         silk: { base: sb, pc: tok(sk.pc) || '#fff', pat: sk.pat, cap: r.capCol }, silkFar: shade(sb, .3),
-        white: COL['--silk-white'], black: COL['--silk-black'], edge: COL['--silk-edge'], skin: COL['--race-skin'], rein: COL['--race-rein'], cloth: COL['--silk-white'] };
+        white: COL['--silk-white'], black: COL['--silk-black'], edge: COL['--silk-edge'], skin: COL['--race-skin'], rein: COL['--race-rein'], cloth: COL['--silk-white'], whipHalo: COL['--rail'] };
+      /* 発馬機の枠は奥ほど暗く（重なって見える奥行き） */
+      var dk = (R.length - 1 - r.lane) * .11;
+      r.gc = { st: shade(COL['--gate-steel'], dk * .8), st2: shade(COL['--gate-steel-2'], dk * .8), pad: shade(COL['--gate-pad'], dk), pad2: shade(COL['--gate-pad-2'], dk) };
+      r.wc = tok(WAKU_SILK[r.waku] || '--silk-white') || COL['--silk-white'];
     });
+    ALL.concat(PLAY).forEach(function(m){ m.fit = null; });
   }
 
-  /* ---- 配置と、走りの表（速さ・位置・脚の位相）を前もって積分しておく ---- */
+  /* ---- 配置（上の帯にビジョン、下に v3 と同じ縮尺のコース）と、走りの表を前もって積分しておく ---- */
   function layout(){
     var w = Math.round(fig.clientWidth), h = Math.round(fig.clientHeight);
     if (!w || !h) return false;
@@ -1784,104 +2015,189 @@ var Race = (function(){
     if (w === W && h === H && nd === dpr && LAY) return true;
     W = w; H = h; dpr = nd;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    var s = H / 464, n = R.length, gapU = n > 1 ? Math.min(44, 132 / (n - 1)) : 0;
-    var L = { s: s, railTop: 132 * s, railBase: 170 * s, goalX: W - Math.max(26, 40 * s), gateX: W * .4, horseLen: 172 * s };
+    /* 掲示板の寸法。スマホでも名前 19px・数字 23px・出来事 16〜17px。CSS の絵の高さは「v4 の高さ＋掲示板で増えた分」にしてあり、馬の帯は v4 と同じ高さ */
+    var n0 = R.length, BD = W < 600 ? { fsN: 19, dg: 23, rowH: 33, hdH: 30, fsD: 20, fsL: 16, evH: 36, fsE: 17, fsU: 16, padX: 7, bez: 5 }
+      : (W < 900 ? { fsN: 20, dg: 26, rowH: 36, hdH: 32, fsD: 22, fsL: 16, evH: 40, fsE: 18, fsU: 16, padX: 14, bez: 5 }
+                 : { fsN: 22, dg: 29, rowH: 41, hdH: 36, fsD: 24, fsL: 17, evH: 44, fsE: 20, fsU: 17, padX: 18, bez: 6 });
+    var bez = BD.bez, plFs = 12, plH = plFs + 5, botH = plH + 4, topM = 9;
+    var mh = bez + (BD.hdH + 4 + n0 * BD.rowH + BD.evH) + botH, MZ = topM + mh + 6;
+    var y0 = MZ, Hz = H - MZ, s = Hz / 464, n = R.length, gapU = n > 1 ? Math.min(44, 132 / (n - 1)) : 0;
+    var L = { s: s, y0: y0, Hz: Hz, railTop: y0 + 132 * s, railBase: y0 + 170 * s, goalX: W - Math.max(26, 40 * s), gateX: W * .4, horseLen: 172 * s, gap: gapU * s };
     var minT = Math.min.apply(null, R.map(function(r){ return r.total; }));
-    /* 間隔は幅の 6〜7 割ほどに収める（走る速さを自然に保つため）。広い画面ほど馬群を左へ広げる */
+    /* 決着の間隔は v3 と同じ: 幅の 6〜7 割ほどに収め、広い画面ほど馬群を左へ広げる */
     var avail = Math.min(L.goalX - 10 - L.horseLen, Math.max(240, W * (W >= 900 ? .68 : .58))), maxGap = top - minT;
     L.k = maxGap > 0 ? Math.min(avail / maxGap, L.horseLen / 10) : 0;
     R.forEach(function(r){
       r.sc = s * (1 - (n - 1 - r.lane) * .03);
-      r.base = (262 + r.lane * gapU) * s;
+      r.base = y0 + (262 + r.lane * gapU) * s;
       r.F = L.goalX - (top - r.total) * L.k;
       r.phE = END_PH[r.order % END_PH.length];
       r.noseE = horsePose(r.phE, 1, 1).nose[0];
     });
     /* 同点でなければ、鼻差でも 4px は離して見せる（1pt 差の 2 頭が同着に見えないように） */
-    R.forEach(function(r, i){ var p = R[i - 1]; if (p && r.total < p.total - 1e-9 && r.F > p.F - 4) r.F = p.F - 4; });
+    R.forEach(function(r, j){ var p = R[j - 1]; if (p && r.total < p.total - 1e-9 && r.F > p.F - 4) r.F = p.F - 4; });
+    R.forEach(function(r){ r.corr = r.F - (L.goalX - (top - r.total) * L.k); });
+
+    /* 掲示板の欄: 着順の数字 → 枠の色 → 名前 → pt（右寄せ）＋「pt」。スマホはほぼ横いっぱい、広い画面はゴール板の奥に寄せる */
+    var NC = numCells(BD.dg), rkW = NC.dg, bk = Math.round(BD.rowH * .76), fsW = Math.max(16, Math.round(bk * .7));
+    var fN = '700 ' + BD.fsN + 'px ' + FNT.body, fU = '500 ' + BD.fsU + 'px ' + FNT.body, nameW = 0;
+    ctx.font = fN; R.forEach(function(r){ nameW = Math.max(nameW, ctx.measureText(r.name).width); });
+    ctx.font = fU; var uW = ctx.measureText('pt').width + 7, ptW = numW(fmt(top), NC), rx0 = BD.padX + rkW + 12;
+    var need = Math.ceil(2 * bez + rx0 + 7 + bk + 10 + nameW + 16 + ptW + uW + BD.padX);
+    var drift = W < 600 ? 2 : Math.min(12, W * .025), right = Math.min(W - 6 - drift, L.goalX + Math.max(14, W * .05));
+    var Wm = W < 600 ? right - 6 : (W < 900 ? clamp(W * .62, 400, 540) : clamp(W * .46, 540, 620));
+    Wm = Math.round(Math.max(Wm, Math.min(right - 6, need)));
+    var plSp = plFs * .24, plTxt = 'POG VISION', plW = 0;
+    ctx.font = '700 ' + plFs + 'px ' + FNT.num;
+    for (var c = 0; c < plTxt.length; c++) plW += ctx.measureText(plTxt.charAt(c)).width + (c < plTxt.length - 1 ? plSp : 0);
+    L.mon = { x: Math.max(6, right - Wm), y: topM, w: Wm, h: mh, bez: bez, bd: BD, nc: NC, rx0: rx0, bk: bk, fsW: fsW, fN: fN, fU: fU, ptR: Wm - 2 * bez - BD.padX - uW, botH: botH,
+      ground: y0 + (132 - 50) * s, drift: drift, plFs: plFs, plSp: plSp, plTxt: plTxt, plW: Math.ceil(plW + 14), plH: plH };
     build(L);
-    /* ハロン棒の間隔: スタートの発馬機が 800（残り 4F）の棒のすぐ手前に来るように */
-    L.D = Math.max(60, (L.goalX + L.S - L.gateX - Math.max(22, 40 * s)) / 4);
+    /* ハロン棒: 距離は幅によらず 8 本（1600m）。ゲートの前扉のすぐ先が最初の棒。
+       最後の 200m の棒は、決着の絵で最後方の馬とその前の馬のあいだに来るよう、最後の 1 区間だけ合わせる */
+    var GX0 = L.gateX - 34 * s, dist = L.goalX + L.S - GX0, nF = 8, D = (dist - 88 * s) / nF, Dl = D;
+    var srt = R.slice().sort(function(a, b){ return b.F - a.F; });
+    if (srt.length > 1) {
+      var lst = srt[srt.length - 1], prv = srt[srt.length - 2], gp = (prv.F - (prv.noseE + 52) * prv.sc) - lst.F;
+      if (gp > 26) { var d2 = L.goalX - (lst.F + gp / 2); if (d2 > D * .3 && d2 < D * 1.6) Dl = d2; }
+    }
+    L.GX0 = GX0; L.nF = nF; L.Dl = Dl; L.D = nF > 1 ? (dist - 88 * s - Dl) / (nF - 1) : D;
     LAY = L;
     return true;
   }
+
+  /* 走りの表（τ を 0.01 秒刻み）:
+     P  … 群れの基準の進み。発走で 1 秒ほどかけて一定の速さ V に上がり、あとは一定（ゴール前でも落とさない）
+     CS … 累計 pt を滑らかにした曲線（点が入る少し前から数秒かけて上がる。大きい点ほど長く）
+     X  … 各馬の対地位置 = P + 縮尺 × CS（＋出遅れ・わずかな揺れ）。速さは V から滑らかに上下し、下がらない
+     CAM… カメラ。先頭を滑らかに追い、最後は先頭がゴール板に届く位置
+     PU … 騎手の追いの強さ（伸びの速さに比例。立ち上がり 0.4 秒・戻り 0.8 秒でなめらかに。ゴール前は全員が追う） */
   function build(L){
-    var dT = TE / NT, k, i, s = L.s;
-    var g = [], gc = [], hh = [];
-    for (k = 0; k <= NT; k++){
-      var tau = k * dT;
-      /* 馬が先に飛び出し、カメラは少し遅れて追う */
-      g[k] = sstep(TL.gate, TL.gate + TL.ramp, tau);
-      gc[k] = sstep(TL.gate + TL.camLag, TL.gate + TL.camLag + .8, tau) * clamp((TE - tau) / TL.decel, 0, 1);
-      hh[k] = sstep(TL.split0, TL.split1, tau);
-    }
-    function integ(a){ var x = 0; for (var q = 1; q <= NT; q++) x += (a[q] + a[q - 1]) * .5 * dT; return x; }
-    var Ig = integ(g), Igc = integ(gc), Ih = integ(hh);
-    var meanF = R.reduce(function(a, r){ return a + r.F; }, 0) / R.length;
-    /* 接戦の 2 頭は決勝線の手前で鼻を入れ替える */
-    R.forEach(function(r){ r.duel = 0; });
-    R.forEach(function(a){ R.forEach(function(b){ if (a.order < b.order && !a.duel && !b.duel && Math.abs(a.F - b.F) < L.horseLen * .25) { a.duel = 1; b.duel = -1; } }); });
-    var Vc = 6.2 * 100 * s, S = 0, V0 = 0, tries = 0, ok;
-    do {
-      S = Vc * Igc; V0 = (meanF - L.gateX + S) / Ig; ok = true;
-      R.forEach(function(r, j){
-        var A = .055 + .02 * ((j * 7) % 3) / 2, Pp = 1.05 + .17 * ((j * 5) % 4), ph = j * 1.9 + .4;
-        r.wob = [];
-        for (var q = 0; q <= NT; q++){
-          var tau = q * dT;
-          var win = sstep(TL.gate + .45, TL.gate + .95, tau) * (1 - sstep(TL.slowAt - .6, TL.slowAt - .1, tau));
-          var w = V0 * A * Math.sin(TAU2 * (tau - TL.gate) / Pp + ph) * win;
-          w += V0 * BRK[j % BRK.length] * sstep(TL.gate + .05, TL.gate + .35, tau) * (1 - sstep(TL.gate + .7, TL.gate + 1.3, tau));
-          if (r.duel) w += r.duel * V0 * .08 * Math.sin(TAU2 * (tau - 1.95) / .62) * sstep(1.85, 2.15, tau) * (1 - sstep(2.7, 3.0, tau));
-          r.wob[q] = w;
-        }
-        r.Dv = (r.F - L.gateX + S - V0 * Ig - integ(r.wob)) / Ih;
-        for (q = 0; q <= NT; q++){ if (g[q] > .95 && V0 * g[q] + r.Dv * hh[q] + r.wob[q] < V0 * .45) { ok = false; break; } }
-      });
-      if (!ok) Vc *= 1.1;
-    } while (!ok && ++tries < 6);
-    var C = [0];
-    for (k = 1; k <= NT; k++) C[k] = C[k - 1] + Vc * (gc[k] + gc[k - 1]) * .5 * dT;
+    var s = L.s, HL = L.horseLen, n = R.length, NT = Math.max(240, Math.ceil(TE / .01)), dT = TE / NT, q, j, z, tau;
+    /* 幅の広い画面ほど着差（px）が大きいので、伸びの山を長くして、加速度をスマホと同じくらいに抑える（脚の回転は変えない） */
+    var V = 6.2 * 100 * s, fw = clamp(Math.sqrt((L.k / V) / .00414), 1, 1.7);
+    function pv(x){ return V * sstep(TG + .08, TG + 1.15, x); }
+    var P = new Float64Array(NT + 1);
+    for (q = 1; q <= NT; q++) P[q] = P[q - 1] + (pv(q * dT) + pv((q - 1) * dT)) * .5 * dT;
+    function Pat(x){ if (x <= 0) return 0; var y = x / dT, k = Math.floor(y); if (k >= NT) return P[NT] + (x - NT * dT) * V; return P[k] + (P[k + 1] - P[k]) * (y - k); }
+    /* 伸びの山（数秒。大きい点ほど長く）。点が入る前から伸び始め、点が入る（ビジョンの線が上がる）ときには 7 割ほど伸びている。決勝線をまたぐものは 1 つにまとめ、決勝線までに伸び切るよう少し早めに始める。
+       伸び切る直前で止まるので、最後まで脚を伸ばしている（追い比べのまま決勝線へ） */
     R.forEach(function(r){
-      var X = [0], PH = [0], vPrev = 0, fPrev = 0, kv = 1 / (Math.max(1e-6, r.sc) * SWEEP);
-      for (var q = 0; q <= NT; q++){
-        var v = Math.max(0, V0 * g[q] + r.Dv * hh[q] + r.wob[q]);
-        /* 完歩の速さ＝対地速度 ÷ 1 完歩で蹄が後ろへ送る距離 */
-        var fr = v * kv;
-        if (q > 0) { X[q] = X[q - 1] + (v + vPrev) * .5 * dT; PH[q] = PH[q - 1] + (fr + fPrev) * .5 * dT; }
-        vPrev = v; fPrev = fr;
+      var rs = [], tail = null;
+      GRP.forEach(function(g){
+        if (g.r !== r) return;
+        var te = tauOfS(g.i + .5), wr = clamp(2.6 * Math.sqrt(g.p / 60), 1.9, 3.4) * fw, a = Math.max(TG + .35, te - .6 * wr);
+        if (a + wr <= TE) { rs.push({ a: a, w: wr, p: g.p, nrm: 1 }); return; }
+        if (!tail) tail = { a: a, p: 0 };
+        tail.p += g.p; tail.a = Math.min(tail.a, a);
+      });
+      if (tail) {
+        var lead = Math.min(TE - TG - .6, clamp(1.7 * Math.sqrt(tail.p / 60), 1.5, 2.6) * fw), wr2 = clamp(2.6 * Math.sqrt(tail.p / 60), 1.9, 3.6) * fw;
+        var a2 = Math.max(TG + .35, Math.min(tail.a, TE - lead));
+        rs.push({ a: a2, w: wr2, p: tail.p, nrm: Math.max(.05, ease5((TE - a2) / wr2)) });
       }
-      /* 誤差を消して最終位置をぴったりに */
-      var err = (r.F - L.gateX + C[NT]) - X[NT];
-      for (q = 0; q <= NT; q++) X[q] += err * (q / NT);
-      r.X = X; r.PH = PH; r.phOff = r.phE - PH[NT];
+      r.ramps = rs;
+      r.first = rs.length ? rs.reduce(function(m, x){ return x.a < m.a ? x : m; }) : null;
     });
-    L.C = C; L.S = C[NT]; L.V0 = V0; L.Vc = Vc; L.dT = dT;
+    function rampAt(rp, x){ return x <= rp.a ? 0 : ease5((Math.min(x, TE) - rp.a) / rp.w) / rp.nrm; }
+    var noseMax = Math.max.apply(null, R.map(function(r){ return r.noseE * r.sc; }));
+    var back = noseMax + 60 * s, availMid = Math.max(30, L.goalX - 8 - back - 8);
+    var CS = R.map(function(){ return new Float64Array(NT + 1); }), KT = new Float64Array(NT + 1), allK = true;
+    for (q = 0; q <= NT; q++){
+      tau = q * dT; var mx = -1e9, mn = 1e9;
+      for (j = 0; j < n; j++){ var rp0 = R[j].ramps, v = 0; for (z = 0; z < rp0.length; z++) v += rp0[z].p * rampAt(rp0[z], tau); CS[j][q] = v; if (v > mx) mx = v; if (v < mn) mn = v; }
+      var sp = mx - mn; KT[q] = sp > 1e-6 ? Math.min(L.k, availMid / sp) : L.k;
+      if (KT[q] < L.k - 1e-9) allK = false;
+    }
+    /* 縮尺は馬群が画面に収まるよう、ごくゆっくりだけ変える（下側の包絡を取ってから均す）。今のデータでは一定 */
+    var KQ = new Float64Array(NT + 1);
+    if (allK) { for (q = 0; q <= NT; q++) KQ[q] = L.k; }
+    else {
+      var w1 = Math.round(1.5 / dT), w2 = Math.round(1 / dT), KE = new Float64Array(NT + 1);
+      for (q = 0; q <= NT; q++){ var mk = 1e9; for (z = Math.max(0, q - w1); z <= Math.min(NT, q + w1); z++) mk = Math.min(mk, KT[z]); KE[q] = mk; }
+      for (q = 0; q <= NT; q++){ var sk = 0, ck = 0; for (z = Math.max(0, q - w2); z <= Math.min(NT, q + w2); z++){ sk += KE[z]; ck++; } KQ[q] = lerp(sk / ck, L.k, sstep(TE - 1.5, TE, q * dT)); }
+    }
+    var LD = new Float64Array(NT + 1), BK = new Float64Array(NT + 1);
+    for (q = 0; q <= NT; q++){ LD[q] = -1e9; BK[q] = 1e9; }
+    R.forEach(function(r, jj){
+      var X = new Float64Array(NT + 1), REL = new Float64Array(NT + 1), k;
+      for (k = 0; k <= NT; k++){
+        var x = k * dT;
+        /* 出遅れ: 同じ加速で遅れて出た分の差。最初の伸びの山（と決勝線の手前）で取り戻す */
+        var lagD = r.dly > 0 ? P[k] - Pat(x - r.dly) : 0;
+        var rec = (r.first ? 1 - rampAt(r.first, x) : 1) * (1 - sstep(TE - 1.6, TE - .5, x));
+        var rel = KQ[k] * CS[jj][k] - lagD * rec + r.corr * sstep(TE - 1.1, TE - .1, x);
+        REL[k] = rel;
+        var wob = HL * .022 * Math.sin(TAU2 * x / r.wobP + r.wobPh) * sstep(TG + .9, TG + 1.7, x) * (1 - sstep(TE - 1.4, TE - .4, x));
+        X[k] = P[k] + rel + wob;
+        if (rel > LD[k]) LD[k] = rel;
+        if (rel < BK[k]) BK[k] = rel;
+      }
+      r.X = X; r.REL = REL;
+    });
+    /* カメラ: 先頭の見た目の位置 FX。馬群の後ろが画面に収まる範囲で、なるべくゴール板寄り（幅の 7% 手前）に置く。
+       発走直後はカメラを止めたまま馬が画面を走り出し、ゆっくり追い始める（ずれが大きいほど長く）。
+       最後は先頭をゴール板へ送る（カメラがゆるやかに遅くなるだけで、馬の速さは変えない）。先頭の入れ替わりの角はぼかす */
+    var lo = Math.min(L.goalX - 6, Math.max(W * .5, L.gateX + 24 * s)), want0 = L.goalX - Math.max(14, .07 * W);
+    var CR = new Float64Array(NT + 1), CAM = new Float64Array(NT + 1), FR = new Float64Array(NT + 1);
+    for (q = 0; q <= NT; q++) FR[q] = clamp(Math.max(LD[q] - BK[q] + back + 8, want0), lo, L.goalX - 6);
+    var q15 = Math.min(NT, Math.round((TG + 1.5) / dT)), Dbrk = clamp((FR[q15] - L.gateX) / (.45 * V), 1.4, 4.5);
+    var qe = Math.max(0, Math.round((TE - 2) / dT)), Dend = clamp(2 * (L.goalX - FR[qe]) / (.3 * V), 1.2, Math.min(3, Math.max(.6, TE - TG - 2)));
+    for (q = 0; q <= NT; q++){
+      tau = q * dT;
+      var fx = L.gateX + (FR[q] - L.gateX) * sstep(TG + .35, TG + .35 + Dbrk, tau);
+      var ue = clamp((tau - (TE - Dend)) / Dend, 0, 1); fx += (L.goalX - fx) * ue * ue;
+      CR[q] = L.gateX + P[q] + LD[q] - fx;
+    }
+    function crx(k){ if (k < 0) return CR[0]; if (k > NT) return CR[NT] + (CR[NT] - CR[NT - 1]) * (k - NT); return CR[k]; }
+    for (q = 0; q <= NT; q++){
+      var sg = .32 * sstep(TG, TG + 1.2, q * dT) / dT;
+      if (sg < .6) { CAM[q] = CR[q]; continue; }
+      var rad = Math.ceil(sg * 2.6), sw = 0, sv = 0;
+      for (z = -rad; z <= rad; z++){ var wg = Math.exp(-.5 * (z / sg) * (z / sg)); sw += wg; sv += wg * crx(q + z); }
+      CAM[q] = sv / sw;
+    }
+    var cerr = CR[NT] - CAM[NT];
+    for (q = 0; q <= NT; q++) CAM[q] += cerr * sstep(TE - 1.2, TE, q * dT);
+    R.forEach(function(r){
+      var X = r.X, k;
+      /* 誤差を消して決着の位置をぴったりに（最後の 2 秒でごくわずかに） */
+      var err = r.F - (L.gateX + X[NT] - CAM[NT]);
+      if (Math.abs(err) > .01) for (k = 0; k <= NT; k++) X[k] += err * sstep(TE - 2, TE, k * dT);
+      /* 完歩: 対地速度に合わせて脚を回す（脚が滑らない） */
+      var PH = new Float64Array(NT + 1), kv = 1 / (Math.max(1e-6, r.sc) * SWEEP), fPrev = 0;
+      for (k = 1; k <= NT; k++){ var frq = Math.max(0, X[k] - X[k - 1]) / dT * kv; PH[k] = PH[k - 1] + (frq + fPrev) * .5 * dT; fPrev = frq; }
+      r.PH = PH; r.phOff = r.phE - PH[NT];
+      /* 追いの強さ */
+      var PU = new Float64Array(NT + 1), pa = 0, Vn = .15 * V, REL = r.REL;
+      for (k = 0; k <= NT; k++){
+        var x = k * dT, k0 = Math.max(0, k - 1), k1 = Math.min(NT, k + 1);
+        var tg = clamp((REL[k1] - REL[k0]) / ((k1 - k0) * dT) / Vn, 0, 1);
+        tg = Math.max(tg, .55 * (sstep(TG - .05, TG + .2, x) - sstep(TG + .7, TG + 1.6, x)), .64 * sstep(TE - 1.9, TE - 1.2, x));
+        pa += (tg - pa) * (1 - Math.exp(-dT / (tg > pa ? .4 : .8)));
+        PU[k] = pa;
+      }
+      r.PU = PU;
+    });
+    L.CAM = CAM; L.S = CAM[NT]; L.NT = NT; L.dT = dT; L.V = V;
   }
-  function samp(a, tau){ var x = tau / LAY.dT, i = Math.floor(x); if (i >= NT) return a[NT]; if (i < 0) return a[0]; return a[i] + (a[i + 1] - a[i]) * (x - i); }
-  /* 実時間 → 場面の時間。slowAt から 0.2 秒で 4 割の速さに落とし、そのまま決勝線（TE）まで走り抜けて止まる */
-  function tauOf(x){
-    if (x <= TL.slowAt) return x;
-    var d = x - TL.slowAt;
-    if (d <= SLOW.ease) return TL.slowAt + d - (1 - SLOW.k) * d * d / (2 * SLOW.ease);
-    return Math.min(TE, TAU1 + SLOW.k * (d - SLOW.ease));
-  }
+  function samp(a, tau){ var x = tau / LAY.dT, k = Math.floor(x); if (k >= LAY.NT) return a[LAY.NT]; if (k < 0) return a[0]; return a[k] + (a[k + 1] - a[k]) * (x - k); }
 
   /* ---- 背景 ---- */
   function bands(y0, y1, bw, off, skew, col){
     ctx.fillStyle = col; ctx.beginPath();
-    var start = Math.floor((off - skew * (y1 - y0) - bw * 2) / (bw * 2)) * bw * 2;
-    for (var x = start; x - off < W + bw * 2; x += bw * 2){
+    var st = Math.floor((off - skew * (y1 - y0) - bw * 2) / (bw * 2)) * bw * 2;
+    for (var x = st; x - off < W + bw * 2; x += bw * 2){
       var a = x - off;
       ctx.moveTo(a, y0); ctx.lineTo(a + bw, y0); ctx.lineTo(a + bw + skew * (y1 - y0), y1); ctx.lineTo(a + skew * (y1 - y0), y1); ctx.closePath();
     }
     ctx.fill();
   }
-  function drawGround(B){
+  function drawInfield(B){
     var L = LAY, s = L.s;
     ctx.fillStyle = COL['--race-infield']; ctx.fillRect(0, 0, W, L.railBase + 1);
     bands(0, L.railBase, 74 * s * 1.5, B * .55, .3, COL['--race-infield-2']);
-    /* 向こう正面の植え込み（ゆっくり流れる） */
+    /* 向こう正面の植え込み（ゆっくり流れる）。ビジョンはその手前に立つ */
     var off = B * .18, step = 38 * s, x0 = Math.floor(off / step) * step;
     ctx.fillStyle = COL['--race-far']; ctx.beginPath(); ctx.moveTo(-10, 0); ctx.lineTo(-10, 20 * s);
     for (var x = x0 - step; x - off < W + step; x += step){
@@ -1889,7 +2205,9 @@ var Race = (function(){
       ctx.quadraticCurveTo(x - off + step * .5, hb + 9 * s, x - off + step, hb);
     }
     ctx.lineTo(W + 10, 0); ctx.closePath(); ctx.fill();
-    /* 芝（刈り目） */
+  }
+  function drawTrack(B){
+    var L = LAY, s = L.s;
     ctx.fillStyle = COL['--race-track']; ctx.fillRect(0, L.railBase, W, H - L.railBase);
     bands(L.railBase, H, 66 * s * 1.5, B, .3, COL['--race-track-2']);
     /* 内ラチ */
@@ -1901,14 +2219,14 @@ var Race = (function(){
   }
   function drawPoles(B){
     var L = LAY, s = L.s, k, pw = Math.max(2, 3.4 * s);
-    for (k = 4; k >= 1; k--){
-      var x = L.goalX - k * L.D - B;
+    for (k = L.nF; k >= 1; k--){
+      var x = L.goalX - L.Dl - (k - 1) * L.D - B;
       if (x < -40 || x > W + 40) continue;
-      var plW = Math.max(30, 50 * s), plH = Math.max(17, 26 * s), yTop = L.railTop - 30 * s - plH;
+      var lab = String(k * 200), plW = Math.max(lab.length > 3 ? 36 : 30, (lab.length > 3 ? 58 : 50) * s), plH = Math.max(17, 26 * s), yTop = L.railTop - 30 * s - plH;
       ctx.fillStyle = COL['--rail']; ctx.fillRect(x - pw / 2, yTop + plH - 1, pw, L.railBase - yTop - plH + 1);
       ctx.fillRect(x - plW / 2, yTop, plW, plH);
       ctx.fillStyle = COL['--race-plate-ink']; ctx.font = '600 ' + Math.round(Math.max(12, plH * .62)) + 'px ' + FNT.num; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(String(k * 200), x, yTop + plH / 2 + .5);
+      ctx.fillText(lab, x, yTop + plH / 2 + .5);
     }
     /* ゴール板と決勝線 */
     var gx = L.goalX - B;
@@ -1919,58 +2237,406 @@ var Race = (function(){
       ctx.beginPath(); ctx.arc(gx, cy, rd, 0, TAU2); ctx.fill();
       ctx.beginPath(); ctx.arc(gx, cy, rd - Math.max(1.6, 3 * s) / 2 - .5, 0, TAU2); ctx.lineWidth = Math.max(1.6, 3.2 * s); ctx.strokeStyle = COL['--brass-hi']; ctx.stroke();
       L.goalBox = { x: gx - rd - 2, y: cy - rd - 2, w: rd * 2 + 4, h: rd * 2 + 4 };
-      if (flash > 0) { ctx.fillStyle = alpha(COL['--rail'], .55 * flash); ctx.fillRect(gx - 2.5, 0, 5, H); }
+      if (flash > 0) { ctx.fillStyle = alpha(COL['--rail'], .55 * flash); ctx.fillRect(gx - 2.5, L.y0, 5, H - L.y0); }
     }
   }
-  /* 発馬機: 枠組み（後ろと前の柱・上の梁）は全枠で 1 つ、手前に描く。各枠の前扉は枠の色に枠番。発走の瞬間に 0.15 秒で手前へ振れて開く */
-  function lum(h){ var c = rgbOf(h); return c ? (c[0] * .299 + c[1] * .587 + c[2] * .114) / 255 : 0; }
-  function drawDoor(r, gx, tau){
-    var s = LAY.s, b = r.base, open = clamp((tau - TL.gate) / .15, 0, 1);
-    if (open >= 1) return;
-    var pw = Math.max(2, 4.5 * s), e = open * (2 - open), dw = Math.max(13, 26 * s), dh = Math.max(19, 40 * s);
-    var w = Math.max(1, dw * Math.cos(e * 1.5)), x = gx + pw + dw * .35 * e, y = b - 30 * s - dh + 4 * s * e;
-    ctx.globalAlpha = 1 - e * .4;
-    ctx.fillStyle = r.capCol; ctx.fillRect(x, y, w, dh);
-    ctx.strokeStyle = COL['--race-gate']; ctx.lineWidth = 1; ctx.strokeRect(x + .5, y + .5, Math.max(0, w - 1), dh - 1);
-    ctx.fillStyle = COL['--rail']; ctx.fillRect(x, y, w, Math.max(1, 1.6 * s));
-    if (w > dw * .6) {
-      ctx.fillStyle = lum(r.capCol) > .6 ? COL['--race-plate-ink'] : COL['--silk-white'];
-      ctx.font = '700 ' + Math.round(Math.max(12, 22 * s)) + 'px ' + FNT.num; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(String(r.waku), x + w / 2, y + dh / 2 + 1);
-    }
-    ctx.globalAlpha = 1;
+  function rr(x, y, w, h, r){ ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+
+  /* ---- ターフビジョン＝着順掲示板（内馬場の向こうの地面に柱で立つ大型モニター。遠いので視差はごく小さい） ----
+     4 行（着順の数字・枠番の色・名前・pt）。順位が入れ替わると、行が新しい段へすべって移る。右上の隅に日付、下端にいちばん新しい出来事。
+     数字は太い数字の書体を LED の色でほのかに光らせる。読みやすさを優先して、走査線や強い映り込みは入れない */
+  function colOf(c){ if (c.indexOf('m:') === 0) return VCOL[c.slice(2)] || COL['--vis-ink']; return COL[{ ink: '--vis-ink', mute: '--vis-mute', hi: '--vis-led' }[c] || '--vis-ink']; }
+  function ptText(p){ var x = Math.round(p * 10) / 10; return x % 1 ? x.toFixed(1) : String(x); }
+  /* 出来事の 1 行「8/30 チェスティーノ 1着 小辻 +78pt」。同じ日に同じ人の馬が 2 頭入ったら「ほか」を添えて合計の pt */
+  function msgToks(m){
+    if (m.kind === 'pre') return [{ t: '2歳戦が開幕　各馬ゲートイン', c: 'ink' }];
+    if (m.kind === 'go') return [{ t: 'ゲートが開いて　各馬スタート', c: 'ink', b: 1 }];
+    var g = m.g, b = g.es[0], pt = '+' + ptText(g.p), T = [{ t: md(isoOf(g.i)), c: 'mute', f: 'num', up: 2, b: 1, drop: 2 }, { t: b.horse, c: 'ink', b: 1, name: 1 }];
+    if (b.fin) T.push({ t: b.fin + '着', c: 'ink', b: 1, box: b.fin === 1 });
+    if (g.es.length > 1) T.push({ t: 'ほか', c: 'mute' });
+    T.push({ t: mName(g.id), c: 'm:' + g.id, b: 1 });
+    T.push({ t: pt + 'pt', short: pt, c: 'hi', f: 'num', up: 3, b: 1 });
+    return T;
   }
-  function drawGateFrame(gx){
-    var s = LAY.s, len = 122 * s, pw = Math.max(2, 4.5 * s), first = BYLANE[0], lastR = BYLANE[BYLANE.length - 1];
-    var yT = first.base - 138 * s, yB = lastR.base - 4 * s, beam = Math.max(2, 5 * s);
-    ctx.fillStyle = COL['--race-gate'];
-    ctx.fillRect(gx - len, yT, len + pw + 6 * s, beam);
-    ctx.fillRect(gx - len, yT, pw, yB - yT);
-    ctx.fillRect(gx, yT, pw, yB - yT);
-    ctx.fillStyle = COL['--brass']; ctx.fillRect(gx - len, yT, len + pw + 6 * s, Math.max(1, 1.4 * s));
+  function layToks(T, fsz, dl){
+    /* 数字の書体（細身）は字面が小さいので up だけ大きく。dl 1 で「+78pt」を「+78」に（馬の上の札と同じ）、2 で日付を落とす */
+    var x = 0, out = [], gap = fsz * .28;
+    T.forEach(function(k){
+      if (k.drop && k.drop <= dl) return;
+      var font = (k.b ? '700 ' : '500 ') + (fsz + (k.up || 0)) + 'px ' + (k.f === 'num' ? FNT.num : FNT.body), tx = k.short && dl >= 1 ? k.short : k.t;
+      ctx.font = font;
+      var w = ctx.measureText(tx).width + (k.box ? 9 : 0);
+      out.push({ k: k, t: tx, x: x, w: w, font: font }); x += w + gap;
+    });
+    return { toks: out, w: Math.max(0, x - gap), fs: fsz };
+  }
+  /* 幅が足りないときは 1 文字ずつ小さく（下限 fmin）→「pt」を省く → 日付を落とす → 馬名を詰める */
+  function fitMsg(m, avail, fs, fmin){
+    var key = Math.round(avail) + '|' + fs;
+    if (m.fit && m.fitKey === key) return m.fit;
+    var T = msgToks(m), f = fs, d = 0, Lt = layToks(T, f, d);
+    while (Lt.w > avail && f > fmin) { f--; Lt = layToks(T, f, d); }
+    while (Lt.w > avail && d < 2) { d++; Lt = layToks(T, f, d); }
+    var nk = T.filter(function(k){ return k.name; })[0], full = nk ? nk.t : '', keep = full.length;
+    while (Lt.w > avail && nk && keep > 3) { keep--; nk.t = full.slice(0, keep) + '…'; Lt = layToks(T, f, d); }
+    m.fit = Lt; m.fitKey = key;
+    return Lt;
+  }
+  function drawToks(Lt, x0, yc){
+    ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+    Lt.toks.forEach(function(tk){
+      var k = tk.k, x = x0 + tk.x;
+      ctx.font = tk.font;
+      if (k.box) {
+        ctx.fillStyle = COL['--vis-led']; ctx.beginPath(); rr(x, yc - Lt.fs * .74, tk.w, Lt.fs * 1.48, 2); ctx.fill();
+        ctx.fillStyle = COL['--vis-date-ink']; ctx.fillText(tk.t, x + 4.5, yc + .5);
+        return;
+      }
+      ctx.fillStyle = colOf(k.c); ctx.fillText(tk.t, x, yc + .5);
+    });
+  }
+  /* いまの出来事。再生中は再生用の並び（止まった後は止まってからの実時間）、止めているときは全部の並び */
+  function msgState(tau, tagP){
+    if (state === 'pending') return { cur: M_PRE, prev: null, pr: 1, age: 9 };
+    var list = ALL, tx = tau, k = 0, q;
+    if (state === 'run') { list = PLAY; tx = t >= TE ? TE + post : tau; }
+    else if (tagP > 0) tx = TE + 9;
+    for (q = 1; q < list.length; q++) if (list[q].at <= tx + 1e-9) k = q;
+    var age = tx - list[k].at;
+    return { cur: list[k], prev: k > 0 ? list[k - 1] : null, pr: state === 'run' && k > 0 ? clamp(age / .3, 0, 1) : 1, age: state === 'run' ? age : 9 };
   }
 
-  /* ---- 土くれ ---- */
+  /* 掲示板の数字: 数字用の書体の太字を大きく、ほのかに光らせる（7 セグメントは「1」「7」が欠けて見え、187.8 と 188.8 のような
+     1pt 差を読み違えやすいので使わない）。桁は同じ幅の枠に置いて右寄せ（数え上がっても小数点がぶれず、4 行の小数点がそろう）。
+     h は数字の字面の高さ。書体の寸法は layout() で 1 回だけ測る */
+  function numCells(h){
+    var f = '700 ' + Math.round(h * 1.36) + 'px ' + FNT.num, dg = 0, c;
+    ctx.font = f;
+    for (c = 0; c < 10; c++) dg = Math.max(dg, ctx.measureText(String(c)).width);
+    var m8 = ctx.measureText('8'), asc = m8.actualBoundingBoxAscent || h;
+    return { h: h, font: f, dg: Math.ceil(dg + h * .04), dot: Math.ceil(ctx.measureText('.').width), asc: asc };
+  }
+  function numW(str, C){ var w = 0; for (var c = 0; c < str.length; c++) w += str.charAt(c) === '.' ? C.dot : C.dg; return w; }
+  function drawNum(str, xr, yc, C, col, glow){
+    ctx.font = C.font; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = col;
+    if (glow) { ctx.shadowColor = glow; ctx.shadowBlur = Math.min(12, C.h * .3 * dpr); }
+    var x = xr, yb = yc + C.asc / 2;
+    for (var c = str.length - 1; c >= 0; c--){ var ch = str.charAt(c), w = ch === '.' ? C.dot : C.dg; x -= w; ctx.fillText(ch, x + w / 2, yb); }
+    ctx.shadowBlur = 0; ctx.shadowColor = 'rgba(0,0,0,0)'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  }
+
+  /* 掲示板のいまの中身。再生中は数え上がる pt とすべる行（前もって積分した表）、止めているときはその日の終わりの値で行は段に収まる */
+  function lastAt(r, bt){ var a = null; r.ev.forEach(function(e){ if (e.at <= bt) a = e.at; }); return a; }
+  function boardState(tau, sNow){
+    var run = state === 'run', bt = run ? (t >= TE ? TE + post : tau) : tau, n = R.length, j;
+    var fin = state === 'done' || (state === 'paused' && tauNow >= TE - 1e-6) || (run && t >= TE);
+    var day = state === 'pending' ? -1 : (fin ? N : clamp(Math.floor(sNow), 0, N));
+    var vals = [], pos = [], tint = [], tgt = [];
+    for (j = 0; j < n; j++) vals[j] = run ? runVal(R[j], bt) : cumDay(R[j], day);
+    var ord = sortBy(vals);
+    ord.forEach(function(jj, k){ tgt[jj] = k; });
+    for (j = 0; j < n; j++){
+      pos[j] = run ? slotAt(j, bt) : tgt[j];
+      var tn = 0;
+      if (run) { var la = lastAt(R[j], bt); if (la != null) tn = clamp(1 - (bt - la) / 1.3, 0, 1); }
+      else if (!fin && day >= 0) tn = R[j].ev.some(function(e){ return e.i === day; }) ? 1 : 0;
+      tint[j] = tn;
+    }
+    var ranks = ord.map(function(jj){ var v = vals[jj]; return v > 1e-9 ? 1 + vals.filter(function(o){ return o > v + 1e-9; }).length : 0; });
+    /* 確定のランプは、決着のあと pt の数え上げと行の入れ替わりが落ち着いてから灯す */
+    var lamp = state === 'done' ? 1 : (state === 'paused' ? (fin ? 1 : 0) : (run && t >= TE ? clamp((post - .85) / .25, 0, 1) : 0));
+    return { vals: vals, pos: pos, tgt: tgt, tint: tint, ranks: ranks, day: day, lamp: lamp };
+  }
+  function drawMonitor(B, tau, sNow, tagP){
+    var M = LAY.mon, D = M.bd, L = LAY, s = L.s, k;
+    var mx = Math.round(M.x + M.drift * clamp(-B / Math.max(1, L.S), 0, 1)), my = M.y, hb = my + M.h, gY = Math.round(M.ground);
+    /* 向こう正面の植え込み（ゆっくり流れる） */
+    var off = B * .24, stp = 30 * s + 8, hh = Math.max(5, 11 * s), xs = Math.floor(off / stp) * stp - stp;
+    ctx.fillStyle = COL['--race-far']; ctx.beginPath(); ctx.moveTo(-10, gY + 1); ctx.lineTo(-10, gY - hh * .8);
+    for (var x = xs; x - off < W + stp; x += stp){ var hv = hh * (.72 + .28 * Math.sin(x * .021)); ctx.quadraticCurveTo(x - off + stp * .5, gY - hv - hh * .4, x - off + stp, gY - hv * .8); }
+    ctx.lineTo(W + 10, gY + 1); ctx.closePath(); ctx.fill();
+    /* 柱 2 本（筐体の幅の 3 割ずつ内側）・横梁・筋交い。足元は向こう正面のラチの奥 */
+    var legW = Math.max(4, Math.round(M.w * .026)), l1 = Math.round(mx + M.w * .3 - legW / 2), l2 = Math.round(mx + M.w * .7 - legW / 2);
+    ctx.fillStyle = COL['--race-shade']; ctx.beginPath(); ctx.ellipse(mx + M.w / 2, gY + 1, M.w * .28, 2.5, 0, 0, TAU2); ctx.fill();
+    ctx.fillStyle = COL['--vis-steel']; ctx.fillRect(l1, hb - 2, legW, gY - hb + 2); ctx.fillRect(l2, hb - 2, legW, gY - hb + 2);
+    var yb = hb + Math.round((gY - hb) * .36), bw = Math.max(2, Math.round(legW * .55));
+    ctx.fillRect(l1, yb, l2 + legW - l1, bw);
+    ctx.strokeStyle = COL['--vis-steel']; ctx.lineWidth = Math.max(1.1, legW * .3);
+    ctx.beginPath(); ctx.moveTo(l1 + legW, hb); ctx.lineTo(l2, yb); ctx.moveTo(l2, hb); ctx.lineTo(l1 + legW, yb);
+    ctx.moveTo(l1 + legW, yb + bw); ctx.lineTo(l2, gY - 1); ctx.moveTo(l2, yb + bw); ctx.lineTo(l1 + legW, gY - 1); ctx.stroke();
+    /* 向こう正面のラチ（細い白。植え込みと同じくらいゆっくり流れる） */
+    var rH0 = Math.max(3, 5 * s), rT = gY - rH0, ps = 15, ro = B * .3;
+    ctx.fillStyle = alpha(COL['--rail'], .72); ctx.fillRect(0, rT, W, Math.max(1, 1.5 * s));
+    for (k = Math.floor(ro / ps) - 1; k * ps - ro < W + ps; k++) ctx.fillRect(Math.round(k * ps - ro), rT, 1, rH0 + 1);
+    /* 庇・筐体 */
+    ctx.fillStyle = COL['--vis-frame']; ctx.fillRect(mx - 4, my - 5, M.w + 8, 4);
+    ctx.fillStyle = COL['--vis-frame-hi']; ctx.fillRect(mx - 4, my - 5, M.w + 8, 1);
+    ctx.fillStyle = COL['--vis-frame']; ctx.beginPath(); rr(mx, my - 1, M.w, M.h + 1, 3); ctx.fill();
+    var sx0 = mx + M.bez, sy0 = my + M.bez, sw = M.w - 2 * M.bez, sh = M.h - M.bez - M.botH;
+    /* 銘板（筐体の下の枠） */
+    var plx = Math.round(mx + M.w / 2 - M.plW / 2), ply = Math.round(sy0 + sh + (M.botH - M.plH) / 2);
+    ctx.fillStyle = COL['--brass']; ctx.fillRect(plx, ply, M.plW, M.plH);
+    ctx.fillStyle = COL['--on-brass']; ctx.font = '700 ' + M.plFs + 'px ' + FNT.num; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+    var px = plx + 7;
+    for (var c = 0; c < M.plTxt.length; c++){ var chr = M.plTxt.charAt(c); ctx.fillText(chr, px, ply + M.plH / 2 + .5); px += ctx.measureText(chr).width + M.plSp; }
+    /* 画面 */
+    ctx.fillStyle = COL['--vis-screen']; ctx.fillRect(sx0, sy0, sw, sh);
+    ctx.save(); ctx.beginPath(); ctx.rect(sx0, sy0, sw, sh); ctx.clip();
+    var bs = boardState(tau, sNow), n = R.length, x0 = sx0 + D.padX, x1 = sx0 + sw - D.padX;
+    var led = COL['--vis-led'], ink = COL['--vis-ink'], glL = alpha(led, .5), glI = alpha(ink, .28), NC = M.nc;
+
+    /* 見出しの段: 左に「着順」と確定のランプ、右上の隅に日付 */
+    var hc = sy0 + D.hdH / 2 + 1, lh = D.hdH - 8;
+    ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+    ctx.font = '700 ' + D.fsL + 'px ' + FNT.body; ctx.fillStyle = COL['--vis-mute'];
+    ctx.fillText('着順', x0, hc + .5);
+    if (bs.lamp > 0) {
+      var lx = x0 + ctx.measureText('着順').width + 12, lw = ctx.measureText('確定').width + 16;
+      ctx.globalAlpha = bs.lamp;
+      ctx.fillStyle = COL['--vis-lamp']; ctx.beginPath(); rr(lx, hc - lh / 2, lw, lh, 2); ctx.fill();
+      ctx.fillStyle = COL['--vis-lamp-ink']; ctx.fillText('確定', lx + 8, hc + .5);
+      ctx.globalAlpha = 1;
+    }
+    var iso = isoOf(Math.max(0, bs.day)), dS = md(iso), wS = '(' + dow(iso) + ')';
+    var fD = '700 ' + D.fsD + 'px ' + FNT.num, fW = '700 ' + D.fsL + 'px ' + FNT.body;
+    ctx.font = fD; var w1 = ctx.measureText(dS).width; ctx.font = fW; var w2 = ctx.measureText(wS).width;
+    var cw = Math.ceil(w1 + 2 + w2 + 16), cx = sx0 + sw - 4 - cw, chh = D.hdH - 6;
+    ctx.fillStyle = COL['--vis-date']; ctx.beginPath(); rr(cx, hc - chh / 2, cw, chh, 2); ctx.fill();
+    ctx.fillStyle = COL['--vis-date-ink'];
+    ctx.font = fD; ctx.fillText(dS, cx + 8, hc + 1);
+    ctx.font = fW; ctx.fillText(wS, cx + 8 + w1 + 2, hc + .5);
+
+    /* 4 行。着順の数字は段に固定（同点は同じ数字、まだ 0pt は「-」）、行（枠・名前・pt）が段のあいだをすべる */
+    var rt = sy0 + D.hdH + 2, rH = D.rowH, rx0 = sx0 + M.rx0, rx1 = sx0 + sw - 3;
+    ctx.fillStyle = COL['--vis-grid'];
+    ctx.fillRect(sx0, Math.round(sy0 + D.hdH), sw, 1);
+    for (k = 1; k < n; k++) ctx.fillRect(x0, Math.round(rt + k * rH), x1 - x0, 1);
+    ctx.fillRect(Math.round(rx0 - 3), rt + 5, 1, n * rH - 10);
+    for (k = 0; k < n; k++){ var rk = bs.ranks[k]; drawNum(rk ? String(rk) : '-', x0 + NC.dg, rt + (k + .5) * rH, NC, ink, glI); }
+    /* 上がっていく行を上に重ねる（すれ違うとき、上がる行が手前） */
+    var idx = R.map(function(r, j){ return j; }).sort(function(a, b){ return (bs.pos[a] - bs.tgt[a]) - (bs.pos[b] - bs.tgt[b]); });
+    idx.forEach(function(j){
+      var r = R[j], yc = rt + (bs.pos[j] + .5) * rH, top0 = yc - rH / 2, tn = bs.tint[j], mv = clamp((Math.abs(bs.pos[j] - bs.tgt[j]) - .02) * 8, 0, 1);
+      /* すべっている行は札のように浮かせる（下の行に影を落とし、縁を細く光らせる） */
+      if (mv > .01) { ctx.fillStyle = 'rgba(0,0,0,' + (.7 * mv) + ')'; ctx.fillRect(rx0, top0 + 4, rx1 - rx0, rH + 2); }
+      ctx.fillStyle = COL['--vis-screen']; ctx.fillRect(rx0, top0 + 1, rx1 - rx0, rH - 1);
+      if (tn > .01) {
+        ctx.fillStyle = alpha(led, .2 * tn); ctx.fillRect(rx0, top0 + 1, rx1 - rx0, rH - 1);
+        ctx.fillStyle = alpha(led, .95 * tn); ctx.fillRect(rx0, top0 + 2, 3, rH - 3);
+      }
+      var bk = M.bk, bx = rx0 + 7;
+      ctx.fillStyle = r.wc; ctx.fillRect(bx, yc - bk / 2, bk, bk);
+      ctx.strokeStyle = alpha(ink, .32); ctx.lineWidth = 1; ctx.strokeRect(bx + .5, yc - bk / 2 + .5, bk - 1, bk - 1);
+      ctx.fillStyle = lum(r.wc) > .6 ? COL['--race-plate-ink'] : COL['--silk-white'];
+      ctx.font = '700 ' + M.fsW + 'px ' + FNT.num; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(String(r.waku), bx + bk / 2, yc + 1);
+      ctx.textAlign = 'left'; ctx.font = M.fN; ctx.fillStyle = ink; ctx.fillText(r.name, bx + bk + 10, yc + .5);
+      var pr = sx0 + M.ptR;
+      drawNum(fmt(bs.vals[j]), pr, yc, NC, led, glL);
+      ctx.font = M.fU; ctx.fillStyle = COL['--vis-mute']; ctx.textBaseline = 'alphabetic'; ctx.fillText('pt', pr + 5, yc + NC.asc / 2);
+      ctx.textBaseline = 'middle';
+      if (mv > .01) { ctx.strokeStyle = alpha(ink, .28 * mv); ctx.lineWidth = 1; ctx.strokeRect(rx0 + .5, top0 + 1.5, rx1 - rx0 - 1, rH - 2); }
+    });
+
+    /* 下端: いちばん新しい出来事（新しい 1 本は下から上がってくる。1着は出た直後に帯を少し光らせる） */
+    var ey = rt + n * rH + 2, eh = sy0 + sh - ey, ec = ey + eh / 2 + .5;
+    ctx.fillStyle = COL['--vis-telop']; ctx.fillRect(sx0, ey, sw, eh);
+    ctx.fillStyle = COL['--vis-grid']; ctx.fillRect(sx0, ey, sw, 1);
+    var st = msgState(tau, tagP), eo = 1 - Math.pow(1 - st.pr, 3), aw = x1 - x0;
+    if (st.cur.kind === 'ev' && st.cur.g.hi && st.age < .8) { ctx.fillStyle = alpha(led, .2 * (1 - st.age / .8)); ctx.fillRect(sx0, ey + 1, sw, eh - 1); }
+    ctx.save(); ctx.beginPath(); ctx.rect(sx0, ey + 1, sw, eh - 1); ctx.clip();
+    function line(m, y, a){ if (!m || a <= .01) return; ctx.globalAlpha = a; drawToks(fitMsg(m, aw, D.fsE, 16), x0, y); }
+    if (eo < 1) { line(st.prev, ec - eo * eh * .8, 1 - eo); line(st.cur, ec + (1 - eo) * eh * .8, eo); }
+    else line(st.cur, ec, 1);
+    ctx.globalAlpha = 1; ctx.restore();
+    /* ごく薄い映り込み（左上だけ） */
+    var gl = ctx.createLinearGradient(sx0, sy0, sx0 + sw * .4, sy0 + sh * .6);
+    gl.addColorStop(0, alpha(COL['--vis-ink'], .045)); gl.addColorStop(1, alpha(COL['--vis-ink'], 0));
+    ctx.fillStyle = gl; ctx.fillRect(sx0, sy0, sw, sh);
+    ctx.restore();
+  }
+  /* ---- 発馬機（JRA のゲート）: 白い鉄骨の門型フレームと梁、枠番の表示板、観音開きの前扉、後扉、緑のパッド、車輪と牽引バー、ステップ ----
+     一列の枠を斜め横から見た形: 奥の枠ほど上、さらに少し右へずらして並べる。側壁の緑のパッドは手前の枠だけ大きく見せ、
+     奥の枠は上の枠組みと仕切りの上端だけ（暗め）。前扉は馬より先に描くので、馬の頭と首振りは扉の上・前に見える */
+  function doorPhi(tau){ var u = tau - TG; if (u <= 0) return 0; return (1 - Math.exp(-u * 15) * Math.cos(u * 27)) * 1.62; }
+  function shakeAt(tau){ var u = tau - TG; return u > 0 && u < .45 ? 2.2 * LAY.s * Math.exp(-u / .08) * Math.sin(u * 75) : 0; }
+  function laneDX(r){ return (R.length - 1 - r.lane) * 15 * LAY.s; }
+  /* 前扉の半分。hinge のある縁から開く。閉じているときは上の縁が中央へ下がる V 字（上は格子、下はパッド）。
+     開くと、手前の半分は手前へ振れて幅が広がり、奥の半分は奥へ振れて細く暗くなる */
+  function drawDoor(hx, yTop, yBot, far, phi, sc, G){
+    var g = LAY.gap, dl = (far ? 21 : 33) * sc, dd = 11 * sc, c = Math.cos(phi), sn = Math.sin(phi), dip = 10 * sc * Math.max(0, c);
+    var base = far ? -g : 0, fy = base + (far ? .5 : -.5) * g * c, fx = hx + dl * sn + dd * c;
+    var pad = far ? shade(G.pad, .28) : G.pad, st = far ? shade(G.st, .22) : G.st;
+    function Q(u, v){ var yt = lerp(yTop + base, yTop + fy, u) + dip * u, yb = lerp(yBot + base, yBot + fy, u); return [lerp(hx, fx, u), lerp(yt, yb, v)]; }
+    function poly(a){ ctx.beginPath(); a.forEach(function(p, z){ if (z) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); }); ctx.closePath(); }
+    var lwF = Math.max(1.1, 2.3 * sc), lwB = Math.max(.7, 1.1 * sc);
+    ctx.fillStyle = pad; poly([Q(0, .52), Q(1, .52), Q(1, .95), Q(0, .95)]); ctx.fill();
+    ctx.strokeStyle = st; ctx.lineWidth = lwB; ctx.beginPath();
+    [.36, .68].forEach(function(u){ var a = Q(u, .04), b = Q(u, .52); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); });
+    [.2, .36].forEach(function(v){ var a = Q(0, v), b = Q(1, v); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); });
+    ctx.stroke();
+    ctx.lineWidth = lwF; ctx.lineJoin = 'round'; poly([Q(0, 0), Q(1, 0), Q(1, 1), Q(0, 1)]); ctx.stroke();
+    ctx.beginPath(); var m1 = Q(0, .52), m2 = Q(1, .52); ctx.moveTo(m1[0], m1[1]); ctx.lineTo(m2[0], m2[1]); ctx.stroke();
+  }
+  function doorRange(r){ return [r.base - 96 * r.sc, r.base - 22 * r.sc]; }
+  /* 前扉（奥と手前の半分）。馬より先に描く */
+  function drawDoors(r, gx, tau){
+    var y = doorRange(r), hx = gx + laneDX(r) + LAY.s, ph = doorPhi(tau);
+    drawDoor(hx, y[0], y[1], true, ph, r.sc, r.gc);
+    drawDoor(hx, y[0], y[1], false, ph, r.sc, r.gc);
+  }
+  /* 枠の側面（馬のあとに描く）: 手前の枠は緑のパッドの側壁と後扉、奥の枠は枠組みと仕切りの上端だけ */
+  function drawStall(r, gx, tau){
+    var s = LAY.s, sc = r.sc, b = r.base, gxl = gx + laneDX(r), rear = gxl - 128 * s, near = r.lane === R.length - 1;
+    var yP1 = b - 90 * sc, yP2 = b - 26 * sc, yO = b - 150 * sc, lw = Math.max(1, 2.2 * sc);
+    var G = r.gc, st = G.st, st2 = G.st2;
+    ctx.fillStyle = st2;
+    ctx.fillRect(rear - lw * .6, yO, lw * 1.2, (near ? yP2 : yP1) - yO); ctx.fillRect(gxl - lw * .6, yO, lw * 1.2, (near ? yP2 : yP1) - yO);
+    ctx.fillRect(rear, yO - lw * .5, gxl - rear, lw);
+    if (!near) {
+      /* 仕切りの上端（細い棒）と後扉の枠 */
+      ctx.fillRect(rear, yP1 - lw * .45, gxl - rear, Math.max(1, lw * .9));
+      ctx.fillRect(rear - 4 * s, yP1 - 3 * sc, Math.max(1, 2 * s), (yP2 - yP1) * .55);
+      return;
+    }
+    /* 側壁のパッド（緑。縫い目と、上の縁の丸み） */
+    var px0 = rear + 3 * s, px1 = gxl - 2 * s;
+    ctx.fillStyle = st; ctx.fillRect(px0 - lw, yP1 - lw, px1 - px0 + 2 * lw, yP2 - yP1 + 2 * lw);
+    ctx.fillStyle = G.pad; ctx.fillRect(px0, yP1, px1 - px0, yP2 - yP1);
+    ctx.fillStyle = G.pad2; var sw = Math.max(1, 1.3 * s), seg = (px1 - px0) / 5;
+    for (var k = 1; k < 5; k++) ctx.fillRect(Math.round(px0 + seg * k), yP1 + 1, sw, yP2 - yP1 - 2);
+    ctx.fillStyle = alpha(st, .3); ctx.fillRect(px0, yP1, px1 - px0, Math.max(1, 2.2 * s));
+    /* 後扉（閉じたまま） */
+    ctx.fillStyle = st; ctx.fillRect(rear - 5 * s, yP1 - 5 * sc, 7 * s, yP2 - yP1 + 9 * sc);
+    ctx.fillStyle = G.pad; ctx.fillRect(rear - 3.6 * s, yP1 - 3 * sc, 4.2 * s, yP2 - yP1 + 5 * sc);
+  }
+  function drawGateFront(gx){
+    var s = LAY.s, f = BYLANE[0], l = BYLANE[BYLANE.length - 1], g = LAY.gap, dT0 = laneDX(f);
+    var rear = gx - 128 * s, pw = Math.max(2.5, 6 * s), yT = f.base - 172 * f.sc - .5 * g, bN = l.base + .5 * g, yB = bN - 25 * s;
+    var st = COL['--gate-steel'], st2 = COL['--gate-steel-2'], k;
+    function quad(xt, xb, w){ ctx.beginPath(); ctx.moveTo(xt, yT); ctx.lineTo(xt + w, yT); ctx.lineTo(xb + w, yB); ctx.lineTo(xb, yB); ctx.closePath(); ctx.fill(); }
+    /* 台車の梁・牽引バー・車輪（手前の枠の下） */
+    ctx.fillStyle = st2; ctx.fillRect(rear - pw, bN - 31 * s, gx - rear + 2 * pw, Math.max(2, 6 * s));
+    ctx.strokeStyle = st2; ctx.lineCap = 'round'; ctx.lineWidth = Math.max(2, 4 * s);
+    ctx.beginPath(); ctx.moveTo(gx + pw, bN - 27 * s); ctx.lineTo(gx + 46 * s, bN - 14 * s); ctx.stroke();
+    ctx.lineWidth = Math.max(1.2, 2 * s); ctx.beginPath(); ctx.arc(gx + 50 * s, bN - 13 * s, 3.6 * s, 0, TAU2); ctx.stroke();
+    [rear + 18 * s, gx - 16 * s].forEach(function(wx){
+      var wr = 12.5 * s, wy = bN - wr;
+      ctx.fillStyle = COL['--gate-tire']; ctx.beginPath(); ctx.arc(wx, wy, wr, 0, TAU2); ctx.fill();
+      ctx.fillStyle = st2; ctx.beginPath(); ctx.arc(wx, wy, wr * .48, 0, TAU2); ctx.fill();
+      ctx.fillStyle = COL['--gate-tire']; ctx.beginPath(); ctx.arc(wx, wy, wr * .16, 0, TAU2); ctx.fill();
+    });
+    /* 後ろのステップ */
+    ctx.strokeStyle = st; ctx.lineWidth = Math.max(1, 1.8 * s); ctx.lineCap = 'butt';
+    var sx0 = rear - pw - 14 * s;
+    ctx.beginPath(); ctx.moveTo(sx0, bN - 26 * s); ctx.lineTo(sx0 + 5 * s, bN - 84 * s);
+    for (k = 0; k < 4; k++){ var yy = bN - (36 + 14 * k) * s; ctx.moveTo(sx0 + 1.2 * k * s, yy); ctx.lineTo(rear - pw, yy); }
+    ctx.stroke();
+    /* 門型フレームの柱（全高。奥ほど右へ傾く）と、上の梁（トラス） */
+    ctx.fillStyle = st; quad(gx + dT0, gx, pw); quad(rear - pw + dT0, rear - pw, pw);
+    ctx.fillStyle = st2; quad(gx + dT0 + pw * .62, gx + pw * .62, pw * .38); quad(rear - pw * .38 + dT0, rear - pw * .38, pw * .38);
+    var gh = 13 * s, gy = yT - gh, x0 = rear - pw - 12 * s + dT0, x1 = gx + pw + 12 * s + dT0, ch = Math.max(1.5, 3 * s);
+    ctx.fillStyle = st; ctx.fillRect(x0, gy, x1 - x0, ch); ctx.fillRect(x0, yT - ch, x1 - x0, ch);
+    ctx.strokeStyle = st; ctx.lineWidth = Math.max(1, 1.5 * s); ctx.beginPath();
+    for (var x = x0; x < x1 - 1; x += gh){ ctx.moveTo(x, yT - ch / 2); ctx.lineTo(Math.min(x1, x + gh / 2), gy + ch / 2); ctx.lineTo(Math.min(x1, x + gh), yT - ch / 2); }
+    ctx.moveTo(gx + dT0 + pw / 2 - 1.2 * s, yT + 26 * s); ctx.lineTo(gx + dT0 - 22 * s, yT); ctx.moveTo(rear + dT0 - pw / 2, yT + 26 * s); ctx.lineTo(rear + dT0 + 22 * s, yT);
+    ctx.stroke();
+    ctx.fillStyle = COL['--brass']; ctx.fillRect(x0, gy, x1 - x0, Math.max(1, 1.2 * s));
+    /* 枠番の表示板（JRA の枠色の地）を梁の上に並べる。奥の枠から順に左から */
+    var n = BYLANE.length, pp = Math.round(Math.max(15, 25 * s)), pg = Math.max(2, 3 * s), tot = n * pp + (n - 1) * pg;
+    var bx = (x0 + x1) / 2 - tot / 2, by = gy - pp - Math.max(1, 1.5 * s);
+    ctx.fillStyle = st2; ctx.fillRect(bx - pg, by + pp - 1, tot + 2 * pg, Math.max(1.5, 2 * s) + 1);
+    ctx.font = '700 ' + Math.round(Math.max(12, pp * .74)) + 'px ' + FNT.num; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    BYLANE.forEach(function(r, z){
+      var x = bx + z * (pp + pg);
+      ctx.fillStyle = st; ctx.fillRect(x - 1, by - 1, pp + 2, pp + 2);
+      ctx.fillStyle = r.wc; ctx.fillRect(x, by, pp, pp);
+      ctx.fillStyle = lum(r.wc) > .6 ? COL['--race-plate-ink'] : COL['--silk-white'];
+      ctx.fillText(String(r.waku), x + pp / 2, by + pp / 2 + 1);
+    });
+  }
+  /* スターター台（内馬場側）。赤旗を掲げて、発走の瞬間に下ろす */
+  function drawStarter(gx, tau){
+    var L = LAY, s = L.s * 1.25, tx = gx + 104 * L.s, by = L.railBase - 1, py = L.railTop - 42 * s;
+    var st = COL['--gate-steel'], st2 = COL['--gate-steel-2'];
+    ctx.strokeStyle = st2; ctx.lineWidth = Math.max(1, 1.8 * s); ctx.lineCap = 'butt';
+    ctx.beginPath(); ctx.moveTo(tx - 9 * s, py); ctx.lineTo(tx - 11 * s, by); ctx.moveTo(tx + 9 * s, py); ctx.lineTo(tx + 11 * s, by);
+    ctx.moveTo(tx - 9.6 * s, py + (by - py) * .2); ctx.lineTo(tx + 10.4 * s, by - 2); ctx.moveTo(tx + 9.6 * s, py + (by - py) * .2); ctx.lineTo(tx - 10.4 * s, by - 2);
+    ctx.stroke();
+    ctx.fillStyle = st; ctx.fillRect(tx - 13 * s, py - 2.5 * s, 26 * s, Math.max(1.5, 3 * s));
+    ctx.strokeStyle = st; ctx.lineWidth = Math.max(1, 1.3 * s);
+    ctx.beginPath(); ctx.moveTo(tx - 12 * s, py - 2.5 * s); ctx.lineTo(tx - 12 * s, py - 11 * s); ctx.lineTo(tx + 12 * s, py - 11 * s); ctx.lineTo(tx + 12 * s, py - 2.5 * s); ctx.stroke();
+    var bx = tx - 2 * s, bb = py - 2.5 * s;
+    ctx.fillStyle = COL['--race-rein']; ctx.fillRect(bx - 3 * s, bb - 16 * s, 6.5 * s, 16 * s);
+    ctx.fillStyle = COL['--race-skin']; ctx.beginPath(); ctx.arc(bx + .3 * s, bb - 19.4 * s, 3 * s, 0, TAU2); ctx.fill();
+    /* 赤旗を高く掲げて小さく振り、発走の瞬間に下ろす */
+    var up = 1 - sstep(TG - .06, TG + .22, tau), wv = Math.sin(tau * 7.5) * .24 * up;
+    var shx = bx + 2.4 * s, shy = bb - 14 * s;
+    var hx = shx + lerp(5, 3.2, up) * s, hy = shy + lerp(6.5, -9, up) * s;
+    var ang = lerp(.95, -1.42, up) + wv * .25, pl = 14 * s, ex = hx + Math.cos(ang) * pl, ey = hy + Math.sin(ang) * pl;
+    ctx.strokeStyle = COL['--race-rein']; ctx.lineCap = 'round'; ctx.lineWidth = Math.max(1, 1.8 * s);
+    ctx.beginPath(); ctx.moveTo(shx, shy); ctx.lineTo(hx, hy); ctx.stroke();
+    ctx.lineWidth = Math.max(1, 1.1 * s); ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(ex, ey); ctx.stroke();
+    var ux = Math.cos(ang), uy = Math.sin(ang), nx = -uy, ny = ux, fw = 12 * s, fh = 8.5 * s;
+    if (nx < 0) { nx = -nx; ny = -ny; }
+    var p0 = [ex, ey], p1 = [ex - ux * fh, ey - uy * fh], tip = function(p, k){ return [p[0] + nx * fw + ux * fh * wv * k, p[1] + ny * fw + uy * fh * wv * k + fw * .25 * (1 - up)]; };
+    var q0 = tip(p0, 1), q1 = tip(p1, -.6);
+    ctx.fillStyle = COL['--flag-red'];
+    ctx.beginPath(); ctx.moveTo(p0[0], p0[1]);
+    ctx.quadraticCurveTo((p0[0] + q0[0]) / 2 - ux * fh * wv, (p0[1] + q0[1]) / 2 - uy * fh * wv, q0[0], q0[1]);
+    ctx.lineTo(q1[0], q1[1]);
+    ctx.quadraticCurveTo((p1[0] + q1[0]) / 2 + ux * fh * wv, (p1[1] + q1[1]) / 2 + uy * fh * wv, p1[0], p1[1]);
+    ctx.closePath(); ctx.fill();
+  }
+  /* ゲートの中の落ち着きのない動き（首を振る・前脚で地面をかく）。出遅れる馬は発走の瞬間に頭を上げる */
+  function idleOf(r, tau){
+    var j = r.lane;
+    function bump(t0, d){ var u = (tau - t0) / d; return u > 0 && u < 1 ? Math.sin(Math.PI * u) : 0; }
+    var n = 9 * bump(.1 + .19 * j, .42) + 7 * bump(.58 + .11 * ((j * 3) % 4), .36);
+    var h = -6 * bump(.16 + .19 * j, .3) + 4 * bump(.66 + .11 * ((j * 3) % 4), .3);
+    var p0 = .22 + .2 * ((j * 5) % 4), paw = 0, u = (tau - p0) / .36;
+    if (u > 0 && u < 1) paw = u; else { u = (tau - p0 - .44) / .36; if (u > 0 && u < 1) paw = u; }
+    if (r.lagN > .5) n += 13 * bump(TG - .14, .55);
+    return { n: n, h: h, paw: paw };
+  }
+
+  /* ---- 土くれと、発走の土煙 ---- */
   function emit(r, Lg, ox, oy, B){
-    var s = LAY.s, n = Math.random() < .5 ? 3 : 2;
-    for (var i = 0; i < n; i++){
-      if (parts.length > 48) parts.shift();
+    var s = LAY.s, k = Math.random() < .5 ? 3 : 2;
+    for (var q = 0; q < k; q++){
+      if (parts.length > 56) parts.shift();
       parts.push({ x: ox + Lg.hx[2] * r.sc + B, y: oy - Lg.hy[2] * r.sc, gy: oy, vx: -(40 + Math.random() * 100) * s, vy: -(70 + Math.random() * 90) * s,
         g: 560 * s, life: .34 + Math.random() * .3, age: 0, sz: (1.7 + Math.random() * 1.8) * Math.max(1, s * 1.7), c: Math.random() < .6 ? 0 : 1, fade: 1 });
     }
   }
+  function emitDust(gx, B){
+    var s = LAY.s;
+    BYLANE.forEach(function(r){
+      for (var q = 0; q < 4; q++){
+        if (parts.length > 56) parts.shift();
+        parts.push({ dust: 1, x: gx + (2 + Math.random() * 20) * s + B, y: r.base - Math.random() * 5 * s, gy: r.base, vx: (Math.random() * 80 - 20) * s, vy: -(6 + Math.random() * 24) * s,
+          g: 0, life: .55 + Math.random() * .35, age: 0, sz: (5 + Math.random() * 5) * s, grow: (24 + Math.random() * 18) * s, c: 0, fade: 1 });
+      }
+    });
+  }
   function stepParts(dtau, dt){
-    for (var i = parts.length - 1; i >= 0; i--){
-      var p = parts[i];
+    for (var q = parts.length - 1; q >= 0; q--){
+      var p = parts[q];
       p.x += p.vx * dtau; p.vy += p.g * dtau; p.y += p.vy * dtau; p.age += dtau;
-      if (p.y > p.gy) { p.y = p.gy; p.vy *= -.25; p.vx *= .4; }
-      if (t >= T_ALL) p.fade -= dt * 3.2;
-      if (p.age > p.life || p.fade <= 0) parts.splice(i, 1);
+      if (p.dust) p.vx *= Math.max(0, 1 - dtau * 2.2);
+      else if (p.y > p.gy) { p.y = p.gy; p.vy *= -.25; p.vx *= .4; }
+      if (t >= TE) p.fade -= dt * 3.2;
+      if (p.age > p.life || p.fade <= 0) parts.splice(q, 1);
     }
   }
   function drawParts(B){
-    for (var i = 0; i < parts.length; i++){
-      var p = parts[i], a = clamp(1 - p.age / p.life, 0, 1) * clamp(p.fade, 0, 1);
+    for (var q = 0; q < parts.length; q++){
+      var p = parts[q], a = clamp(1 - p.age / p.life, 0, 1) * clamp(p.fade, 0, 1);
+      if (p.dust) {
+        ctx.globalAlpha = .42 * a * a; ctx.fillStyle = COL['--race-dust'];
+        ctx.beginPath(); ctx.arc(p.x - B, p.y, p.sz + p.grow * (p.age / p.life), 0, TAU2); ctx.fill();
+        continue;
+      }
       ctx.globalAlpha = Math.min(1, a * 1.6);
       ctx.fillStyle = p.c ? COL['--race-clod-2'] : COL['--race-clod'];
       ctx.fillRect(p.x - B - p.sz / 2, p.y - p.sz / 2, p.sz, p.sz * .8);
@@ -1978,8 +2644,7 @@ var Race = (function(){
     ctx.globalAlpha = 1;
   }
 
-  /* ---- 札（名前と pt） ---- */
-  function rr(x, y, w, h, r){ ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  /* ---- 札（名前と pt）: v3 と同じ決着の絵 ---- */
   function tagMetrics(r){
     var big = W >= 600;
     var fN = '700 ' + (big ? 13.5 : 12.5) + 'px ' + FNT.body, fV = '500 ' + (big ? 15 : 14) + 'px ' + FNT.num, fU = '400 12px ' + FNT.body;
@@ -1990,7 +2655,7 @@ var Race = (function(){
     return { fN: fN, fV: fV, fU: fU, wn: wn, wv: wv, wu: wu, h: h, box: h, w: h + 6 + wn + 5 + wv + 1.5 + wu + 7 };
   }
   function placeTags(info){
-    var out = [], rows = [6, 6 + (W >= 600 ? 28 : 26)], obst = [];
+    var out = [], y0 = LAY.y0, rows = [y0 + 6, y0 + 6 + (W >= 600 ? 28 : 26)], obst = [];
     if (LAY.goalBox) obst.push(LAY.goalBox);
     function hit(a, b, m){ return a.x < b.x + b.w + m && a.x + a.w + m > b.x && a.y < b.y + b.h + m && a.y + a.h + m > b.y; }
     function segHits(x1, y1, x2, y2, self){
@@ -2028,8 +2693,8 @@ var Race = (function(){
   }
   function drawTags(info, prog){
     var tags = placeTags(info);
-    tags.forEach(function(tg, i){
-      var p = clamp((prog - i * .09) / .3, 0, 1); if (p <= 0) return;
+    tags.forEach(function(tg, k){
+      var p = clamp((prog - k * .09) / .3, 0, 1); if (p <= 0) return;
       var e = 1 - Math.pow(1 - p, 3), m = tg.m, b = tg.box, dy = (1 - e) * 6;
       ctx.globalAlpha = e;
       ctx.strokeStyle = alpha(COL['--rail'], .85); ctx.lineWidth = 1;
@@ -2051,56 +2716,174 @@ var Race = (function(){
     ctx.globalAlpha = 1;
   }
 
+  /* ---- いまの場面の時間 ---- */
+  function curTau(){
+    if (state === 'run') return tauOf(t);
+    if (state === 'paused') return tauNow;
+    if (state === 'done') return TE;
+    return 0;
+  }
+  function curTagP(){
+    if (state === 'done') return 9;
+    if (state === 'paused') return tauNow >= TE - 1e-6 ? 9 : 0;
+    if (state === 'run') return t >= TE ? post : 0;
+    return 0;
+  }
+  /* ステッキ: 強く追っている馬だけ、3〜4 完歩に 1 回（枠ごとに位相をずらす）。0.7 完歩で振り上げて入れ、戻す */
+  function whipOf(r, ph, pu){
+    var hold = sstep(.5, .66, pu);
+    if (hold <= 0) return null;
+    var E = r.lane % 2 ? 3.5 : 3, x = (ph + r.lane * 1.37) / E;
+    return { u: (x - Math.floor(x)) * E / .7, a: sstep(.72, .86, pu), hold: hold };
+  }
+  /* 「+78」の札（帽子の上に浮かぶ）。同じ日に近くで 2 つ出たら上下にずらす */
+  function drawPops(list, tagP){
+    if (!list.length) return;
+    var fsz = W < 600 ? 14 : 15, font = '800 ' + fsz + 'px ' + FNT.num, ph = fsz + 7, boxes = [];
+    ctx.font = font;
+    list.forEach(function(it){
+      var o = it.o, age = it.age, txt = '+' + ptText(o.p), pw = ctx.measureText(txt).width + 12;
+      var a = Math.min(1, age / .06) * Math.min(1, (1.05 - age) / .3) * (tagP > 0 ? clamp(1 - tagP / .25, 0, 1) : 1);
+      if (a <= 0) return;
+      var bx = clamp(it.x - pw / 2, 3, W - 3 - pw), by = it.y - 6 - ph - Math.min(age, 1) * 14;
+      boxes.forEach(function(b){ if (bx < b.x + b.w + 2 && bx + pw + 2 > b.x && by < b.y + b.h + 2 && by + ph + 2 > b.y) by = b.y - ph - 3; });
+      boxes.push({ x: bx, y: by, w: pw, h: ph, a: a, txt: txt, r: o.r });
+    });
+    boxes.forEach(function(b){
+      var base = b.r.look.silk.base;
+      ctx.globalAlpha = b.a;
+      ctx.beginPath(); rr(b.x, b.y, b.w, b.h, 3); ctx.fillStyle = base; ctx.fill();
+      ctx.lineWidth = 1; ctx.strokeStyle = alpha(COL['--rail'], .85); ctx.stroke();
+      ctx.fillStyle = lum(base) > .6 ? COL['--race-plate-ink'] : COL['--silk-white'];
+      ctx.font = font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(b.txt, b.x + b.w / 2, b.y + b.h / 2 + .5);
+    });
+    ctx.globalAlpha = 1;
+  }
+
   /* ---- 1 コマ描く ---- */
   function draw(){
     if (!LAY && !layout()) return;
-    var L = LAY, tau, tagP = 0, running = state === 'run';
-    if (state === 'done' || (state === 'pending' && reduced())) { tau = TE; tagP = 9; }
-    else if (state === 'pending') tau = 0;
-    else { tau = tauOf(t); tagP = t >= T_ALL ? post : 0; }
-    var C = samp(L.C, tau), B = C - L.S;
+    var L = LAY, tau = curTau(), tagP = curTagP(), sNow = sOfTau(tau);
+    var Cm = samp(L.CAM, tau), B = Cm - L.S;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    drawGround(B);
+    drawInfield(B);
+    drawMonitor(B, tau, sNow, tagP);
+    var gx = L.GX0 - Cm, showGate = gx + 130 * L.s > -10 && gx - 160 * L.s < W, shx = showGate ? shakeAt(tau) : 0;
+    if (showGate) drawStarter(gx, tau);
+    drawTrack(B);
     L.goalBox = null;
     drawPoles(B);
-    var bl = sstep(TL.gate - .02, TL.gate + .55, tau), drive = sstep(1.9, 2.5, tau);
-    /* 前の柱は、立っている馬の胸のすぐ前（頭は扉の上に出る） */
-    var gateX = L.gateX - 34 * L.s - C, showGate = gateX + 40 * L.s > -10 && gateX - 130 * L.s < W;
-    var info = [];
+    var running = state === 'run' && t < TE && tau > TG;
+    var info = [], pops = [];
     BYLANE.forEach(function(r){
-      var sx = L.gateX + samp(r.X, tau) - C;
-      var ph = samp(r.PH, tau) + r.phOff;
-      var P = horsePose(ph, bl, drive);
+      /* ゲートの中では枠の斜めの並びに合わせて奥の馬ほど右。発走して 1 秒ほどで揃う */
+      var sx = L.gateX + samp(r.X, tau) - Cm + (tau < TG + 1 ? laneDX(r) * (1 - sstep(TG + .05, TG + .95, tau)) : 0);
+      var bl = sstep(TG + r.react - .02, TG + r.react + .5, tau);
+      var ph = samp(r.PH, tau) + r.phOff, pu = samp(r.PU, tau);
+      var P = horsePose(ph, bl, pu, tau < TG + .6 ? idleOf(r, tau) : null, whipOf(r, ph, pu));
       var ox = sx - r.noseE * r.sc, oy = r.base, sc = r.sc;
-      if (running && t < T_ALL) {
-        for (var i = 0; i < 4; i++){
-          var Lg = P.legs[i], lift = Lg.fore ? LIFT.fore : LIFT.hind, prev = r.lp[i];
+      if (running) {
+        for (var q = 0; q < 4; q++){
+          var Lg = P.legs[q], lift = Lg.fore ? LIFT.fore : LIFT.hind, prev = r.lp[q];
           if (prev != null && prev < lift && Lg.lp >= lift && Lg.lp - prev < .4 && bl > .7) emit(r, Lg, ox, oy, B);
-          r.lp[i] = Lg.lp;
+          r.lp[q] = Lg.lp;
         }
       }
+      if (showGate) { ctx.setTransform(dpr, 0, 0, dpr, dpr * shx, 0); drawDoors(r, gx, tau); }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.fillStyle = COL['--race-shade']; ctx.beginPath();
       ctx.ellipse(ox + 4 * sc, oy + 1, 60 * sc * (1 - clamp((P.h - 68) / 50, 0, .2)), 5.5 * sc, 0, 0, TAU2); ctx.fill();
       if (COL.rimOn && r.dark) { ctx.setTransform(dpr * sc, 0, 0, -dpr * sc, dpr * ox, dpr * (oy - .9)); drawHorse(ctx, P, r.look, COL['--race-rim']); }
       ctx.setTransform(dpr * sc, 0, 0, -dpr * sc, dpr * ox, dpr * oy);
       drawHorse(ctx, P, r.look, null);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      if (showGate) drawDoor(r, gateX, tau);
-      var cap = P.jk.head;
-      info.push({ r: r, capX: ox + cap[0] * sc, capY: oy - (cap[1] + 6.4) * sc, cx: ox + 0 * sc, baseY: oy,
+      if (showGate) { ctx.setTransform(dpr, 0, 0, dpr, dpr * shx, 0); drawStall(r, gx, tau); }
+      var cap = P.jk.head, capX = ox + cap[0] * sc, capY = oy - (cap[1] + 6.4) * sc;
+      info.push({ r: r, capX: capX, capY: capY, cx: ox, baseY: oy,
         bx: ox - 84 * sc, by: oy - (cap[1] + 7) * sc, bw: (84 + P.nose[0]) * sc, bh: (cap[1] + 7) * sc });
+      var po = tagP < .25 ? popOf(r, tau) : null;
+      if (po) pops.push({ o: po, age: tau - po.at, x: capX, y: capY });
     });
+    if (showGate) { ctx.setTransform(dpr, 0, 0, dpr, dpr * shx, 0); drawGateFront(gx); }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (showGate) drawGateFrame(gateX);
     drawParts(B);
+    /* 写真判定の光（決勝線で止まった瞬間） */
+    if (flash > 0) { ctx.fillStyle = alpha(COL['--rail'], .16 * flash * flash); ctx.fillRect(0, L.y0, W, H - L.y0); }
+    pops.sort(function(a, b){ return b.y - a.y; });
+    drawPops(pops, tagP);
     if (tagP > 0) drawTags(info, tagP);
+  }
+  /* 帯をなぞる間などは、描くのを 1 コマに 1 回へまとめる */
+  var dq2 = 0;
+  function drawSoon(){ if (dq2) return; dq2 = requestAnimationFrame(function(){ dq2 = 0; draw(); }); }
+
+  /* ---- 帯（日付のシーク）と再生ボタン ---- */
+  (function buildBand(){
+    var html = '';
+    STATS.forEach(function(st, k){
+      var r = RBY[st.m.id], seen = {};
+      r.ev.forEach(function(e){ if (!seen[e.i] || e.fin === 1) seen[e.i] = e.fin === 1 ? 'w' : (seen[e.i] || 'n'); });
+      html += '<span class="tl-row" style="top:' + (1 + k * 6) + 'px;--mc:' + mColor(st.m.id) + '">' +
+        Object.keys(seen).map(function(d){ return '<i class="tl-dot' + (seen[d] === 'w' ? ' w' : '') + '" style="left:' + (d / N * 100).toFixed(3) + '%"></i>'; }).join('') + '</span>';
+    });
+    html += '<span class="tl-track"><i class="tl-fill" id="raceTlFill"></i></span>';
+    var s0 = ymd(SEASON_START);
+    for (var k = 0; k < 24; k++){
+      var mt0 = Date.UTC(s0.y, s0.m - 1 + k, 1); if (mt0 > DN) break;
+      var f = clamp((mt0 - D0) / DAY / N, 0, 1);
+      html += '<i class="tl-tick" style="left:' + (f * 100).toFixed(3) + '%"></i>';
+      /* 右端の月の文字は、つまみ（決着の位置）と重なるので出さない */
+      if (f < .93) html += '<span class="tl-mon" style="left:' + (f * 100).toFixed(3) + '%">' + (new Date(mt0).getUTCMonth() + 1) + '月</span>';
+    }
+    html += '<span class="tl-cur" id="raceCur"><i class="tl-knob"></i><b class="tl-tip" id="raceTip"></b></span>';
+    tlIn.innerHTML = html;
+    tl.setAttribute('aria-valuemax', String(N));
+  })();
+  var curEl = document.getElementById('raceCur'), fillEl = document.getElementById('raceTlFill'), tipEl = document.getElementById('raceTip');
+  var tlW = tlIn.clientWidth, lastFrac = -1, ariaKey = '', lastCS = -2, lastOn = null;
+  function placeTip(){
+    if (!tl.classList.contains('is-drag')) return;
+    var w = tipEl.offsetWidth || 40, x = lastFrac * tlW;
+    tipEl.style.transform = 'translateX(' + clamp(-w / 2, -12 - x, tlW + 12 - x - w).toFixed(1) + 'px)';
+  }
+  function setCur(fr){
+    if (Math.abs(fr - lastFrac) < .0004) return;
+    lastFrac = fr;
+    curEl.style.transform = 'translateX(' + (fr * tlW).toFixed(1) + 'px)';
+    fillEl.style.transform = 'scaleX(' + fr.toFixed(4) + ')';
+    placeTip();
+  }
+  function curDay(){ return state === 'pending' ? 0 : clamp(Math.floor(sOfTau(curTau())), 0, N); }
+  /* 止めているときは、その日の順位と pt も読み上げる */
+  function standText(d){
+    var ev = GRP.filter(function(g){ return g.i === d; }).map(function(g){ return g.es.map(function(e){ return e.horse + ' ' + (e.fin ? e.fin + '着 ' : '') + g.r.name + ' +' + ptText(e.p) + 'pt'; }).join('、'); });
+    return '　' + R.slice().sort(function(a, b){ return cumDay(b, d) - cumDay(a, d) || a.order - b.order; }).map(function(r){ return r.name + ' ' + fmt(cumDay(r, d)); }).join('・') + (ev.length ? '　この日 ' + ev.join('、') : '');
+  }
+  function syncUI(){
+    var tau = curTau(), on = state === 'run' && t < TE;
+    if (on !== lastOn) {
+      lastOn = on;
+      playBtn.classList.toggle('is-on', on);
+      playBtn.setAttribute('aria-label', on ? '一時停止' : '再生'); playBtn.title = on ? '一時停止' : '再生';
+    }
+    var sd = state === 'pending' ? 0 : clamp(sOfTau(tau), 0, N);
+    setCur(sd / N);
+    var day = curDay(), key = day + (on ? 'r' : 's');
+    if (key !== ariaKey) {
+      ariaKey = key;
+      tl.setAttribute('aria-valuenow', String(day)); tl.setAttribute('aria-valuetext', dayText(day) + (on || state === 'pending' ? '' : standText(day)));
+      tipEl.textContent = md(isoOf(day)); placeTip();
+    }
+    /* 下の推移グラフにも同じ日付の縦線（再生中・シーク中だけ。決着の絵では消す） */
+    var show = (state === 'run' && tau >= TG && tau < TE) || (state === 'paused' && tau < TE - 1e-6);
+    var cs = show ? sd : null;
+    if (cs === null ? lastCS !== null : (lastCS === null || Math.abs(cs - lastCS) > .02)) { lastCS = cs; setChartCursor(cs); }
   }
 
   /* ---- 再生の管理（画面外・タブ非表示では止める。1 秒より長く止まったら、戻ったときは決着の絵にする） ---- */
   function nowMs(){ return window.performance && performance.now ? performance.now() : Date.now(); }
   function want(){ return state === 'run' && visible && !document.hidden && W > 0; }
-  function finish(){ state = 'done'; parts = []; flash = 0; pausedAt = 0; draw(); }
+  function stopRaf(){ if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+  function finish(){ stopRaf(); state = 'done'; parts = []; flash = 0; pausedAt = 0; draw(); syncUI(); }
   function kick(){
     if (state !== 'run') return;
     if (!want()) { if (!pausedAt) pausedAt = nowMs(); return; }
@@ -2112,27 +2895,59 @@ var Race = (function(){
     raf = 0;
     if (!want()) { if (!pausedAt) pausedAt = nowMs(); return; }
     var dt = last ? Math.min(.05, (ts - last) / 1000) : 0; last = ts;
-    var t0 = t;
-    if (t < T_ALL) { t = Math.min(T_ALL, t + dt); if (t >= T_ALL) flash = 1; }
-    else { post += dt; flash = Math.max(0, flash - dt * 2.6); }
-    stepParts(tauOf(t) - tauOf(t0), dt);
-    draw();
-    if (t >= T_ALL && post > 1 && !parts.length && flash <= 0) { state = 'done'; draw(); return; }
+    var tau0 = tauOf(t);
+    /* 先頭が決勝線に届いたら、その瞬間に止める（減速しない。写真判定の光） */
+    if (t < TE) { t = Math.min(TE, t + dt); if (t >= TE) flash = 1; }
+    else { post += dt; flash = Math.max(0, flash - dt * 2.2); }
+    var tau1 = tauOf(t);
+    if (tau0 < TG && tau1 >= TG && LAY) { var C1 = samp(LAY.CAM, tau1); emitDust(LAY.GX0 - C1, C1 - LAY.S); }
+    stepParts(tau1 - tau0, dt);
+    draw(); syncUI();
+    if (t >= TE && post > 1.35 && !parts.length && flash <= 0) { state = 'done'; draw(); syncUI(); return; }
     raf = requestAnimationFrame(tick);
   }
+  function resetRun(){ post = 0; flash = 0; pausedAt = 0; parts = []; R.forEach(function(r){ r.lp = []; }); }
+  /* 最初から（ゲートの中から） */
   function start(){
-    stopWaiting();
-    if (reduced()) { state = 'done'; draw(); return; }
-    if (raf) { cancelAnimationFrame(raf); raf = 0; }
-    state = 'run'; t = 0; post = 0; flash = 0; pausedAt = 0; parts = []; R.forEach(function(r){ r.lp = []; });
-    draw(); kick();
+    stopWaiting(); stopRaf();
+    if (reduced()) { state = 'done'; draw(); syncUI(); return; }
+    state = 'run'; t = 0; resetRun();
+    draw(); syncUI(); kick();
   }
+  function playFrom(tau){
+    if (reduced()) return;
+    stopWaiting(); stopRaf();
+    state = 'run'; t = tau; resetRun();
+    draw(); syncUI(); kick();
+  }
+  function pause(){
+    if (state !== 'run') return;
+    stopRaf();
+    if (t >= TE) { finish(); return; }
+    tauNow = tauOf(t); state = 'paused'; flash = 0;
+    draw(); syncUI();
+  }
+  function toggle(){
+    if (state === 'run') { if (t >= TE) start(); else pause(); }
+    else if (state === 'paused' && tauNow < TE - 1e-6) playFrom(tauNow);
+    else start();
+  }
+  /* 決着の絵を触ったときは走り直さず、再生ボタンを一瞬光らせるだけ */
+  function hintPlay(){ playBtn.classList.remove('is-hint'); void playBtn.offsetWidth; playBtn.classList.add('is-hint'); }
+  /* その日の終わりの状態へ（その日に入った pt はグラフに入った状態）。左端はゲートが開く直前、右端は決着の絵 */
+  function seekDay(d){
+    stopWaiting(); stopRaf();
+    d = clamp(Math.round(d), 0, N);
+    parts = []; flash = 0; pausedAt = 0;
+    state = 'paused'; tauNow = d <= 0 ? TG : (d >= N ? TE : tauOfS(d + .999));
+    syncUI(); drawSoon();
+  }
+  function evDayFrom(d, dir){ var best = dir > 0 ? N : 0; for (var k = 0; k < EVD.length; k++){ var x = EVD[k]; if (dir > 0 && x > d) { best = x; break; } if (dir < 0 && x < d) best = x; } return best; }
 
-  /* ---- いつ走らせるか ----
-     馬の帯（絵の縦 24〜92%）が、下に固定したタブ（PC は上に貼り付いたタブ）を除いた表示領域に 7 割以上入った時点で 1 回だけ走る。
-     読み込み時に入っていなければ、発馬機の前で待つ（画面の外なので待っている絵は誰にも見えない）。
-     順位以外のタブで開いたときも待ち、順位を開いた時点で判断する。数値はその場で getBoundingClientRect で測る */
-  var VIS_MIN = .7, dq = 0, waiting = false;
+  /* ---- いつ走らせるか（v3 と同じ） ----
+     馬の帯（ビジョンの下から絵の下まで）が、下に固定したタブ（PC は上に貼り付いたタブ）を除いた表示領域に 6 割以上入った時点で 1 回だけ走る。
+     読み込み時に入っていなければ、発馬機の前で待つ。順位以外のタブで開いたときも待ち、順位を開いた時点で判断する */
+  var VIS_MIN = .6, dq = 0, waiting = false;
   function bandVis(){
     if (document.hidden) return 0;
     var r = fig.getBoundingClientRect();
@@ -2145,12 +2960,12 @@ var Race = (function(){
         else if (tr.bottom > 0 && tr.top < 2) lo = Math.max(lo, tr.bottom);
       }
     }
-    var y0 = r.top + r.height * .24, y1 = r.top + r.height * .92;
-    return Math.max(0, Math.min(y1, hi) - Math.max(y0, lo)) / (y1 - y0);
+    var y0 = r.top + (LAY ? LAY.y0 : r.height * .4), y1 = r.top + r.height * .94;
+    return Math.max(0, Math.min(y1, hi) - Math.max(y0, lo)) / Math.max(1, y1 - y0);
   }
   function decide(){
     if (state !== 'pending') { stopWaiting(); return; }
-    if (reduced()) { state = 'done'; stopWaiting(); draw(); return; }
+    if (reduced()) { state = 'done'; stopWaiting(); draw(); syncUI(); return; }
     if (bandVis() >= VIS_MIN) start();
   }
   function decideSoon(){
@@ -2163,7 +2978,7 @@ var Race = (function(){
   }
   readCols();
   layout();
-  draw();
+  draw(); syncUI();
   visible = (function(){ var r = fig.getBoundingClientRect(); return r.width > 0 && r.bottom > 0 && r.top < (window.innerHeight || 0); })();
   decide();
   if (state === 'pending') {
@@ -2180,17 +2995,75 @@ var Race = (function(){
     }, { threshold: [0] }).observe(fig);
   } else { visible = true; }
   document.addEventListener('visibilitychange', function(){ decideSoon(); kick(); });
-  if ('ResizeObserver' in window) new ResizeObserver(function(){ if (layout()) draw(); }).observe(fig);
-  else window.addEventListener('resize', function(){ if (layout()) draw(); });
+  function relayout(){ if (layout()) { draw(); } tlW = tlIn.clientWidth; lastFrac = -1; syncUI(); }
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(relayout); ro.observe(fig); ro.observe(tlIn); }
+  else window.addEventListener('resize', relayout);
   function retheme(){ readCols(); draw(); }
   if (window.matchMedia) onMQ(window.matchMedia('(prefers-color-scheme: dark)'), retheme);
   if ('MutationObserver' in window) new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
-  onMQ(RM, function(){ if (!reduced()) return; if (state === 'run') finish(); else if (state === 'pending') { state = 'done'; stopWaiting(); draw(); } });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ readCols(); draw(); decideSoon(); });
-  rb.addEventListener('click', function(){ start(); });
-  /* 絵を押しても、もう一度走る（走っている最中は無視） */
-  cv.addEventListener('click', function(){ if (state !== 'run') start(); });
-  return { replay: start, check: decideSoon };
+  onMQ(RM, function(){ if (!reduced()) return; if (state === 'run') finish(); else if (state === 'pending') { state = 'done'; stopWaiting(); draw(); syncUI(); } });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ readCols(); LAY = null; W = 0; layout(); draw(); decideSoon(); });
+
+  playBtn.addEventListener('click', function(){ toggle(); });
+  rsBtn.addEventListener('click', function(){ start(); });
+  /* 絵を押すと、一時停止／続きから。待っている間なら発走。決着の後は走り直さない */
+  cv.addEventListener('click', function(){
+    if (reduced()) return;
+    if (state === 'run' && t < TE) pause();
+    else if (state === 'paused' && tauNow < TE - 1e-6) playFrom(tauNow);
+    else if (state === 'pending') start();
+    else hintPlay();
+  });
+  /* 帯: マウスは押した瞬間から 1 日単位。指は横になぞったとき（または軽く押したとき）だけ日付を動かし、
+     pt が入った日の近く（離したとき ±11px、なぞっている間 ±7px）では、その日に吸い付く。縦のスクロールは邪魔しない */
+  var drag = null, SNAP = EVD.concat([N]);
+  function dayAtX(x, snapPx){
+    var r = tlIn.getBoundingClientRect(), w = Math.max(1, r.width), d = clamp((x - r.left) / w, 0, 1) * N;
+    if (snapPx) {
+      var best = -1, bd = 1e9;
+      SNAP.forEach(function(e){ var dp = Math.abs(e - d) * w / N; if (dp <= snapPx && dp < bd) { bd = dp; best = e; } });
+      if (best >= 0) return best;
+    }
+    return Math.round(d);
+  }
+  function setDrag(on){ tl.classList.toggle('is-drag', on); if (on) { tipEl.textContent = md(isoOf(curDay())); placeTip(); } }
+  tl.addEventListener('pointerdown', function(e){
+    if (e.button > 0) return;
+    drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, on: e.pointerType === 'mouse', touch: e.pointerType !== 'mouse' };
+    try { tl.setPointerCapture(e.pointerId); } catch(_) {}
+    if (drag.on) { e.preventDefault(); try { tl.focus({ preventScroll: true }); } catch(_) {} seekDay(dayAtX(e.clientX, 0)); setDrag(true); }
+  });
+  tl.addEventListener('pointermove', function(e){
+    if (!drag || e.pointerId !== drag.id) return;
+    if (!drag.on) {
+      var dx = Math.abs(e.clientX - drag.x0), dy = Math.abs(e.clientY - drag.y0);
+      if (dx > 6 && dx > dy) { drag.on = true; setDrag(true); } else return;
+    }
+    var d = dayAtX(e.clientX, drag.touch ? 7 : 0);
+    if (state !== 'paused' || d !== curDay()) seekDay(d);
+  });
+  function endDrag(e, tap){
+    if (!drag || e.pointerId !== drag.id) return;
+    var dd = drag; drag = null; setDrag(false);
+    if (!tap) return;
+    if (!dd.on) { if (Math.abs(e.clientX - dd.x0) < 8 && Math.abs(e.clientY - dd.y0) < 8) seekDay(dayAtX(e.clientX, dd.touch ? 11 : 0)); }
+    else if (dd.touch) seekDay(dayAtX(e.clientX, 11));
+  }
+  tl.addEventListener('pointerup', function(e){ endDrag(e, true); });
+  tl.addEventListener('pointercancel', function(e){ endDrag(e, false); });
+  tl.addEventListener('keydown', function(e){
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var cd = curDay(), d = null, k = e.key;
+    if (k === 'ArrowRight' || k === 'ArrowUp') d = cd + 1;
+    else if (k === 'ArrowLeft' || k === 'ArrowDown') d = cd - 1;
+    else if (k === 'PageUp') d = evDayFrom(cd, 1);
+    else if (k === 'PageDown') d = evDayFrom(cd, -1);
+    else if (k === 'Home') d = 0;
+    else if (k === 'End') d = N;
+    if (d == null) return;
+    e.preventDefault(); seekDay(d);
+  });
+  return { check: decideSoon };
   } catch(err) { return giveUp(); }
 })();
 /*RACE-END*/

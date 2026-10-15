@@ -43,6 +43,8 @@
   --vis-ink:#F3F7F3; --vis-mute:#A3B8AA; --vis-led:#FFB43A; --vis-telop:#0E1B15; --vis-date:#D4B474; --vis-date-ink:#14201A;
   --vis-lamp:#C8281F; --vis-lamp-ink:#FFFFFF;
   --vis-m-kotsuji:#FF6E60; --vis-m-yoshida:#72A6FF; --vis-m-kono:#FF9C50; --vis-m-keigo:#FFD84A;
+  /* パドック（2025年生まれの下見）: 写真の台紙・写真の上の名札の影・シートの後ろ・影 */
+  --pd-frame:#E2E8E4; --pd-veil:rgba(8,16,12,.68); --pd-on-veil:#FFFFFF; --pd-scrim:rgba(12,22,17,.48); --pd-shadow:rgba(12,22,17,.22);
   --coat-bay:#8A5430; --coat-bay-pt:#1D1511; --coat-dkbay:#5C3622; --coat-dkbay-pt:#17110E;
   --coat-brown:#3B291F; --coat-brown-pt:#130F0D; --coat-black:#231D1A; --coat-black-pt:#0F0C0B;
   --coat-chestnut:#AE6230; --coat-chestnut-pt:#94502A; --coat-chestnut-mane:#C27A45; --coat-liver:#73402A; --coat-liver-pt:#5E3322;
@@ -68,6 +70,7 @@
   --vis-ink:#EEF3EF; --vis-mute:#9AAFA1; --vis-led:#FFB13A; --vis-telop:#0A1510; --vis-date:#C8A75E; --vis-date-ink:#101A14;
   --vis-lamp:#C8281F; --vis-lamp-ink:#FFFFFF;
   --vis-m-kotsuji:#F4746B; --vis-m-yoshida:#7DA9F5; --vis-m-kono:#F49C5A; --vis-m-keigo:#F2D150;
+  --pd-frame:#13221A; --pd-veil:rgba(0,0,0,.7); --pd-on-veil:#F4F7F4; --pd-scrim:rgba(0,0,0,.62); --pd-shadow:rgba(0,0,0,.55);
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#08120D; --sheet:#0E1B15; --ink:#E3EAE5; --mute:#8FA296; --line:#213329;
@@ -85,6 +88,7 @@
   --vis-ink:#EEF3EF; --vis-mute:#9AAFA1; --vis-led:#FFB13A; --vis-telop:#0A1510; --vis-date:#C8A75E; --vis-date-ink:#101A14;
   --vis-lamp:#C8281F; --vis-lamp-ink:#FFFFFF;
   --vis-m-kotsuji:#F4746B; --vis-m-yoshida:#7DA9F5; --vis-m-kono:#F49C5A; --vis-m-keigo:#F2D150;
+  --pd-frame:#13221A; --pd-veil:rgba(0,0,0,.7); --pd-on-veil:#F4F7F4; --pd-scrim:rgba(0,0,0,.62); --pd-shadow:rgba(0,0,0,.55);
   color-scheme:dark}
 
 /* ---------- 土台 ---------- */
@@ -176,15 +180,17 @@ a:hover{text-decoration-color:currentColor}
   background:var(--sheet);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom, 0px);
 }
-.tablist{position:relative;display:grid;grid-template-columns:repeat(4,1fr)}
+.tablist{position:relative;display:grid;grid-template-columns:repeat(5,1fr)}
 .tab{position:relative;min-height:66px;border:0;background:none;cursor:pointer;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--mute);padding:22px 2px 6px}
-.tab .tl{font-family:var(--f-display);font-weight:700;font-size:16px;line-height:1.2;letter-spacing:.06em}
+.tab .tl{font-family:var(--f-display);font-weight:700;font-size:16px;line-height:1.2;letter-spacing:.06em;white-space:nowrap}
+/* タブが 5 つになったので、スマホでは字を少し詰め、幅を名前の長さ（2・3・2・4・4 字）に合わせて配る（字と字の間をそろえる） */
+@media (max-width:599.98px){ .tablist{grid-template-columns:1fr 1.15fr 1fr 1.35fr 1.35fr} .tab .tl{font-size:15px;letter-spacing:.03em} }
 .tab .tc{display:none}/* 下のタブの数字は表示しない（クライアントの要望 10/12） */
 .tab[aria-selected="true"]{color:var(--turf-text)}
 .tab[aria-selected="true"] .tc{color:var(--ink)}
 /* 選んだタブの上を小さな馬が駆けて移る（真鍮の線と一緒に） */
-.runner{position:absolute;left:0;top:0;bottom:0;width:25%;pointer-events:none;z-index:1}
+.runner{position:absolute;left:0;top:0;bottom:0;width:20%;pointer-events:none;z-index:1}
 .runner .bar{position:absolute;top:-1px;left:24%;right:24%;height:3px;background:var(--brass)}
 .runner .mhw{position:absolute;top:4px;left:50%;width:28px;height:18px;margin-left:-14px;color:var(--turf-text);--mh-j:var(--brass)}
 .runner.to-left .mhw{transform:scaleX(-1)}
@@ -202,7 +208,7 @@ a:hover{text-decoration-color:currentColor}
 .sh h3{font-size:18px}
 .sh .sub{font-size:12.5px;color:var(--mute)}
 .sh .end{margin-left:auto}
-/* ハロン棒: タブの並び（順位→指名馬→次走→ニュース）をゴールへ近づく順に 残り4F→1F */
+/* ハロン棒: タブの並び（順位→指名馬→次走→ニュース）をゴールへ近づく順に 残り4F→1F。5 つ目のパドック（2025年生まれの下見）は下見所の札 */
 .fl{display:inline-flex;flex-direction:column;align-items:center;flex:none;align-self:flex-end;margin:0 -2px 5px 0}
 .fl b{display:block;padding:3px 5px 2px;background:var(--sheet);border:1px solid var(--ink);border-radius:1px;font-family:var(--f-num);font-weight:600;font-size:12px;line-height:1;letter-spacing:.03em;color:var(--ink);white-space:nowrap}
 .fl i{display:block;width:5px;height:13px;margin-top:-1px;border:1px solid var(--ink);border-top:0;background:repeating-linear-gradient(180deg,var(--ink) 0 3px,var(--sheet) 3px 6px)}
@@ -602,12 +608,443 @@ a:hover{text-decoration-color:currentColor}
 .rc-re:hover{border-color:var(--turf-text)}
 /* 動きを減らす設定では自動でも手動でも走らせない（帯でその日の展開は見られる） */
 @media (prefers-reduced-motion:reduce){ .rc-re,.rc-play{display:none} }
-/* 来年の下見帳へのリンク（題字の下） */
-.nextlink{display:flex;align-items:center;gap:10px;margin-top:12px;min-height:46px;padding:6px 14px;border:1px solid var(--brass-hi);border-radius:2px;color:var(--brass-hi);text-decoration:none;font-weight:700;font-size:15px;-webkit-tap-highlight-color:transparent}
-.nextlink small{font-weight:400;font-size:12.5px;color:var(--turf-mute)}
-.nextlink i{margin-left:auto;font-style:normal;font-size:20px;line-height:1}
-.nextlink:focus-visible{outline:2px solid var(--brass-hi);outline-offset:2px}
-@media (prefers-reduced-motion:no-preference){.nextlink{transition:background .15s}.nextlink:active{background:color-mix(in srgb,var(--brass-hi) 14%,transparent)}}
+/* ---------- パドック（2025年生まれの下見。中身はタブを初めて開いたときに読み込む） ----------
+   下見帳のページ（next.html）と同じ中身。今年のページの部品とぶつからないよう、名前はすべて pd- で始める。
+   スマホ・タブレット: 条件はリストの上に貼り付く帯から開くシート（下のタブとは重ねない）。PC（1100px〜）: 左に貼り付く条件欄。
+   題字は紙の札にする（上の芝の題字と二重にしない）。真鍮は「☆・頭数・価格」にだけ使う。 */
+#paddock{--pd-top:env(safe-area-inset-top, 0px);--pd-bar:62px;
+  --pd-gl:max(16px, env(safe-area-inset-left, 0px));--pd-gr:max(16px, env(safe-area-inset-right, 0px))}
+#paddock h5,#paddock h6{margin:0}
+#paddock select{font:inherit;color:inherit}
+.pd-body{display:grid;gap:14px;min-width:0}
+.pd-fine{font-size:12px;color:var(--mute);line-height:1.6}
+/* 下見所の札（今年のハロン棒の代わり） */
+.pd-sign{display:inline-flex;flex-direction:column;align-items:center;flex:none;align-self:flex-end;margin:0 -2px 5px 0}
+.pd-sign b{display:block;padding:3px 6px 2px;background:var(--sheet);border:1px solid var(--ink);border-radius:1px;font-family:var(--f-display);font-weight:700;font-size:12px;line-height:1.1;letter-spacing:.12em;color:var(--ink);white-space:nowrap}
+.pd-sign i{display:block;width:5px;height:13px;margin-top:-1px;border:1px solid var(--ink);border-top:0;background:var(--sheet)}
+
+/* 読み込み中・失敗（動かない絵と文字だけ） */
+.pd-wait{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;align-content:start;gap:14px;min-height:70vh;padding-top:18px;border-top:2px solid var(--ink)}
+.pd-wait.pd-err{grid-template-columns:minmax(0,1fr)}
+.pd-wh{width:40px;height:25px;margin-top:3px;color:var(--turf-text)}
+.pd-wt{display:grid;gap:2px;min-width:0}
+.pd-wt b{font-family:var(--f-display);font-weight:700;font-size:17px;line-height:1.45;letter-spacing:.04em}
+.pd-wt span{font-size:13.5px;color:var(--mute);line-height:1.6}
+.pd-retry{justify-self:start;min-height:48px;padding:0 18px;cursor:pointer;border:1px solid var(--turf-text);border-radius:2px;background:var(--turf-fill);color:var(--turf-ink);font-size:15px;font-weight:700}
+
+/* ---------- 表紙の帯（紙の札 1 本。頭数・調査日・☆ と、誕生からクラシックまでの線） ---------- */
+.pd-mast{position:relative;display:grid;gap:0;padding:8px 14px 6px;background:var(--sheet);border:1px solid var(--line);border-top:2px solid var(--ink);border-radius:0 0 2px 2px;min-width:0}
+.pd-mline{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 14px;line-height:1.3}
+.pd-gen{font-family:var(--f-display);font-weight:700;font-size:15px;letter-spacing:.04em;white-space:nowrap;font-feature-settings:"palt" 1}
+.pd-gen b{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--brass-ink);margin:0 2px 0 7px;font-variant-numeric:lining-nums}
+.pd-mside{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:0 12px;margin-left:auto}
+.pd-upd{font-size:12px;color:var(--mute);line-height:1.5;white-space:nowrap}
+.pd-upd b{font-weight:500;color:var(--ink)}
+.pd-mystar{display:inline-flex;align-items:baseline;gap:3px;font-size:12.5px;color:var(--mute);line-height:1.3;white-space:nowrap}
+.pd-mystar svg{width:14px;height:14px;flex:none;align-self:center;fill:var(--brass);stroke:var(--brass-ink);stroke-width:1.6;stroke-linejoin:round}
+.pd-mystar b{font-family:var(--f-num);font-weight:500;font-size:17px;color:var(--ink);margin-inline:1px}
+.pd-mystar.pd-zero svg{fill:none}
+/* 誕生 → 1歳 → デビュー → クラシック の道のり（4 つの節目を等間隔に）。いまの位置に小さな馬 */
+.pd-road{position:relative;height:18px;margin:8px 7px 0}
+.pd-road::before{content:"";position:absolute;left:0;right:0;top:7px;height:4px;border-radius:2px;background:var(--line)}
+.pd-road .pd-walked{position:absolute;left:0;top:7px;height:4px;border-radius:2px;background:var(--turf-text);z-index:1}
+.pd-road .pd-pin{position:absolute;top:2px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--sheet);box-shadow:inset 0 0 0 3px var(--turf-text);z-index:2}
+.pd-road .pd-pin.pd-goal{box-shadow:inset 0 0 0 3px var(--brass)}
+.pd-road .pd-now{position:absolute;top:-9px;width:27px;height:17px;margin-left:-15px;color:var(--turf-text);z-index:3}
+.pd-road .pd-now-l{position:absolute;top:-30px;transform:translateX(-50%);font-size:12px;line-height:1.4;color:var(--brass-ink);white-space:nowrap;font-style:normal;letter-spacing:.04em}
+.pd-road .pd-now-l[data-pos="s"]{transform:translateX(-10px)}
+.pd-road .pd-now-l[data-pos="e"]{transform:translateX(calc(-100% + 10px))}
+.pd-road-cap{position:relative;height:17px;margin:2px 7px 0;font-size:12px;color:var(--mute);line-height:1.35}
+/* スマホは年と「いま」の札を省く（年は見出しの「2027年デビュー・2028年クラシック」にある。いまの位置は線の上の馬） */
+.pd-road .pd-now-l{display:none}
+.pd-road-cap b{display:none;font-family:var(--f-num);font-weight:500;font-size:13.5px;color:var(--ink)}
+.pd-road-cap span{position:absolute;top:0;display:grid;justify-items:center;transform:translateX(-50%);white-space:nowrap}
+.pd-road-cap span:nth-child(1){left:0;justify-items:start;transform:translateX(-7px)}
+.pd-road-cap span:nth-child(2){left:33.333%}
+.pd-road-cap span:nth-child(3){left:66.667%}
+.pd-road-cap span:nth-child(4){left:100%;justify-items:end;transform:translateX(calc(-100% + 7px))}
+
+/* ---------- 注意書き（スマホは 1 行にたたみ、押すと 3 点が開く） ---------- */
+.pd-notes{border-top:2px solid var(--ink);min-width:0}
+.pd-notes-t{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:4px 0;background:none;border:0;cursor:pointer;text-align:left;font-size:12.5px;line-height:1.45;color:var(--ink)}
+.pd-notes-t b{flex:none;font-family:var(--f-display);font-weight:700;font-size:13px;letter-spacing:.06em}
+.pd-notes-t>span{min-width:0;color:var(--mute)}
+.pd-notes-t .pd-nw{display:inline-block}
+.pd-notes-t::after{content:"";margin-left:auto;width:8px;height:8px;flex:none;border-right:1.5px solid var(--mute);border-bottom:1.5px solid var(--mute);transform:translateY(-2px) rotate(45deg)}
+.pd-notes.pd-on .pd-notes-t::after{transform:translateY(2px) rotate(-135deg)}
+.pd-notes-l{display:grid;gap:4px;padding:2px 0 6px;font-size:13px;line-height:1.6}
+.pd-notes:not(.pd-on) .pd-notes-l{display:none}
+.pd-notes-l li{position:relative;padding-left:14px}
+.pd-notes-l li::before{content:"";position:absolute;left:1px;top:.72em;width:6px;height:6px;background:var(--brass);transform:rotate(45deg)}
+
+.pd-layout{display:grid;gap:30px;min-width:0}
+
+/* ---------- 下見の条件（PC は左の欄、スマホ・タブレットは下から出るシート） ---------- */
+.pd-cond{min-width:0;border-top:2px solid var(--ink);padding-top:12px}
+.pd-cond:focus{outline:none}
+.pd-cond:focus-visible{outline:2px solid var(--brass-ink);outline-offset:4px}
+.pd-cond-h{position:relative;display:flex;align-items:center;gap:4px 12px;margin-bottom:10px}
+.pd-cond-h h3{font-family:var(--f-display);font-weight:700;font-size:21px;line-height:1.3;letter-spacing:.06em;font-feature-settings:"palt" 1}
+.pd-shown{font-size:12.5px;color:var(--mute);margin-left:auto;white-space:nowrap}
+.pd-shown b{font-family:var(--f-num);font-weight:500;font-size:17px;color:var(--ink);margin-inline:1px}
+.pd-cond-x{display:none;place-items:center;flex:none;width:44px;height:44px;margin-right:-10px;padding:0;background:none;border:0;border-radius:2px;cursor:pointer;color:var(--ink)}
+.pd-cond-x svg{width:18px;height:18px}
+.pd-cg{min-width:0}
+.pd-cg+.pd-cg{margin-top:12px}
+.pd-cl{display:block;font-family:var(--f-display);font-weight:700;font-size:12.5px;letter-spacing:.1em;color:var(--mute);margin-bottom:5px;line-height:1.4}
+.pd-cg.pd-row2{display:grid;grid-template-columns:3.6em minmax(0,1fr);align-items:center;gap:8px}
+.pd-cg.pd-row2 .pd-cl{margin-bottom:0}
+.pd-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pd-chip{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0 12px;cursor:pointer;
+  background:var(--sheet);border:1px solid var(--line);border-radius:2px;color:var(--ink);font-size:14px;font-weight:500;line-height:1.2;white-space:nowrap}
+.pd-chip small{font-family:var(--f-num);font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
+.pd-chip[aria-pressed="true"]{background:var(--turf-fill);border-color:var(--turf-text);box-shadow:inset 0 0 0 1px var(--turf-text);color:var(--turf-ink)}
+/* 押した札の頭数は札の字と同じ色に（暗い配色で --turf-mute だと 4.5:1 に届かない） */
+.pd-chip[aria-pressed="true"] small{color:var(--turf-ink)}
+.pd-seg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);border:1px solid var(--line);border-radius:2px;background:var(--sheet);overflow:hidden}
+.pd-seg button{min-height:44px;padding:0 4px;border:0;background:none;cursor:pointer;font-size:14px;font-weight:500;line-height:1.2;color:var(--ink);white-space:nowrap}
+.pd-seg button+button{border-left:1px solid var(--line)}
+.pd-seg button small{font-family:var(--f-num);font-size:13px;color:var(--mute);margin-left:3px}
+.pd-seg button[aria-pressed="true"]{background:var(--turf-fill);color:var(--turf-ink)}
+.pd-seg button[aria-pressed="true"] small{color:var(--turf-ink)}
+.pd-cg.pd-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.pd-sel{position:relative;display:block}
+.pd-sel select{appearance:none;-webkit-appearance:none;width:100%;min-height:44px;padding:0 30px 0 11px;cursor:pointer;
+  background:var(--sheet);border:1px solid var(--line);border-radius:2px;color:var(--ink);font-size:16px;line-height:1.3;text-overflow:ellipsis}
+.pd-sel::after{content:"";position:absolute;right:13px;top:50%;width:8px;height:8px;margin-top:-6px;pointer-events:none;border-right:1.5px solid var(--mute);border-bottom:1.5px solid var(--mute);transform:rotate(45deg)}
+.pd-sel select:hover{border-color:var(--mute)}
+.pd-cg.pd-act{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+.pd-starchip svg{width:17px;height:17px;flex:none;fill:none;stroke:var(--brass-ink);stroke-width:1.7;stroke-linejoin:round}
+.pd-starchip[aria-pressed="true"] svg{fill:var(--brass-hi);stroke:var(--brass-hi)}
+.pd-textbtn{background:none;border:0;padding:6px 0;min-height:44px;cursor:pointer;color:var(--turf-text);font-size:14px;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.pd-textbtn:hover{text-decoration-color:currentColor}
+.pd-cond .pd-fine{margin-top:10px}
+.pd-cond-go{display:none}
+.pd-go{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;min-height:50px;padding:0 16px;cursor:pointer;border:1px solid var(--turf-text);border-radius:2px;
+  background:var(--turf-fill);color:var(--turf-ink);font-size:15px;font-weight:700}
+.pd-go b{font-family:var(--f-num);font-weight:600;font-size:21px;margin-right:1px}
+.pd-scrim{position:fixed;inset:0;z-index:45;background:var(--pd-scrim)}
+body.pd-lock{overflow:hidden}
+
+/* ---------- リストの見出し（写真／一覧の切り替えつき）と、上に貼り付く条件の帯 ---------- */
+.pd-list{min-width:0}
+.pd-lh{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-bottom:10px}
+.pd-lh h3{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.3;letter-spacing:.04em;font-feature-settings:"palt" 1}
+.pd-lh .sub{display:none;font-size:12.5px;color:var(--mute)}
+.pd-vseg{flex:none;width:118px;margin-left:auto}
+/* 紙の色と下の罫は、画面の端まで影で伸ばす（負のマージンで伸ばすと、タブの横すべりの間に画面からはみ出す） */
+.pd-bar{position:sticky;top:var(--pd-top);z-index:20;display:flex;align-items:center;gap:8px;height:var(--pd-bar);
+  margin:0 0 14px;padding:0;background:var(--paper);
+  box-shadow:calc(-1 * var(--pd-gl)) 0 0 var(--paper), var(--pd-gr) 0 0 var(--paper),
+    0 1px 0 var(--line), calc(-1 * var(--pd-gl)) 1px 0 var(--line), var(--pd-gr) 1px 0 var(--line)}
+.pd-condbar{flex:1;min-width:0;display:flex;align-items:center;gap:8px;min-height:46px;padding:0 12px 0 10px;cursor:pointer;text-align:left;
+  background:var(--sheet);border:1px solid var(--line);border-radius:2px;color:var(--ink);font-size:14px;line-height:1.3}
+.pd-condbar svg{width:18px;height:18px;flex:none;color:var(--turf-text)}
+.pd-condbar .pd-l{flex:none;font-family:var(--f-display);font-weight:700;font-size:13px;letter-spacing:.06em;color:var(--turf-text)}
+.pd-condbar .pd-v{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.pd-condbar .pd-n{flex:none;font-size:12.5px;color:var(--mute);white-space:nowrap}
+.pd-condbar .pd-n b{font-family:var(--f-num);font-weight:500;font-size:17px;color:var(--ink);margin-inline:1px}
+.pd-condbar::after{content:"";flex:none;width:7px;height:7px;border-right:1.5px solid var(--mute);border-top:1.5px solid var(--mute);transform:rotate(45deg);margin-right:2px}
+.pd-condbar.pd-on{border-color:var(--turf-text);box-shadow:inset 0 0 0 1px var(--turf-text)}
+.pd-dk{display:inline-flex;align-items:center;gap:6px;flex:none;min-height:46px;padding:0 12px;cursor:pointer;border:1px solid var(--line);border-radius:2px;background:var(--sheet);font-size:14px;font-weight:700;color:var(--turf-text);white-space:nowrap}
+.pd-dk svg{width:18px;height:18px;flex:none;fill:none;stroke:var(--brass-ink);stroke-width:1.7;stroke-linejoin:round}
+.pd-dk b{font-family:var(--f-num);font-weight:500;font-size:17px;color:var(--ink)}
+.pd-dk[aria-pressed="true"]{background:var(--turf-fill);border-color:var(--turf-text);color:var(--turf-ink)}
+.pd-dk[aria-pressed="true"] b{color:var(--turf-ink)}
+.pd-dk[aria-pressed="true"] svg{fill:var(--brass-hi);stroke:var(--brass-hi)}
+@media (max-width:389.98px){ .pd-condbar{gap:6px;padding-inline:8px} .pd-dk{padding-inline:10px} .pd-bar{gap:6px} .pd-lh{column-gap:8px} .pd-lh h3{font-size:18px} }
+/* 狭い画面では貼り付く帯を詰める（押せる高さ 46px はそのまま） */
+@media (max-width:399.98px){ #paddock{--pd-bar:54px} }
+
+/* ---------- カード ---------- */
+.pd-cards{display:grid;gap:18px;min-width:0}
+.pd-card{position:relative;background:var(--sheet);border:1px solid var(--line);border-radius:2px;min-width:0;scroll-margin-top:calc(var(--pd-top) + var(--pd-bar) + 12px)}
+.pd-card.pd-is-star{border-color:color-mix(in srgb, var(--brass) 70%, var(--line))}
+.pd-card.pd-is-star::before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:3px;background:var(--brass);z-index:6;border-radius:2px 2px 0 0}
+.pd-card.pd-is-dim{opacity:.62}
+.pd-face{min-width:0;background:var(--sheet)}
+
+.pd-ph{position:relative}
+.pd-ph-frame{position:relative;aspect-ratio:3/2;background:var(--pd-frame);overflow:hidden;border-radius:1px 1px 0 0}
+.pd-ph-frame>img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+/* 縦長の写真は切り抜かず、台紙に全身を収める */
+.pd-ph-frame.pd-tall>img{object-fit:contain;object-position:50% 50%}
+/* 写真の左下の名札（誰の写真か） */
+.pd-ph-tag{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:7px;padding:30px 12px 9px;pointer-events:none;
+  background:linear-gradient(to top, var(--pd-veil), transparent);color:var(--pd-on-veil);line-height:1.3}
+.pd-ph-tag .pd-r{flex:none;padding:0 5px;border:1px solid currentColor;border-radius:2px;font-family:var(--f-display);font-weight:700;font-size:12px;line-height:1.5}
+.pd-ph-tag b{font-family:var(--f-display);font-weight:700;font-size:16px;letter-spacing:.04em;text-shadow:0 1px 3px var(--pd-veil)}
+/* 掲載の番号（並べ替えても変わらない。順位に見えないよう、小さな控えめの札にする） */
+.pd-cloth{position:absolute;left:8px;top:8px;display:inline-flex;align-items:baseline;padding:0 6px 1px;z-index:1;
+  background:var(--pd-veil);color:var(--pd-on-veil);border-radius:2px;font-family:var(--f-num);font-weight:500;font-size:12px;line-height:1.5;letter-spacing:.04em;font-variant-numeric:tabular-nums lining-nums}
+.pd-ph-none .pd-cloth{background:var(--sheet);color:var(--mute);box-shadow:0 0 0 1px var(--line)}
+/* 撮影者とライセンス（1 行） */
+.pd-ph-cr{padding:6px 16px 0;font-size:12px;line-height:1.6;color:var(--mute)}
+/* 小さいリンクは、字の上下左右に見えない余白を足して押せる的を 44px にする（行の高さと字の位置は変えない） */
+.pd-ph-cr a{color:var(--mute);padding:13px 11px;margin-inline:-11px;white-space:nowrap}
+.pd-dot{margin-inline:4px;color:var(--line)}
+/* 写真のない馬・父の写真しかない馬: 毛色と血統の文字で組んだ札（写真に見せない） */
+.pd-ph-none{display:grid;place-items:center;background:
+  repeating-linear-gradient(135deg, transparent 0 9px, color-mix(in srgb, var(--line) 70%, transparent) 9px 10px), var(--paper)}
+.pd-ph-frame.pd-ph-none{aspect-ratio:2/1}
+.pd-pn{display:grid;justify-items:center;gap:10px;padding:18px;text-align:center}
+.pd-pn-coat{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-display);font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--mute)}
+.pd-pn-coat i{width:16px;height:16px;border-radius:50%;background:var(--coat, var(--coat-bay));box-shadow:0 0 0 2px var(--sheet), 0 0 0 3px var(--line)}
+.pd-pn-ped{display:grid;gap:2px;font-family:var(--f-display);font-weight:700;font-size:21px;line-height:1.35;letter-spacing:.06em;color:var(--ink)}
+.pd-pn-ped .pd-x{font-size:15px;color:var(--brass-ink);font-weight:500}
+.pd-pn-ped .pd-d{font-size:17px}
+.pd-ph-sire{container-type:inline-size;grid-template-columns:minmax(0,1fr) clamp(96px, 38%, 150px);place-items:stretch;align-items:stretch;gap:10px;padding:12px 12px 12px 14px}
+.pd-ph-sire .pd-pn{justify-items:start;align-content:center;text-align:left;gap:8px;padding:0}
+.pd-ph-sire .pd-pn-coat{margin-left:44px;min-height:24px}
+/* 札の幅に合わせて文字を決める（PC で開いたカードの細い左の段でも折れないように） */
+.pd-ph-sire .pd-pn-ped{font-size:18px;font-size:clamp(15px, 6cqi, 20px);letter-spacing:.03em}
+.pd-ph-sire .pd-pn-ped .pd-d{font-size:15px;font-size:clamp(13px, 4.8cqi, 16px)}
+.pd-ph-sire .pd-pn-long .pd-pn-ped{font-size:16px;font-size:clamp(14px, 5.2cqi, 18px)}
+.pd-ph-sire .pd-pn-long .pd-pn-ped .pd-d{font-size:13px;font-size:clamp(12.5px, 4.2cqi, 14px)}
+.pd-ph-mini{align-self:end;display:grid;gap:5px;min-width:0}
+.pd-ph-mini img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:50% 40%;background:var(--pd-frame);
+  border:3px solid var(--sheet);box-shadow:0 0 0 1px var(--line), 0 3px 8px var(--pd-shadow)}
+.pd-ph-mini-t{display:flex;flex-wrap:wrap;align-items:center;gap:2px 5px;font-family:var(--f-display);font-weight:700;font-size:12px;line-height:1.3;color:var(--ink);letter-spacing:0}
+.pd-ph-mini-t span:last-child{display:inline-block}
+.pd-ph-mini-t .pd-r{flex:none;padding:0 4px;border:1px solid var(--ink);border-radius:2px;font-size:12px;line-height:1.45}
+
+.pd-cb{padding:12px 16px 0;container-type:inline-size}
+.pd-ch{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start}
+/* 馬名はカタカナの途中で折らない（名前ごと 1 かたまり、「の2025」は次の行へ）。細い段では 1 行に入る大きさまで下げる */
+.pd-nm{font-family:var(--f-display);font-weight:700;font-size:22px;font-size:min(22px, calc((100cqi - 56px) / 9.5));line-height:1.3;letter-spacing:.03em;font-feature-settings:"palt" 1;line-break:strict}
+.pd-nm.pd-long{font-size:19px;font-size:min(19px, calc((100cqi - 56px) / 12.5))}
+.pd-nm-n{display:inline-block}
+.pd-nm .pd-y{display:inline-block;font-family:var(--f-display);font-weight:500;font-size:15px;letter-spacing:.02em;color:var(--mute);margin-left:1px}
+.pd-nm .pd-y .num{font-size:17px}
+.pd-nm-sub{font-size:12.5px;color:var(--mute);line-height:1.5;margin-top:1px}
+.pd-nm-sub .num{font-size:14px}
+/* ☆（その端末だけの印） */
+.pd-star{position:relative;width:46px;height:46px;margin:-6px -8px 0 0;display:grid;place-items:center;flex:none;padding:0;cursor:pointer;background:none;border:0;border-radius:50%;color:var(--brass-ink)}
+.pd-star svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;overflow:visible}
+.pd-star[aria-pressed="true"]{color:var(--brass)}
+.pd-star[aria-pressed="true"] svg{fill:var(--brass);stroke:var(--brass-ink)}
+.pd-star::after{content:"";position:absolute;inset:8px;border-radius:50%;pointer-events:none;opacity:0}
+
+.pd-pf{display:flex;flex-wrap:wrap;align-items:center;gap:8px 6px;margin-top:6px;font-size:13.5px;color:var(--mute);line-height:1.5}
+.pd-pf .pd-sx{margin-right:4px}
+.pd-pf .pd-bd .num{font-size:15px;color:var(--ink)}
+.pd-unsure{display:inline-flex;align-items:center;padding:0 6px;border:1px dashed var(--brass-ink);border-radius:2px;font-size:12px;font-weight:700;line-height:1.5;color:var(--brass-ink);white-space:nowrap}
+/* 切り口のタグ（押すとその切り口で絞り込む） */
+.pd-cat{position:relative;display:inline-flex;align-items:center;min-height:30px;padding:0 9px;cursor:pointer;background:var(--sheet);
+  border:1px solid var(--line);border-radius:2px;font-size:12.5px;font-weight:500;line-height:1.3;color:var(--ink);white-space:nowrap}
+.pd-cat::after{content:"";position:absolute;inset:-7px -3px}
+.pd-cat:hover{border-color:var(--mute)}
+.pd-cat[aria-pressed="true"]{background:var(--turf-fill);border-color:var(--turf-fill);color:var(--turf-ink)}
+
+.pd-obtn{display:flex;align-items:center;gap:10px;min-height:44px;margin-top:10px;padding:5px 12px;border:1px solid var(--turf-text);border-radius:2px;
+  background:var(--sheet);color:var(--turf-text);text-decoration:none;font-weight:700;font-size:14px;line-height:1.3}
+.pd-obtn svg{width:19px;height:19px;flex:none}
+.pd-obtn .pd-h{margin-left:auto;font-family:var(--f-num);font-weight:400;font-size:13px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.pd-obtn:hover{background:var(--turf-fill);color:var(--turf-ink)}
+.pd-obtn:hover .pd-h{color:var(--turf-mute)}
+
+.pd-pr{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.pd-pr-v{font-family:var(--f-display);font-weight:700;font-size:15px;color:var(--brass-ink);line-height:1.1;white-space:nowrap}
+.pd-pr-v b{font-family:var(--f-num);font-weight:500;font-size:28px;letter-spacing:0;font-variant-numeric:tabular-nums lining-nums;margin-inline:1px}
+.pd-pr-v.pd-none{font-family:var(--f-body);font-weight:500;font-size:14.5px;color:var(--mute)}
+.pd-pr-k{display:inline-flex;flex-wrap:wrap;gap:0 2px;font-size:12.5px;color:var(--mute);line-height:1.45}
+.pd-pr-k span{white-space:nowrap}
+.pd-pr-k .pd-sep{color:var(--line);margin-inline:3px}
+
+.pd-ped{display:grid;gap:4px;margin-top:10px;font-size:14.5px;line-height:1.55}
+.pd-ped>div,.pd-kv>div{display:grid;grid-template-columns:34px minmax(0,1fr);gap:6px}
+.pd-ped dt,.pd-kv dt{font-family:var(--f-display);font-weight:700;font-size:12.5px;color:var(--mute);padding-top:2px;letter-spacing:.04em}
+.pd-ped dd{font-weight:500}
+.pd-ped .pd-ds{display:inline-block;margin-left:6px;font-weight:400;font-size:13.5px;color:var(--mute)}
+/* 母の成績と兄姉は 2 行で止める（全文は「くわしく」に） */
+.pd-ped .pd-rec,.pd-ped .pd-sib dd{font-weight:400;font-size:14px;line-height:1.6;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.pd-kv{display:grid;gap:4px;margin-top:8px}
+.pd-kv>div{font-size:14.5px;line-height:1.6}
+.pd-rg{display:inline-block;padding:0 5px;margin-right:6px;border:1px solid var(--ink);border-radius:2px;font-size:12px;font-weight:700;line-height:1.45;color:var(--ink);vertical-align:1px;white-space:nowrap}
+.pd-rg.pd-tbd{border-style:dashed;border-color:var(--mute);color:var(--mute)}
+.pd-tbdtxt{color:var(--mute)}
+.pd-look{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--mute)}
+.pd-look b{font-weight:700;color:var(--ink);margin-left:4px}
+
+/* くわしく（開いている間は見出しが上に貼り付き、最後に「閉じる」） */
+.pd-more{margin-top:12px;border-top:1px solid var(--line)}
+.pd-more>summary{list-style:none;display:flex;align-items:center;gap:10px;min-height:48px;padding:0 16px;cursor:pointer;font-size:14px;color:var(--turf-text);background:var(--sheet)}
+.pd-more>summary::-webkit-details-marker{display:none}
+.pd-more>summary b{font-weight:700}
+.pd-more>summary .pd-x{color:var(--mute);font-size:12.5px;min-width:0}
+.pd-more>summary::after{content:"";margin-left:auto;width:9px;height:9px;flex:none;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg)}
+.pd-more[open]>summary{position:sticky;top:calc(var(--pd-top) + var(--pd-bar));z-index:5;border-bottom:1px solid var(--line);box-shadow:0 8px 10px -10px var(--pd-shadow)}
+.pd-more[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.pd-more[open]>summary b::after{content:"を閉じる";font-weight:500}
+.pd-more .pd-dbody{display:grid;gap:22px;padding:14px 16px 6px}
+.pd-dsec h5{display:flex;align-items:baseline;gap:8px;font-family:var(--f-display);font-weight:700;font-size:15px;letter-spacing:.08em;color:var(--ink);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.pd-dsec h5 small{font-family:var(--f-body);font-weight:400;font-size:12px;letter-spacing:0;color:var(--mute)}
+.pd-caution{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:start;padding:9px 11px;border:1px dashed var(--brass-ink);border-radius:2px;font-size:14px;line-height:1.65}
+.pd-caution b{font-family:var(--f-display);font-weight:700;color:var(--brass-ink);white-space:nowrap}
+
+.pd-evs{display:grid;gap:14px}
+.pd-evs li{padding-left:11px;border-left:2px solid var(--line)}
+.pd-evs li:first-child{border-left-color:var(--turf-text)}
+.pd-ev-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;font-size:12.5px;color:var(--mute);line-height:1.5}
+.pd-ev-h .pd-d{font-family:var(--f-num);font-weight:500;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.pd-ev-h .pd-dn{font-size:12px}
+.pd-ev-s{font-size:15px;line-height:1.7;margin-top:2px}
+.pd-ev-l{display:inline-flex;align-items:center;min-height:44px;font-size:13px}
+.pd-none-txt{font-size:14px;color:var(--mute)}
+
+.pd-pm{display:grid;gap:12px}
+.pd-pm h6{font-family:var(--f-display);font-weight:700;font-size:13.5px;letter-spacing:.08em;margin-bottom:4px}
+.pd-pm .pd-plus h6{color:var(--turf-text)}
+.pd-pm .pd-minus h6{color:var(--brass-ink)}
+.pd-pm li{position:relative;padding-left:1.25em;font-size:15px;line-height:1.7}
+.pd-pm li+li{margin-top:5px}
+.pd-pm li::before{position:absolute;left:0;top:0;font-family:var(--f-num);font-weight:600;font-size:16px}
+.pd-pm .pd-plus li::before{content:"＋";color:var(--turf-text)}
+.pd-pm .pd-minus li::before{content:"－";color:var(--brass-ink)}
+.pd-pv,.pd-kv2{display:grid;gap:8px}
+.pd-pv{margin-top:12px}
+.pd-pv>div,.pd-kv2>div{display:grid;grid-template-columns:4.6em minmax(0,1fr);gap:8px;font-size:15px;line-height:1.7}
+.pd-pv dt,.pd-kv2 dt{font-family:var(--f-display);font-weight:700;font-size:13px;color:var(--mute);letter-spacing:.04em;padding-top:2px}
+.pd-pv dd b{font-weight:700}
+
+.pd-lks{display:grid;gap:6px}
+.pd-lks a{display:flex;align-items:center;gap:8px;min-height:44px;padding:6px 10px;border:1px solid var(--line);border-radius:2px;text-decoration:none;color:var(--ink);font-size:14px;line-height:1.45}
+.pd-lks a:hover{border-color:var(--mute)}
+.pd-lks .pd-t{min-width:0}
+.pd-lks .pd-h{display:block;font-family:var(--f-num);font-size:12.5px;color:var(--mute)}
+.pd-lks .pd-pb{flex:none;padding:0 5px;border-radius:2px;background:var(--turf-fill);color:var(--turf-ink);font-size:12px;font-weight:700;line-height:1.5}
+.pd-lks .pd-ph-l a{border-color:var(--turf-text)}
+.pd-lks svg{width:12px;height:12px;flex:none;margin-left:auto;color:var(--mute)}
+.pd-unres li{position:relative;padding-left:12px;font-size:13px;line-height:1.6;color:var(--mute)}
+.pd-unres li+li{margin-top:3px}
+.pd-unres li::before{content:"";position:absolute;left:1px;top:.7em;width:5px;height:1px;background:var(--mute)}
+.pd-fold,.pd-fold-l{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:46px;cursor:pointer;
+  background:none;border:1px solid var(--line);border-radius:2px;color:var(--turf-text);font-size:14px;font-weight:700}
+.pd-fold::after,.pd-fold-l::after{content:"";width:8px;height:8px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:translateY(2px) rotate(45deg)}
+.pd-fold-l{display:none;width:auto;margin:0 16px 14px}
+
+/* 一覧（1 頭 1 行）。行を押すとその場でカードが開く */
+.pd-row{display:none;align-items:center;min-width:0;padding-right:10px}
+.pd-row-b{flex:1;min-width:0;display:flex;align-items:center;gap:12px;min-height:72px;padding:8px 6px 8px 8px;cursor:pointer;background:none;border:0;text-align:left;color:var(--ink)}
+.pd-row-ph{position:relative;flex:none;width:72px;height:54px;overflow:hidden;border-radius:1px;background:var(--pd-frame)}
+.pd-row-ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 38%}
+.pd-row-pn{display:grid;place-items:center;align-content:center;gap:3px;background:
+  repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in srgb, var(--line) 70%, transparent) 6px 7px), var(--paper)}
+.pd-row-pn i{width:14px;height:14px;border-radius:50%;background:var(--coat, var(--coat-bay));box-shadow:0 0 0 2px var(--sheet), 0 0 0 3px var(--line)}
+.pd-row-pn small{font-family:var(--f-display);font-weight:700;font-size:12px;line-height:1.2;color:var(--mute);letter-spacing:.06em}
+.pd-row-t{flex:1;min-width:0;display:grid;gap:1px;container-type:inline-size}
+.pd-row-nm{font-family:var(--f-display);font-weight:700;font-size:16.5px;font-size:clamp(14px, calc(100cqi / (var(--n, 10) + .6)), 16.5px);line-height:1.3;letter-spacing:0;font-feature-settings:"palt" 1;line-break:strict}
+.pd-row-nm small{display:inline-block;font-weight:500;font-size:12.5px;color:var(--mute);margin-left:1px}
+.pd-row-s{font-size:12.5px;line-height:1.45;color:var(--mute)}
+.pd-row-p{font-size:13px;line-height:1.45;color:var(--mute)}
+.pd-row-p b{font-family:var(--f-num);font-weight:500;font-size:15px;color:var(--brass-ink)}
+.pd-row-b::after{content:"";flex:none;width:8px;height:8px;border-right:1.5px solid var(--mute);border-bottom:1.5px solid var(--mute);transform:translateY(-2px) rotate(45deg)}
+.pd-row-b[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.pd-row .pd-star{margin:0 -6px 0 0}
+@media (max-width:389.98px){ .pd-row-ph{width:60px;height:48px} .pd-row-b{gap:10px} }
+.pd-cards.pd-is-list{gap:8px;max-width:760px}
+.pd-cards.pd-is-list .pd-card:not(.pd-is-open)>.pd-face,.pd-cards.pd-is-list .pd-card:not(.pd-is-open)>.pd-more{display:none}
+.pd-cards.pd-is-list .pd-card>.pd-row{display:flex}
+.pd-cards.pd-is-list .pd-card.pd-is-open>.pd-row{border-bottom:1px solid var(--line)}
+.pd-cards.pd-is-list .pd-card.pd-is-open>.pd-fold-l{display:flex}
+
+.pd-empty{padding:22px 16px;border:1px dashed var(--line);border-radius:2px;text-align:left;font-size:14px;line-height:1.7;background:var(--sheet)}
+.pd-empty .pd-textbtn{display:block}
+
+/* ---------- 写真のクレジット（CC BY-SA の表示） ---------- */
+.pd-credits{border-top:2px solid var(--ink);padding-top:14px;margin-top:22px;min-width:0}
+.pd-credits>.pd-fine{margin-bottom:12px;font-size:12.5px;color:var(--ink)}
+.pd-crl{display:grid;gap:0;border-top:1px solid var(--line)}
+/* 右に 11px あけて、行の終わりのリンクの見えない余白が画面の外へ出ないようにする（タブの横すべりの間も） */
+.pd-crl li{padding-block:10px;padding-right:11px;border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.6;min-width:0}
+.pd-cr-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px}
+.pd-cr-h b{font-family:var(--f-display);font-weight:700;font-size:14.5px;letter-spacing:.03em}
+.pd-cr-h .pd-u{font-size:12px;color:var(--mute)}
+.pd-cr-c{color:var(--mute)}
+.pd-cr-a a{padding-block:13px}
+/* ライセンスのリンクは「CC0」のように短いので、左右にも見えない余白（折り返さないリンクだけ） */
+.pd-cr-a a.pd-lic-a{padding-inline:11px;margin-inline:-11px;white-space:nowrap}
+.pd-cr-a .pd-dot{margin-inline:5px}
+.pd-cr-a .pd-lic{font-weight:700;white-space:nowrap}
+.pd-foot{border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--mute);line-height:1.8;display:grid;gap:2px}
+
+/* ---------- スマホ・タブレット: 条件は下から出るシート（開いている間は下のタブの上にかぶせる） ---------- */
+@media (max-width:1099.98px){
+  .pd-cond{position:fixed;left:0;right:0;bottom:0;z-index:50;margin-inline:auto;max-width:760px;
+    max-height:88vh;max-height:88dvh;overflow:auto;overscroll-behavior:contain;
+    padding:0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+    background:var(--sheet);border-top:0;border-radius:8px 8px 0 0;box-shadow:0 -10px 32px var(--pd-shadow);
+    transform:translateY(104%);visibility:hidden}
+  .pd-open .pd-cond{transform:none;visibility:visible}
+  .pd-cond-h{position:sticky;top:0;z-index:2;background:var(--sheet);margin:0 0 12px;padding:16px 0 6px;border-bottom:1px solid var(--line)}
+  .pd-cond-h::before{content:"";position:absolute;left:50%;top:6px;width:40px;height:4px;margin-left:-20px;border-radius:2px;background:var(--line)}
+  .pd-cond-h h3{font-size:20px}
+  .pd-cond-x{display:grid}
+  .pd-cond-go{display:block;position:sticky;bottom:0;z-index:2;margin-top:14px;padding:10px 0 calc(10px + env(safe-area-inset-bottom, 0px));background:var(--sheet);border-top:1px solid var(--line)}
+}
+
+/* ---------- 幅のある画面 ---------- */
+@media (min-width:600px){
+  .pd-mast{padding:10px 24px 8px}
+  .pd-lh .sub{display:inline}
+  .pd-road{margin-top:30px}
+  .pd-road .pd-now-l{display:block}
+  .pd-road-cap{height:36px}
+  .pd-road-cap b{display:block}
+  .pd-crl{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+}
+@media (min-width:720px){
+  .pd-cards:not(.pd-is-list){grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  /* くわしくを開いたカードは段をぶち抜き、左に写真と表、右にくわしく */
+  .pd-card.pd-wide{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);align-items:start}
+  .pd-card.pd-wide>.pd-row,.pd-card.pd-wide>.pd-fold-l{grid-column:1/-1}
+  .pd-card.pd-wide>.pd-face{position:sticky;top:calc(var(--pd-top) + var(--pd-bar));padding-bottom:16px}
+  .pd-card.pd-wide>.pd-more{align-self:stretch;margin-top:0;border-top:0;border-left:1px solid var(--line)}
+  .pd-card.pd-wide>.pd-more>summary{border-bottom:1px solid var(--line)}
+}
+@media (min-width:900px){
+  /* PC は今年の目次（タブ）が上に貼り付くので、その下に貼り付ける */
+  #paddock{--pd-top:calc(env(safe-area-inset-top, 0px) + 65px);--pd-gl:max(32px, env(safe-area-inset-left, 0px));--pd-gr:max(32px, env(safe-area-inset-right, 0px))}
+  .pd-body{gap:20px}
+  .pd-wait{min-height:50vh}
+  .pd-mast{padding:10px 32px 10px}
+  .pd-notes{padding-top:10px}
+  .pd-notes-t{display:none}
+  .pd-notes:not(.pd-on) .pd-notes-l,.pd-notes-l{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px}
+  .pd-crl{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (min-width:1100px){
+  #paddock{--pd-bar:0px}
+  .pd-bar{display:none}
+  .pd-layout{grid-template-columns:272px minmax(0,1fr);gap:40px;align-items:start}
+  .pd-cond{position:sticky;top:calc(var(--pd-top) + 16px);max-height:calc(100vh - var(--pd-top) - 32px);overflow:auto;padding-right:4px}
+  .pd-cond .pd-cg.pd-row2{grid-template-columns:minmax(0,1fr)}
+  .pd-cond .pd-cg.pd-row2 .pd-cl{margin-bottom:5px}
+  .pd-cond .pd-cg.pd-two{grid-template-columns:minmax(0,1fr)}
+  .pd-card.pd-wide{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+  .pd-card.pd-wide .pd-dbody{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start}
+  .pd-card.pd-wide .pd-dbody>.pd-caution,.pd-card.pd-wide .pd-dbody>.pd-fold{grid-column:1/-1}
+  .pd-card.pd-wide .pd-dbody>.pd-d-ev{grid-column:2;grid-row:span 3}
+}
+@media (min-width:1560px){
+  .pd-cards:not(.pd-is-list){grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+.pd-chip,.pd-seg button,.pd-star,.pd-dk,.pd-obtn,.pd-textbtn,.pd-more summary,.pd-lks a,.pd-cat,.pd-condbar,.pd-row-b,.pd-go,.pd-fold,.pd-fold-l,.pd-notes-t,.pd-cond-x,.pd-retry{-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:no-preference){
+  .pd-chip,.pd-seg button,.pd-dk,.pd-obtn,.pd-lks a,.pd-textbtn,.pd-more summary,.pd-cat,.pd-condbar,.pd-go,.pd-fold,.pd-fold-l,.pd-retry{transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .12s ease}
+  .pd-chip:active,.pd-dk:active,.pd-obtn:active,.pd-seg button:active,.pd-cat:active,.pd-condbar:active,.pd-go:active,.pd-retry:active{transform:translateY(1px) scale(.98)}
+  .pd-more summary:active,.pd-textbtn:active,.pd-row-b:active{transform:translateY(1px)}
+  .pd-star:active svg{transform:scale(.9)}
+  /* ☆を付けたときの小さな手応え */
+  .pd-star.pd-pop svg{animation:pdStarPop .34s cubic-bezier(.3,1.6,.5,1)}
+  .pd-star.pd-pop::after{animation:pdStarRing .5s ease-out}
+  @media (max-width:1099.98px){
+    .pd-cond{transition:transform .26s cubic-bezier(.2,.8,.2,1), visibility 0s linear .26s}
+    .pd-open .pd-cond{transition:transform .26s cubic-bezier(.2,.8,.2,1), visibility 0s}
+  }
+}
+@keyframes pdStarPop{0%{transform:scale(.7)}60%{transform:scale(1.22)}100%{transform:scale(1)}}
+@keyframes pdStarRing{0%{opacity:.9;box-shadow:0 0 0 0 var(--brass)}100%{opacity:0;box-shadow:0 0 0 14px transparent}}
 </style>
 
 <svg class="defs" id="silkDefs" width="0" height="0" aria-hidden="true" focusable="false"></svg>
@@ -628,7 +1065,6 @@ a:hover{text-decoration-color:currentColor}
     <div class="rail"><i class="today" id="railToday"></i><i class="mark" id="railMark" aria-hidden="true"></i><i class="goal" aria-hidden="true"></i></div>
     <p class="rail-cap"><span><b>6/1</b> 2歳戦の開幕</span><span><b id="railEnd">5/30</b> 東京優駿</span></p>
     <p class="upd" id="asof"></p>
-    <a class="nextlink" href="next.html"><span>来年の下見帳</span><small>2025年生まれの注目馬 32頭</small><i aria-hidden="true">›</i></a>
   </header>
 
   <nav class="tabs" aria-label="ページの切り替え">
@@ -637,6 +1073,7 @@ a:hover{text-decoration-color:currentColor}
     <button type="button" class="tab" role="tab" id="tab-horses" aria-controls="horses" aria-selected="false" tabindex="-1"><span class="tl">指名馬</span><span class="tc" id="cntHorses"></span></button>
     <button type="button" class="tab" role="tab" id="tab-next" aria-controls="next" aria-selected="false" tabindex="-1"><span class="tl">次走</span><span class="tc" id="cntNext"></span></button>
     <button type="button" class="tab" role="tab" id="tab-news" aria-controls="news" aria-selected="false" tabindex="-1"><span class="tl">ニュース</span><span class="tc" id="cntNews"></span></button>
+    <button type="button" class="tab" role="tab" id="tab-paddock" aria-controls="paddock" aria-selected="false" tabindex="-1"><span class="tl">パドック</span></button>
     <span class="runner" id="tabRunner" aria-hidden="true"><i class="bar"></i><span class="mhw"></span></span>
     </div>
     <p class="tab-count" id="navCount"></p>
@@ -710,6 +1147,82 @@ a:hover{text-decoration-color:currentColor}
     <section id="news" class="panel" role="tabpanel" aria-labelledby="tab-news" hidden>
       <div class="sh"><span class="fl" aria-hidden="true"><b>残り1F</b><i></i></span><h2>ニュース</h2><span class="sub" id="newsSub">全馬の記事を新しい順に</span></div>
       <div class="feed" id="feed"></div>
+    </section>
+
+    <section id="paddock" class="panel" role="tabpanel" aria-labelledby="tab-paddock" hidden>
+      <div class="sh" id="pdHead"><span class="pd-sign" aria-hidden="true"><b>下見所</b><i></i></span><h2 id="pdH2" tabindex="-1">パドック</h2><span class="sub">2027年デビュー・2028年クラシックの世代を下見</span></div>
+      <div class="pd-wait" id="pdWait" role="status" aria-live="polite"></div>
+      <div class="pd-body" id="pdBody" hidden>
+        <!-- 表紙は 1 本の帯（今年の表紙と二重にしない。切り替えた直後から 1 頭目の写真が見えるように） -->
+        <header class="pd-mast" id="pdMast">
+          <p class="pd-mline"><span class="pd-gen">2025年生まれ<b id="pdCount">―</b>頭</span><span class="pd-mside"><span class="pd-upd" id="pdAsof"></span><span class="pd-mystar pd-zero" id="pdMastStar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.83 6.07 6.65.72-4.96 4.5 1.38 6.55L12 17.1l-5.9 3.34 1.38-6.55-4.96-4.5 6.65-.72z"/></svg><span class="sr-only">☆を付けた馬</span><b id="pdMastStarN">0</b>頭</span></span></p>
+          <div class="pd-road" id="pdRoad" aria-hidden="true"></div>
+          <p class="pd-road-cap" aria-hidden="true"><span><b>2025</b>誕生</span><span><b>2026</b>1歳</span><span><b>2027</b>デビュー</span><span><b>2028</b>クラシック</span></p>
+        </header>
+
+        <div class="pd-layout">
+          <section class="pd-cond" id="pdCond" aria-labelledby="pdCondH" tabindex="-1">
+            <div class="pd-cond-h"><h3 id="pdCondH">条件</h3><p class="pd-shown" id="pdShown" role="status" aria-live="polite"></p><button type="button" class="pd-cond-x" id="pdCondX" aria-label="条件を閉じる"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+            <div class="pd-cg">
+              <p class="pd-cl" id="pdLbCat">切り口</p>
+              <div class="pd-chips" id="pdFCat" role="group" aria-labelledby="pdLbCat"></div>
+            </div>
+            <div class="pd-cg pd-row2">
+              <p class="pd-cl" id="pdLbSex">性別</p>
+              <div class="pd-seg" id="pdFSex" role="group" aria-labelledby="pdLbSex"></div>
+            </div>
+            <div class="pd-cg pd-row2">
+              <p class="pd-cl" id="pdLbReg">厩舎</p>
+              <div class="pd-seg" id="pdFReg" role="group" aria-labelledby="pdLbReg"></div>
+            </div>
+            <div class="pd-cg pd-two">
+              <div><label class="pd-cl" for="pdFSire">父</label><span class="pd-sel"><select id="pdFSire"></select></span></div>
+              <div><label class="pd-cl" for="pdFSort">並べ替え</label><span class="pd-sel"><select id="pdFSort">
+                <option value="order">掲載順</option>
+                <option value="price">価格の高い順</option>
+                <option value="name">名前順</option>
+                <option value="birth">早生まれ順</option>
+              </select></span></div>
+            </div>
+            <div class="pd-cg pd-act">
+              <button type="button" class="pd-chip pd-starchip" id="pdFStar" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.83 6.07 6.65.72-4.96 4.5 1.38 6.55L12 17.1l-5.9 3.34 1.38-6.55-4.96-4.5 6.65-.72z"/></svg><span class="sr-only">☆</span>だけ表示<small id="pdFStarN">0</small></button>
+              <button type="button" class="pd-textbtn" id="pdFReset">条件を戻す</button>
+            </div>
+            <p class="pd-fine">☆ はこの端末の中だけに残ります。ほかの 3 人には見えません。カードのタグを押しても、その切り口で絞り込めます。価格順は、税込と税抜が混ざった金額のまま比べています。</p>
+            <div class="pd-cond-go"><button type="button" class="pd-go" id="pdCondGo"><b id="pdGoN">0</b>頭を見る</button></div>
+          </section>
+
+          <div class="pd-list" id="pdList">
+            <div class="pd-lh"><h3 id="pdListH">注目の 2025 年生まれ</h3><span class="sub">「くわしく」で評価と POG 目線</span><div class="pd-seg pd-vseg" id="pdView" role="group" aria-label="見え方"><button type="button" data-view="photo" aria-pressed="true">写真</button><button type="button" data-view="list" aria-pressed="false">一覧</button></div></div>
+            <div class="pd-bar" id="pdBar">
+              <button type="button" class="pd-condbar" id="pdBarCond" aria-haspopup="dialog" aria-controls="pdCond"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M6 10h8M8.5 15h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="pd-l">条件</span><span class="pd-v" id="pdBarV">すべて</span><span class="pd-n" id="pdBarN"></span></button>
+              <button type="button" class="pd-dk" id="pdBarStar" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.83 6.07 6.65.72-4.96 4.5 1.38 6.55L12 17.1l-5.9 3.34 1.38-6.55-4.96-4.5 6.65-.72z"/></svg><span class="sr-only">☆</span>だけ<b id="pdBarStarN">0</b></button>
+            </div>
+            <div class="pd-cards" id="pdCards"></div>
+            <div class="pd-empty" id="pdEmpty" hidden></div>
+          </div>
+        </div>
+
+        <section class="pd-notes" id="pdNotes" aria-label="パドックの注意">
+          <button type="button" class="pd-notes-t" id="pdNotesT" aria-expanded="false" aria-controls="pdNotesL"><b>注意 3 点</b><span><span class="pd-nw">馬名・厩舎はまだ変わる</span><span class="pd-nw">／税込と税抜が混在</span><span class="pd-nw">／写真は父か母</span></span></button>
+          <ul class="pd-notes-l" id="pdNotesL">
+            <li><b>これから変わります。</b>2025年生まれは馬名・厩舎・評価がまだ動きます。中身は調査日の時点のものです。</li>
+            <li><b>価格は税込と税抜が混ざっています。</b>価格順は書かれた金額のまま比べています。</li>
+            <li><b>写真は父か母です。</b>Wikimedia Commons の自由ライセンスの写真だけを載せ、本馬の写真は「写真を見る（公式）」から各ページへ。</li>
+          </ul>
+        </section>
+
+        <section class="pd-credits" id="pdCredits" aria-labelledby="pdCrH">
+          <div class="sh"><h3 id="pdCrH">写真のクレジット</h3><span class="sub" id="pdCrSub"></span></div>
+          <p class="pd-fine">載せた写真はすべて注目馬の父か母で、Wikimedia Commons の自由ライセンスのものです。縮小し、枠に合わせて切り抜いて表示しています（縦長の写真は切り抜かずに全体を表示）。CC BY-SA の写真を使い直すときは、同じライセンスと撮影者の表示が必要です。</p>
+          <ol class="pd-crl" id="pdCrList"></ol>
+        </section>
+        <div class="pd-foot" id="pdFoot">
+          <p id="pdFootAsof"></p>
+          <p>価格・厩舎・評価は各馬の「くわしく」にある出典をもとに要約しています。2025年生まれは登録や評価がこれから変わります。</p>
+        </div>
+      </div>
+      <div class="pd-scrim" id="pdScrim" hidden></div>
     </section>
   </main>
 
@@ -1698,8 +2211,734 @@ function renderNews(){
   }).join('') : '<p class="fine">ニュースはまだありません。</p>';
 }
 
+/* ---------- パドック（2025年生まれの下見） ----------
+   タブを初めて開いたときに next-data.json（同じフォルダ）を読み込んで組み立てる（今年のページの最初の読み込みは重くしない）。写真は img/。
+   中身は下見帳のページ（next.html）と同じ。☆と見え方は同じ localStorage のキーなので、どちらで付けても同じになる */
+var Paddock = (function(){
+  var sec = document.getElementById('paddock'), waitEl = document.getElementById('pdWait'), bodyEl = document.getElementById('pdBody');
+  if (!sec || !waitEl || !bodyEl) return { open: function(){}, close: function(){}, warm: function(){} };
+  function $(id){ return document.getElementById(id); }
+  var phase = 'idle';
+  var CAT_ORDER = ['セール高額', 'クラブ目玉', '名牝の仔', '新種牡馬', '評判', '穴'];
+  var STAR_KEY = 'fy27pog.stars.v1', VIEW_KEY = 'fy27pog.view.v1';
+  var HRS = [], PHO = [], PASOF = '', PBY = {}, INFO = [], IBY = {}, CATS = [], SEXES = [], SIRE_N = {}, SIRES_BIG = [];
+  var STARS = {}, VIEW = 'photo', S = blank(), DIMMED = {}, lastOrder = '', sheetFrom = null, sheetSnap = '';
+  var MQ_PC = window.matchMedia ? window.matchMedia('(min-width:1100px)') : null;
+  function isPC(){ return !!(MQ_PC && MQ_PC.matches); }
+  function blank(){ return { cat: '', sex: '', reg: '', sire: '', star: false, sort: 'order' }; }
+
+  /* ---- 小さな道具 ---- */
+  function str(v){ return v == null ? '' : String(v); }
+  function arr(v){ return Array.isArray(v) ? v : []; }
+  function isObj(v){ return !!v && typeof v === 'object'; }
+  function okUrl(u){ return (typeof u === 'string' && /^https?:\/\/[^\s]+$/i.test(u.trim())) ? u.trim() : ''; }
+  var I_EXT = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5h5v5M9.5 2.5L3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var I_STAR = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.83 6.07 6.65.72-4.96 4.5 1.38 6.55L12 17.1l-5.9 3.34 1.38-6.55-4.96-4.5 6.65-.72z"/></svg>';
+  var I_CAM = '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M2.8 6.6h3l1.4-2h5.6l1.4 2h3v9H2.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="10.8" r="2.9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+  function ext(url, html, cls){ var u = okUrl(url); return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener"' + (cls ? ' class="' + cls + '"' : '') + '>' + html + '</a>' : html; }
+  function host(u){ u = okUrl(u); if (!u) return ''; try { return new URL(u).hostname.replace(/^www\./, ''); } catch(e) { return ''; } }
+  /* 撮影者などに HTML が混ざっていたら、タグを除いた文字だけにする */
+  function plain(s){
+    s = str(s);
+    if (/[<&]/.test(s)) {
+      try {
+        var d = new DOMParser().parseFromString(s, 'text/html'), junk = d.querySelectorAll('script,style,noscript,template');
+        for (var i = 0; i < junk.length; i++) junk[i].parentNode.removeChild(junk[i]);
+        s = d.body ? d.body.textContent || '' : s.replace(/<[^>]*>/g, '');
+      } catch(e) { s = s.replace(/<[^>]*>/g, ''); }
+    }
+    return s.replace(/\s+/g, ' ').trim();
+  }
+  function jdate(d){ var x = ymd(d); return x ? x.y + '年' + x.m + '月' + x.d + '日（' + dow(d) + '）' : esc(d); }
+  /* エスケープ済みの文字の中の数字だけを数字の書体に（&#39; などの中は触らない） */
+  function nums(html){ return html.replace(/&#?\w+;|(\d[\d,.]*)/g, function(m, d){ return d ? '<span class="num">' + d + '</span>' : m; }); }
+  function hid(h){ return str(h.id).replace(/[^a-zA-Z0-9_-]/g, '') || 'x'; }
+  /* 小さな馬（下見所なので騎手は乗せない） */
+  function pdHorse(){
+    return '<svg class="mh" viewBox="0 0 32 20" aria-hidden="true" focusable="false">' +
+      '<g class="mh-l"><path d="M21.2 11.6L22.6 15.4 21.8 18.6M20 11.8L19.4 15.6 19.8 18.6M8.8 11.8L7.4 15.2 6.6 18.6M10 12L11.2 15.6 11.6 18.6"/></g>' +
+      '<g class="mh-h"><ellipse cx="14.6" cy="9.8" rx="8.4" ry="3.4" transform="rotate(-4 14.6 9.8)"/><path d="M19.4 8.3L24.4 3.9 26.9 5.4 22.4 11.2Z"/><path d="M24 3.4L26.4 2.7 30.8 6.5 29.8 7.8 25.6 6.6Z"/><path d="M24.6 3.4L25 1.3 26 3Z"/>' +
+      '<path d="M6.9 8.6Q3.6 9.6 3.4 13.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></g></svg>';
+  }
+  /* スクロールの位置合わせ。上に貼り付いているもの（PC の目次・条件の帯）の下に出す */
+  function jump(y){ y = Math.max(0, y); try { window.scrollTo({ top: y, behavior: 'instant' }); } catch(e) { window.scrollTo(0, y); } }
+  function nudge(d){ if (Math.abs(d) >= 1) jump(window.pageYOffset + d); }
+  function stuckH(el){ if (!el || !el.offsetHeight) return 0; var cs = getComputedStyle(el); return cs.position === 'sticky' ? (parseFloat(cs.top) || 0) + el.offsetHeight : 0; }
+  function cover(withBar){ var y = stuckH(document.querySelector('.tabs')); return withBar === false ? y : Math.max(y, stuckH($('pdBar'))); }
+  function goTo(el, smooth, withBar){
+    if (!el) return;
+    var y = el.getBoundingClientRect().top + window.pageYOffset - cover(withBar) - 12;
+    if (smooth && !reduced()) { try { window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' }); return; } catch(e) {} }
+    jump(y);
+  }
+
+  /* ---- 写真（母があれば母、なければ父。Commons の写真だけ） ---- */
+  function okLocal(s){ s = str(s).trim(); return /^[A-Za-z0-9_./-]+\.(jpe?g|png|webp|gif)$/i.test(s) && s.indexOf('..') < 0 && s.charAt(0) !== '/' && !/^[a-z]+:/i.test(s) ? s : ''; }
+  function photoOf(h){
+    var dam = str(h.dam).trim(), sire = str(h.sire).trim();
+    if (dam && PBY[dam]) return { p: PBY[dam], role: '母', who: dam };
+    if (sire && PBY[sire]) return { p: PBY[sire], role: '父', who: sire };
+    return null;
+  }
+  /* 縦長（幅÷高さ が 1.2 未満）の写真は切り抜かない。寸法がデータになければ、読めた時点で判断する */
+  function isTall(p){ var w = +p.w, h = +p.h; return w > 0 && h > 0 && w / h < 1.2; }
+  function sizeAttr(p){ var w = +p.w, h = +p.h; return w > 0 && h > 0 ? ' width="' + Math.round(w) + '" height="' + Math.round(h) + '"' : ''; }
+  var COATS = { '鹿毛':'bay', '黒鹿毛':'dkbay', '青鹿毛':'brown', '青毛':'black', '栗毛':'chestnut', '栃栗毛':'liver', '芦毛':'grey', '白毛':'white' };
+  function coatVar(h){ return 'var(--coat-' + (COATS[str(h.coat).trim()] || 'bay') + ')'; }
+
+  /* ---- 名前・所属・価格 ---- */
+  function damYear(h){ var d = str(h.dam).trim(); return d ? d + 'の2025' : ''; }
+  function titleOf(h){
+    var n = str(h.name).trim(), dy = damYear(h);
+    if (h.nameDecided && n) return { main: n, sub: dy && dy !== n ? dy : '', decided: true };
+    return { main: dy || n || '名前未定', sub: '', decided: false };
+  }
+  function nameParts(t){ var m = /^(.*)の(\d{4})$/.exec(t.main); return (!t.decided && m && m[1]) ? { n: m[1], y: m[2] } : { n: t.main, y: '' }; }
+  function nameHTML(t){ var p = nameParts(t); return '<span class="pd-nm-n">' + esc(p.n) + '</span>' + (p.y ? '<span class="pd-y">の<span class="num">' + esc(p.y) + '</span></span>' : ''); }
+  function regionOf(h){ var t = str(h.trainer); return /美浦/.test(t) ? '美浦' : (/栗東/.test(t) ? '栗東' : '未定'); }
+  function trainerRest(h){ return str(h.trainer).trim().replace(/^(美浦|栗東)\s*[・･:：]?\s*/, ''); }
+  /* 一覧の行に出す短い厩舎名（「木村哲也（父イクイノックスを…）」→「木村哲也」） */
+  function trainerShort(x){
+    if (x.reg === '未定') return '厩舎未定';
+    var r = trainerRest(x.h), k = r.search(/[（(。、,]/);
+    r = (k >= 0 ? r.slice(0, k) : r).replace(/厩舎$/, '').trim();
+    return x.reg + (r && r.length <= 8 ? ' ' + r : '');
+  }
+  /* 価格の文字から最初に出てくる金額を円に直す（税込・税抜の違いは無視） */
+  function toHalf(s){ return str(s).replace(/[０-９]/g, function(c){ return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }).replace(/[，、](?=\d{3})/g, ','); }
+  function n0(s){ return Number(str(s).replace(/,/g, '')) || 0; }
+  function yenOf(price){
+    var m = /(\d[\d,]*)\s*億(?:\s*(\d[\d,]*)\s*万)?|(\d[\d,]*)\s*万円/.exec(toHalf(price));
+    if (!m) return null;
+    var y = m[1] ? n0(m[1]) * 1e8 + (m[2] ? n0(m[2]) * 1e4 : 0) : n0(m[3]) * 1e4;
+    return y > 0 ? y : null;
+  }
+  function yenSplit(y){ var oku = Math.floor(y / 1e8); return { oku: oku, man: Math.round((y - oku * 1e8) / 1e4) }; }
+  function yenHTML(y){ var v = yenSplit(y); return v.oku ? '<b>' + v.oku + '</b>億' + (v.man ? '<b>' + v.man + '</b>万' : '') + '円' : '<b>' + v.man + '</b>万円'; }
+  function yenText(y){ var v = yenSplit(y); return v.oku ? v.oku + '億' + (v.man ? v.man + '万' : '') + '円' : v.man + '万円'; }
+  function priceKind(price){
+    var s = toHalf(price), m = /セレクトセール\s*(\d{4})\s*[・･ ]?\s*(当歳|1歳)/.exec(s);
+    if (m) return 'セレクトセール' + m[1] + '・' + m[2];
+    if (/セレクトセール/.test(s)) return 'セレクトセール';
+    if (/セール/.test(s)) return 'セール';
+    if (/口|募集/.test(s)) return 'クラブの募集総額';
+    return '';
+  }
+  /* 税込か税抜かが書かれていない・確かめられていないものは「不明」とだけ言う */
+  function taxOf(price){
+    var s = str(price);
+    if (/税込か税抜か|税込[\/／・]税抜|税の(注記|表記|記載)(は)?なし/.test(s)) return '税込か税抜か不明';
+    var a = s.indexOf('税抜'), b = s.indexOf('税込');
+    if (a < 0 && b < 0) return '';
+    return (a >= 0 && (b < 0 || a < b)) ? '税抜' : '税込';
+  }
+  function birthLabel(h){ var x = ymd(h.birth); return x ? '<span class="pd-bd"><span class="num">' + x.m + '/' + x.d + '</span>生</span>' : ''; }
+  /* 「普通（目安）。父も母も…」→ 頭の「普通（目安）」だけ。括弧が閉じていなくても 見込み・目安・推定 は残す */
+  function headOf(s){
+    s = str(s).trim();
+    if (!s) return '';
+    var i = s.search(/[。：:]/), head = i >= 0 ? s.slice(0, i) : s, j = head.indexOf('（');
+    if (j > 0 && (head.indexOf('）') < 0 || head.length > 12)) {
+      var q = /^(見込み|目安|推定)/.exec(head.slice(j + 1));
+      head = head.slice(0, j) + (q ? '（' + q[1] + '）' : '');
+    }
+    if (i < 0 && j < 0 && head.length > 12) return '';
+    return head.length <= 14 ? head : '';
+  }
+  function splitHead(s){
+    s = str(s).trim();
+    var h = headOf(s);
+    if (!h || s.indexOf(h) !== 0) return esc(s);
+    var rest = s.slice(h.length).replace(/^[。：:]\s*/, '');
+    return '<b>' + esc(h) + '</b>' + (rest ? (/^[（(]/.test(rest) ? '' : '。') + esc(rest) : '');
+  }
+  function lookOf(s){ var v = headOf(s); return v && !/^不明/.test(v) ? v : ''; }
+  /* 評価の日付: 「2026-10-14」「2026-05」「2026」「2026（募集カタログ…）」「なし」が混ざる */
+  function evalKey(d){ var m = /^(\d{4})(?:-(\d{1,2})(?:-(\d{1,2}))?)?/.exec(str(d).trim()); return m ? (+m[1]) * 10000 + (+(m[2] || 0)) * 100 + (+(m[3] || 0)) : -1; }
+  function evalDate(d){
+    d = str(d).trim();
+    if (!d) return '<span class="pd-dn">日付なし</span>';
+    var p = d.replace(/(\d{4})-(\d{1,2})-(\d{1,2})/g, function(_, y, m, dd){ return y + '.' + (+m) + '.' + (+dd); })
+             .replace(/(\d{4})-(\d{1,2})(?![\d.])/g, function(_, y, m){ return y + '.' + (+m); });
+    var k = p.indexOf('（');
+    if (k > 0) return '<span class="pd-d">' + esc(p.slice(0, k)) + '</span><span class="pd-dn">' + esc(p.slice(k)) + '</span>';
+    var m = /^(\d{4}(?:\.\d{1,2}){0,2})(.*)$/.exec(p);
+    return m ? '<span class="pd-d">' + esc(m[1]) + '</span>' + (m[2] ? '<span class="pd-dn">' + esc(m[2]) + '</span>' : '') : '<span class="pd-dn">' + esc(p) + '</span>';
+  }
+
+  /* ---- ☆（その端末の中だけ。下見帳のページと同じキー） ---- */
+  function readStars(raw){
+    STARS = {};
+    if (!raw) return;
+    try { arr(JSON.parse(raw)).forEach(function(id){ if (typeof id === 'string') STARS[id] = 1; }); } catch(e) {}
+  }
+  function isStar(h){ return !!STARS[str(h.id)]; }
+  function saveStars(){ try { store(STAR_KEY, JSON.stringify(Object.keys(STARS))); } catch(e) {} }
+  function starCount(){ return HRS.filter(isStar).length; }
+
+  /* ---- 下ごしらえ ---- */
+  function prepare(D){
+    if (!isObj(D)) throw new Error('data');
+    HRS = arr(D.horses).filter(isObj);
+    PHO = arr(D.photos).filter(isObj);
+    PASOF = typeof D.asOf === 'string' ? D.asOf : '';
+    PBY = {};
+    PHO.forEach(function(p){ var k = str(p.horse).trim(); if (k && okLocal(p.local) && !PBY[k]) PBY[k] = p; });
+    var seen = {};
+    INFO = HRS.map(function(h, i){
+      var b = hid(h), id = seen[b] ? b + '-' + i : b;
+      seen[b] = 1;
+      return { h: h, i: i, id: id, t: titleOf(h), reg: regionOf(h), yen: yenOf(h.price), ph: photoOf(h), cats: arr(h.categories).map(str).filter(Boolean), birthT: utc(h.birth) };
+    });
+    IBY = {}; INFO.forEach(function(x){ IBY[x.id] = x; });
+    CATS = CAT_ORDER.slice();
+    INFO.forEach(function(x){ x.cats.forEach(function(c){ if (CATS.indexOf(c) < 0) CATS.push(c); }); });
+    SEXES = [];
+    INFO.forEach(function(x){ var s = str(x.h.sex).trim(); if (s && SEXES.indexOf(s) < 0) SEXES.push(s); });
+    SEXES.sort(function(a, b){ return '牡牝セ'.indexOf(a) - '牡牝セ'.indexOf(b); });
+    SIRE_N = {};
+    INFO.forEach(function(x){ var s = str(x.h.sire).trim(); if (s) SIRE_N[s] = (SIRE_N[s] || 0) + 1; });
+    SIRES_BIG = Object.keys(SIRE_N).filter(function(s){ return SIRE_N[s] >= 2; }).sort(function(a, b){ return SIRE_N[b] - SIRE_N[a]; });
+  }
+  function sireKey(x){ var s = str(x.h.sire).trim(); return SIRES_BIG.indexOf(s) >= 0 ? s : '__other'; }
+  function countBy(fn){ return INFO.filter(fn).length; }
+
+  /* ---- カード ---- */
+  function clothHTML(x){ return '<span class="pd-cloth" aria-hidden="true">No.' + (x.i + 1) + '</span>'; }
+  function credLine(p, pre){
+    var art = plain(p.artist), lic = plain(p.license);
+    return '<p class="pd-ph-cr">' + (pre || '') + '撮影 ' + esc(art || '不明') + '<span class="pd-dot" aria-hidden="true">／</span>' + ext(p.licenseUrl, esc(lic || 'ライセンス')) +
+      (okUrl(p.page) ? '<span class="pd-dot" aria-hidden="true">／</span>' + ext(p.page, 'Commons') : '') + '</p>';
+  }
+  function pedPanel(h){
+    var long = Math.max(str(h.sire).length, str(h.dam).length) >= 10;
+    return '<div class="pd-pn' + (long ? ' pd-pn-long' : '') + '" aria-hidden="true"><p class="pd-pn-coat"><i></i>' + esc(h.coat || '毛色') + '</p>' +
+      '<p class="pd-pn-ped"><span>' + esc(h.sire || '父') + '</span><span class="pd-x">×</span><span class="pd-d">' + esc(h.dam || '母') + '</span></p></div>';
+  }
+  function photoLinks(h){ return arr(h.links).filter(function(l){ return l && l.photo && okUrl(l.url); }); }
+  function placeholderHTML(h, cloth, failed){
+    var msg = failed ? '写真を読み込めませんでした。' : '父母の自由ライセンスの写真は見つかっていません。';
+    if (photoLinks(h).length) msg += '本馬の写真は公式のページで。';
+    return '<figure class="pd-ph"><div class="pd-ph-frame pd-ph-none" style="--coat:' + coatVar(h) + '">' + (cloth || '') + pedPanel(h) + '</div>' +
+      '<figcaption><p class="pd-ph-cr">' + msg + '</p></figcaption></figure>';
+  }
+  function photoHTML(x, eager){
+    var h = x.h, cloth = clothHTML(x);
+    if (!x.ph) return placeholderHTML(h, cloth);
+    var p = x.ph.p, cap = plain(p.caption), src = esc(okLocal(p.local));
+    var alt = x.ph.role + ' ' + x.ph.who + 'の写真' + (cap ? '（' + cap + '）' : '');
+    var lazy = (eager ? '' : ' loading="lazy"') + ' decoding="async"';
+    if (x.ph.role === '母') {
+      return '<figure class="pd-ph"><div class="pd-ph-frame' + (isTall(p) ? ' pd-tall' : '') + '">' + cloth +
+          '<img src="' + src + '" alt="' + esc(alt) + '"' + sizeAttr(p) + lazy + '>' +
+          '<p class="pd-ph-tag" aria-hidden="true"><span class="pd-r">母</span><b>' + esc(x.ph.who) + '</b></p></div>' +
+        '<figcaption>' + credLine(p) + '</figcaption></figure>';
+    }
+    /* 父の写真しかない馬: 血統の札を主役にして、父の写真は右下に小さく（同じ父の写真が大きく続かないように） */
+    return '<figure class="pd-ph"><div class="pd-ph-frame pd-ph-none pd-ph-sire" style="--coat:' + coatVar(h) + '">' + cloth + pedPanel(h) +
+        '<div class="pd-ph-mini"><img src="' + src + '" alt="' + esc(alt) + '"' + sizeAttr(p) + lazy + '>' +
+        '<p class="pd-ph-mini-t" aria-hidden="true"><span class="pd-r">父</span><span>' + esc(x.ph.who) + '</span></p></div></div>' +
+      '<figcaption>' + credLine(p, '父の写真　') + '</figcaption></figure>';
+  }
+  function catsHTML(x){
+    return x.cats.map(function(c){ return '<button type="button" class="pd-cat" data-cat="' + esc(c) + '" aria-pressed="false" aria-label="' + esc(c) + 'で絞り込む">' + esc(c) + '</button>'; }).join('');
+  }
+  function priceHTML(x){
+    var h = x.h, kind = priceKind(h.price), tax = taxOf(h.price);
+    if (x.yen == null) return '<div class="pd-pr"><span class="pd-pr-v pd-none">' + (str(h.price).trim() ? '価格は「くわしく」に' : '価格の情報なし') + '</span></div>';
+    var k = [kind, tax].filter(Boolean).map(function(s){ return '<span>' + esc(s) + '</span>'; }).join('<span class="pd-sep" aria-hidden="true">／</span>');
+    return '<div class="pd-pr"><span class="pd-pr-v" aria-label="価格 ' + esc(yenText(x.yen)) + '">' + yenHTML(x.yen) + '</span>' + (k ? '<span class="pd-pr-k">' + k + '</span>' : '') + '</div>';
+  }
+  function pedHTML(h){
+    var rows = '<div><dt>父</dt><dd>' + esc(h.sire || '―') + '</dd></div>' +
+      '<div><dt>母</dt><dd>' + esc(h.dam || '―') + (h.damSire ? '<span class="pd-ds">母父 ' + esc(h.damSire) + '</span>' : '') +
+        (str(h.damRecord).trim() ? '<span class="pd-rec">' + esc(h.damRecord) + '</span>' : '') + '</dd></div>';
+    if (str(h.siblings).trim()) rows += '<div class="pd-sib"><dt>兄姉</dt><dd>' + esc(h.siblings) + '</dd></div>';
+    return '<dl class="pd-ped">' + rows + '</dl>';
+  }
+  function kvHTML(x){
+    var h = x.h;
+    var tr = x.reg === '未定'
+      ? '<span class="pd-rg pd-tbd">未定</span>' + (str(h.trainer).trim() ? esc(h.trainer) : '<span class="pd-tbdtxt">予定厩舎はまだ出ていません</span>')
+      : '<span class="pd-rg">' + esc(x.reg) + '</span>' + esc(trainerRest(h));
+    return '<dl class="pd-kv"><div><dt>所属</dt><dd>' + (str(h.owner).trim() ? esc(h.owner) : '<span class="pd-tbdtxt">未確認</span>') + '</dd></div>' +
+      '<div><dt>厩舎</dt><dd>' + tr + '</dd></div></dl>';
+  }
+  function lookHTML(h){
+    var pv = h.pogView || {}, e = lookOf(pv.earliness), d = lookOf(pv.distance);
+    if (!e && !d) return '';
+    return '<p class="pd-look">' + (e ? '<span>仕上がり<b>' + esc(e) + '</b></span>' : '') + (d ? '<span>距離<b>' + esc(d) + '</b></span>' : '') + '</p>';
+  }
+  function officialBtn(h){
+    var l = photoLinks(h)[0];
+    return l ? '<a class="pd-obtn" href="' + esc(okUrl(l.url)) + '" target="_blank" rel="noopener">' + I_CAM + '<span>写真を見る（公式）</span><span class="pd-h">' + esc(host(l.url)) + '</span></a>' : '';
+  }
+  function detailsHTML(x){
+    var h = x.h, pv = isObj(h.pogView) ? h.pogView : {};
+    var evs = arr(h.evaluations).filter(function(e){ return e && (e.summary || e.source); })
+      .map(function(e, i){ return { e: e, i: i, k: evalKey(e.date) }; })
+      .sort(function(a, b){ return b.k - a.k || a.i - b.i; });
+    var links = arr(h.links).filter(function(l){ return l && (l.label || l.url); })
+      .map(function(l, i){ return { l: l, i: i }; })
+      .sort(function(a, b){ return (b.l.photo ? 1 : 0) - (a.l.photo ? 1 : 0) || a.i - b.i; });
+    var unres = arr(h.unresolved).map(str).filter(Boolean), conf = str(h.confidence), parts = [];
+    if (conf === 'low' || conf === 'medium') {
+      parts.push('<p class="pd-caution"><b>' + (conf === 'low' ? '情報が少ない' : '一部が未確認') + '</b><span>' +
+        (conf === 'low' ? 'この馬は確かめられた情報が少なく、下の中身が大きく変わるかもしれません。' : 'この馬は一部の情報を確かめきれていません。いちばん下の「まだ確かめていないこと」も見てください。') + '</span></p>');
+    }
+    /* 並び: POG 目線 → 事前評価 → 血統と価格 → リンク → まだ確かめていないこと */
+    var plus = arr(pv.plus).map(str).filter(Boolean), minus = arr(pv.minus).map(str).filter(Boolean);
+    var pvRows = (str(pv.earliness).trim() ? '<div><dt>仕上がり</dt><dd>' + splitHead(pv.earliness) + '</dd></div>' : '') +
+      (str(pv.distance).trim() ? '<div><dt>距離</dt><dd>' + splitHead(pv.distance) + '</dd></div>' : '');
+    function li(s){ return '<li>' + esc(s) + '</li>'; }
+    parts.push('<section class="pd-dsec"><h5>POG 目線</h5>' +
+      (plus.length || minus.length ? '<div class="pd-pm">' +
+        (plus.length ? '<div class="pd-plus"><h6>良い点</h6><ul>' + plus.map(li).join('') + '</ul></div>' : '') +
+        (minus.length ? '<div class="pd-minus"><h6>気になる点</h6><ul>' + minus.map(li).join('') + '</ul></div>' : '') + '</div>' : '') +
+      (pvRows ? '<dl class="pd-pv">' + pvRows + '</dl>' : '') +
+      (!plus.length && !minus.length && !pvRows ? '<p class="pd-none-txt">まだ書かれていません。</p>' : '') + '</section>');
+    parts.push('<section class="pd-dsec pd-d-ev"><h5>事前評価<small>' + (evs.length ? '新しい順・' + evs.length + '件' : '') + '</small></h5>' +
+      (evs.length ? '<ol class="pd-evs">' + evs.map(function(o){
+        var e = o.e;
+        return '<li><p class="pd-ev-h">' + evalDate(e.date) + '<span>' + esc(e.source || '') + '</span></p>' +
+          (e.summary ? '<p class="pd-ev-s">' + esc(e.summary) + '</p>' : '') +
+          (okUrl(e.url) ? '<a class="pd-ev-l" href="' + esc(okUrl(e.url)) + '" target="_blank" rel="noopener">出典を開く（' + esc(host(e.url)) + '）</a>' : '') + '</li>';
+      }).join('') + '</ol>' : '<p class="pd-none-txt">事前の評価はまだ見つかっていません。</p>') + '</section>');
+    var kv = [];
+    if (str(h.damRecord).trim()) kv.push('<div><dt>母の成績</dt><dd>' + esc(h.damRecord) + '</dd></div>');
+    if (str(h.siblings).trim()) kv.push('<div><dt>兄姉</dt><dd>' + esc(h.siblings) + '</dd></div>');
+    if (str(h.price).trim()) kv.push('<div><dt>価格</dt><dd>' + esc(h.price) + '</dd></div>');
+    if (ymd(h.birth)) kv.push('<div><dt>生まれ</dt><dd>' + jdate(h.birth) + '</dd></div>');
+    if (str(h.breeder).trim()) kv.push('<div><dt>生産</dt><dd>' + esc(h.breeder) + '</dd></div>');
+    if (kv.length) parts.push('<section class="pd-dsec"><h5>血統と価格</h5><dl class="pd-kv2">' + kv.join('') + '</dl></section>');
+    if (links.length) parts.push('<section class="pd-dsec"><h5>リンク<small>写真のあるページを先に</small></h5><ul class="pd-lks">' + links.map(function(o){
+      var l = o.l, u = okUrl(l.url);
+      var inner = (l.photo ? '<span class="pd-pb">写真</span>' : '') + '<span class="pd-t">' + esc(l.label || host(u)) + (u ? '<span class="pd-h">' + esc(host(u)) + '</span>' : '') + '</span>';
+      return '<li' + (l.photo ? ' class="pd-ph-l"' : '') + '>' + (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + inner + I_EXT + '</a>' : inner) + '</li>';
+    }).join('') + '</ul></section>');
+    if (unres.length) parts.push('<section class="pd-dsec"><h5>まだ確かめていないこと<small>' + unres.length + '件</small></h5><ul class="pd-unres">' + unres.map(li).join('') + '</ul></section>');
+    parts.push('<button type="button" class="pd-fold" data-fold>くわしくを閉じる</button>');
+    var lab = ['POG 目線', evs.length ? '評価 ' + evs.length + '件' : '', links.length ? 'リンク ' + links.length : ''].filter(Boolean).join('・');
+    return '<details class="pd-more"><summary><b>くわしく</b><span class="pd-x">' + esc(lab) + '</span></summary><div class="pd-dbody">' + parts.join('') + '</div></details>';
+  }
+  function starBtn(x, st){ return '<button type="button" class="pd-star" data-star="' + x.id + '" aria-pressed="' + st + '" aria-label="☆ ' + esc(x.t.main) + '">' + I_STAR + '</button>'; }
+  /* 一覧の 1 行（小さい写真・馬名・父・価格・厩舎・☆） */
+  function rowHTML(x, st){
+    var h = x.h, p = nameParts(x.t), thumb;
+    if (x.ph && x.ph.role === '母') thumb = '<span class="pd-row-ph"><img src="' + esc(okLocal(x.ph.p.local)) + '" alt="" loading="lazy" decoding="async"></span>';
+    else thumb = '<span class="pd-row-ph pd-row-pn" style="--coat:' + coatVar(h) + '"><i></i><small>' + esc(h.coat || '毛色') + '</small></span>';
+    var s = ['父 ' + (str(h.sire).trim() || '―'), str(h.sex).trim()].filter(Boolean).join('・');
+    return '<div class="pd-row"><button type="button" class="pd-row-b" data-open="' + x.id + '" aria-expanded="false">' + thumb +
+        '<span class="pd-row-t"><span class="pd-row-nm" style="--n:' + p.n.length + '"><span class="pd-nm-n">' + esc(p.n) + '</span>' + (p.y ? '<small>の' + esc(p.y) + '</small>' : '') + '</span>' +
+        '<span class="pd-row-s">' + esc(s) + '</span>' +
+        '<span class="pd-row-p">' + (x.yen != null ? '<b>' + esc(yenText(x.yen)) + '</b>' : '価格の情報なし') + '　' + esc(trainerShort(x)) + '</span></span></button>' +
+      starBtn(x, st) + '</div>';
+  }
+  function cardHTML(x){
+    var h = x.h, st = isStar(h), conf = str(h.confidence);
+    var pf = [esc([h.sex, h.coat].filter(Boolean).join('・')), birthLabel(h)].filter(Boolean).join('<span aria-hidden="true">・</span>');
+    var long = nameParts(x.t).n.length >= 10;
+    return '<article class="pd-card' + (st ? ' pd-is-star' : '') + '" id="pd-h-' + x.id + '" data-id="' + x.id + '" aria-labelledby="pd-nm-' + x.id + '">' +
+      rowHTML(x, st) +
+      '<div class="pd-face">' + photoHTML(x, x.i < 3) +
+      '<div class="pd-cb">' +
+        '<header class="pd-ch"><div><h4 class="pd-nm' + (long ? ' pd-long' : '') + '" id="pd-nm-' + x.id + '">' + nameHTML(x.t) + '</h4>' +
+          (x.t.sub ? '<p class="pd-nm-sub">' + nums(esc(x.t.sub)) + '</p>' : '') + '</div>' + starBtn(x, st) + '</header>' +
+        '<p class="pd-pf"><span class="pd-sx">' + pf + '</span>' + catsHTML(x) + ((conf === 'low' || conf === 'medium') ? '<span class="pd-unsure">' + (conf === 'low' ? '情報少なめ' : '一部未確認') + '</span>' : '') + '</p>' +
+        officialBtn(h) + priceHTML(x) + pedHTML(h) + kvHTML(x) + lookHTML(h) +
+      '</div></div>' +
+      detailsHTML(x) +
+      '<button type="button" class="pd-fold-l" data-fold-l="' + x.id + '">一覧にたたむ</button>' +
+    '</article>';
+  }
+
+  /* ---- 題字 ---- */
+  function renderMast(){
+    $('pdCount').textContent = String(INFO.length);
+    $('pdAsof').innerHTML = PASOF ? '調査 <b>' + esc(md(PASOF)) + '</b>' : '';
+    $('pdFootAsof').innerHTML = (PASOF ? '調査日 ' + jdate(PASOF) + '。' : '') + '掲載 ' + INFO.length + '頭。写真の左上の No. は掲載の順で、順位ではありません。';
+    /* 道のり: 節目（誕生 2025/1/1・1歳 2026/1/1・デビュー 2027/6/1・ダービー 2028/5/28）を等間隔に置き、その間は日付で按分 */
+    var STOPS = [Date.UTC(2025, 0, 1), Date.UTC(2026, 0, 1), Date.UTC(2027, 5, 1), Date.UTC(2028, 4, 28)];
+    var n = new Date(), t = Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()), now = 100;
+    for (var k = 0; k < STOPS.length - 1; k++) {
+      if (t < STOPS[k + 1]) { now = (k + Math.max(0, (t - STOPS[k]) / (STOPS[k + 1] - STOPS[k]))) / (STOPS.length - 1) * 100; break; }
+    }
+    var age = Math.max(0, Math.min(3, n.getFullYear() - 2025)), mo = n.getMonth() + 1;
+    var season = mo >= 3 && mo <= 5 ? '春' : (mo >= 6 && mo <= 8 ? '夏' : (mo >= 9 && mo <= 11 ? '秋' : '冬'));
+    var nowLab = t < STOPS[0] ? 'いま 誕生前' : (t > STOPS[3] ? 'クラシックのあと' : 'いま ' + (age ? age + '歳の' : '当歳の') + season);
+    var pos = now < 10 ? 's' : (now > 90 ? 'e' : ''), at = now.toFixed(2) + '%';
+    $('pdRoad').innerHTML = '<i class="pd-walked" style="width:' + at + '"></i>' +
+      '<i class="pd-pin" style="left:0"></i><i class="pd-pin" style="left:33.333%"></i><i class="pd-pin" style="left:66.667%"></i><i class="pd-pin pd-goal" style="left:100%"></i>' +
+      '<span class="pd-now" style="left:' + at + '">' + pdHorse() + '</span>' +
+      '<em class="pd-now-l"' + (pos ? ' data-pos="' + pos + '"' : '') + ' style="left:' + at + '">' + esc(nowLab) + '</em>';
+  }
+
+  /* ---- 条件 ---- */
+  function chip(key, val, label, n){ return '<button type="button" class="pd-chip" data-k="' + key + '" data-v="' + esc(val) + '" aria-pressed="false">' + esc(label) + (n != null ? '<small>' + n + '</small>' : '') + '</button>'; }
+  function segBtn(key, val, label, n){ return '<button type="button" data-k="' + key + '" data-v="' + esc(val) + '" aria-pressed="false">' + esc(label) + (n != null ? '<small>' + n + '</small>' : '') + '</button>'; }
+  function renderCond(){
+    $('pdFCat').innerHTML = chip('cat', '', 'すべて', INFO.length) +
+      CATS.map(function(c){ var n = countBy(function(x){ return x.cats.indexOf(c) >= 0; }); return n ? chip('cat', c, c, n) : ''; }).join('');
+    $('pdFSex').innerHTML = segBtn('sex', '', 'すべて') +
+      SEXES.map(function(s){ return segBtn('sex', s, s, countBy(function(x){ return str(x.h.sex).trim() === s; })); }).join('');
+    $('pdFReg').innerHTML = segBtn('reg', '', 'すべて') +
+      ['美浦', '栗東', '未定'].map(function(r){ var n = countBy(function(x){ return x.reg === r; }); return n ? segBtn('reg', r, r, n) : ''; }).join('');
+    var other = countBy(function(x){ return sireKey(x) === '__other'; });
+    $('pdFSire').innerHTML = '<option value="">すべての父</option>' +
+      SIRES_BIG.map(function(s){ return '<option value="' + esc(s) + '">' + esc(s) + '（' + SIRE_N[s] + '）</option>'; }).join('') +
+      (other ? '<option value="__other">その他の父（' + other + '）</option>' : '');
+  }
+  function match(x){
+    if (S.cat && x.cats.indexOf(S.cat) < 0) return false;
+    if (S.sex && str(x.h.sex).trim() !== S.sex) return false;
+    if (S.reg && x.reg !== S.reg) return false;
+    if (S.sire && sireKey(x) !== S.sire) return false;
+    if (S.star && !isStar(x.h) && !DIMMED[x.id]) return false;
+    return true;
+  }
+  function sorted(){
+    var L = INFO.slice();
+    if (S.sort === 'price') L.sort(function(a, b){ return (a.yen == null) - (b.yen == null) || (b.yen || 0) - (a.yen || 0) || a.i - b.i; });
+    else if (S.sort === 'name') L.sort(function(a, b){ return a.t.main.localeCompare(b.t.main, 'ja') || a.i - b.i; });
+    else if (S.sort === 'birth') L.sort(function(a, b){ return (isNaN(a.birthT) - isNaN(b.birthT)) || (a.birthT || 0) - (b.birthT || 0) || a.i - b.i; });
+    else L.sort(function(a, b){ return a.i - b.i; });
+    return L;
+  }
+  function condSummary(){
+    var p = [];
+    if (S.cat) p.push(S.cat);
+    if (S.sex) p.push(S.sex);
+    if (S.reg) p.push(S.reg === '未定' ? '厩舎未定' : S.reg);
+    if (S.sire) p.push(S.sire === '__other' ? 'その他の父' : '父' + S.sire);
+    if (S.star) p.push('☆だけ');
+    var so = { price: '価格順', name: '名前順', birth: '早生まれ順' }[S.sort];
+    if (so) p.push(so);
+    return p.join('・');
+  }
+  function apply(){
+    var box = $('pdCards'), L = sorted(), shown = 0;
+    var order = L.map(function(x){ return x.id; }).join(',');
+    if (order !== lastOrder) { L.forEach(function(x){ var el = $('pd-h-' + x.id); if (el) box.appendChild(el); }); lastOrder = order; }
+    L.forEach(function(x){
+      var el = $('pd-h-' + x.id); if (!el) return;
+      var ok = match(x); el.hidden = !ok; if (ok) shown++;
+      el.classList.toggle('pd-is-dim', !!(S.star && DIMMED[x.id] && !isStar(x.h)));
+      var cs = el.querySelectorAll('.pd-cat[data-cat]');
+      for (var i = 0; i < cs.length; i++) cs[i].setAttribute('aria-pressed', String(!!S.cat && cs[i].getAttribute('data-cat') === S.cat));
+    });
+    var bs = $('pdCond').querySelectorAll('[data-k]');
+    for (var j = 0; j < bs.length; j++) bs[j].setAttribute('aria-pressed', String(S[bs[j].getAttribute('data-k')] === bs[j].getAttribute('data-v')));
+    $('pdFSire').value = S.sire;
+    $('pdFSort').value = S.sort;
+    $('pdFStar').setAttribute('aria-pressed', String(S.star));
+    $('pdBarStar').setAttribute('aria-pressed', String(S.star));
+    var all = INFO.length, sum = condSummary(), bar = $('pdBarCond');
+    $('pdShown').innerHTML = shown === all && !sum ? '<b>' + all + '</b>頭すべて' : '<b>' + shown + '</b>頭 / ' + all + '頭';
+    $('pdBarV').textContent = sum || 'すべて';
+    $('pdBarN').innerHTML = '<b>' + shown + '</b>頭';
+    bar.classList.toggle('pd-on', !!sum);
+    bar.setAttribute('aria-label', '条件を開く（いまの条件: ' + (sum || 'すべて') + '、' + shown + '頭）');
+    $('pdGoN').textContent = String(shown);
+    var empty = $('pdEmpty');
+    if (shown) { empty.hidden = true; empty.innerHTML = ''; }
+    else {
+      empty.hidden = false;
+      empty.innerHTML = S.star && !starCount() && !S.cat && !S.sex && !S.reg && !S.sire
+        ? '<p>まだ ☆ を付けた馬がいません。気になる馬の名前の右にある ☆ を押すと、ここに並びます。</p><button type="button" class="pd-textbtn" data-reset>すべての馬を表示する</button>'
+        : '<p>この条件に合う馬はいません。</p><button type="button" class="pd-textbtn" data-reset>条件を戻す</button>';
+    }
+    updateStarCounts();
+  }
+  function updateStarCounts(){
+    var n = String(starCount());
+    $('pdMastStarN').textContent = n;
+    $('pdMastStar').classList.toggle('pd-zero', n === '0');
+    $('pdFStarN').textContent = n;
+    $('pdBarStarN').textContent = n;
+  }
+  function setS(k, v){
+    if (k === 'star') S.star = !!v; else S[k] = v;
+    DIMMED = {};
+    apply();
+  }
+  function reset(){ S = blank(); DIMMED = {}; apply(); }
+  function syncStar(x){
+    var on = isStar(x.h), card = $('pd-h-' + x.id);
+    if (!card) return;
+    card.classList.toggle('pd-is-star', on);
+    var bs = card.querySelectorAll('[data-star]');
+    for (var i = 0; i < bs.length; i++) bs[i].setAttribute('aria-pressed', String(on));
+  }
+  function toggleStar(btn){
+    var id = btn.getAttribute('data-star'), x = IBY[id];
+    if (!x) return;
+    var key = str(x.h.id), on = !STARS[key];
+    if (on) STARS[key] = 1; else delete STARS[key];
+    saveStars();
+    syncStar(x);
+    /* 「☆だけ」の最中に外した馬は、すぐには消さず薄く残す（押し間違えてもすぐ戻せる） */
+    var card = $('pd-h-' + id);
+    if (S.star) { if (on) delete DIMMED[id]; else DIMMED[id] = 1; if (card) card.classList.toggle('pd-is-dim', !on); }
+    btn.classList.remove('pd-pop');
+    if (on && !reduced()) { void btn.offsetWidth; btn.classList.add('pd-pop'); }
+    updateStarCounts();
+  }
+
+  /* ---- 条件のシート（1100px 未満）。開いている間は今年のページの題字・目次も含めて後ろを触れなくする ---- */
+  function sheetOpen(){ return sec.classList.contains('pd-open'); }
+  function behind(){ return [$('top'), document.querySelector('.tabs'), document.querySelector('.foot'), $('pdHead'), $('pdMast'), $('pdNotes'), $('pdList'), $('pdCredits'), $('pdFoot')].filter(Boolean); }
+  function openSheet(from){
+    var c = $('pdCond');
+    if (isPC()) { goTo(c, true, false); try { c.focus({ preventScroll: true }); } catch(e) { c.focus(); } return; }
+    sheetFrom = from || null; sheetSnap = JSON.stringify(S);
+    sec.classList.add('pd-open'); document.body.classList.add('pd-lock');
+    $('pdScrim').hidden = false;
+    c.setAttribute('role', 'dialog'); c.setAttribute('aria-modal', 'true');
+    behind().forEach(function(el){ el.setAttribute('inert', ''); el.setAttribute('aria-hidden', 'true'); });
+    c.scrollTop = 0;
+    try { c.focus({ preventScroll: true }); } catch(e) { c.focus(); }
+  }
+  function closeSheet(go){
+    if (!sheetOpen()) return;
+    var c = $('pdCond');
+    sec.classList.remove('pd-open'); document.body.classList.remove('pd-lock');
+    $('pdScrim').hidden = true;
+    c.removeAttribute('role'); c.removeAttribute('aria-modal');
+    behind().forEach(function(el){ el.removeAttribute('inert'); el.removeAttribute('aria-hidden'); });
+    /* 条件を変えて「◯頭を見る」で閉じたら、リストの頭へ */
+    var list = $('pdList');
+    if (go && JSON.stringify(S) !== sheetSnap && list.getBoundingClientRect().top < cover(false)) goTo(list, false, false);
+    if (sheetFrom) { try { sheetFrom.focus({ preventScroll: true }); } catch(e) {} }
+    sheetFrom = null;
+  }
+
+  /* シートは、いちばん上まで戻した状態で下へなぞると閉じる（上の取っ手の見た目どおり）。60px までなら元に戻る */
+  (function(){
+    var c = $('pdCond'), y0 = 0, dy = 0, on = false;
+    if (!c) return;
+    function unpull(){ c.style.transition = ''; c.style.transform = ''; }
+    c.addEventListener('touchstart', function(e){
+      on = false; dy = 0;
+      if (!sheetOpen() || isPC() || e.touches.length !== 1 || c.scrollTop > 0) return;
+      if (e.target && e.target.closest && e.target.closest('select')) return;
+      y0 = e.touches[0].clientY; on = true;
+    }, { passive: true });
+    c.addEventListener('touchmove', function(e){
+      if (!on || !e.touches.length) return;
+      dy = e.touches[0].clientY - y0;
+      if (dy < 0 || c.scrollTop > 0) { on = false; dy = 0; unpull(); return; }
+      if (dy > 4) { c.style.transition = 'none'; c.style.transform = 'translateY(' + Math.round(dy) + 'px)'; }
+    }, { passive: true });
+    function end(){
+      if (!on) return;
+      on = false;
+      unpull();
+      if (dy > 60) closeSheet(false);
+      dy = 0;
+    }
+    c.addEventListener('touchend', end);
+    c.addEventListener('touchcancel', function(){ dy = 0; end(); });
+  })();
+
+  /* ---- 写真／一覧 ---- */
+  function syncViewBtns(){ var bs = $('pdView').querySelectorAll('[data-view]'); for (var k = 0; k < bs.length; k++) bs[k].setAttribute('aria-pressed', String(bs[k].getAttribute('data-view') === VIEW)); }
+  function setView(v){
+    var box = $('pdCards'), top = cover(), keep = null;
+    /* 切り替えの前に見ていた馬を、切り替えのあとも画面の上に出す */
+    if (box.getBoundingClientRect().top < top) {
+      var cs = box.querySelectorAll('.pd-card:not([hidden])');
+      for (var i = 0; i < cs.length; i++) { if (cs[i].getBoundingClientRect().bottom > top + 80) { keep = cs[i]; break; } }
+    }
+    VIEW = v === 'list' ? 'list' : 'photo';
+    store(VIEW_KEY, VIEW);
+    box.classList.toggle('pd-is-list', VIEW === 'list');
+    var op = box.querySelectorAll('.pd-card.pd-is-open');
+    for (var j = 0; j < op.length; j++) { op[j].classList.remove('pd-is-open'); var rb = op[j].querySelector('.pd-row-b'); if (rb) rb.setAttribute('aria-expanded', 'false'); }
+    syncViewBtns();
+    if (keep) goTo(keep, false);
+  }
+  function openRow(card, on){
+    if (!card) return;
+    card.classList.toggle('pd-is-open', on);
+    var rb = card.querySelector('.pd-row-b'); if (rb) rb.setAttribute('aria-expanded', String(on));
+    if (!on) {
+      var d = card.querySelector('details.pd-more'); if (d && d.open) { d.open = false; card.classList.remove('pd-wide'); }
+      if (card.getBoundingClientRect().top < cover()) goTo(card, false);
+    }
+  }
+  /* くわしくの開け閉め。PC で段をぶち抜いても、押したカードが画面の同じ所に残るように */
+  function setMore(d, open){
+    var card = d.closest('.pd-card'); if (!card) return;
+    var before = card.getBoundingClientRect().top;
+    d.open = open;
+    card.classList.toggle('pd-wide', open);
+    if (open) nudge(card.getBoundingClientRect().top - before);
+    else if (card.getBoundingClientRect().top < cover()) goTo(card, false);
+  }
+
+  /* ---- 写真のクレジット（載せた写真ごとに 1 行） ---- */
+  function renderCredits(){
+    var used = [], by = {};
+    INFO.forEach(function(x){
+      if (!x.ph) return;
+      var k = okLocal(x.ph.p.local);
+      if (!by[k]) { by[k] = { p: x.ph.p, who: x.ph.who, role: {}, list: [] }; used.push(by[k]); }
+      by[k].role[x.ph.role] = 1; by[k].list.push(x.t.main);
+    });
+    $('pdCrSub').textContent = used.length ? used.length + '点・Wikimedia Commons' : '';
+    $('pdCrList').innerHTML = used.length ? used.map(function(u){
+      var p = u.p, cap = plain(p.caption), art = plain(p.artist), lic = plain(p.license), roles = Object.keys(u.role).join('・');
+      var useTxt = u.list.length === 1 ? u.list[0] + 'の' + roles : u.list.length + '頭の' + roles + '（' + u.list[0] + ' ほか）';
+      return '<li><p class="pd-cr-h"><b>' + esc(u.who) + '</b><span class="pd-u">' + nums(esc(useTxt)) + '</span></p>' +
+        (cap ? '<p class="pd-cr-c">' + nums(esc(cap)) + '</p>' : '') +
+        '<p class="pd-cr-a">撮影 ' + esc(art || '不明') + '<span class="pd-dot" aria-hidden="true">／</span>' + ext(p.licenseUrl, '<span class="pd-lic">' + esc(lic || 'ライセンス') + '</span>', 'pd-lic-a') +
+        (okUrl(p.page) ? '<span class="pd-dot" aria-hidden="true">／</span>' + ext(p.page, '元ページ（' + esc(plain(p.file) || 'Wikimedia Commons') + '）') : '') + '</p></li>';
+    }).join('') : '<li>載せた写真はありません。</li>';
+  }
+
+  /* ---- 読み込み ---- */
+  function setWait(kind){
+    if (!kind) { waitEl.hidden = true; waitEl.innerHTML = ''; return; }
+    waitEl.hidden = false;
+    waitEl.classList.toggle('pd-err', kind !== 'loading');
+    waitEl.innerHTML = kind === 'missing'
+      ? '<p class="pd-wt"><b>パドックはまだ準備中です</b><span>下見の中身をまだ載せていません。日をおいて開いてください。</span></p><button type="button" class="pd-retry" data-retry>もう一度読み込む</button>'
+      : kind === 'error'
+      ? '<p class="pd-wt"><b>パドックの馬を読み込めませんでした</b><span>電波のよい所で、もう一度お試しください。</span></p><button type="button" class="pd-retry" data-retry>もう一度読み込む</button>'
+      : '<span class="pd-wh">' + pdHorse() + '</span><p class="pd-wt"><b>パドックに馬を呼んでいます</b><span>2025年生まれの写真と情報を読み込み中です。</span></p>';
+  }
+  function build(D){
+    prepare(D);
+    readStars(store(STAR_KEY));
+    VIEW = store(VIEW_KEY) === 'list' ? 'list' : 'photo';
+    S = blank(); DIMMED = {}; lastOrder = '';
+    renderMast();
+    renderCond();
+    var box = $('pdCards');
+    box.classList.toggle('pd-is-list', VIEW === 'list');
+    syncViewBtns();
+    box.innerHTML = INFO.map(cardHTML).join('');
+    renderCredits();
+    apply();
+    setWait('');
+    bodyEl.hidden = false;
+  }
+  /* 「もう一度読み込む」はボタンが消えるので、フォーカスを見出しへ移す */
+  function focusHead(){ var h = $('pdH2'); if (h) { try { h.focus({ preventScroll: true }); } catch(e) { h.focus(); } } }
+  function load(again){
+    phase = 'loading';
+    setWait('loading');
+    if (again) focusHead();
+    var done = false, ctl = null, timer = 0, status = 0;
+    /* 404 は「まだ載せていない」（next-data.json が公開されていない）。それ以外は電波などの失敗 */
+    function fail(){ if (done) return; done = true; clearTimeout(timer); phase = 'error'; bodyEl.hidden = true; setWait(status === 404 ? 'missing' : 'error'); }
+    try {
+      if (typeof fetch !== 'function') throw new Error('fetch');
+      if (window.AbortController) ctl = new AbortController();
+      timer = setTimeout(function(){ if (ctl) { try { ctl.abort(); } catch(e) {} } fail(); }, 20000);
+      fetch('next-data.json', ctl ? { signal: ctl.signal } : {}).then(function(r){
+        if (!r.ok) { status = r.status; throw new Error('HTTP ' + r.status); }
+        return r.json();
+      }).then(function(D){
+        if (done) return;
+        done = true; clearTimeout(timer);
+        try { build(D); phase = 'ready'; } catch(e) { done = false; fail(); }
+      }).catch(fail);
+    } catch(e) { fail(); }
+  }
+
+  /* ---- 操作（パネルの中だけで受ける） ---- */
+  /* 写真が読めなかったら、毛色と血統の札に差し替える */
+  sec.addEventListener('error', function(e){
+    var t = e.target;
+    if (!t || t.tagName !== 'IMG' || !t.closest) return;
+    var card = t.closest('.pd-card'), x = card ? IBY[card.getAttribute('data-id')] : null;
+    if (!x) return;
+    var rp = t.closest('.pd-row-ph');
+    if (rp) { rp.className = 'pd-row-ph pd-row-pn'; rp.style.setProperty('--coat', coatVar(x.h)); rp.innerHTML = '<i></i><small>' + esc(x.h.coat || '毛色') + '</small>'; return; }
+    var fig = t.closest('.pd-ph');
+    if (!fig) return;
+    var tmp = document.createElement('div');
+    tmp.innerHTML = placeholderHTML(x.h, clothHTML(x), true);
+    if (tmp.firstChild) fig.parentNode.replaceChild(tmp.firstChild, fig);
+  }, true);
+  /* 縦長の写真は、読めた時点で切り抜きをやめる */
+  sec.addEventListener('load', function(e){
+    var t = e.target, f = t && t.parentNode;
+    if (!t || t.tagName !== 'IMG') return;
+    if (f && f.classList && f.classList.contains('pd-ph-frame') && t.naturalWidth && t.naturalHeight && t.naturalWidth / t.naturalHeight < 1.2) f.classList.add('pd-tall');
+  }, true);
+  sec.addEventListener('click', function(e){
+    var t = e.target && e.target.closest ? e.target : null;
+    if (!t) return;
+    if (t.closest('[data-retry]')) { load(true); return; }
+    if (phase !== 'ready') return;
+    var b = t.closest('[data-star]');
+    if (b) { toggleStar(b); return; }
+    b = t.closest('.pd-more > summary');
+    if (b) { e.preventDefault(); setMore(b.parentNode, !b.parentNode.open); return; }
+    b = t.closest('[data-fold]');
+    if (b) { var d = b.closest('details.pd-more'); if (d) setMore(d, false); return; }
+    b = t.closest('[data-open]');
+    if (b) { var cd = b.closest('.pd-card'); openRow(cd, !cd.classList.contains('pd-is-open')); return; }
+    b = t.closest('[data-fold-l]');
+    if (b) { openRow(b.closest('.pd-card'), false); return; }
+    b = t.closest('.pd-cat[data-cat]');
+    if (b) {
+      /* カードのタグ: その切り口で絞り込む（押したカードは画面の同じ所に残す） */
+      var card = b.closest('.pd-card'), top0 = card.getBoundingClientRect().top, c = b.getAttribute('data-cat');
+      setS('cat', S.cat === c ? '' : c);
+      nudge(card.getBoundingClientRect().top - top0);
+      return;
+    }
+    b = t.closest('.pd-cond [data-k]');
+    if (b) { var k = b.getAttribute('data-k'), v = b.getAttribute('data-v'); setS(k, S[k] === v && v !== '' ? '' : v); return; }
+    b = t.closest('#pdView [data-view]');
+    if (b) { if (b.getAttribute('data-view') !== VIEW) setView(b.getAttribute('data-view')); return; }
+    if (t.closest('[data-reset]')) { reset(); goTo($('pdList'), true, false); return; }
+    if (t.closest('#pdFStar')) { setS('star', !S.star); return; }
+    if (t.closest('#pdBarStar')) {
+      setS('star', !S.star);
+      var l = $('pdList');
+      if (l.getBoundingClientRect().top < cover(false)) goTo(l, true, false);
+      return;
+    }
+    if (t.closest('#pdFReset')) { reset(); return; }
+    b = t.closest('#pdBarCond');
+    if (b) { openSheet(b); return; }
+    if (t.closest('#pdCondGo')) { closeSheet(true); return; }
+    if (t.closest('#pdCondX') || t.closest('#pdScrim')) { closeSheet(false); return; }
+    b = t.closest('#pdNotesT');
+    if (b) { var nt = $('pdNotes'), on = !nt.classList.contains('pd-on'); nt.classList.toggle('pd-on', on); b.setAttribute('aria-expanded', String(on)); }
+  });
+  /* ブラウザの「ページ内検索」などで開いたときも、PC の段組みを合わせる */
+  sec.addEventListener('toggle', function(e){
+    var d = e.target;
+    if (!d || !d.classList || !d.classList.contains('pd-more')) return;
+    var c = d.closest('.pd-card'); if (c) c.classList.toggle('pd-wide', d.open);
+  }, true);
+  $('pdFSire').addEventListener('change', function(){ if (phase === 'ready') setS('sire', this.value); });
+  $('pdFSort').addEventListener('change', function(){ if (phase === 'ready') setS('sort', this.value || 'order'); });
+  document.addEventListener('keydown', function(e){ if ((e.key === 'Escape' || e.key === 'Esc') && sheetOpen()) { e.preventDefault(); closeSheet(false); } });
+  onMQ(MQ_PC, function(){ if (isPC()) closeSheet(false); });
+  /* ☆の付け外しをほかのタブ（下見帳のページなど）で行ったら合わせる */
+  window.addEventListener('storage', function(e){
+    if (e.key !== STAR_KEY || phase !== 'ready') return;
+    readStars(e.newValue);
+    INFO.forEach(syncStar);
+    apply();
+  });
+
+  return {
+    open: function(){ if (phase === 'idle' || phase === 'error') load(); },
+    /* タブに指が触れた時点で読み始める（押し終わるまでの分だけ早く出る） */
+    warm: function(){ if (phase === 'idle') load(); },
+    close: function(){ closeSheet(false); }
+  };
+})();
+
 /* ---------- 切り替え ---------- */
-var TABS = ['standings', 'horses', 'next', 'news'];
+var TABS = ['standings', 'horses', 'next', 'news', 'paddock'];
 var current = '';
 var runnerEl = document.getElementById('tabRunner'), runnerAnim = null, runnerX = null, runnerW = null;
 if (runnerEl) runnerEl.querySelector('.mhw').innerHTML = miniHorse();
@@ -1724,15 +2963,24 @@ function placeRunner(animate){
   a.onfinish = function(){ if (runnerAnim === a) { runnerAnim = null; runnerEl.classList.remove('is-run', 'to-left'); } };
   a.oncancel = function(){ runnerEl.classList.remove('is-run', 'to-left'); };
 }
+/* 横すべりの途中で画面の幅が一瞬変わっても、すべり終わりにタブの位置で置き直す（ずれていたときだけ） */
+function settleRunner(){
+  var btn = document.getElementById('tab-' + current);
+  if (!runnerEl || !btn || !btn.offsetWidth || runnerX == null) return;
+  if (Math.abs(btn.offsetLeft - runnerX) >= 1 || Math.abs(btn.offsetWidth - runnerW) >= 1) placeRunner(false);
+}
 function waveFlag(){
   var ag = document.getElementById('agenda');
   if (!ag || reduced()) return;
   ag.classList.remove('wave'); void ag.offsetWidth; ag.classList.add('wave');
 }
+/* パドックは長い（32 頭）ので、離れたときの位置を覚えておき、戻ったらそこから。押し直すと先頭へ */
+var paddockY = -1;
 function showTab(id, opts){
   opts = opts || {};
   if (TABS.indexOf(id) < 0) id = 'standings';
   var changed = current !== id, prev = current;
+  if (changed && prev === 'paddock') paddockY = window.pageYOffset;
   current = id;
   TABS.forEach(function(t){
     var on = t === id, btn = document.getElementById('tab-' + t);
@@ -1746,15 +2994,22 @@ function showTab(id, opts){
   var user = !!(opts.user && changed && prev);
   if (user && !reduced()) {
     var pan = document.getElementById(id), dir = TABS.indexOf(id) > TABS.indexOf(prev) ? 1 : -1;
-    if (pan.animate) pan.animate([{ transform: 'translateX(' + (dir * 14) + 'px)' }, { transform: 'translateX(0)' }], { duration: 280, easing: 'cubic-bezier(.2,.7,.2,1)' });
+    if (pan.animate) {
+      var pa = pan.animate([{ transform: 'translateX(' + (dir * 14) + 'px)' }, { transform: 'translateX(0)' }], { duration: 280, easing: 'cubic-bezier(.2,.7,.2,1)' });
+      pa.onfinish = settleRunner;
+    }
   }
-  if (changed && opts.scroll !== false){
+  var again = !changed && !!opts.user && id === 'paddock';
+  if ((changed || again) && opts.scroll !== false){
     var main = document.querySelector('main');
     var top = id === 'standings' ? 0 : Math.max(0, main.getBoundingClientRect().top + window.pageYOffset - 16 - (window.innerWidth >= 900 ? 60 : 0));
-    if (window.pageYOffset > top || id === 'standings') { try { window.scrollTo({ top: top, behavior: 'instant' }); } catch(e) { window.scrollTo(0, top); } }
+    if (id === 'paddock' && changed && paddockY > top) top = paddockY;
+    if (again) paddockY = -1;
+    if (window.pageYOffset > top || id === 'standings' || top === paddockY) { try { window.scrollTo({ top: top, behavior: 'instant' }); } catch(e) { window.scrollTo(0, top); } }
   }
   if (id === 'standings') { renderChart(true, user); if (Race && Race.check) Race.check(); }
   if (id === 'next' && changed) waveFlag();
+  if (id === 'paddock') Paddock.open(); else Paddock.close();
   placeRunner(user);
 }
 TABS.forEach(function(t, i){
@@ -1771,6 +3026,7 @@ TABS.forEach(function(t, i){
   });
 });
 document.getElementById('toNext').addEventListener('click', function(){ showTab('next', { user: true }); });
+document.getElementById('tab-paddock').addEventListener('pointerdown', function(){ Paddock.warm(); });
 
 var jumpTimer = null;
 function jumpHorse(id){
@@ -1798,7 +3054,10 @@ window.addEventListener('resize', function(){ clearTimeout(rsT); rsT = setTimeou
 /* ---------- 起動 ---------- */
 renderStandings(); renderSoon(); renderPrize(); renderFilter(); renderHorses(); renderNext(); renderNews();
 var start = (location.hash || '').replace('#', '');
-showTab(TABS.indexOf(start) >= 0 ? start : (store('pogC.tab') || 'standings'), { hash:false, scroll:false });
+/* 覚えたタブで始めるのは今年の 4 つだけ。パドックで閉じても、次に開いたときは順位から（パドックで始めるのは #paddock のリンクのときだけ） */
+var savedTab = store('pogC.tab');
+if (savedTab === 'paddock') savedTab = 'standings';
+showTab(TABS.indexOf(start) >= 0 ? start : (savedTab || 'standings'), { hash:false, scroll:false });
 renderChart(true);
 if (current === 'next') waveFlag();
 
